@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import UserSinglePost from "./UserSinglePost";
+import Navigation from "./Navigation/Navigation";
 
 const UserProfile = () => {
   return (
     <>
+    <Navigation></Navigation>
       {/* Profile banner */}
       <div className="drop-shadow-sm p-5 bg-white rounded-2xl">
         <div className="">
