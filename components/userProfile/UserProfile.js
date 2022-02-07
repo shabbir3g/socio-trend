@@ -55,7 +55,7 @@ const UserProfile = () => {
             <h2 className="text-lg font-semibold pb-3">About</h2>
             <div className="flex items-center">
               <Image
-                src="https://img.icons8.com/emoji/48/000000/graduation-cap-emoji.png"
+                src="https://img.icons8.com/emoji/25/000000/graduation-cap-emoji.png"
                 alt=""
                 height="25"
                 width="25"
@@ -75,7 +75,7 @@ const UserProfile = () => {
             </div>
             <div className="flex items-center py-3">
               <Image
-                src="https://img.icons8.com/material-sharp/48/000000/marker.png"
+                src="https://img.icons8.com/material-sharp/25/000000/marker.png"
                 alt=""
                 height="25"
                 width="25"
@@ -84,7 +84,7 @@ const UserProfile = () => {
             </div>
             <div className="flex items-center py-3">
               <Image
-                src="https://img.icons8.com/ios-glyphs/30/000000/like--v1.png"
+                src="https://img.icons8.com/ios-glyphs/25/000000/like--v1.png"
                 alt=""
                 height="25"
                 width="25"
@@ -93,7 +93,7 @@ const UserProfile = () => {
             </div>
             <div className="flex items-center py-3">
               <Image
-                src="https://img.icons8.com/ios-filled/50/000000/clock--v1.png"
+                src="https://img.icons8.com/ios-filled/25/000000/clock--v1.png"
                 alt=""
                 height="25"
                 width="25"
@@ -112,7 +112,7 @@ const UserProfile = () => {
             <div className="">
               <div className="flex items-center">
                 <Image
-                  src="https://img.icons8.com/office/40/000000/create-new.png"
+                  src="https://img.icons8.com/office/25/000000/create-new.png"
                   alt=""
                   height="30"
                   width="30"
@@ -129,22 +129,21 @@ const UserProfile = () => {
                     className="rounded-full"
                   />
                 </div>
-                <div className="ml-3">
+                <div className="ml-3 w-full">
                   <textarea
                     name=""
                     id=""
                     // cols="80"
                     rows="4"
                     placeholder="What's on your mind"
-                    className="focus:outline-none text-sm"
+                    className="focus:outline-none text-sm w-full"
                   />
                 </div>
               </div>
               <div className="mt-5">
                 <input
                   type="file"
-                  text="Photo"
-                  className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4
+                  className="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4
                 file:rounded-full file:border-0
                 file:text-sm file:font-semibold
                 file:bg-violet-50 file:text-violet-700
