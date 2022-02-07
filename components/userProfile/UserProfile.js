@@ -50,7 +50,7 @@ const UserProfile = () => {
       {/* Post and About */}
 
       <div className="grid grid-cols-12 gap-4 bg-gray-100 pt-3">
-        <div className="col-span-4">
+        <div className="md:col-span-4 sm:col-span-12 col-span-12 ">
           <div className="drop-shadow-sm bg-white p-5 rounded-xl">
             <h2 className="text-lg font-semibold pb-3">About</h2>
             <div className="flex items-center">
@@ -106,7 +106,7 @@ const UserProfile = () => {
           </div>
         </div>
 
-        <div className="col-span-8">
+        <div className="md:col-span-8 sm:col-span-12 col-span-12 ">
           {/* create post */}
           <div className="drop-shadow-sm bg-white p-5 rounded-xl">
             <div className="">
@@ -133,7 +133,7 @@ const UserProfile = () => {
                   <textarea
                     name=""
                     id=""
-                    cols="80"
+                    // cols="80"
                     rows="4"
                     placeholder="What's on your mind"
                     className="focus:outline-none text-sm"
