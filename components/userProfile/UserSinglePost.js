@@ -48,40 +48,48 @@ const UserSinglePost = () => {
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
           <span className="p-1 pb-0 bg-gray-200 rounded-full">
-            <Image
-              src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-like-notifications-justicon-flat-justicon.png"
-              alt=""
-              height="25"
-              width="25"
-            />
+            <button>
+              <Image
+                src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-like-notifications-justicon-flat-justicon.png"
+                alt=""
+                height="25"
+                width="25"
+              />
+            </button>
           </span>
           <span className="p-1 pb-0 bg-gray-200 rounded-full ml-1">
-            <Image
-              src="https://img.icons8.com/color/48/000000/like--v3.png"
-              alt=""
-              height="25"
-              width="25"
-            />
+            <button>
+              <Image
+                src="https://img.icons8.com/color/48/000000/like--v3.png"
+                alt=""
+                height="25"
+                width="25"
+              />
+            </button>
           </span>
           <span className="ml-3">2.8K Like</span>
-          <div className="ml-5 items-center flex">
-            <Image
-              src="https://img.icons8.com/fluency-systems-regular/48/000000/speech-bubble-with-dots.png"
-              alt=""
-              height="30"
-              width="30"
-            />
-            <span className="ml-1">22 Comments</span>
+          <div className="ml-5 ">
+            <button className="items-center flex">
+              <Image
+                src="https://img.icons8.com/fluency-systems-regular/48/000000/speech-bubble-with-dots.png"
+                alt=""
+                height="30"
+                width="30"
+              />
+              <span className="ml-1">22 Comments</span>
+            </button>
           </div>
         </div>
-        <div className="flex items-center">
-          <Image
-            src="https://img.icons8.com/material-outlined/25/000000/share.png"
-            alt=""
-            width="25"
-            height="25"
-          />
-          <span className="ml-1">Share</span>
+        <div>
+          <button className="flex items-center">
+            <Image
+              src="https://img.icons8.com/material-outlined/25/000000/share.png"
+              alt=""
+              width="25"
+              height="25"
+            />
+            <span className="ml-1">Share</span>
+          </button>
         </div>
       </div>
     </div>

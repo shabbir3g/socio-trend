@@ -43,7 +43,6 @@ const UserProfile = () => {
         <hr />
         <div className="flex ">
           <p className="pr-8 pt-3">Post</p>
-          <p className="pr-8 pt-3">About</p>
           <p className="pr-8 pt-3">Friends</p>
         </div>
       </div>
@@ -54,7 +53,7 @@ const UserProfile = () => {
         <div className="col-span-4">
           <div className="drop-shadow-sm bg-white p-5 rounded-xl">About</div>
         </div>
-        
+
         <div className="col-span-8">
           {/* create post */}
           <div className="drop-shadow-sm bg-white p-5 rounded-xl">
