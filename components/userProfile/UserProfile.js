@@ -42,8 +42,8 @@ const UserProfile = () => {
         </div>
         <hr />
         <div className="flex ">
-          <p className="pr-8 pt-3">Post</p>
-          <p className="pr-8 pt-3">Friends</p>
+          <p className="pr-8 pt-3 font-semibold">Post</p>
+          <p className="pr-8 pt-3 font-semibold">Friends</p>
         </div>
       </div>
 
@@ -51,7 +51,59 @@ const UserProfile = () => {
 
       <div className="grid grid-cols-12 gap-4 bg-gray-100 pt-3">
         <div className="col-span-4">
-          <div className="drop-shadow-sm bg-white p-5 rounded-xl">About</div>
+          <div className="drop-shadow-sm bg-white p-5 rounded-xl">
+            <h2 className="text-lg font-semibold pb-3">About</h2>
+            <div className="flex items-center">
+              <Image
+                src="https://img.icons8.com/emoji/48/000000/graduation-cap-emoji.png"
+                alt=""
+                height="25"
+                width="25"
+              />
+              <span className="ml-3">
+                Went to Haripur Durgadas High School & College
+              </span>
+            </div>
+            <div className="flex items-center py-3">
+              <Image
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABpElEQVRoge3XsWvUYBzG8Y9yKIJVEXQoDjd2EVzsJDgIgpubbnVydtM/wdWxq5MgiCCO4mBBKAguLuLiIqIUWpCj2FodLm/PxrSXq7nkZ32/8EzJvXm+5PJ7EzK16ONlkX7HXfbNNazgZ5FVXO+00YQcwl38MJJI2cJ9HO6sXU1O4Ik/Bcp5jtMddRzLBXwwXiLlIy6W1tjt3NZYwGCPIrtlUPw2cQffK86bOkfxYB8C5TzEsWLNS/jUpsg5vG5AIuWN0Yg+gxdtiFzG5wYlUr7ianGNnuGE25qGQBqtm1OQSNnEveJacKNpiRk8nqJAOc9wqmmJObxrUSLlPc43JXET3zqQSBng1t8IpIetK4FyFnFkUomzdo6/KFnCbF2Jqg0pUr7gyjiJ26pfEaJlw3AbSCN6m+N4FKDgpHmKk7+LLBcH1gKUq5vUdZnRB84G3mK+fKsCM2/4frZOxX/M0PJfYEf38J+cdcki0cgi0cgi0eg1vF7VvrQXje1ZB+aOZJFoZJFoZJFoZJFoZJFoZJFoZJFoHGiRpdZbTM6rrgtk/ht+AZJi8ybhOtGyAAAAAElFTkSuQmCC"
+                alt=""
+                height="25"
+                width="25"
+              />
+              <span className="ml-3">Lives in Pabna Dhaka Bangladesh</span>
+            </div>
+            <div className="flex items-center py-3">
+              <Image
+                src="https://img.icons8.com/material-sharp/48/000000/marker.png"
+                alt=""
+                height="25"
+                width="25"
+              />
+              <span className="ml-3">From Pabna Dhaka Bangladesh</span>
+            </div>
+            <div className="flex items-center py-3">
+              <Image
+                src="https://img.icons8.com/ios-glyphs/30/000000/like--v1.png"
+                alt=""
+                height="25"
+                width="25"
+              />
+              <span className="ml-3">Single</span>
+            </div>
+            <div className="flex items-center py-3">
+              <Image
+                src="https://img.icons8.com/ios-filled/50/000000/clock--v1.png"
+                alt=""
+                height="25"
+                width="25"
+              />
+              <span className="ml-3">Joined April 2017</span>
+            </div>
+            <button className="w-full bg-gray-200 font-semibold rounded-md text-gray-700 mt-3 py-2">
+              Edit Details
+            </button>
+          </div>
         </div>
 
         <div className="col-span-8">
@@ -65,7 +117,7 @@ const UserProfile = () => {
                   height="30"
                   width="30"
                 />
-                <span className="pl-3">Create Post</span>
+                <span className="pl-3 font-semibold">Create Post</span>
               </div>
               <div className="mt-5 border-2 rounded-xl p-2 flex">
                 <div>
