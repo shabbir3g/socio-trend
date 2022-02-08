@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import UserSinglePost from "./UserSinglePost";
 
 const UserProfile = () => {
+  useEffect(() => {
+    const editDetailsModal = document.getElementById("edit-about-modal");
+    const editDetailsBtn = document.getElementById("edit-about");
+
+    const editProfileModal = document.getElementById("edit-profile-modal");
+    const editProfileBtn = document.getElementById("edit-profile");
+
+    const closeAboutModalBtn = document.getElementById("close-about-modal");
+    const closeProfileModalBtn = document.getElementById("close-profile-modal");
+
+    const toggleModalAbout = () => {
+      editDetailsModal.classList.toggle("hidden");
+      editDetailsModal.classList.toggle("flex");
+    };
+
+    const toggleModalProfile = () => {
+      editProfileModal.classList.toggle("hidden");
+      editProfileModal.classList.toggle("flex");
+    };
+
+    editDetailsBtn.addEventListener("click", toggleModalAbout);
+    editProfileBtn.addEventListener("click", toggleModalProfile);
+
+    closeAboutModalBtn.addEventListener("click", toggleModalAbout);
+    closeProfileModalBtn.addEventListener("click", toggleModalProfile);
+  }, []);
   return (
     <>
       {/* Profile banner */}
@@ -35,7 +61,10 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="">
-            <button className="bg-green-500	text-white font-bold text-xs p-3 rounded-md ">
+            <button
+              className="bg-green-500	text-white font-bold text-xs p-3 rounded-md "
+              id="edit-profile"
+            >
               Edit profile
             </button>
           </div>
@@ -100,7 +129,10 @@ const UserProfile = () => {
               />
               <span className="ml-3">Joined April 2017</span>
             </div>
-            <button className="w-full bg-gray-200 font-semibold rounded-md text-gray-700 mt-3 py-2">
+            <button
+              className="w-full bg-gray-200 font-semibold rounded-md text-gray-700 mt-3 py-2"
+              id="edit-about"
+            >
               Edit Details
             </button>
           </div>
@@ -155,6 +187,80 @@ const UserProfile = () => {
           <UserSinglePost />
           <UserSinglePost />
           <UserSinglePost />
+        </div>
+      </div>
+      {/* Edit About Modal */}
+      <div
+        className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center"
+        id="edit-about-modal"
+      >
+        <div className="bg-gray-200 max-w-sm py-2 px-3 rounded shadow-xl text-gray-800">
+          <div className="flex justify-between items-center">
+            <h4 className="text-lg font-bold">About</h4>
+            <svg
+              className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full"
+              id="close-about-modal"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </div>
+          <div className="mt-2 text-sm">
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
+              sunt.
+            </p>
+          </div>
+          <div className="mt-3 flex justify-end space-x-3">
+            <button className="px-3 py-1 rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">
+              Cancel
+            </button>
+            <button className="px-3 py-1 bg-red-800 text-gray-200 hover:bg-red-600 rounded">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* Edit Profile Modal */}
+      <div
+        className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center"
+        id="edit-profile-modal"
+      >
+        <div className="bg-gray-200 max-w-sm py-2 px-3 rounded shadow-xl text-gray-800">
+          <div className="flex justify-between items-center">
+            <h4 className="text-lg font-bold">Profile</h4>
+            <svg
+              className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full"
+              id="close-profile-modal"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </div>
+          <div className="mt-2 text-sm">
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
+              sunt.
+            </p>
+          </div>
+          <div className="mt-3 flex justify-end space-x-3">
+            <button className="px-3 py-1 rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">
+              Cancel
+            </button>
+            <button className="px-3 py-1 bg-red-800 text-gray-200 hover:bg-red-600 rounded">
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </>
