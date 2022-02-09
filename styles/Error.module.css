@@ -1,0 +1,20 @@
+.errorTitle {
+  color: #212529;
+  font-size: 5vh;
+  font-weight: 700;
+}
+.errorSms {
+  color: rgb(170, 169, 169);
+  margin-top: 5px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.errorText button {
+  background-color: #0055ff;
+  color: white;
+  font-weight: 500;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 2.5vh;
+}
