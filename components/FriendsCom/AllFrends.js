@@ -96,8 +96,8 @@ const AllFrends = () => {
     return (
         <div className='bg-slate-200 pb-20'>
             <div className="mx-8 md:mx-18 sm:mx-11 xs:mx-8 lg:mx-28 pt-5">
-                <div className='bg-white border my-5 flex flex-row justify-between justify-items-center py-8 px-8 rounded-md'>
-                    <div  className='text-2xl font-bold'> Friends  </div>
+                <div className='bg-white border my-5 flex flex-col xs:flex-col sm:flex-row justify-between justify-items-center py-8 px-8 rounded-md'>
+                    <div style={{color:"#1D4ED8"}} className='text-2xl font-bold pt-1.5 text-center mb-4 lg:mb-0 md:mb-0 sm:mb-0'> Friends  </div>
                     
                     <div className='flex justify-center justify-items-center'>
                         <div className=' bg-gray-100 w-72 h-12 rounded-lg relative'>
