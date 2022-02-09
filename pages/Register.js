@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from '../components/Share/Navigation';
 
-const Register = () => {
+const register = () => {
     return (
         <>
         <Navigation></Navigation>
@@ -34,4 +34,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default register;

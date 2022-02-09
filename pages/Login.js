@@ -4,7 +4,7 @@ import { } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navigation from '../components/Share/Navigation';
 
-const Login = () => {
+const login = () => {
     return (
         <>
         <Navigation></Navigation>
@@ -40,4 +40,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default login;
