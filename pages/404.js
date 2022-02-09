@@ -5,7 +5,7 @@ const Error = () => {
     return (
         <div style={{textAlign:"center", marginTop:'20vh'}}>
             <div >
-                <Image src="/errorImg.png" width="200px" height="250px"></Image>
+                <Image src="/errorImg.png" width="200px" height="250px" alt=""></Image>
             </div>
             <div className={styles.errorText}>
                 <p className={styles.errorTitle}>Oops! It looks like <br />.you&apos;re lost</p>
