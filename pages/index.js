@@ -3,6 +3,7 @@ import LeftSideBar from "../components/Home/LeftSideBar";
 import MiddleLeftBar from "../components/Home/MiddleLeftBar";
 import MiddleRightBar from "../components/Home/MiddleRightBar";
 import RightSideBar from "../components/Home/RightSideBar";
+import Navigation from "../components/Share/Navigation";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -17,10 +18,10 @@ export default function Home() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
           crossOrigin="anonymous"
-          referrerpolicy="no-referrer"
+          referrerPolicy="no-referrer"
         />
       </Head>
-
+      <Navigation></Navigation>
       <div className="w-full">
         <div className="grid grid-cols-12">
           <div className="col-span-2">
