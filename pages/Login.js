@@ -2,9 +2,12 @@ import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Navigation from '../components/Share/Navigation';
 
-const Login = () => {
+const login = () => {
     return (
+        <>
+        <Navigation></Navigation>
         <div className="flex flex-wrap">
           <div className='md:w-2/5 relative'>
               <img src='http://uitheme.net/sociala/images/login-bg.jpg'></img>
@@ -32,8 +35,9 @@ const Login = () => {
               </div>
           </div>
         </div>
+        </>
 
     );
 };
 
-export default Login;
+export default login;
