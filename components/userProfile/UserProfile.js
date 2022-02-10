@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import UserSinglePost from "./UserSinglePost";
-import Head from "next/head";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
 
@@ -87,50 +86,25 @@ const UserProfile = () => {
           <div className="drop-shadow-sm bg-white p-5 rounded-xl">
             <h2 className="text-lg font-semibold pb-3">About</h2>
             <div className="flex items-center">
-              <Image
-                src="https://img.icons8.com/emoji/25/000000/graduation-cap-emoji.png"
-                alt=""
-                height="25"
-                width="25"
-              />
+              <i className="fa-solid fa-graduation-cap"></i>
               <span className="ml-3">
                 Went to Haripur Durgadas High School & College
               </span>
             </div>
             <div className="flex items-center py-3">
-              <Image
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABpElEQVRoge3XsWvUYBzG8Y9yKIJVEXQoDjd2EVzsJDgIgpubbnVydtM/wdWxq5MgiCCO4mBBKAguLuLiIqIUWpCj2FodLm/PxrSXq7nkZ32/8EzJvXm+5PJ7EzK16ONlkX7HXfbNNazgZ5FVXO+00YQcwl38MJJI2cJ9HO6sXU1O4Ik/Bcp5jtMddRzLBXwwXiLlIy6W1tjt3NZYwGCPIrtlUPw2cQffK86bOkfxYB8C5TzEsWLNS/jUpsg5vG5AIuWN0Yg+gxdtiFzG5wYlUr7ianGNnuGE25qGQBqtm1OQSNnEveJacKNpiRk8nqJAOc9wqmmJObxrUSLlPc43JXET3zqQSBng1t8IpIetK4FyFnFkUomzdo6/KFnCbF2Jqg0pUr7gyjiJ26pfEaJlw3AbSCN6m+N4FKDgpHmKk7+LLBcH1gKUq5vUdZnRB84G3mK+fKsCM2/4frZOxX/M0PJfYEf38J+cdcki0cgi0cgi0eg1vF7VvrQXje1ZB+aOZJFoZJFoZJFoZJFoZJFoZJFoZJFoHGiRpdZbTM6rrgtk/ht+AZJi8ybhOtGyAAAAAElFTkSuQmCC"
-                alt=""
-                height="25"
-                width="25"
-              />
+              <i className="fa-solid fa-house-chimney"></i>
               <span className="ml-3">Lives in Pabna Dhaka Bangladesh</span>
             </div>
             <div className="flex items-center py-3">
-              <Image
-                src="https://img.icons8.com/material-sharp/25/000000/marker.png"
-                alt=""
-                height="25"
-                width="25"
-              />
+              <i className="fa-solid fa-location-dot" />
               <span className="ml-3">From Pabna Dhaka Bangladesh</span>
             </div>
             <div className="flex items-center py-3">
-              <Image
-                src="https://img.icons8.com/ios-glyphs/25/000000/like--v1.png"
-                alt=""
-                height="25"
-                width="25"
-              />
+              <i className="fa-solid fa-heart"></i>
               <span className="ml-3">Single</span>
             </div>
             <div className="flex items-center py-3">
-              <Image
-                src="https://img.icons8.com/ios-filled/25/000000/clock--v1.png"
-                alt=""
-                height="25"
-                width="25"
-              />
+              <i className="fa-solid fa-clock"></i>
               <span className="ml-3">Joined April 2017</span>
             </div>
             <button
