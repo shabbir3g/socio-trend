@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const MiddleLeftBar = () => {
@@ -27,7 +28,7 @@ const MiddleLeftBar = () => {
       </div>
       <div className="my-5 bg-white p-5 rounded">
         <div className="flex">
-          <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+          <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
           <div>
             <p className="font-medium">Surfiya Zakir</p>
             <span className="text-gray-500 font-normal text-sm">
@@ -46,8 +47,8 @@ const MiddleLeftBar = () => {
         </p>
         {/* <Image src="/e-2.jpg" width="200" height="130" alt=""></Image> */}
         <div className="flex gap-4">
-          <img className="w-5/12" src="/e-2.jpg" alt="image" />
-          <img className="w-5/12" src="/e-2.jpg" alt="image" />
+          <Image width="30" height="30" className="w-5/12" src="/e-2.jpg" alt="image" />
+          <Image width="30" height="30" className="w-5/12" src="/e-2.jpg" alt="image" />
         </div>
         <br />
         <div className="flex">
@@ -60,7 +61,7 @@ const MiddleLeftBar = () => {
       <div className="my-5 bg-white p-5 rounded">
         <div className="flex">
           <div className="mr-3">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
           </div>
           <div>
             <div>Liton mia</div>
@@ -79,20 +80,20 @@ const MiddleLeftBar = () => {
         <br />
         <div className="flex">
           <div className="mr-3">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" /> Like
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" /> Like
           </div>
           <div>
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" /> Comment
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" /> Comment
           </div>
           <div className="ml-auto">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" /> Share
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" /> Share
           </div>
         </div>
       </div>
       <div className="my-5 bg-white p-5 rounded">
         <div className="flex">
           <div className="mr-3">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
           </div>
           <div>
             <div>Liton mia</div>
@@ -109,17 +110,17 @@ const MiddleLeftBar = () => {
           <a href="#">See more</a>
         </p>
         {/* <Image src="/e-2.jpg" width="500" height="300" alt=""></Image> */}
-        <img className="w-screen" src="/e-2.jpg" alt="image" />
+        <Image width="30" height="30" className="w-screen" src="/e-2.jpg" alt="image" />
         <br />
         <div className="flex">
           <div className="mr-3">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" /> Like
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" /> Like
           </div>
           <div>
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" /> Comment
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" /> Comment
           </div>
           <div className="ml-auto">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" /> Share
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" /> Share
           </div>
         </div>
       </div>

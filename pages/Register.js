@@ -6,7 +6,7 @@ const register = () => {
     <>
       <div className="flex flex-wrap">
         <div className="md:w-2/5 relative">
-          <img src="http://uitheme.net/sociala/images/login-bg.jpg" />
+          <Image width="30" height="30" src="http://uitheme.net/sociala/images/login-bg.jpg" />
           <a className="font-bold text-3xl text-blue-600 absolute top-10 left-10">
             Sociala.
           </a>

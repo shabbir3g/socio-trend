@@ -13,7 +13,7 @@ const MiddleRightBar = () => {
           <hr className="my-4" />
           <ul>
             <li className="mb-3 flex items-center">
-              <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+              <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
                 <span className="text-gray-500 font-normal text-sm">
@@ -30,7 +30,7 @@ const MiddleRightBar = () => {
               </a>
             </li>
             <li className="mb-3 flex items-center">
-              <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+              <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
                 <span className="text-gray-500 font-normal text-sm">
@@ -47,7 +47,7 @@ const MiddleRightBar = () => {
               </a>
             </li>
             <li className="mb-3 flex items-center">
-              <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+              <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
                 <span className="text-gray-500 font-normal text-sm">
@@ -72,7 +72,7 @@ const MiddleRightBar = () => {
           </div>
           <ul>
             <li className="mb-3 flex items-center px-3 py-2 bg-slate-200 rounded">
-              <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+              <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
                 <span className="text-gray-500 font-normal text-sm">
@@ -82,7 +82,7 @@ const MiddleRightBar = () => {
               <p className="ml-3">logo</p>
             </li>
             <li className="mb-3 flex items-center px-3 py-2 bg-slate-200 rounded">
-              <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+              <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
                 <span className="text-gray-500 font-normal text-sm">
@@ -92,7 +92,7 @@ const MiddleRightBar = () => {
               <p className="ml-3">logo</p>
             </li>
             <li className="mb-3 flex items-center px-3 py-2 bg-slate-200 rounded">
-              <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+              <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
                 <span className="text-gray-500 font-normal text-sm">
@@ -142,7 +142,7 @@ const MiddleRightBar = () => {
           <hr className="my-5" />
           <ul>
             <li className="mb-3 flex items-center">
-              <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+              <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
                 <span className="text-gray-500 font-normal text-sm">
@@ -151,7 +151,7 @@ const MiddleRightBar = () => {
               </div>
             </li>
             <li className="mb-3 flex items-center">
-              <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+              <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
                 <span className="text-gray-500 font-normal text-sm">
@@ -160,7 +160,7 @@ const MiddleRightBar = () => {
               </div>
             </li>
             <li className="mb-3 flex items-center">
-              <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+              <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
                 <span className="text-gray-500 font-normal text-sm">

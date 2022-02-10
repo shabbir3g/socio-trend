@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const RightSideBar = () => {
   return (
@@ -7,31 +8,31 @@ const RightSideBar = () => {
         <p className="mb-3">Contacts</p>
         <ul>
           <li className="mb-3 flex"> 
-          <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+          <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
             <a href="">Hurin Seary</a>
           </li>
           <li className="mb-3 flex">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
             <a href="">Victor Exrixon</a>
           </li>
           <li className="mb-3 flex">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
             <a href="">Goria Coast</a>
           </li>
           <li className="mb-3 flex">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
             <a href="">Hurin Seary</a>
           </li>
           <li className="mb-3 flex">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
             <a href="">David Goria</a>
           </li>
           <li className="mb-3 flex">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
             <a href="">Seary Victor</a>
           </li>
           <li className="mb-3 flex">
-            <img className="mr-3 w-12" src="/user-8.png" alt="user" />
+            <Image width="30" height="30" className="mr-3 w-12" src="/user-8.png" alt="user" />
             <a href="">Ana Seary</a>
           </li>
         </ul>

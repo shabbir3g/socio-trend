@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import React from "react";
 
 const Navigation = () => {
@@ -80,7 +81,7 @@ const Navigation = () => {
             href="#"
             className="w-10 h-10 rounded-full items-center justify-center hidden lg:flex mr-5 mt-1"
           >
-            <img src="http://uitheme.net/sociala/images/profile-4.png" />
+            <Image width="30" height="30" src="http://uitheme.net/sociala/images/profile-4.png" />
           </a>
 
           <a
