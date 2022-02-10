@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Register = () => {
+const register = () => {
     return (
         <>
         <div className="flex flex-wrap">
@@ -32,4 +32,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default register;

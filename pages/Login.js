@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Login = () => {
+const login = () => {
     return (
         <>
         <div className="flex flex-wrap">
@@ -35,4 +35,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default login;
