@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const LeftSideBar = () => {
@@ -8,19 +9,38 @@ const LeftSideBar = () => {
           <p className="mb-3">New Feeds</p>
           <ul>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-tv p-3 bg-blue-300 text-white rounded-full"></i> NewsFeed</a>
+              <Link href="/">
+                <a>
+                  <i className="fa-solid fa-tv p-3 bg-blue-300 text-white rounded-full"></i>{" "}
+                  NewsFeed
+                </a>
+              </Link>
             </li>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-ribbon p-3 bg-blue-300 text-white rounded-full"></i> Bedges</a>
+              <a href="">
+                <i className="fa-solid fa-ribbon p-3 bg-blue-300 text-white rounded-full"></i>
+                Bedges
+              </a>
             </li>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-globe p-3 bg-blue-300 text-white rounded-full"></i> Explore Stories</a>
+              <a href="">
+                <i className="fa-solid fa-globe p-3 bg-blue-300 text-white rounded-full"></i>
+                Explore Stories
+              </a>
             </li>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-bolt p-3 bg-blue-300 text-white rounded-full"></i> Popular Groups</a>
+              <a href="">
+                <i className="fa-solid fa-bolt p-3 bg-blue-300 text-white rounded-full"></i>
+                Popular Groups
+              </a>
             </li>
             <li className="mb-3">
-              <a href=""><i className="fa-regular fa-user p-3 bg-blue-300 text-white rounded-full"></i> Author Profile</a>
+              <Link href="/profile">
+                <a>
+                  <i className="fa-regular fa-user p-3 bg-blue-300 text-white rounded-full"></i>
+                  Author Profile
+                </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -28,16 +48,24 @@ const LeftSideBar = () => {
           <p className="mb-3">More pages</p>
           <ul>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-inbox p-3"></i> Email Box</a>
+              <a href="">
+                <i className="fa-solid fa-inbox p-3"></i> Email Box
+              </a>
             </li>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-home p-3"></i> Near Hotel</a>
+              <a href="">
+                <i className="fa-solid fa-home p-3"></i> Near Hotel
+              </a>
             </li>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-location-dot p-3"></i> Latest Event</a>
+              <a href="">
+                <i className="fa-solid fa-location-dot p-3"></i> Latest Event
+              </a>
             </li>
             <li className="mb-3">
-              <a href=""><i className="fa-brands fa-youtube p-3"></i> Live Stream</a>
+              <a href="">
+                <i className="fa-brands fa-youtube p-3"></i> Live Stream
+              </a>
             </li>
           </ul>
         </div>
@@ -45,13 +73,19 @@ const LeftSideBar = () => {
           <p className="mb-3">Account</p>
           <ul>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-gear p-3"></i> Settings</a>
+              <a href="">
+                <i className="fa-solid fa-gear p-3"></i> Settings
+              </a>
             </li>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-chart-pie p-3"></i> Analytics</a>
+              <a href="">
+                <i className="fa-solid fa-chart-pie p-3"></i> Analytics
+              </a>
             </li>
             <li className="mb-3">
-              <a href=""><i className="fa-solid fa-comment p-3"></i> Chat</a>
+              <a href="">
+                <i className="fa-solid fa-comment p-3"></i> Chat
+              </a>
             </li>
           </ul>
         </div>
