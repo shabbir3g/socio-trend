@@ -17,3 +17,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.show {
+  left: 50%;
+}
+

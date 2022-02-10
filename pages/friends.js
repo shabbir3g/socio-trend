@@ -1,15 +1,14 @@
-import React from 'react';
-import AllFrends from '../components/FriendsCom/AllFrends';
-import Navigation from '../components/Share/Navigation';
+import React from "react";
+import Navigation from "../components/Share/Navigation";
+import AllFriends from "../components/FriendsCom/AllFriends";
 
 const friends = () => {
-    return (
-        <>
-        <Navigation/>
-        <AllFrends/>    
-            
-        </>
-    );
+  return (
+    <>
+      <Navigation />
+      <AllFriends />
+    </>
+  );
 };
 
 export default friends;
