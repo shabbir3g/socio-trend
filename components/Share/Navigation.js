@@ -13,7 +13,7 @@ const Navigation = () => {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <a
           href="#"
           className="font-bold text-4xl py-6 text-blue-700 pl-10 pr-16"

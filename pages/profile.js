@@ -8,8 +8,8 @@ import UserProfile from "../components/userProfile/UserProfile";
 const userProfile = () => {
   return (
     <>
-      <Navigation></Navigation>
-      <div className="grid grid-cols-12 gap-4 bg-gray-100">
+      <Navigation />
+      <div className="grid grid-cols-12 gap-4 bg-gray-100 pt-2">
         <div className="col-span-2  hidden xl:block">
           <LeftSideBar />
         </div>
