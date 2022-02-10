@@ -8,14 +8,14 @@ const LeftSideBar = () => {
         <div className="bg-white p-5 rounded">
           <p className="mb-3">New Feeds</p>
           <ul>
-            <li className="mb-3">
-              <Link href="/">
-                <a>
+            <Link href="/">
+              <a>
+                <li className="mb-3">
                   <i className="fa-solid fa-tv p-3 bg-blue-300 text-white rounded-full"></i>{" "}
                   NewsFeed
-                </a>
-              </Link>
-            </li>
+                </li>
+              </a>
+            </Link>
             <li className="mb-3">
               <a href="">
                 <i className="fa-solid fa-ribbon p-3 bg-blue-300 text-white rounded-full"></i>
@@ -34,14 +34,14 @@ const LeftSideBar = () => {
                 Popular Groups
               </a>
             </li>
-            <li className="mb-3">
-              <Link href="/profile">
-                <a>
+            <Link href="/profile">
+              <a>
+                <li className="mb-3">
                   <i className="fa-regular fa-user p-3 bg-blue-300 text-white rounded-full"></i>
                   Author Profile
-                </a>
-              </Link>
-            </li>
+                </li>
+              </a>
+            </Link>
           </ul>
         </div>
         <div className="my-5 bg-white p-5 rounded">
@@ -82,11 +82,13 @@ const LeftSideBar = () => {
                 <i className="fa-solid fa-chart-pie p-3"></i> Analytics
               </a>
             </li>
-            <li className="mb-3">
-              <a href="">
-                <i className="fa-solid fa-comment p-3"></i> Chat
+            <Link href="/chat">
+              <a>
+                <li className="mb-3">
+                  <i className="fa-solid fa-comment p-3"></i> Chat
+                </li>
               </a>
-            </li>
+            </Link>
           </ul>
         </div>
       </div>
