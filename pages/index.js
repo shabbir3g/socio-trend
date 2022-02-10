@@ -6,7 +6,6 @@ import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTv } from "@fortawesome/free-solid-svg-icons";
-import styles from "../styles/Home.module.css";
 
 const element = <FontAwesomeIcon icon={faTv} />;
 
@@ -31,7 +30,7 @@ export default function Home() {
           <div className="col-span-2 hidden lg:block">
             <LeftSideBar />
           </div>
-          <div className="col-span-12 lg:col-span-10 2xl:col-span-8 w-full md:w-3/4 mx-auto h-screen overflow-auto scrollbar-hide">
+          <div className="col-span-12 lg:col-span-10 2xl:col-span-8 w-full md:w-3/4 mx-auto h-[90vh] overflow-scroll scrollbar-hide">
             <div className="grid gap-5 grid-cols-12">
               <div className="col-span-12 xl:col-span-8 ">
                 <MiddleLeftBar />
