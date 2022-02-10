@@ -49,9 +49,8 @@ const register = () => {
           </p>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 };
 
-export default Register;
+export default register;
