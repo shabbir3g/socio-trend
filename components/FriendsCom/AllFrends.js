@@ -2,12 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import SingleFrends from './SingleFrends';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter, faSearchDollar, faSearchPlus } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 
 const filter = <FontAwesomeIcon icon={faFilter} />
-const search = <FontAwesomeIcon icon={faSearchPlus} />
-// const search = <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+const search = <FontAwesomeIcon icon={faMagnifyingGlass} />
 
 const friends = [
     {
@@ -92,8 +91,8 @@ const friends = [
 const AllFrends = () => {
     const [members, setMembers] = useState([])
     const [searchMember, setSearchMember] = useState([])
-    // setMember(friends)
-    // setSearchMember(friends)
+   
+    
     useEffect( ()=>{
         setMembers(friends)
     setSearchMember(friends)
@@ -117,10 +116,9 @@ const AllFrends = () => {
                         <div className=' bg-gray-100 w-72 h-12 rounded-lg relative'>
                         <form >
                             <input onChange={searchFiealdhandle} type="text" placeholder='Search here.' className='w-full h-12 block rounded-lg pl-4 text-lg border-0 outline-0 bg-gray-100' />
-                            <button className='absolute right-0 top-0 w-16 h-full rounded-full text-xl '>{filter} </button>
+                            <button className='absolute right-0 top-0 w-16 h-full rounded-full text-xl '>{search} </button>
                         </form>
                         </div>
-                            {/* <i className="fa-solid fa-magnifying-glass"></i> */}
                         <div className='text-center bg-gray-100 w-12 ml-4 rounded-lg'>
                         <h1 className='text-xl pt-2.5'>{filter}</h1>
                         </div>
