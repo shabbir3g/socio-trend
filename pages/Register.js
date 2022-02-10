@@ -1,10 +1,8 @@
 import React from 'react';
-import Navigation from '../components/Share/Navigation';
 
 const Register = () => {
     return (
         <>
-        <Navigation></Navigation>
         <div className="flex flex-wrap">
           <div className='md:w-2/5 relative'>
               <img src='http://uitheme.net/sociala/images/login-bg.jpg'></img>
