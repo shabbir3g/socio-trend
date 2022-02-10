@@ -5,6 +5,11 @@ import MiddleRightBar from "../components/Home/MiddleRightBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import styles from "../styles/Home.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTv } from '@fortawesome/free-solid-svg-icons'
+
+
+const element = <FontAwesomeIcon icon={faTv} />
 
 export default function Home() {
   return (
