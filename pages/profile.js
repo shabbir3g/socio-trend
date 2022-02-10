@@ -10,15 +10,17 @@ const userProfile = () => {
     <>
       <Navigation></Navigation>
       <div className="grid grid-cols-12 gap-4 bg-gray-100">
-        <div className="md:col-span-2 hidden md:block">
+        <div className="col-span-2  hidden xl:block">
           <LeftSideBar />
         </div>
-        <div className="md:col-span-8 sm:col-span-12 col-span-12 flex justify-center ">
-          <div className="md:w-3/4 w-full">
+
+        <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 ">
+          <div className="md:w-3/4 w-full mx-auto">
             <UserProfile />
           </div>
         </div>
-        <div className="md:col-span-2 hidden md:block">
+
+        <div className="col-span-2 hidden 2xl:block">
           <RightSideBar />
         </div>
       </div>
