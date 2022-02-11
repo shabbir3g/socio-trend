@@ -29,7 +29,7 @@ const Error = () => {
             .The page you&apos;re looking for isn&apos;t available. Try to
             search again or use the go to
           </p>
-          <Link href="/">
+          <Link passHref href="/">
             <button>HOME PAGE</button>
           </Link>
         </div>

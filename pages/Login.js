@@ -36,7 +36,7 @@ const login = () => {
           </button>
           <p className="text-gray-400 py-3 font-semibold">
             Dont have account
-            <Link href="register">
+            <Link passHref href="register">
               <a className="text-blue-600 pl-1">Register</a>
             </Link>
           </p>
