@@ -1,17 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const login = () => {
   return (
-    <>
-      <div className="flex flex-wrap">
-        <div className="md:w-2/5 relative">
-          <img src="http://uitheme.net/sociala/images/login-bg.jpg" />
+    <div className="">
+      <div className="flex justify-center m-10 sm:mx-auto md:flex-row flex-col w-5/6">
+
+        <div className="md:w-3/6">
+          <Image
+            src="http://uitheme.net/sociala/images/login-bg.jpg"
+            height="600"
+            width="700"
+            alt="Login image"
+          />
           <a className="font-bold text-3xl text-blue-600 absolute top-10 left-10">
             Sociala.
           </a>
         </div>
-        <div className="md:w-2/5 w-11/12 pt-10">
+
+        <div className="md:w-3/6">
           <h2 className="md:text-4xl text-3xl text-gray-900 font-bold mb-4">
             Login into <br /> your account
           </h2>
@@ -55,10 +63,11 @@ const login = () => {
             sign in with facebook
           </a>
         </div>
+
       </div>
       {/* </div> */}
-    </>
+    </div>
   );
 };
 
-export default Login;
+export default login;
