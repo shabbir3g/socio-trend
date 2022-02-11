@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -19,6 +20,13 @@ a {
 }
 
 .show {
-  left: 50%;
+  left: 0;
+  transition: all 0.3s ease;
+}
+.bars{
+  display: block;
+}
+.times{
+  display: none;
 }
 
