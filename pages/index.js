@@ -4,10 +4,8 @@ import MiddleLeftBar from "../components/Home/MiddleLeftBar";
 import MiddleRightBar from "../components/Home/MiddleRightBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTv } from "@fortawesome/free-solid-svg-icons";
+import styles from "../styles/Home.module.css";
 
-const element = <FontAwesomeIcon icon={faTv} />;
 
 export default function Home() {
   return (
@@ -26,7 +24,7 @@ export default function Home() {
         
       </Head>
       <Navigation />
-      <div className="w-full h-[91vh] overflow-hidden">
+      <div className="p-4">
         <div className="grid grid-cols-12">
           <div className="col-span-2 hidden lg:block">
             <LeftSideBar />
