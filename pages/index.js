@@ -23,6 +23,7 @@ export default function Home() {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <link rel="shortcut icon" href="./../../public/favicon.png" />
       </Head>
       <Navigation />
       <div className="w-full h-[91vh] overflow-hidden">
