@@ -5,14 +5,14 @@ import React from "react";
 const register = () => {
   return (
     <>
-      <div className="flex flex-wrap">
-        <div className="md:w-2/5 relative">
-          <Image src="http://uitheme.net/sociala/images/login-bg.jpg" alt="register image"/>
+      <div className="flex justify-center m-10 sm:mx-auto md:flex-row flex-col w-5/6">
+        <div className="md:w-3/6">
+          <Image src="http://uitheme.net/sociala/images/login-bg.jpg" height="600" width="700" alt="register image"/>
           <a className="font-bold text-3xl text-blue-600 absolute top-10 left-10">
             Sociala.
           </a>
         </div>
-        <div className="md:w-2/5 w-11/12 pt-10">
+        <div className="md:w-3/6">
           <h2 className="md:text-4xl text-3xl text-gray-900 font-bold mb-4">
             Create <br /> your account
           </h2>
@@ -44,13 +44,12 @@ const register = () => {
           </button>
           <p className="text-gray-400 py-3 font-semibold">
             Already have account{" "}
-            <Link href="/login">
+            <Link passHref href="/login">
               <a className="text-blue-600">Login</a>
             </Link>
           </p>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 };

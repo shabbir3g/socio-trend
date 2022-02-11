@@ -8,13 +8,13 @@ import UserProfile from "../components/userProfile/UserProfile";
 const userProfile = () => {
   return (
     <>
-      <Navigation></Navigation>
-      <div className="grid grid-cols-12 gap-4 bg-gray-100 p-4">
+      <Navigation />
+      <div className="grid grid-cols-12 gap-4 bg-gray-100 pt-2 w-full h-[91vh] overflow-hidden">
         <div className="col-span-2  hidden xl:block">
           <LeftSideBar />
         </div>
 
-        <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 ">
+        <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 overflow-scroll scrollbar-hide">
           <div className="md:w-3/4 w-full mx-auto">
             <UserProfile />
           </div>

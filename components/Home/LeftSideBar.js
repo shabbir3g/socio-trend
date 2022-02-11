@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const LeftSideBar = () => {
@@ -7,6 +8,14 @@ const LeftSideBar = () => {
         <div className="bg-white p-5 rounded">
           <p className="mb-3">New Feeds</p>
           <ul>
+            <Link href="/">
+              <a>
+                <li className="mb-3">
+                  <i className="fa-solid fa-tv p-3 bg-blue-300 text-white rounded-full"></i>{" "}
+                  NewsFeed
+                </li>
+              </a>
+            </Link>
             <li className="mb-3">
               <a href="">
                 <i className="fa-solid fa-tv p-3 bg-blue-500 text-white rounded-full mr-2"></i>{" "}
@@ -37,6 +46,14 @@ const LeftSideBar = () => {
                 Author Profile
               </a>
             </li>
+            <Link href="/profile">
+              <a>
+                <li className="mb-3">
+                  <i className="fa-regular fa-user p-3 bg-blue-300 text-white rounded-full"></i>
+                  Author Profile
+                </li>
+              </a>
+            </Link>
           </ul>
         </div>
         <div className="my-5 bg-white p-5 rounded">
@@ -82,6 +99,13 @@ const LeftSideBar = () => {
                 <i className="fa-solid fa-comment p-3 text-gray-400 text-2xl"></i> Chat
               </a>
             </li>
+            <Link href="/chat">
+              <a>
+                <li className="mb-3">
+                  <i className="fa-solid fa-comment p-3"></i> Chat
+                </li>
+              </a>
+            </Link>
           </ul>
         </div>
       </div>
