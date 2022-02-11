@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/Image";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Error.module.css";
 
@@ -29,11 +29,13 @@ const Error = () => {
             .The page you&apos;re looking for isn&apos;t available. Try to
             search again or use the go to
           </p>
-          <Link passHref href="/">
-            <button>HOME PAGE</button>
+          <Link href="/">
+            <a>
+              <button>HOME PAGE</button>
+            </a>
           </Link>
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 };
