@@ -1,9 +1,23 @@
 import Head from "next/head";
 import Image from "next/image";
-import React from "react";
-import logo from "../../public/logo.png"
+import logo from "../../public/logo.png";
+import React, { useEffect } from "react";
 
 const Navigation = () => {
+  useEffect(() => {
+    const navToggler = document.getElementById("nav-toggler");
+    navToggler.addEventListener("click", navToggle);
+    function navToggle() {
+      const nav = document.getElementById("slider");
+      nav.classList.toggle("show");
+
+      if (nav.classList.contains("show")) {
+        nav.style.maxHeight = nav.scrollHeight + "px";
+      } else {
+        nav.removeAttribute("style");
+      }
+    }
+  }, []);
   return (
     <>
       <Head>
@@ -14,12 +28,11 @@ const Navigation = () => {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        
       </Head>
       <div className="flex items-center ">
         <a
           href="#"
-          className="font-bold text-4xl py-6 text-blue-700 pl-10 pr-16"
+          className="font-bold text-4xl pt-1 text-blue-700 pl-10 pr-16"
         >
           <Image alt="Socio Trend" width="200" height="66" src={logo} />
         </a>
@@ -83,7 +96,12 @@ const Navigation = () => {
             href="#"
             className="w-10 h-10 rounded-full items-center justify-center hidden lg:flex mr-5 mt-1"
           >
-            <Image alt="user" width="30" height="30" src="http://uitheme.net/sociala/images/profile-4.png" />
+            <Image
+              alt="user"
+              width="30"
+              height="30"
+              src="http://uitheme.net/sociala/images/profile-4.png"
+            />
           </a>
 
           <a
@@ -106,10 +124,49 @@ const Navigation = () => {
           </a>
           <a
             href="#"
+            id="nav-toggler"
             className="w-14 h-14 items-center justify-center lg:hidden flex text-blue-500 text-2xl"
           >
-            <i className="fas fa-bars"></i>
+            <i className="fas fa-bars bars"></i>
           </a>
+        </div>
+        <div className="z-50 w-full lg:hidden flex justify-between absolute bottom-0 left-0 right-0 px-5 bg-gradient-to-r from-blue-700 to-cyan-500">
+          <a
+            href="#"
+            className="w-14 h-14 items-center justify-center flex text-white text-2xl"
+          >
+            <i className="fas fa-home"></i>
+          </a>
+          <a
+            href="#"
+            className="w-14 h-14 items-center justify-center flex text-white text-2xl"
+          >
+            <i className="fas fa-cube"></i>
+          </a>
+          <a
+            href="#"
+            className="w-14 h-14 items-center justify-center flex text-white text-2xl"
+          >
+            <i className="fas fa-table"></i>
+          </a>
+          <a
+            href="#"
+            className="w-14 h-14 items-center justify-center flex text-white text-2xl"
+          >
+            <i className="fab fa-hive"></i>
+          </a>
+          <a
+            href="#"
+            className="w-10 h-10 rounded-full items-center justify-center mt-2"
+          >
+            <img src="http://uitheme.net/sociala/images/profile-4.png" />
+          </a>
+        </div>
+        <div
+          id="slider"
+          className="w-6/12 bg-gray-400 absolute -left-2/4 bottom-14  top-20 transition "
+        >
+          <h2>opi Barua</h2>
         </div>
       </div>
     </>

@@ -134,8 +134,8 @@ const AllFrends = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 xs:grid-cols-12 sm:grid-cols-12 md:grid-cols-12 gap-3">
-          {searchMember.map((friend) => (
-            <SingleFrends friend={friend} key={friend.id}></SingleFrends>
+          {friends.map((friend) => (
+            <SingleFrends key={friend.id} friend={friend}></SingleFrends>
           ))}
         </div>
       </div>

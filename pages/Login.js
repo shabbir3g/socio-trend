@@ -18,8 +18,7 @@ const login = () => {
             Sociala.
           </a>
         </div>
-
-        <div className="md:w-3/6">
+        <div className="md:w-2/5 w-11/12 mx-auto pt-10">
           <h2 className="md:text-4xl text-3xl text-gray-900 font-bold mb-4">
             Login into <br /> your account
           </h2>
