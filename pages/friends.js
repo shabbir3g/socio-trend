@@ -4,10 +4,12 @@ import AllFriends from "../components/FriendsCom/AllFriends";
 
 const friends = () => {
   return (
-    <>
+    <div>
       <Navigation />
-      <AllFriends />
-    </>
+      <div>
+        <AllFriends />
+      </div>
+    </div>
   );
 };
 

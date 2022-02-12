@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
 @layer utilities {
   /* Scroll thumb styles */
   .scrollbar::-webkit-scrollbar {
@@ -28,3 +36,15 @@
     background: #e5e7eb;
   }
 }
+
+.show {
+  left: 0;
+  transition: all 0.3s ease;
+}
+.bars{
+  display: block;
+}
+.times{
+  display: none;
+}
+
