@@ -7,6 +7,7 @@ module.exports = {
       "encrypted-tbn0.gstatic.com",
       "ichef.bbci.co.uk",
       "uitheme.net",
+      "thumbs.dreamstime.com"
     ],
   },
 };

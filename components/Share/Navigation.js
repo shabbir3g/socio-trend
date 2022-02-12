@@ -1,5 +1,7 @@
 import Head from "next/head";
+import Image from "next/image";
 import React from "react";
+import logo from "../../public/logo.png"
 
 const Navigation = () => {
   return (
@@ -12,13 +14,14 @@ const Navigation = () => {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        
       </Head>
       <div className="flex items-center ">
         <a
           href="#"
           className="font-bold text-4xl py-6 text-blue-700 pl-10 pr-16"
         >
-          Sociala.
+          <Image alt="Socio Trend" width="200" height="66" src={logo} />
         </a>
         <input
           className="w-3/12 h-14  pl-12 rounded-full bg-gray-200 hidden lg:flex"
@@ -80,7 +83,7 @@ const Navigation = () => {
             href="#"
             className="w-10 h-10 rounded-full items-center justify-center hidden lg:flex mr-5 mt-1"
           >
-            <img src="http://uitheme.net/sociala/images/profile-4.png" />
+            <Image alt="user" width="30" height="30" src="http://uitheme.net/sociala/images/profile-4.png" />
           </a>
 
           <a
