@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
-import logo from "../../public/logo.png"
+import logo from "../../public/logo.png";
 
 const Navigation = () => {
   return (
@@ -14,12 +14,11 @@ const Navigation = () => {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        
       </Head>
       <div className="flex items-center ">
         <a
           href="#"
-          className="font-bold text-4xl py-6 text-blue-700 pl-10 pr-16"
+          className="font-bold text-4xl pt-1 text-blue-700 pl-10 pr-16"
         >
           <Image alt="Socio Trend" width="200" height="66" src={logo} />
         </a>
