@@ -3,7 +3,7 @@ import React from "react";
 
 const UserSinglePost = () => {
   return (
-    <div className="drop-shadow-sm bg-white p-5 rounded-xl my-4 ">
+    <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
       <div className="flex justify-between">
         <div className=" flex">
           <Image
@@ -18,13 +18,8 @@ const UserSinglePost = () => {
           </div>
         </div>
         <div className="">
-          <div className="p-1 pb-0 bg-gray-200 rounded-full">
-            <Image
-              src="https://img.icons8.com/ios-glyphs/20/000000/more.png"
-              alt=""
-              height="20"
-              width="20"
-            />
+          <div className="py-2 px-4 bg-gray-200 dark:bg-gray-600 rounded-full">
+            <i className="fa-solid fa-ellipsis-vertical dark:text-white text-black"></i>
           </div>
         </div>
       </div>
@@ -47,7 +42,7 @@ const UserSinglePost = () => {
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
-          <span className="p-1 pb-0 bg-gray-200 rounded-full">
+          <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full">
             <button>
               <Image
                 src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-like-notifications-justicon-flat-justicon.png"
@@ -57,7 +52,7 @@ const UserSinglePost = () => {
               />
             </button>
           </span>
-          <span className="p-1 pb-0 bg-gray-200 rounded-full ml-1">
+          <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full ml-1">
             <button>
               <Image
                 src="https://img.icons8.com/color/48/000000/like--v3.png"
@@ -70,24 +65,14 @@ const UserSinglePost = () => {
           <span className="ml-3">2.8K Like</span>
           <div className="ml-5 ">
             <button className="items-center flex">
-              <Image
-                src="https://img.icons8.com/fluency-systems-regular/48/000000/speech-bubble-with-dots.png"
-                alt=""
-                height="30"
-                width="30"
-              />
+              <i className="fa-regular fa-comment text-xl"></i>
               <span className="ml-1">22 Comments</span>
             </button>
           </div>
         </div>
         <div>
           <button className="flex items-center">
-            <Image
-              src="https://img.icons8.com/material-outlined/25/000000/share.png"
-              alt=""
-              width="25"
-              height="25"
-            />
+            <i className="fa-solid fa-share text-xl"></i>
             <span className="ml-1">Share</span>
           </button>
         </div>
