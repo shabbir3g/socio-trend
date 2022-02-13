@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-gray-100 text-black dark:bg-gray-900 dark:text-white;
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -25,7 +31,6 @@ body {
   .scrollbar::-webkit-scrollbar-thumb:hover {
     background: #717171;
   }
-
   /* Scroll track styles (Background) */
   .scrollbar::-webkit-scrollbar-track {
     background: #e5e7eb;
@@ -41,10 +46,9 @@ body {
   left: 0;
   transition: all 0.3s ease;
 }
-.bars{
+.bars {
   display: block;
 }
-.times{
+.times {
   display: none;
 }
-

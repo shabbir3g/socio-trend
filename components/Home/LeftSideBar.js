@@ -3,9 +3,9 @@ import React from "react";
 
 const LeftSideBar = () => {
   return (
-    <div className="bg-neutral-100">
+    <div className="bg-gray-100 dark:bg-gray-900">
       <div className="w-full">
-        <div className="bg-white p-5 rounded">
+        <div className="bg-white dark:bg-gray-800 p-5 rounded-lg drop-shadow-sm ">
           <p className="mb-3">New Feeds</p>
           <ul>
             <Link href="/">
@@ -56,7 +56,7 @@ const LeftSideBar = () => {
             </Link>
           </ul>
         </div>
-        <div className="my-5 bg-white p-5 rounded">
+        <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded-lg drop-shadow-sm">
           <p className="mb-3">More pages</p>
           <ul>
             <li className="mb-3">
@@ -81,7 +81,7 @@ const LeftSideBar = () => {
             </li>
           </ul>
         </div>
-        <div className="my-5 bg-white p-5 rounded">
+        <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded-lg drop-shadow-sm">
           <p className="mb-3">Account</p>
           <ul>
             <li className="mb-3">

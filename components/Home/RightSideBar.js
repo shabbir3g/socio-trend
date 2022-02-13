@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const RightSideBar = () => {
   return (
-    <div className="bg-neutral-100">
-      <div className="bg-white p-5 rounded">
+    <div className="bg-neutral-100 dark:bg-gray-900">
+      <div className="bg-white dark:bg-gray-800 drop-shadow-sm p-5 rounded-lg">
         <p className="mb-3">Contacts</p>
         <ul>
           <li className="mb-3">

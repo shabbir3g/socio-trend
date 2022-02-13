@@ -1,9 +1,32 @@
 import Head from "next/head";
 import Image from "next/image";
 import logo from "../../public/logo.png";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 const Navigation = () => {
+  const { systemTheme, theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const renderThemeChanger = () => {
+    if (!mounted) return null;
+    const currentTheme = theme === "system" ? systemTheme : theme;
+    if (currentTheme === "dark") {
+      return (
+        <button onClick={() => setTheme("light")}>
+          <i className="fa-solid fa-sun"></i>
+        </button>
+      );
+    } else {
+      return (
+        <button onClick={() => setTheme("dark")}>
+          <i className="fa-solid fa-moon"></i>
+        </button>
+      );
+    }
+  };
   useEffect(() => {
     const navToggler = document.getElementById("nav-toggler");
     navToggler.addEventListener("click", navToggle);
@@ -73,6 +96,7 @@ const Navigation = () => {
           </a>
         </div>
         <div className="flex ml-auto">
+          {renderThemeChanger()}
           <a
             href="#"
             className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
