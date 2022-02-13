@@ -14,7 +14,8 @@ const userProfile = () => {
           <LeftSideBar />
         </div>
 
-        <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 h-[91vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default">
+        <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 h-[91vh] overflow-y-scroll scrollbar	">
+          {/* scrollbar-hide hover:scrollbar-default */}
           <div className="md:w-3/4 w-full mx-auto">
             <UserProfile />
           </div>
