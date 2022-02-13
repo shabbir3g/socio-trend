@@ -8,6 +8,10 @@ import UserProfile from "../components/userProfile/UserProfile";
 const userProfile = () => {
   return (
     <>
+      <Head>
+        <title>Profile</title>
+        <link rel="icon" href="/favicon.png" />
+      </Head>
       <Navigation />
       <div className="grid grid-cols-12 gap-4 bg-gray-100 dark:bg-slate-900 pt-2 w-full ">
         <div className="col-span-2  hidden xl:block h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default">

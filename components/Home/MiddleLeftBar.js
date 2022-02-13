@@ -5,14 +5,15 @@ import SinglePost from "./SinglePost";
 const MiddleLeftBar = () => {
   return (
     <div>
-      <div className="bg-white p-5 rounded">
+      <div className="bg-white dark:bg-gray-800 p-5 rounded">
         <div className="mb-3">
           <a href="">
-            <i className="fa-regular fa-pen-to-square p-2 bg-gray-200 rounded-full text-md text-blue-500"></i> Create post
+            <i className="fa-regular fa-pen-to-square p-2 bg-gray-200 rounded-full text-md text-blue-500"></i>{" "}
+            Create post
           </a>
         </div>
         <textarea
-          className="border-2 rounded w-full"
+          className="border-2 rounded w-full dark:bg-gray-800 p-2"
           name=""
           id=""
           cols="30"
@@ -37,7 +38,7 @@ const MiddleLeftBar = () => {
           </div>
         </div>
       </div>
-      <div className="my-5 bg-white p-5 rounded">
+      <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded">
         <div className="flex">
           <div className="mr-3">
             <Image src="/user-8.png" width={45} height={45} alt="user" />
@@ -59,13 +60,26 @@ const MiddleLeftBar = () => {
           <a href="#">See more</a>
         </p>
         <div className="flex gap-4">
-          <Image className="rounded-lg" src="/e-2.jpg" height="350" width="600" alt="" />
-          <Image className="rounded-lg" src="/e-2.jpg" height="350" width="600" alt="" />
+          <Image
+            className="rounded-lg"
+            src="/e-2.jpg"
+            height="350"
+            width="600"
+            alt=""
+          />
+          <Image
+            className="rounded-lg"
+            src="/e-2.jpg"
+            height="350"
+            width="600"
+            alt=""
+          />
         </div>
         <br />
         <div className="flex">
           <a href="" className="mr-3">
-            <i className="fa-solid fa-thumbs-up"></i> <i className="fa-solid fa-heart"></i> 2.8k like
+            <i className="fa-solid fa-thumbs-up"></i>{" "}
+            <i className="fa-solid fa-heart"></i> 2.8k like
           </a>
           <a href="" className="mr-3">
             <i className="fa-regular fa-comment"></i> 22 Comment
@@ -75,7 +89,7 @@ const MiddleLeftBar = () => {
           </a>
         </div>
       </div>
-      <div className="my-5 bg-white p-5 rounded">
+      <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded">
         <div className="flex">
           <div className="mr-3">
             <Image src="/user-8.png" width={45} height={45} alt="user" />
@@ -98,7 +112,8 @@ const MiddleLeftBar = () => {
         </p>
         <div className="flex">
           <a href="" className="mr-3">
-            <i className="fa-solid fa-thumbs-up"></i> <i className="fa-solid fa-heart"></i> 2.8k like
+            <i className="fa-solid fa-thumbs-up"></i>{" "}
+            <i className="fa-solid fa-heart"></i> 2.8k like
           </a>
           <a href="" className="mr-3">
             <i className="fa-regular fa-comment"></i> 22 Comment
@@ -108,7 +123,7 @@ const MiddleLeftBar = () => {
           </a>
         </div>
       </div>
-      <div className="my-5 bg-white p-5 rounded">
+      <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded">
         <div className="flex">
           <div className="mr-3">
             <Image src="/user-8.png" width={45} height={45} alt="user" />
@@ -130,11 +145,17 @@ const MiddleLeftBar = () => {
           <button className="text-blue-600 ml-1">see more</button>
         </p>
         <div className="pt-3">
-          <Image className="rounded-lg" src="/e-2.jpg" height="350" width="600" alt="" />
+          <Image
+            className="rounded-lg"
+            src="/e-2.jpg"
+            height="350"
+            width="600"
+            alt=""
+          />
         </div>
         <div className="flex justify-between items-center">
           <div className="pt-3 flex items-center">
-            <span className="p-1 pb-0 bg-gray-200 rounded-full">
+            <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full">
               <button>
                 <Image
                   src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-like-notifications-justicon-flat-justicon.png"
@@ -144,7 +165,7 @@ const MiddleLeftBar = () => {
                 />
               </button>
             </span>
-            <span className="p-1 pb-0 bg-gray-200 rounded-full ml-1">
+            <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full ml-1">
               <button>
                 <Image
                   src="https://img.icons8.com/color/48/000000/like--v3.png"
@@ -157,24 +178,14 @@ const MiddleLeftBar = () => {
             <span className="ml-3">2.8K Like</span>
             <div className="ml-5 ">
               <button className="items-center flex">
-                <Image
-                  src="https://img.icons8.com/fluency-systems-regular/48/000000/speech-bubble-with-dots.png"
-                  alt=""
-                  height="30"
-                  width="30"
-                />
+                <i className="fa-regular fa-comment text-xl"></i>
                 <span className="ml-1">22 Comments</span>
               </button>
             </div>
           </div>
           <div>
             <button className="flex items-center">
-              <Image
-                src="https://img.icons8.com/material-outlined/25/000000/share.png"
-                alt=""
-                width="25"
-                height="25"
-              />
+              <i className="fa-solid fa-share text-xl"></i>
               <span className="ml-1">Share</span>
             </button>
           </div>
