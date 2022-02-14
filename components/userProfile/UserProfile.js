@@ -35,10 +35,10 @@ const UserProfile = () => {
   return (
     <>
       {/* Profile banner */}
-      <div className="drop-shadow-sm p-5 bg-white rounded-2xl">
+      <div className="drop-shadow-sm p-5 bg-white dark:bg-gray-800 rounded-2xl">
         <div className="">
           <Image
-            className="rounded-2xl "
+            className="rounded-2xl"
             src="https://i.ibb.co/pWc2Ffd/u-bg.jpg"
             width={1000}
             height={250}
@@ -81,9 +81,9 @@ const UserProfile = () => {
 
       {/* Post and About */}
 
-      <div className="grid grid-cols-12 gap-4 bg-gray-100 pt-3">
+      <div className="grid grid-cols-12 gap-4 bg-gray-100 dark:bg-gray-900 pt-3">
         <div className="md:col-span-4 sm:col-span-12 col-span-12 ">
-          <div className="drop-shadow-sm bg-white p-5 rounded-xl">
+          <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl">
             <h2 className="text-lg font-semibold pb-3">About</h2>
             <div className="flex items-center">
               <i className="fa-solid fa-graduation-cap"></i>
@@ -108,7 +108,7 @@ const UserProfile = () => {
               <span className="ml-3">Joined April 2017</span>
             </div>
             <button
-              className="w-full bg-gray-200 hover:bg-slate-300 font-semibold rounded-md text-gray-700 mt-3 py-2"
+              className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
               id="edit-about"
             >
               Edit Details
@@ -118,7 +118,7 @@ const UserProfile = () => {
 
         <div className="md:col-span-8 sm:col-span-12 col-span-12 ">
           {/* create post */}
-          <div className="drop-shadow-sm bg-white p-5 rounded-xl">
+          <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl">
             <div className="">
               <div className="flex items-center">
                 <Image
@@ -146,7 +146,7 @@ const UserProfile = () => {
                     // cols="80"
                     rows="4"
                     placeholder="What's on your mind"
-                    className="focus:outline-none text-sm w-full"
+                    className="focus:outline-none text-sm w-full dark:bg-gray-800"
                   />
                 </div>
               </div>

@@ -1,12 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const register = () => {
   return (
     <>
-      <div className="flex flex-wrap">
-        <div className="md:w-2/5 relative">
-          <img src="http://uitheme.net/sociala/images/login-bg.jpg" />
+      <div className="flex justify-center m-10 sm:mx-auto md:flex-row flex-col w-5/6">
+        <div className="md:w-3/6">
+          <Image src="http://uitheme.net/sociala/images/login-bg.jpg" height="600" width="700" alt="register image"/>
           <a className="font-bold text-3xl text-blue-600 absolute top-10 left-10">
             Sociala.
           </a>
@@ -43,7 +44,7 @@ const register = () => {
           </button>
           <p className="text-gray-400 py-3 font-semibold">
             Already have account{" "}
-            <Link href="/login">
+            <Link passHref href="/login">
               <a className="text-blue-600">Login</a>
             </Link>
           </p>
