@@ -3,6 +3,7 @@ import Image from "next/image";
 import logo from "../../public/logo.png";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 const Navigation = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -64,12 +65,12 @@ const Navigation = () => {
           placeholder="Start typing to search"
         ></input>
         <div className="xl:flex hidden ">
-          <a
-            href="#"
+          <Link href="/"><a
+            href=""
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
           >
             <i className="fas fa-home"></i>
-          </a>
+          </a></Link>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
@@ -82,12 +83,13 @@ const Navigation = () => {
           >
             <i className="fas fa-video"></i>
           </a>
+          <Link href="/friends">
           <a
-            href="#"
+            href=""
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
           >
             <i className="far fa-user"></i>
-          </a>
+          </a></Link>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
@@ -97,12 +99,13 @@ const Navigation = () => {
         </div>
         <div className="flex ml-auto">
           {renderThemeChanger()}
-          <a
-            href="#"
+          <Link href="notification">
+           <a
+            href=""
             className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
           >
             <i className="far fa-bell"></i>
-          </a>
+          </a></Link>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
@@ -116,8 +119,9 @@ const Navigation = () => {
           >
             <i className="far fa-sun"></i>
           </a>
+          <Link href="/profile">
           <a
-            href="#"
+            href=""
             className="w-10 h-10 rounded-full items-center justify-center hidden lg:flex mr-5 mt-1"
           >
             <Image
@@ -126,7 +130,7 @@ const Navigation = () => {
               height="30"
               src="http://uitheme.net/sociala/images/profile-4.png"
             />
-          </a>
+          </a></Link>
 
           <a
             href="#"
@@ -179,12 +183,10 @@ const Navigation = () => {
           >
             <i className="fab fa-hive"></i>
           </a>
-          <a
-            href="#"
-            className="w-10 h-10 rounded-full items-center justify-center mt-2"
-          >
-            <img src="http://uitheme.net/sociala/images/profile-4.png" />
-          </a>
+          <Link href="/profile"><a href="" className="w-10 h-10 rounded-full items-center justify-center mt-2">
+            <img href="" src="http://uitheme.net/sociala/images/profile-4.png" />
+            </a>
+          </Link>
         </div>
         <div
           id="slider"
