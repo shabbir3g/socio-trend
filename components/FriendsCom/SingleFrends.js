@@ -6,7 +6,7 @@ const SingleFrends = ({friend}) => {
     return (
         <div className=" md:col-span-3 lg:col-span-3 sm:col-span-4 xs:col-span-6 text-center rounded bg-white">
              <div className=' mt-5'>
-             <Image src={img} height="100px" width="100px" className='rounded-full'></Image>
+             <Image src={img} height="100px" width="100px" className='rounded-full' alt="Friends image"></Image>
              </div>
              <h1 className='text-lg font-semibold'>{name}</h1>
              <p className='text-sm text-slate-400'>{userId}</p>

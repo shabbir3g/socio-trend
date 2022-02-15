@@ -1,7 +1,7 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 
-const UserSinglePost = () => {
+const SinglePost = () => {
   return (
     <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
       <div className="flex justify-between">
@@ -18,8 +18,13 @@ const UserSinglePost = () => {
           </div>
         </div>
         <div className="">
-          <div className="py-2 px-4 bg-gray-200 dark:bg-gray-600 rounded-full">
-            <i className="fa-solid fa-ellipsis-vertical dark:text-white text-black"></i>
+          <div className="p-1 pb-0 bg-gray-200 rounded-full">
+            <Image
+              src="https://img.icons8.com/ios-glyphs/20/000000/more.png"
+              alt=""
+              height="20"
+              width="20"
+            />
           </div>
         </div>
       </div>
@@ -29,7 +34,7 @@ const UserSinglePost = () => {
           aspernatur officia optio provident saepe sit hic quod natus quis at
           consectetur eius voluptate deserunt incidunt, veritatis quae
           consequatur repudiandae error?
-          <button className="text-blue-600">see more</button>
+          <button className="text-blue-600 ml-1">see more</button>
         </p>
       </div>
       <div className="pt-3">
@@ -81,4 +86,4 @@ const UserSinglePost = () => {
   );
 };
 
-export default UserSinglePost;
+export default SinglePost;

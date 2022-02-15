@@ -9,11 +9,11 @@ const ProfileModal = () => {
       className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center"
       id="edit-profile-modal"
     >
-      <div className="bg-gray-200 px-7 py-3 rounded shadow-xl text-gray-800">
+      <div className="bg-gray-200 dark:bg-gray-800 px-7 py-3 rounded shadow-xl text-gray-800">
         <div className="flex justify-between items-center border-b-2 py-3 border-gray-500">
-          <h4 className="text-lg font-bold">Edit profile</h4>
+          <h4 className="text-lg font-bold dark:text-white">Edit profile</h4>
           <svg
-            className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full"
+            className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full dark:text-white dark:hover:bg-gray-600"
             id="close-profile-modal"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -27,7 +27,7 @@ const ProfileModal = () => {
         </div>
 
         <div className="flex justify-between items-center pt-5">
-          <h4 className="text-lg font-bold">Profile Picture</h4>
+          <h4 className="text-lg font-bold dark:text-white">Profile Picture</h4>
           <div>
             <label htmlFor="files">
               <span className="text-lg text-blue-600 font-bold hover:bg-gray-300 px-3 py-1 rounded-md cursor-pointer">
@@ -53,9 +53,9 @@ const ProfileModal = () => {
           />
         </div>
         <div className="flex justify-between items-center py-5">
-          <h4 className="text-lg font-bold">Cover Photo</h4>
+          <h4 className="text-lg font-bold dark:text-white">Cover Photo</h4>
           <label htmlFor="files">
-            <span className="text-lg text-blue-600 font-bold hover:bg-gray-300 px-3 py-1 rounded-md cursor-pointer">
+            <span className="text-lg text-blue-600 font-bold hover:bg-gray-300 px-3 py-1 rounded-md cursor-pointer ">
               Update
             </span>
           </label>
@@ -77,14 +77,14 @@ const ProfileModal = () => {
           />
         </div>
         <div className="flex space-x-3 pb-3 pt-5 items-center">
-          <div className="text-lg font-bold">Your Name:</div>
-          <div className="text-md font-semibold">User Name</div>
+          <div className="text-lg font-bold dark:text-white">Your Name:</div>
+          <div className="text-md font-semibold dark:text-white">User Name</div>
         </div>
         <div className="flex items-center space-x-3 py-3">
-          <div className="text-lg font-bold">Chenge Your Name:</div>
+          <div className="text-lg font-bold dark:text-white">Chenge Your Name:</div>
           <input
             placeholder="Type Your Name"
-            className="w-2/4 h-10 px-2 focus:outline-none"
+            className="w-2/4 h-10 px-2 focus:outline-none dark:bg-gray-700"
             type="text"
             name="name"
             id="name"

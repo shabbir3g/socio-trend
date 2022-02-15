@@ -13,20 +13,20 @@ const EmailRightBar = () => {
              {/* navbar */}
         {/* <EmailTopBar setSidebar sidebar/> */}
         {/* lg:hidden md:hidden */}
-        <div className='bg-blue-500 fixed flex h-20 inset-x-0 items-center justify-between px-4 text-white top-0'>
+        {/* <div className='bg-blue-500 fixed flex h-20 inset-x-0 items-center justify-between px-4 text-white top-0'> */}
             {/* navbar logo */}
-            <div>
+            {/* <div>
                 no science lab
-            </div>
+            </div> */}
 
             {/* nav open side bar logo */}
-            <button className='p-2 rounded-full transition hover:bg-blue-400' >{bar}</button>
-        </div>
+            {/* <button className='p-2 rounded-full transition hover:bg-blue-400' >{bar}</button> */}
+        {/* </div> */}
 
 
 
             {/* side bar container */}
-            <div>
+            <div className='hidden lg:block '>
                 {/* sidebar overlay */}
                 {/* <div className='bg-black cursor-pointer fixed inset-0 opacity-70 visible' >
 

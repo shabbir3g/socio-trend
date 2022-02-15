@@ -10,11 +10,11 @@ const AboutModal = () => {
       className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center "
       id="edit-about-modal"
     >
-      <div className="bg-gray-200 p-5 rounded shadow-xl text-gray-800 md:w-1/4">
+      <div className="bg-gray-200 dark:bg-gray-800 p-5 rounded shadow-xl text-gray-800 md:w-1/4">
         <div className="flex justify-between items-center border-b-2 py-3 mb-5 border-gray-500">
-          <h4 className="text-lg font-bold">Edit about</h4>
+          <h4 className="text-lg font-bold dark:text-white">Edit about</h4>
           <svg
-            className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full"
+            className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full dark:text-white dark:hover:bg-gray-600"
             id="close-about-modal"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -28,39 +28,39 @@ const AboutModal = () => {
         </div>
 
         <form onSubmit={handleOnChangeAbout}>
-          <label>Educations</label>
+          <label className="dark:text-white">Educations</label>
           <input
-            className="w-full h-12 mb-3"
+            className="w-full h-12 mb-3 dark:bg-gray-700"
             type="text"
             name="siam"
             onChange={handleOnChangeAbout}
           />
-          <label>Lives in </label>
+          <label className="dark:text-white">Lives in </label>
           <input
-            className="w-full h-12 mb-3"
+            className="w-full h-12 mb-3 dark:bg-gray-700"
             type="text"
             name="naim"
             onChange={handleOnChangeAbout}
           />
-          <label>From</label>
+          <label className="dark:text-white">From</label>
           <input
-            className="w-full h-12 mb-3"
+            className="w-full h-12 mb-3 dark:bg-gray-700"
             type="text"
             name="sumon"
             onChange={handleOnChangeAbout}
           />
-          <label>Workplace</label>
+          <label className="dark:text-white">Workplace</label>
           <input
-            className="w-full h-12 mb-3"
+            className="w-full h-12 mb-3 dark:bg-gray-700"
             type="text"
             name="sumon"
             onChange={handleOnChangeAbout}
           />
-          <label>Relationship</label>
+          <label className="dark:text-white">Relationship</label>
           <select
             name="relationship"
             id=""
-            className="w-full h-12 mb-3 px-3"
+            className="w-full h-12 mb-3 dark:bg-gray-700 px-3 dark:text-white"
             onChange={handleOnChangeAbout}
           >
             <option value="Single">Single</option>
