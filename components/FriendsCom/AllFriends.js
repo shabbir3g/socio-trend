@@ -101,8 +101,8 @@ const AllFrends = () => {
   };
 
   return (
-    <div className="bg-slate-200 pb-20">
-      <div className="mx-8 md:mx-18 sm:mx-11 xs:mx-8 lg:mx-28 pt-5">
+    <div className=" pb-20">
+      <div className="mx-8 md:mx-18 sm:mx-11 xs:mx-8 lg:mx-1 pt-5">
         <div className="bg-white border my-5 flex flex-col xs:flex-col sm:flex-row justify-between justify-items-center py-8 px-8 rounded-md">
           <div
             style={{ color: "#1D4ED8" }}
@@ -134,7 +134,7 @@ const AllFrends = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 xs:grid-cols-12 sm:grid-cols-12 md:grid-cols-12 gap-3">
-          {friends.map((friend) => (
+          {searchMember.map((friend) => (
             <SingleFrends key={friend.id} friend={friend}></SingleFrends>
           ))}
         </div>
