@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 const AboutModal = () => {
-  const handleOnChangeAbout = (e) => {
-    e.preventDefault();
-    console.log(e.target.name, e.target.value);
+  const user = useSelector((state) => state.states.user);
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    fetch(`http://localhost:3000/api/user/updateProfile?email=${user.email}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   return (
     <div
@@ -27,41 +37,37 @@ const AboutModal = () => {
           </svg>
         </div>
 
-        <form onSubmit={handleOnChangeAbout}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label className="dark:text-white">Educations</label>
           <input
-            className="w-full h-12 mb-3 dark:bg-gray-700"
+            className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
             type="text"
-            name="siam"
-            onChange={handleOnChangeAbout}
+            {...register("education", { required: true })}
           />
           <label className="dark:text-white">Lives in </label>
           <input
-            className="w-full h-12 mb-3 dark:bg-gray-700"
+            className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
             type="text"
-            name="naim"
-            onChange={handleOnChangeAbout}
+            {...register("city", { required: true })}
           />
           <label className="dark:text-white">From</label>
           <input
-            className="w-full h-12 mb-3 dark:bg-gray-700"
+            className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
             type="text"
-            name="sumon"
-            onChange={handleOnChangeAbout}
+            {...register("from", { required: true })}
           />
           <label className="dark:text-white">Workplace</label>
           <input
-            className="w-full h-12 mb-3 dark:bg-gray-700"
+            className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
             type="text"
-            name="sumon"
-            onChange={handleOnChangeAbout}
+            {...register("workplace", { required: true })}
           />
           <label className="dark:text-white">Relationship</label>
           <select
             name="relationship"
             id=""
-            className="w-full h-12 mb-3 dark:bg-gray-700 px-3 dark:text-white"
-            onChange={handleOnChangeAbout}
+            className="w-full h-12 mb-3 dark:bg-gray-700 dark:text-white px-3"
+            {...register("relationship", { required: true })}
           >
             <option value="Single">Single</option>
             <option value="In a relationship">In a relationship </option>

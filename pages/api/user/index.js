@@ -6,15 +6,17 @@ export default async function handler(req, res) {
 
   dbConnect();
 
+  // get single user by email
   if (method === "GET") {
     try {
-      const users = await User.find({});
-      res.status(200).json(users);
+      const result = await User.findOne({ email: req.query.email });
+      res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err);
     }
   }
 
+  // save user data after register
   if (method === "POST") {
     try {
       const user = await User.create(req.body);
@@ -24,6 +26,7 @@ export default async function handler(req, res) {
     }
   }
 
+// save user data after google signup
   if (method === "PUT") {
     try {
       const user = req.body;

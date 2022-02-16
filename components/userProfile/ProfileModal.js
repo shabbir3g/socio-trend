@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 const ProfileModal = () => {
   const [image, setImage] = useState(null);
-  console.log(image);
+  // console.log(image);
   return (
     <div
       className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center"
