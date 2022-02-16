@@ -46,9 +46,10 @@ const useFirebase = () => {
         signOut(auth).then(() => {
             dispatch(setUser(null));
             // dispatch(setAdmin(false));
+            router.push("/Login")
         }).catch((error) => {
             const errorMessage = error.message;
-            // dispatch(setErrorMsg(errorMessage));
+            dispatch(setErrorMsg(errorMessage));
         });
     }
 
