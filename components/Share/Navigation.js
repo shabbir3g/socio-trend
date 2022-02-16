@@ -1,12 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
-import logo from "../../public/logo.png";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  const user = useSelector((state)=> state.states.user);
 
   useEffect(() => setMounted(true), []);
 
@@ -15,13 +18,13 @@ const Navigation = () => {
     const currentTheme = theme === "system" ? systemTheme : theme;
     if (currentTheme === "dark") {
       return (
-        <button onClick={() => setTheme("light")}>
-          <i className="fa-solid fa-sun"></i>
+        <button className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl" onClick={() => setTheme("light")}>
+          <i className="fa-solid fa-moon"></i>
         </button>
       );
     } else {
       return (
-        <button onClick={() => setTheme("dark")}>
+        <button className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl" onClick={() => setTheme("dark")}>
           <i className="fa-solid fa-moon"></i>
         </button>
       );
@@ -57,19 +60,19 @@ const Navigation = () => {
           href="#"
           className="font-bold text-4xl pt-1 text-blue-700 pl-10 pr-16"
         >
-          <Image alt="Socio Trend" width="200" height="66" src={logo} />
+          <Image alt="Socio Trend" width="200" height="66" src="/logo.png"  />
         </a>
         <input
           className="w-3/12 h-14  pl-12 rounded-full bg-gray-200 hidden lg:flex"
           placeholder="Start typing to search"
         ></input>
         <div className="xl:flex hidden ">
-          <a
-            href="#"
+          <Link href="/"><a
+            href=""
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
           >
             <i className="fas fa-home"></i>
-          </a>
+          </a></Link>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
@@ -82,12 +85,13 @@ const Navigation = () => {
           >
             <i className="fas fa-video"></i>
           </a>
+          <Link href="/friends">
           <a
-            href="#"
+            href=""
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
           >
             <i className="far fa-user"></i>
-          </a>
+          </a></Link>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
@@ -97,12 +101,13 @@ const Navigation = () => {
         </div>
         <div className="flex ml-auto">
           {renderThemeChanger()}
-          <a
-            href="#"
+          <Link href="notification">
+           <a
+            href=""
             className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
           >
             <i className="far fa-bell"></i>
-          </a>
+          </a></Link>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
@@ -116,17 +121,19 @@ const Navigation = () => {
           >
             <i className="far fa-sun"></i>
           </a>
+          <Link href="/profile">
           <a
-            href="#"
+            href=""
             className="w-10 h-10 rounded-full items-center justify-center hidden lg:flex mr-5 mt-1"
           >
             <Image
               alt="user"
               width="30"
               height="30"
-              src="http://uitheme.net/sociala/images/profile-4.png"
+              className="rounded-full"
+              src={user?.photoURL || "http://uitheme.net/sociala/images/profile-4.png"}
             />
-          </a>
+          </a></Link>
 
           <a
             href="#"
@@ -179,12 +186,10 @@ const Navigation = () => {
           >
             <i className="fab fa-hive"></i>
           </a>
-          <a
-            href="#"
-            className="w-10 h-10 rounded-full items-center justify-center mt-2"
-          >
-            <img src="http://uitheme.net/sociala/images/profile-4.png" />
-          </a>
+          <Link href="/profile"><a href="" className="w-10 h-10 rounded-full items-center justify-center mt-2">
+            <img href="" src="http://uitheme.net/sociala/images/profile-4.png" />
+            </a>
+          </Link>
         </div>
         <div
           id="slider"

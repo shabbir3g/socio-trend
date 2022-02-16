@@ -15,6 +15,10 @@ module.exports = {
       "2xl": "1536px",
     },
     extend: {
+      transitionProperty:{
+        "right":"right",
+        "left": "left"
+      },
       colors: {
         "regal-blue": "#243c5a",
       },
