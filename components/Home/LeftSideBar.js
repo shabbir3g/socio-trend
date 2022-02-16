@@ -1,7 +1,9 @@
 import Link from "next/link";
 import React from "react";
+import useFirebase from '../../firebase/useFirebase';
 
 const LeftSideBar = () => {
+  const {googleSingOut}= useFirebase();
   return (
     <div className="bg-gray-100 dark:bg-gray-900">
       <div className="w-full">
@@ -106,6 +108,12 @@ const LeftSideBar = () => {
                 </li>
               </a>
             </Link>
+
+           
+                <li onClick={googleSingOut} className="mb-3 hover:bg-slate-200">
+                    <i className="fa-solid fa-right-from-bracket p-3 "></i> Sign Out 
+                </li>
+           
           </ul>
         </div>
       </div>

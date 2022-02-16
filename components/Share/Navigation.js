@@ -4,10 +4,13 @@ import logo from "../../public/logo.png";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  const user = useSelector((state)=> state.states.user);
 
   useEffect(() => setMounted(true), []);
 
@@ -128,7 +131,8 @@ const Navigation = () => {
               alt="user"
               width="30"
               height="30"
-              src="http://uitheme.net/sociala/images/profile-4.png"
+              className="rounded-full"
+              src={user?.photoURL || "http://uitheme.net/sociala/images/profile-4.png"}
             />
           </a></Link>
 

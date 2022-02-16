@@ -6,10 +6,11 @@ import { useForm } from 'react-hook-form';
 import useFirebase from '../firebase/useFirebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from "react-redux";
 
 
 const Register = () => {
-  
+  const errorMsg = useSelector(state=>state.states.registerError)
 
 
 
@@ -21,11 +22,13 @@ const Register = () => {
 
 
 
+
+
   const onSubmit = data =>{
      console.log(data)
       if(data.password === data.confirmPass){
-            registerWithEmailPass();
-            toast("Wow password matched!");
+        registerWithEmailPass(data?.email, data?.password, data?.displayName);
+        toast("Wow password matched!");
       }else{
         toast("Oops! password dosen't match");
       }
@@ -133,6 +136,10 @@ const Register = () => {
               <a className="text-blue-600">Login</a>
             </Link>
           </p>
+          <div className="text-center">
+             <p className="text-red-500 font-bold">{errorMsg}</p>
+
+          </div>
         </div>
 
           {/* react-toast-for-alert */}

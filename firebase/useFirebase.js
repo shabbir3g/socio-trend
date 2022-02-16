@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import initializeFirebaseApp from './firebase.init';
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, getIdToken } from "firebase/auth";
 import { useDispatch } from 'react-redux';
-import { setUser } from '../redux/stateSlice/stateSlice';
+import { setIsLoading, setRegisterError, setUser } from '../redux/stateSlice/stateSlice';
+import { useRouter } from 'next/router'
 
 
 initializeFirebaseApp()
@@ -11,20 +12,21 @@ const auth = getAuth();
 
 const useFirebase = () => {
     const dispatch = useDispatch();
-
+    const router = useRouter(); 
 
 
 
     // google-sign-in-method
 
     const googleSign = (location, navigate) => {
-        // dispatch(setIsLoading(true));
+        dispatch(setIsLoading(true));
 
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                //   dispatch(setIsLoading(false));
+                router.push("/")
+                  dispatch(setIsLoading(false));
                 dispatch(setUser(user));
                 //   saveUser(user?.email, user?.displayName,'PUT')
                 //   const destination = location?.state?.from || '/';
@@ -77,10 +79,11 @@ const signWithEmailPass = (email, password, location, navigate) =>{
   // register-user-with-email-password
 
   const registerWithEmailPass = (email, password, name) => {
-    // dispatch(setIsLoading(true));
+      console.log(email,password,name + 'from hook');
+    dispatch(setIsLoading(true));
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // dispatch(setErrorMsg(''));
+            dispatch(setRegisterError(''));
             const newUser = { email, displayName: name };
             dispatch(setUser(newUser))
             // saveUser(email, name, 'POST');
@@ -96,17 +99,17 @@ const signWithEmailPass = (email, password, location, navigate) =>{
             }).then(() => {
             }).catch((error) => {
             });
-            // navigate('/');
+           router.push("/")
 
         })
         .catch((error) => {
-        //   const errorMessage = error.message;
-        //   dispatch(setErrorMsg(errorMessage));
+          const errorMessage = error.message;
+          dispatch(setRegisterError(errorMessage));
         })
         .finally(() => {
-            //  dispatch(setIsLoading(false))
+             dispatch(setIsLoading(false))
             });
-}
+     }
 
 
 
@@ -123,7 +126,7 @@ const signWithEmailPass = (email, password, location, navigate) =>{
                 dispatch(setUser(user));
             }
 
-            // dispatch(setIsLoading(false));
+            dispatch(setIsLoading(false));
         });
         return () => unsubscribed;
     }, [dispatch, auth])
