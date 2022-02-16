@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
-    userName: {
+    displayName: {
       type: String,
       require: true,
       min: 3,
@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema(
     //  required: true,
     //  min: 6,
     // },
-    profilePicture: {
+    photoURL: {
       type: String,
       default: "",
     },

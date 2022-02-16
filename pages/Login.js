@@ -3,9 +3,10 @@ import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import useFirebase from "../firebase/useFirebase";
+import Head from "next/head";
 
 const Login = () => {
-  const { registerWithEmailPass } = useFirebase();
+  const { registerWithEmailPass, googleSign } = useFirebase();
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
@@ -15,6 +16,15 @@ const Login = () => {
 
   return (
     <div className="">
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      </Head>
       <div className="flex justify-center m-10 sm:mx-auto md:flex-row flex-col w-5/6">
         <div className="md:w-3/6">
           <Image
@@ -61,25 +71,34 @@ const Login = () => {
           </form>
           <p className="text-gray-400 py-3 font-semibold">
             Dont have account
-            <Link passHref href="register">
+            <Link passHref href="Register">
               <a className="text-blue-600 pl-1">Register</a>
             </Link>
           </p>
           <p className="text-center text-gray-400 py-3 font-semibold">
             Or, Sign in with your social account
           </p>
-          <a
-            className="w-full h-14 py-4 rounded-md bg-blue-500 block text-center text-white"
-            href="#"
+
+          <button
+            onClick={googleSign}
+            className="w-full flex justify-center align-center gap-3 py-4 rounded-md bg-gradient-to-r from-sky-200 to-yellow-500  text-center text-white"
           >
-            sign in with google
-          </a>
-          <a
-            className="w-full h-14 py-4 rounded-md bg-blue-800 block text-center text-white mt-4"
-            href="#"
+            <Image src="/google.png" height="35" width="35" alt="google logo" />
+            <p className="text-xl font-bold"> sign in with google</p>
+          </button>
+
+          <button
+            onClick={googleSign}
+            className="w-full flex justify-center align-center mt-5 gap-3 py-4 rounded-md bg-sky-200  text-center text-white"
           >
-            sign in with facebook
-          </a>
+            <Image
+              src="/facebook.png"
+              height="35"
+              width="35"
+              alt="google logo"
+            />
+            <p className="text-xl font-bold"> sign in with facebook</p>
+          </button>
         </div>
       </div>
       {/* </div> */}
