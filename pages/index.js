@@ -7,7 +7,7 @@ import Navigation from "../components/Share/Navigation";
 import styles from "../styles/Home.module.css";
 import useFirebase from "../firebase/useFirebase";
 import { useSelector } from "react-redux";
-import Login from "./Login";
+import Login from "./login";
 import { useRouter } from "next/router";
 
 export default function Home() {
