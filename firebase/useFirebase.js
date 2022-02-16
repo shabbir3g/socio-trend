@@ -83,6 +83,7 @@ const signWithEmailPass = (email, password, location, navigate) =>{
     dispatch(setIsLoading(true));
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+
             dispatch(setRegisterError(''));
             const newUser = { email, displayName: name };
             dispatch(setUser(newUser))
@@ -92,7 +93,7 @@ const signWithEmailPass = (email, password, location, navigate) =>{
             //   title: "Sign up success!",
             //   icon: "success"
             // });
-           
+           router.push("/")
 
             updateProfile(auth.currentUser, {
                 displayName: name

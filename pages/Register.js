@@ -18,7 +18,7 @@ const Register = () => {
   const [showPassConfirm,setShowPassConfirm] = React.useState(false)
 
   const {registerWithEmailPass} = useFirebase()
-  const { register, handleSubmit  } = useForm();
+  const { register, handleSubmit, reset  } = useForm();
 
 
 
@@ -29,6 +29,7 @@ const Register = () => {
       if(data.password === data.confirmPass){
         registerWithEmailPass(data?.email, data?.password, data?.displayName);
         toast("Wow password matched!");
+        reset();
       }else{
         toast("Oops! password dosen't match");
       }
