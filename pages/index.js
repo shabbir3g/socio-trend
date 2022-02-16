@@ -5,10 +5,10 @@ import MiddleRightBar from "../components/Home/MiddleRightBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import styles from "../styles/Home.module.css";
-import useFirebase from '../firebase/useFirebase';
+import useFirebase from "../firebase/useFirebase";
 
 export default function Home() {
-  const {googleSign,googleSingOut} = useFirebase()
+  const { googleSign, googleSingOut } = useFirebase();
   return (
     <div className="bg-neutral-100 dark:bg-gray-900">
       <Head>
@@ -45,9 +45,19 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <button onClick={()=>googleSign()} className="bg-indigo-700 text-white p-3 m-10">google</button><br/>
-      <button onClick={()=>googleSingOut()} className="bg-yellow-700 text-white p-3 m-10">google signOut</button>
-      
+      <button
+        onClick={() => googleSign()}
+        className="bg-indigo-700 text-white p-3 m-10"
+      >
+        google
+      </button>
+      <br />
+      <button
+        onClick={() => googleSingOut()}
+        className="bg-yellow-700 text-white p-3 m-10"
+      >
+        google signOut
+      </button>
     </div>
   );
 }
