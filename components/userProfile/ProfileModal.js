@@ -1,15 +1,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-const ProfileModal = () => {
+const ProfileModal = ({data}) => {
   const [image, setImage] = useState(null);
-  console.log(image);
+  // const user =useSelector((state) => state.states.user);
 
   const handleImg = (file) => {
-    console.log(file);
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
+    setImage(URL.createObjectURL(file));
   };
   return (
     <div
@@ -48,16 +45,19 @@ const ProfileModal = () => {
               id="files"
               accept="image/*"
               className="hidden"
-              onChange={(e) => handleImg(e.target.files)}
+              onChange={(e) => handleImg(e)}
             />
           </div>
+          {/* tail-input */}
+          <input type="file" onChange={(e)=> handleImg(e.target.files[0])} name="" id="" />
         </div>
         <div className="flex justify-center">
           <Image
-            src={image || "https://i.ibb.co/5kdWHNN/user-12.png"}
+          className="object-cover rounded-full border-2 bg-no-repeat"
+            src={image || data.photoURL || "https://i.ibb.co/5kdWHNN/user-12.png"}
             alt="profile image"
-            width="150"
-            height="150"
+            width="100"
+            height="100"
           />
         </div>
         <div className="flex justify-between items-center py-5">
@@ -72,7 +72,7 @@ const ProfileModal = () => {
             id="files"
             name="file"
             className="hidden"
-            // onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => console.log(e)}
           />
         </div>
 
