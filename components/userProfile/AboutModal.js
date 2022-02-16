@@ -1,8 +1,9 @@
+import { data } from "autoprefixer";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 
-const AboutModal = () => {
+const AboutModal = ({ data }) => {
   const user = useSelector((state) => state.states.user);
   const { register, handleSubmit } = useForm();
 
@@ -13,7 +14,7 @@ const AboutModal = () => {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((result) => console.log(result));
   };
   return (
     <div
@@ -42,32 +43,42 @@ const AboutModal = () => {
           <input
             className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
             type="text"
-            {...register("education", { required: true })}
+            {...register("education")}
+            defaultValue={data.education}
+            placeholder={data.education}
           />
           <label className="dark:text-white">Lives in </label>
           <input
             className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
             type="text"
-            {...register("city", { required: true })}
+            {...register("city")}
+            defaultValue={data.city}
+            placeholder={data.city}
           />
           <label className="dark:text-white">From</label>
           <input
             className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
             type="text"
-            {...register("from", { required: true })}
+            {...register("from")}
+            defaultValue={data.from}
+            placeholder={data.from}
           />
           <label className="dark:text-white">Workplace</label>
           <input
             className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
             type="text"
-            {...register("workplace", { required: true })}
+            {...register("workplace")}
+            defaultValue={data.workplace}
+            placeholder={data.workplace}
           />
           <label className="dark:text-white">Relationship</label>
           <select
             name="relationship"
             id=""
             className="w-full h-12 mb-3 dark:bg-gray-700 dark:text-white px-3"
-            {...register("relationship", { required: true })}
+            {...register("relationship")}
+            placeholder={data.relationship}
+            defaultValue={data.education}
           >
             <option value="Single">Single</option>
             <option value="In a relationship">In a relationship </option>

@@ -8,12 +8,14 @@ import UserProfile from "../components/userProfile/UserProfile";
 
 const Profile = () => {
   const [data, setData] = useState({});
+
   const user = useSelector((state) => state.states.user);
+
   useEffect(() => {
-    fetch(`http://localhost:3000/api/user?email=${user.email}`)
+    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setData(data));
-  }, [user.email]);
+  }, [user?.email]);
   return (
     <>
       <Head>
@@ -43,8 +45,8 @@ const Profile = () => {
 
 export default Profile;
 
-// export async function getStaticProps(user) {
-//   console.log(user);
+// export async function getStaticProps() {
+
 //   const res = await fetch(`http://localhost:3000/api/user?email=${user.email}`);
 //   const data = await res.json();
 

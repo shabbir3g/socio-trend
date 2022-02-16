@@ -5,8 +5,6 @@ import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
 
 const UserProfile = ({ data }) => {
-  console.log(data);
-
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
     const editDetailsBtn = document.getElementById("edit-about");
@@ -162,7 +160,7 @@ const UserProfile = ({ data }) => {
                   id="files"
                   accept="image/*"
                   className="hidden"
-                  onChange={(e) => console.log(e.target.files[0])}
+                  // onChange={(e) => console.log(e.target.files[0])}
                 />
               </div>
             </div>
@@ -173,9 +171,9 @@ const UserProfile = ({ data }) => {
         </div>
       </div>
       {/* Edit Profile Modal */}
-      <ProfileModal />
+      <ProfileModal data={data} />
       {/* Edit About Modal */}
-      <AboutModal />
+      <AboutModal data={data} />
     </>
   );
 };

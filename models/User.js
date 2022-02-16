@@ -55,6 +55,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    workplace: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );
