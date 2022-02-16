@@ -10,13 +10,12 @@ const LeftSideBar = () => {
         <div className="bg-white dark:bg-gray-800 p-5 rounded-lg drop-shadow-sm ">
           <p className="mb-3">New Feeds</p>
           <ul className="left-sidebar">
-
             <Link href="/">
               <a>
-              <li className="mb-3">
+                <li className="mb-3">
                   <i className="fa-solid fa-tv p-3 bg-blue-500 text-white rounded-full"></i>
                   NewsFeed
-              </li>
+                </li>
               </a>
             </Link>
             <li className="mb-3">
@@ -91,36 +90,17 @@ const LeftSideBar = () => {
                 Analytics
               </a>
             </li>
-<<<<<<< HEAD
-            <li className="mb-3">
-              <a href="">
-                <i className="fa-solid fa-comment p-3 text-gray-400 text-2xl"></i>{" "}
-                Chat
-              </a>
-            </li>
-            <Link href="/chat">
-              <a>
-                <li className="mb-3">
-                  <i className="fa-solid fa-comment p-3"></i> Chat
-                </li>
-              </a>
-            </Link>
-
-            <li onClick={googleSingOut} className="mb-3 hover:bg-slate-200">
-              <i className="fa-solid fa-right-from-bracket p-3 "></i> Sign Out
-            </li>
-=======
             <li>
               <Link href="/chat">
                 <a>
-                  <i className="fa-solid fa-comment p-3 text-gray-400 text-2xl"></i> Chat
+                  <i className="fa-solid fa-comment p-3 text-gray-400 text-2xl"></i>{" "}
+                  Chat
                 </a>
               </Link>
             </li>
             <li onClick={googleSingOut} className="signout mb-3 ">
-                <i className="fa-solid fa-right-from-bracket p-3 "></i> Sign Out 
+              <i className="fa-solid fa-right-from-bracket p-3 "></i> Sign Out
             </li>
->>>>>>> bbc1a0d321a977afb33ab7d8aaef75cc9b2a48e0
           </ul>
         </div>
       </div>
