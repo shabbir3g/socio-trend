@@ -65,12 +65,14 @@ const Navigation = () => {
           placeholder="Start typing to search"
         ></input>
         <div className="xl:flex hidden ">
-          <Link href="/"><a
-            href=""
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
-          >
-            <i className="fas fa-home"></i>
-          </a></Link>
+          <Link href="/">
+            <a
+              href=""
+              className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            >
+              <i className="fas fa-home"></i>
+            </a>
+          </Link>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
@@ -84,12 +86,13 @@ const Navigation = () => {
             <i className="fas fa-video"></i>
           </a>
           <Link href="/friends">
-          <a
-            href=""
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
-          >
-            <i className="far fa-user"></i>
-          </a></Link>
+            <a
+              href=""
+              className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            >
+              <i className="far fa-user"></i>
+            </a>
+          </Link>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
@@ -100,12 +103,13 @@ const Navigation = () => {
         <div className="flex ml-auto">
           {renderThemeChanger()}
           <Link href="notification">
-           <a
-            href=""
-            className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
-          >
-            <i className="far fa-bell"></i>
-          </a></Link>
+            <a
+              href=""
+              className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
+            >
+              <i className="far fa-bell"></i>
+            </a>
+          </Link>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
@@ -120,17 +124,18 @@ const Navigation = () => {
             <i className="far fa-sun"></i>
           </a>
           <Link href="/profile">
-          <a
-            href=""
-            className="w-10 h-10 rounded-full items-center justify-center hidden lg:flex mr-5 mt-1"
-          >
-            <Image
-              alt="user"
-              width="30"
-              height="30"
-              src="http://uitheme.net/sociala/images/profile-4.png"
-            />
-          </a></Link>
+            <a
+              href=""
+              className="w-10 h-10 rounded-full items-center justify-center hidden lg:flex mr-5 mt-1"
+            >
+              <Image
+                alt="user"
+                width="30"
+                height="30"
+                src="http://uitheme.net/sociala/images/profile-4.png"
+              />
+            </a>
+          </Link>
 
           <a
             href="#"
@@ -183,8 +188,15 @@ const Navigation = () => {
           >
             <i className="fab fa-hive"></i>
           </a>
-          <Link href="/profile"><a href="" className="w-10 h-10 rounded-full items-center justify-center mt-2">
-            <img href="" src="http://uitheme.net/sociala/images/profile-4.png" />
+          <Link href="/profile">
+            <a
+              href=""
+              className="w-10 h-10 rounded-full items-center justify-center mt-2"
+            >
+              <img
+                href=""
+                src="http://uitheme.net/sociala/images/profile-4.png"
+              />
             </a>
           </Link>
         </div>
