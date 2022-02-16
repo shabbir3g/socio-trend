@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import logo from "../../public/logo.png";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
@@ -19,13 +18,13 @@ const Navigation = () => {
     const currentTheme = theme === "system" ? systemTheme : theme;
     if (currentTheme === "dark") {
       return (
-        <button onClick={() => setTheme("light")}>
-          <i className="fa-solid fa-sun"></i>
+        <button className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl" onClick={() => setTheme("light")}>
+          <i className="fa-solid fa-moon"></i>
         </button>
       );
     } else {
       return (
-        <button onClick={() => setTheme("dark")}>
+        <button className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl" onClick={() => setTheme("dark")}>
           <i className="fa-solid fa-moon"></i>
         </button>
       );
@@ -61,7 +60,7 @@ const Navigation = () => {
           href="#"
           className="font-bold text-4xl pt-1 text-blue-700 pl-10 pr-16"
         >
-          <Image alt="Socio Trend" width="200" height="66" src={logo} />
+          <Image alt="Socio Trend" width="200" height="66" src="/logo.png"  />
         </a>
         <input
           className="w-3/12 h-14  pl-12 rounded-full bg-gray-200 hidden lg:flex"

@@ -5,14 +5,36 @@ import { useForm } from "react-hook-form";
 import useFirebase from "../firebase/useFirebase";
 import Head from "next/head";
 
+
 const Login = () => {
   const { registerWithEmailPass, googleSign } = useFirebase();
 
+<<<<<<< HEAD
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
     registerWithEmailPass(data.email, data.password);
   };
+=======
+  const {registerWithEmailPass,googleSign} = useFirebase();
+  const [showPass,setShowPass] = React.useState(false)
+
+  const { register, handleSubmit  } = useForm();
+  const onSubmit = data =>{
+     console.log(data)
+     registerWithEmailPass(data.email,data.password)
+    };
+
+    const handleHidePass =()=>{
+      setShowPass(true);
+      }
+
+    const handleShowPass =()=>{
+      setShowPass(false);
+      }
+      
+
+>>>>>>> bbc1a0d321a977afb33ab7d8aaef75cc9b2a48e0
 
   return (
     <div className="">
@@ -29,19 +51,20 @@ const Login = () => {
         <div className="md:w-3/6">
           <Image
             src="http://uitheme.net/sociala/images/login-bg.jpg"
-            height="600"
+            height="800"
             width="700"
             alt="Login image"
           />
           <a className="font-bold text-3xl text-blue-600 absolute top-10 left-10">
-            Sociala.
+          <Image alt="Socio Trend" width="300" height="100" src="/logo.png" />
           </a>
         </div>
         <div className="md:w-2/5 w-11/12 mx-auto pt-10">
-          <h2 className="md:text-4xl text-3xl text-gray-900 font-bold mb-4">
-            Login into <br /> your account
+          <h2 className="md:text-4xl text-3xl text-gray-900 font-bold mb-8">
+            Login into  your account
           </h2>
           {/* login-form */}
+<<<<<<< HEAD
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               {...register("email", { required: true })}
@@ -78,15 +101,35 @@ const Login = () => {
           <p className="text-center text-gray-400 py-3 font-semibold">
             Or, Sign in with your social account
           </p>
+=======
+>>>>>>> bbc1a0d321a977afb33ab7d8aaef75cc9b2a48e0
 
           <button
             onClick={googleSign}
-            className="w-full flex justify-center align-center gap-3 py-4 rounded-md bg-gradient-to-r from-sky-200 to-yellow-500  text-center text-white"
+            className="w-full flex justify-center align-center gap-3 py-2 border rounded-md bg-white border-black	text-center text-black hover:opacity-60"
           >
             <Image src="/google.png" height="35" width="35" alt="google logo" />
             <p className="text-xl font-bold"> sign in with google</p>
           </button>
+          <div className="or-separator text-center	 font-extrabold	 text-xl	my-4	">OR</div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+               {...register("email", { required: true })} 
+                className="w-full border border-gray-400 h-14 py-4 pl-4 rounded-md"
+                placeholder="Your Email address"
+              ></input>
+             <div className="relative"> 
+              <input
+               {...register("password", { required: true })} 
+               type={showPass? 'text':'password'}
+                className="w-full border border-gray-400 h-14 py-4 pl-4 rounded-md mt-5"
+                placeholder="Password"
+              ></input>
+               <i onClick={showPass? handleShowPass : handleHidePass} className={showPass? 'fa-solid  fa-eye absolute right-5 top-10 cursor-pointer':'fa-solid  fa-eye-slash absolute right-5 top-10 cursor-pointer'}/>
+             </div>
+          
 
+<<<<<<< HEAD
           <button
             onClick={googleSign}
             className="w-full flex justify-center align-center mt-5 gap-3 py-4 rounded-md bg-sky-200  text-center text-white"
@@ -99,6 +142,31 @@ const Login = () => {
             />
             <p className="text-xl font-bold"> sign in with facebook</p>
           </button>
+=======
+              <div className="flex justify-between py-3">
+               <span> 
+               <input id="remember"  type="checkbox" className="w-4 h-4 rounded mt-1" />
+                <label htmlFor="remember" className="text-gray-400 font-semibold pl-2">Remember me</label>
+               </span>
+              <span> 
+              <a className="text-gray-400 pl-6 font-semibold" href="#">
+                  Forgot your Password?
+                </a>
+              </span>
+              </div>
+              <button type="submit" className="w-full h-14 py-4 font-bold rounded-md bg-gray-900 text-white hover:opacity-75">
+                Login
+              </button>
+
+          </form>
+          <p className="text-gray-400 py-3 font-semibold text-center">
+            Dont have account
+            <Link passHref href="register">
+              <a className="text-orange-500	pl-1">Register</a>
+            </Link>
+          </p>
+         
+>>>>>>> bbc1a0d321a977afb33ab7d8aaef75cc9b2a48e0
         </div>
       </div>
       {/* </div> */}
