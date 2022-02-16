@@ -1,22 +1,21 @@
 import Link from "next/link";
 import React from "react";
-import useFirebase from '../../firebase/useFirebase';
+import useFirebase from "../../firebase/useFirebase";
 
 const LeftSideBar = () => {
-  const {googleSingOut}= useFirebase();
+  const { googleSingOut } = useFirebase();
   return (
     <div className="bg-gray-100 dark:bg-gray-900">
       <div className="w-full">
         <div className="bg-white dark:bg-gray-800 p-5 rounded-lg drop-shadow-sm ">
           <p className="mb-3">New Feeds</p>
           <ul className="left-sidebar">
-
             <Link href="/">
               <a>
-              <li className="mb-3">
+                <li className="mb-3">
                   <i className="fa-solid fa-tv p-3 bg-blue-500 text-white rounded-full"></i>
                   NewsFeed
-              </li>
+                </li>
               </a>
             </Link>
             <li className="mb-3">
@@ -52,22 +51,26 @@ const LeftSideBar = () => {
           <ul className="left-second-sidebar">
             <li>
               <a href="">
-                <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i> Email Box
+                <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i>{" "}
+                Email Box
               </a>
             </li>
             <li>
               <a href="">
-                <i className="fa-solid fa-home p-3 text-indigo-500 text-2xl"></i> Near Hotel
+                <i className="fa-solid fa-home p-3 text-indigo-500 text-2xl"></i>{" "}
+                Near Hotel
               </a>
             </li>
             <li>
               <a href="">
-                <i className="fa-solid fa-location-dot p-3 text-indigo-500 text-2xl"></i> Latest Event
+                <i className="fa-solid fa-location-dot p-3 text-indigo-500 text-2xl"></i>{" "}
+                Latest Event
               </a>
             </li>
             <li>
               <a href="">
-                <i className="fa-brands fa-youtube p-3 text-indigo-500 text-2xl"></i> Live Stream
+                <i className="fa-brands fa-youtube p-3 text-indigo-500 text-2xl"></i>{" "}
+                Live Stream
               </a>
             </li>
           </ul>
@@ -77,23 +80,26 @@ const LeftSideBar = () => {
           <ul className="left-second-sidebar">
             <li>
               <a href="">
-                <i className="fa-solid fa-gear p-3 text-gray-400 text-2xl"></i> Settings
+                <i className="fa-solid fa-gear p-3 text-gray-400 text-2xl"></i>{" "}
+                Settings
               </a>
             </li>
             <li>
               <a href="">
-                <i className="fa-solid fa-chart-pie p-3 text-gray-400 text-2xl"></i> Analytics
+                <i className="fa-solid fa-chart-pie p-3 text-gray-400 text-2xl"></i>{" "}
+                Analytics
               </a>
             </li>
             <li>
               <Link href="/chat">
                 <a>
-                  <i className="fa-solid fa-comment p-3 text-gray-400 text-2xl"></i> Chat
+                  <i className="fa-solid fa-comment p-3 text-gray-400 text-2xl"></i>{" "}
+                  Chat
                 </a>
               </Link>
             </li>
             <li onClick={googleSingOut} className="signout mb-3 ">
-                <i className="fa-solid fa-right-from-bracket p-3 "></i> Sign Out 
+              <i className="fa-solid fa-right-from-bracket p-3 "></i> Sign Out
             </li>
           </ul>
         </div>

@@ -4,6 +4,13 @@ import React, { useState } from "react";
 const ProfileModal = () => {
   const [image, setImage] = useState(null);
   console.log(image);
+
+  const handleImg = (file) => {
+    console.log(file);
+    if (file) {
+      setImage(URL.createObjectURL(file));
+    }
+  };
   return (
     <div
       className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center"
@@ -34,19 +41,20 @@ const ProfileModal = () => {
                 Update
               </span>
             </label>
+
             <input
               type="file"
               name="file"
               id="files"
               accept="image/*"
               className="hidden"
-              onChange={(e) => setImage(e.target.files[0])}
+              onChange={(e) => handleImg(e.target.files)}
             />
           </div>
         </div>
         <div className="flex justify-center">
           <Image
-            src="https://i.ibb.co/5kdWHNN/user-12.png"
+            src={image || "https://i.ibb.co/5kdWHNN/user-12.png"}
             alt="profile image"
             width="150"
             height="150"
@@ -64,7 +72,7 @@ const ProfileModal = () => {
             id="files"
             name="file"
             className="hidden"
-            onChange={(e) => setImage(e.target.files[0])}
+            // onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
 
@@ -76,15 +84,17 @@ const ProfileModal = () => {
             height="200"
           />
         </div>
-        <div className="flex space-x-3 pb-3 pt-5 items-center">
+        {/* <div className="flex space-x-3 pb-3 pt-5 items-center">
           <div className="text-lg font-bold dark:text-white">Your Name:</div>
           <div className="text-md font-semibold dark:text-white">User Name</div>
-        </div>
-        <div className="flex items-center space-x-3 py-3">
-          <div className="text-lg font-bold dark:text-white">Chenge Your Name:</div>
+        </div> */}
+        <div className="flex items-center space-x-3 py-6">
+          <div className="text-lg font-bold dark:text-white">
+            Chenge Your Name:
+          </div>
           <input
             placeholder="Type Your Name"
-            className="w-2/4 h-10 px-2 focus:outline-none dark:bg-gray-700"
+            className="w-2/4 h-10 px-2 focus:outline-none dark:bg-gray-700 dark:text-white"
             type="text"
             name="name"
             id="name"
