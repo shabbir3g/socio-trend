@@ -59,7 +59,7 @@ const useFirebase = () => {
         signOut(auth).then(() => {
             dispatch(setUser(null));
             // dispatch(setAdmin(false));
-            router.push("/Login")
+            router.push("/login")
         }).catch((error) => {
             const errorMessage = error.message;
             dispatch(setErrorMsg(errorMessage));
@@ -77,6 +77,7 @@ const useFirebase = () => {
         saveUser(user, "PUT");
         // dispatch(setUser(user));
 
+        router.push("/")
         // const destination = location?.state?.from || '/';
         // navigate(destination);
       })
