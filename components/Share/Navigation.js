@@ -4,6 +4,7 @@ import logo from "../../public/logo.png";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import LeftSideBar from "../Home/LeftSideBar";
 
 const Navigation = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -204,7 +205,9 @@ const Navigation = () => {
           id="slider"
           className="w-6/12 bg-gray-400 absolute -left-2/4 bottom-14  top-20 transition "
         >
-          <h2>opi Barua</h2>
+          <div className="col-span-2  h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default ">
+            <LeftSideBar />
+          </div>
         </div>
       </div>
     </>
