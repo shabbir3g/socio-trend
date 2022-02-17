@@ -72,6 +72,7 @@ const useFirebase = () => {
 
         // dispatch(setUser(user));
 
+        router.push("/");
         // const destination = location?.state?.from || '/';
         // navigate(destination);
       })

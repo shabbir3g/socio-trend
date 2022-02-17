@@ -6,14 +6,14 @@ import useFirebase from "../firebase/useFirebase";
 import Head from "next/head";
 
 const Login = () => {
-  const { registerWithEmailPass, googleSign } = useFirebase();
+  const { signWithEmailPass, googleSign } = useFirebase();
+
 
   const [showPass, setShowPass] = React.useState(false);
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
-    registerWithEmailPass(data.email, data.password);
+    signWithEmailPass(data?.email, data?.password);
   };
 
   const handleHidePass = () => {
@@ -39,7 +39,7 @@ const Login = () => {
         <div className="md:w-3/6">
           <Image
             src="http://uitheme.net/sociala/images/login-bg.jpg"
-            height="800"
+            height="700"
             width="700"
             alt="Login image"
           />
