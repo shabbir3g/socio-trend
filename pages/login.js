@@ -4,16 +4,19 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useFirebase from "../firebase/useFirebase";
 import Head from "next/head";
+import { useSelector } from "react-redux";
 
 const Login = () => {
-  const { registerWithEmailPass, googleSign } = useFirebase();
-
+  const { signWithEmailPass, googleSign } = useFirebase();
   const [showPass, setShowPass] = React.useState(false);
+
+  const emailLoginErrorMsg= useSelector((state) => state.states.emailPassLoginError);
+  const googleLoginErrorMsg= useSelector((state) => state.states.googleLoginError);
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    registerWithEmailPass(data.email, data.password);
+    signWithEmailPass(data.email, data.password);
   };
 
   const handleHidePass = () => {
@@ -119,6 +122,10 @@ const Login = () => {
               <a className="text-orange-500	pl-1">Register</a>
             </Link>
           </p>
+
+          <div className="text-center">
+            <p className="font-bold text-xl text-red-600">{emailLoginErrorMsg || googleLoginErrorMsg}</p>
+          </div>
         </div>
       </div>
       {/* </div> */}

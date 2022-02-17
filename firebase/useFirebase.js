@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import {
+  setEmailPassLoginError,
   setIsLoading,
   setRegisterError,
   setUser,
@@ -38,7 +39,6 @@ const useFirebase = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                router.push("/")
                   dispatch(setIsLoading(false));
                 dispatch(setUser(user));
                 //   saveUser(user?.email, user?.displayName,'PUT')
@@ -70,19 +70,17 @@ const useFirebase = () => {
   
   // sign-in-with-email-and-password
 
-  const signWithEmailPass = (email, password, location, navigate) => {
+  const signWithEmailPass = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         saveUser(user, "PUT");
-        // dispatch(setUser(user));
-
-        // const destination = location?.state?.from || '/';
-        // navigate(destination);
+        dispatch(setUser(user));
+        router.push("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
-        // dispatch(setGoogleSignErrorMsg(errorMessage));
+        dispatch(setEmailPassLoginError(errorMessage));
       });
   };
 
