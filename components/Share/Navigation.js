@@ -194,8 +194,10 @@ const Navigation = () => {
               href=""
               className="w-10 h-10 rounded-full items-center justify-center mt-2"
             >
-              <img
-                href=""
+              <Image
+                width="40"
+                height="40"
+                alt="img"
                 src="http://uitheme.net/sociala/images/profile-4.png"
               />
             </a>
