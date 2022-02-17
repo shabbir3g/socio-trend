@@ -1,16 +1,19 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-const ProfileModal = ({data}) => {
-  const [image, setImage] = useState(null);
-  // const user =useSelector((state) => state.states.user);
+const ProfileModal = ({ data }) => {
+  const [profileImg, setProfileImg] = useState(null);
+  const [coverImg, setCoverImg] = useState(null);
 
-  const handleImg = (file) => {
-    setImage(URL.createObjectURL(file));
+  const handleProfileImg = (file) => {
+    setProfileImg(URL.createObjectURL(file));
+  };
+  const handleCoverImg = (file) => {
+    setCoverImg(URL.createObjectURL(file));
   };
   return (
     <div
-      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center"
+      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10"
       id="edit-profile-modal"
     >
       <div className="bg-gray-200 dark:bg-gray-800 px-7 py-3 rounded shadow-xl text-gray-800">
@@ -33,67 +36,71 @@ const ProfileModal = ({data}) => {
         <div className="flex justify-between items-center pt-5">
           <h4 className="text-lg font-bold dark:text-white">Profile Picture</h4>
           <div>
-            <label htmlFor="files">
+            <label htmlFor="files1">
               <span className="text-lg text-blue-600 font-bold hover:bg-gray-300 px-3 py-1 rounded-md cursor-pointer">
                 Update
               </span>
             </label>
-
             <input
               type="file"
               name="file"
-              id="files"
+              id="files1"
               accept="image/*"
               className="hidden"
-              onChange={(e) => handleImg(e)}
+              onChange={(e) => handleProfileImg(e.target.files[0])}
             />
           </div>
-          {/* tail-input */}
-          <input type="file" onChange={(e)=> handleImg(e.target.files[0])} name="" id="" />
         </div>
         <div className="flex justify-center">
           <Image
-          className="object-cover rounded-full border-2 bg-no-repeat"
-            src={image || data.photoURL || "https://i.ibb.co/5kdWHNN/user-12.png"}
+            className="object-cover rounded-full border-2 bg-no-repeat"
+            src={
+              profileImg ||
+              data.photoURL ||
+              "https://i.ibb.co/5kdWHNN/user-12.png"
+            }
             alt="profile image"
-            width="100"
-            height="100"
+            width="120"
+            height="120"
           />
         </div>
         <div className="flex justify-between items-center py-5">
           <h4 className="text-lg font-bold dark:text-white">Cover Photo</h4>
-          <label htmlFor="files">
+          <label htmlFor="files2">
             <span className="text-lg text-blue-600 font-bold hover:bg-gray-300 px-3 py-1 rounded-md cursor-pointer ">
               Update
             </span>
           </label>
           <input
             type="file"
-            id="files"
             name="file"
+            id="files2"
+            accept="image/*"
             className="hidden"
-            onChange={(e) => console.log(e)}
+            onChange={(e) => handleCoverImg(e.target.files[0])}
           />
         </div>
 
         <div className="flex justify-center">
           <Image
-            src="https://i.ibb.co/pWc2Ffd/u-bg.jpg"
+          className="object-content"
+            src={
+              coverImg ||
+              data.coverPicture ||
+              "https://i.ibb.co/pWc2Ffd/u-bg.jpg"
+            }
             alt="profile image"
             width="500"
             height="200"
           />
         </div>
-        {/* <div className="flex space-x-3 pb-3 pt-5 items-center">
-          <div className="text-lg font-bold dark:text-white">Your Name:</div>
-          <div className="text-md font-semibold dark:text-white">User Name</div>
-        </div> */}
         <div className="flex items-center space-x-3 py-6">
           <div className="text-lg font-bold dark:text-white">
             Chenge Your Name:
           </div>
           <input
-            placeholder="Type Your Name"
+            placeholder={data.displayName}
+            defaultValue={data.displayName}
             className="w-2/4 h-10 px-2 focus:outline-none dark:bg-gray-700 dark:text-white"
             type="text"
             name="name"

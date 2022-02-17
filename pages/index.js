@@ -4,17 +4,12 @@ import MiddleLeftBar from "../components/Home/MiddleLeftBar";
 import MiddleRightBar from "../components/Home/MiddleRightBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
-import styles from "../styles/Home.module.css";
-import useFirebase from "../firebase/useFirebase";
 import { useSelector } from "react-redux";
 import Login from "./login";
-import { useRouter } from "next/router";
 
 export default function Home() {
-  const { googleSign, googleSingOut } = useFirebase();
   const user = useSelector((state) => state.states.user);
   const isLoading = useSelector((state) => state.states.isLoading);
-  const router = useRouter();
 
   if (isLoading) {
     return (

@@ -18,7 +18,7 @@ const AboutModal = ({ data }) => {
   };
   return (
     <div
-      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center "
+      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10"
       id="edit-about-modal"
     >
       <div className="bg-gray-200 dark:bg-gray-800 p-5 rounded shadow-xl text-gray-800 md:w-1/4">
