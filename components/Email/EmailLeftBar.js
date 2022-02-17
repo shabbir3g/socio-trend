@@ -23,46 +23,7 @@ const EmailLeftBar = () => {
     return (
         <>
 
-        <div className='hidden md:block lg:block'>
-                  {/* navbar */}
-            {/* side bar container */}
-            <div>
-                {/* sidebar overlay */}
-                {/* <div className='bg-black cursor-pointer fixed inset-0 opacity-70 visible' >
-
-                </div> */}
-                {/* side bar */}
-                <div className= 'bg-white fixed inset-y-0 py-4 left-0 w-64 mt-5 rounded-md' >
-                   
-                    <div className='w-56 mx-auto mb-5'>
-                        <button className='text-white font-semibold bg-gradient-to-tr from-blue-600 to-blue-400 text-center p-5 w-full rounded-md'>Weite Message</button>
-                    </div>
-                    {/* sidebar menue */}
-                    <ul className='font-normal text-gray-500'>
-                        <li  >
-                            <Link href='/'>
-                                <a className='bg-gray-100 font-medium inline-flex items-center px-4 py-2 transition w-full hover:bg-gray-100'>
-                                <FontAwesomeIcon icon={faHome} className="mr-3" />
-                                    Home
-                                    </a>
-                            </Link>
-                        </li>
-                        <li  >
-                            <Link href='/'>
-                                <a className='inline-flex items-center px-4 py-2 transition w-full hover:bg-gray-100'>
-                                <FontAwesomeIcon icon={faBook} className="mr-3" />
-                                    Blog
-                                    </a>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-                {/* small side bar */}
-        <div className='block md:hidden lg:hidden'>
-            {/* navbar */}
+       {/* navbar */}
         {/* <EmailTopBar setSidebar sidebar/> */}
         {/* lg:hidden md:hidden */}
         <div className='bg-blue-500 fixed flex h-20 inset-x-0 items-center justify-between px-4 text-white top-0'>
@@ -76,31 +37,32 @@ const EmailLeftBar = () => {
         </div>
 
 
+
             {/* side bar container */}
-            <div>
+            <div className='hidden lg:block '>
                 {/* sidebar overlay */}
-                <div className={ sidebar ? 'bg-black cursor-pointer fixed inset-0 opacity-70 visible ' : 'hidden opacity-0'} onClick={handleSidebar}>
+                <div className='bg-black cursor-pointer fixed inset-0 opacity-70 visible' >
 
                 </div>
                 {/* side bar */}
-                <div className={sidebar ? 'bg-white duration-300 fixed inset-y-0 py-4 left-0 transition-left w-64' : 'bg-white duration-300 fixed inset-y-0 py-4 -left-full transition-left w-64'}>
+                <div className= 'bg-red-300 fixed inset-y-0 py-4 left-0 w-64' >
                     {/* sidebar close btn */}
-                    <button className='absolute text-3xl -right-8 p-1 rounded-full text-white top-4 transition hover:text-red-400 ' onClick={handleSidebar}>{xmark}</button>
+                    <button className='absolute text-3xl -left-8 p-1 rounded-full text-white top-4 transition hover:text-red-400 ' >{xmark}</button>
 
                     {/* sidebar menue */}
                     <ul className='font-normal text-gray-500'>
-                        <li  onClick={handleSidebar}>
+                        <li  >
                             <Link href='/'>
                                 <a className='bg-gray-100 font-medium inline-flex items-center px-4 py-2 transition w-full hover:bg-gray-100'>
-                                <FontAwesomeIcon icon={faHome} className="mr-3" />
+                                <i className="fa-solid fa-house-chimney"></i>
                                     Home
                                     </a>
                             </Link>
                         </li>
-                        <li  onClick={handleSidebar}>
+                        <li  >
                             <Link href='/'>
                                 <a className='inline-flex items-center px-4 py-2 transition w-full hover:bg-gray-100'>
-                                <FontAwesomeIcon icon={faBook} className="mr-3" />
+                                <i className="fa-solid fa-book"></i>
                                     Blog
                                     </a>
                             </Link>
@@ -108,7 +70,7 @@ const EmailLeftBar = () => {
                     </ul>
                 </div>
             </div>
-        </div>
+
         </>
     );
 };

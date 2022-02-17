@@ -30,12 +30,6 @@ const friends = () => {
         </div>
       </div>
     </>
-    // <div>
-    //   <Navigation />
-    //   <div>
-    //     <AllFriends />
-    //   </div>
-    // </div>
   );
 };
 

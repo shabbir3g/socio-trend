@@ -14,7 +14,7 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     signWithEmailPass(data?.email, data?.password);
-    reset();
+    // reset();
   };
 
   const handleHidePass = () => {

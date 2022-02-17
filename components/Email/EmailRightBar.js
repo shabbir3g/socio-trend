@@ -41,7 +41,7 @@ const EmailRightBar = () => {
                         <li  >
                             <Link href='/'>
                                 <a className='bg-gray-100 font-medium inline-flex items-center px-4 py-2 transition w-full hover:bg-gray-100'>
-                                <FontAwesomeIcon icon={faHome} className="mr-3" />
+                                <i className="fa-solid fa-house-chimney"></i>
                                     Home
                                     </a>
                             </Link>
@@ -49,7 +49,7 @@ const EmailRightBar = () => {
                         <li  >
                             <Link href='/'>
                                 <a className='inline-flex items-center px-4 py-2 transition w-full hover:bg-gray-100'>
-                                <FontAwesomeIcon icon={faBook} className="mr-3" />
+                                <i className="fa-solid fa-book"></i>
                                     Blog
                                     </a>
                             </Link>
