@@ -20,13 +20,13 @@ const Navigation = () => {
     const currentTheme = theme === "system" ? systemTheme : theme;
     if (currentTheme === "dark") {
       return (
-        <button className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl" onClick={() => setTheme("light")}>
-          <i className="fa-solid fa-moon"></i>
+        <button className="w-14 h-14 items-center justify-center hidden lg:flex text-yellow-300 text-2xl" onClick={() => setTheme("light")}>
+          <i className="fa-solid fa-lightbulb"></i>
         </button>
       );
     } else {
       return (
-        <button className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl" onClick={() => setTheme("dark")}>
+        <button className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 text-2xl" onClick={() => setTheme("dark")}>
           <i className="fa-solid fa-moon"></i>
         </button>
       );
@@ -110,19 +110,19 @@ const Navigation = () => {
           <Link href="notification">
            <a
             href=""
-            className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
+            className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 dark:text-white text-2xl"
           >
             <i className="far fa-bell"></i>
           </a></Link>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
+            className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 dark:text-white text-2xl"
           >
             <i className="far fa-comment-alt"></i>
           </a>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
+            className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900   dark:text-white text-2xl"
             style={{ animation: "fa-spin 2s infinite linear" }}
           >
             <i className="far fa-sun"></i>
