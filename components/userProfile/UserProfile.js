@@ -99,7 +99,7 @@ const UserProfile = ({ data }) => {
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-heart"></i>
-              <span className="ml-3">{data.relationship}</span>
+              <span className="ml-3">{data.relationship} Relationship</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-clock"></i>

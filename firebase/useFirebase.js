@@ -55,7 +55,7 @@ const useFirebase = () => {
       .then(() => {
         dispatch(setUser(null));
         // dispatch(setAdmin(false));
-        router.push("/Login");
+        router.push("/login");
       })
       .catch((error) => {
         const errorMessage = error.message;
