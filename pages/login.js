@@ -39,7 +39,7 @@ const Login = () => {
         <div className="md:w-3/6">
           <Image
             src="http://uitheme.net/sociala/images/login-bg.jpg"
-            height="800"
+            height="700"
             width="700"
             alt="Login image"
           />

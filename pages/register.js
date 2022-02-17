@@ -65,7 +65,7 @@ return (
           alt="register image"
         />
         <a className="font-bold text-3xl text-blue-600 absolute top-10 left-10">
-          Sociala.
+          <Image alt="Socio Trend" width="300" height="100" src="/logo.png" />
         </a>
       </div>
       <div className="md:w-2/5 w-11/12 mx-auto pt-10">
