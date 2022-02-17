@@ -87,15 +87,15 @@ const UserProfile = ({ data }) => {
             <h2 className="text-lg font-semibold pb-3">About</h2>
             <div className="flex items-center">
               <i className="fa-solid fa-graduation-cap"></i>
-              <span className="ml-3">{data.education}</span>
+              <span className="ml-3">Went to {data.education}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-house-chimney"></i>
-              <span className="ml-3">{data.city}</span>
+              <span className="ml-3">Lives in {data.city}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-location-dot" />
-              <span className="ml-3">{data.from}</span>
+              <span className="ml-3">From {data.from}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-heart"></i>
@@ -103,7 +103,7 @@ const UserProfile = ({ data }) => {
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-clock"></i>
-              <span className="ml-3">{data.createdAt}</span>
+              <span className="ml-3">Joined {data.createdAt?.slice(0, 10)}</span>
             </div>
             <button
               className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"

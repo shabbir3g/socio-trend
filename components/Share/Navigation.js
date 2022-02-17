@@ -13,6 +13,8 @@ const Navigation = () => {
 
   useEffect(() => setMounted(true), []);
 
+  const currentTheme = theme === "system" ? systemTheme : theme;
+
   const renderThemeChanger = () => {
     if (!mounted) return null;
     const currentTheme = theme === "system" ? systemTheme : theme;
@@ -55,48 +57,52 @@ const Navigation = () => {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <div className="flex items-center ">
+      <div className="flex items-center bg-neutral-300 py-2 mb-2 dark:bg-gray-800">
+        <Link href="/">
         <a
-          href="#"
           className="font-bold text-4xl pt-1 text-blue-700 pl-10 pr-16"
         >
-          <Image alt="Socio Trend" width="200" height="66" src="/logo.png"  />
+          { (currentTheme === "dark")? <Image alt="Socio Trend" width="200" height="66" src="/dark-logo.png"  /> : <Image alt="Socio Trend" width="200" height="66" src="/logo.png"  /> }
+          
+        
+          
         </a>
+        </Link>
         <input
-          className="w-3/12 h-14  pl-12 rounded-full bg-gray-200 hidden lg:flex"
+          className="w-3/12 h-10  pl-4 rounded-full bg-white hidden lg:flex"
           placeholder="Start typing to search"
         ></input>
         <div className="xl:flex hidden ">
           <Link href="/"><a
             href=""
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
           >
-            <i className="fas fa-home"></i>
+            <i className="fas fa-home text-base"></i>
           </a></Link>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
           >
-            <i className="fab fa-accessible-icon"></i>
+            <i className="fab fa-accessible-icon text-base"></i>
           </a>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
           >
-            <i className="fas fa-video"></i>
+            <i className="fas fa-video text-base"></i>
           </a>
           <Link href="/friends">
           <a
             href=""
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
           >
-            <i className="far fa-user"></i>
+            <i className="far fa-user text-base"></i>
           </a></Link>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
           >
-            <i className="far fa-clipboard"></i>
+            <i className="far fa-clipboard text-base"></i>
           </a>
         </div>
         <div className="flex ml-auto">
@@ -137,7 +143,7 @@ const Navigation = () => {
 
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center lg:hidden flex text-blue-500 text-2xl"
+            className="w-10 h-10 items-center justify-center lg:hidden flex text-blue-500 text-2xl"
           >
             <i className="far fa-comment"></i>
           </a>

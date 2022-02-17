@@ -5,16 +5,12 @@ import MiddleRightBar from "../components/Home/MiddleRightBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import styles from "../styles/Home.module.css";
-import useFirebase from "../firebase/useFirebase";
 import { useSelector } from "react-redux";
 import Login from "./login";
-import { useRouter } from "next/router";
 
 export default function Home() {
-  const { googleSign, googleSingOut } = useFirebase();
   const user = useSelector((state) => state.states.user);
   const isLoading = useSelector((state) => state.states.isLoading);
-  const router = useRouter();
 
   if (isLoading) {
     return (
@@ -62,12 +58,12 @@ export default function Home() {
           />
         </Head>
         <Navigation />
-        <div className="p-4">
+        <div className="">
           <div className="grid grid-cols-12">
             <div className="col-span-2 hidden lg:block h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default ">
               <LeftSideBar />
             </div>
-            <div className="col-span-12 lg:col-span-10 2xl:col-span-8 w-full md:w-3/4 mx-auto h-[89vh] overflow-y-scroll scrollbar scroll-ml-5">
+            <div className="col-span-12 lg:col-span-8 2xl:col-span-8 w-full md:w-11/12 mx-auto h-[89vh] overflow-y-scroll scrollbar scroll-ml-5">
               {/* 	scrollbar-hide hover:scrollbar-default */}
               <div className="grid gap-5 grid-cols-12">
                 <div className="col-span-12 xl:col-span-8 ">
@@ -78,7 +74,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="col-span-2 hidden 2xl:block h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default ">
+            <div className="col-span-2 hidden lg:block h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default ">
               <RightSideBar />
             </div>
           </div>

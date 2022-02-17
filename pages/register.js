@@ -19,7 +19,6 @@ const Register = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     if (data.password === data.confirmPass) {
       registerWithEmailPass(data?.email, data?.password, data?.displayName);
       toast("Wow password matched!");
@@ -66,11 +65,11 @@ return (
           alt="register image"
         />
         <a className="font-bold text-3xl text-blue-600 absolute top-10 left-10">
-          Sociala.
+          <Image alt="Socio Trend" width="300" height="100" src="/logo.png" />
         </a>
       </div>
       <div className="md:w-2/5 w-11/12 mx-auto pt-10">
-        <h2 className="md:text-4xl text-3xl text-gray-900 font-bold mb-4">
+        <h2 className="md:text-4xl text-3xl text-gray-900 font-bold mb-8">
           Create your account
         </h2>
         {/* register-form */}
@@ -124,22 +123,22 @@ return (
           </div>
 
           <div className="flex py-3">
-            <input type="checkbox" className="w-4 h-4 rounded mt-1" />
-            <p className="text-gray-400 font-semibold pl-2">
+            <input id="remember" type="checkbox" className="w-4 h-4 rounded mt-1" />
+            <label htmlFor="remember" className="text-gray-400 font-semibold pl-2">
               Accept Term and Conditions
-            </p>
+            </label>
           </div>
           <button
             type="submit"
-            className="w-full h-14 py-4 rounded-md bg-gray-900 text-white "
+            className="w-full h-14 py-4 font-bold rounded-md bg-gray-900 text-white hover:opacity-75"
           >
             Register
           </button>
         </form>
-        <p className="text-gray-400 py-3 font-semibold">
+        <p className="text-gray-400 py-3 font-semibold text-center">
           Already have account{" "}
           <Link passHref href="/login">
-            <a className="text-blue-600">Login</a>
+            <a className="text-orange-500	pl-1">Login</a>
           </Link>
         </p>
         <div className="text-center">
