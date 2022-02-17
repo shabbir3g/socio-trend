@@ -69,7 +69,7 @@ return (
         </a>
       </div>
       <div className="md:w-2/5 w-11/12 mx-auto pt-10">
-        <h2 className="md:text-4xl text-3xl text-gray-900 font-bold mb-8">
+        <h2 className="md:text-4xl text-3xl text-gray-900 dark:text-white font-bold mb-8">
           Create your account
         </h2>
         {/* register-form */}
@@ -77,12 +77,12 @@ return (
           {/* name-field */}
           <input
             {...register("displayName", { required: true })}
-            className="w-full border border-gray-400 h-14 py-4 pl-4 rounded-md"
+            className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md"
             placeholder="Your Name"
           ></input>
           <input
             {...register("email", { required: true })}
-            className="w-full border border-gray-400 h-14 py-4 pl-4 rounded-md mt-5"
+            className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md mt-5"
             placeholder="Your Email address"
           ></input>
 
@@ -91,15 +91,15 @@ return (
             <input
               {...register("password", { required: true })}
               type={showPass ? "text" : "password"}
-              className="w-full border border-gray-400 h-14 py-4 pl-4 rounded-md mt-5"
+              className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md mt-5"
               placeholder="Password"
             ></input>
             <i
               onClick={showPass ? handleShowPass : handleHidePass}
               className={
                 showPass
-                  ? "fa-solid fa-eye absolute right-5 top-10"
-                  : "fa-solid  fa-eye-slash absolute right-5 top-10"
+                  ? "fa-solid fa-eye absolute dark:text-black  right-5 top-10"
+                  : "fa-solid  fa-eye-slash absolute dark:text-black  right-5 top-10"
               }
             />
           </div>
@@ -109,15 +109,15 @@ return (
             <input
               {...register("confirmPass", { required: true })}
               type={showPassConfirm ? "text" : "password"}
-              className="w-full border border-gray-400 h-14 py-4 pl-4 rounded-md mt-5"
+              className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md mt-5"
               placeholder="Confirm Password"
             ></input>
             <i
               onClick={showPassConfirm ? handleShowConfirm : handleHideConfirm}
               className={
                 showPassConfirm
-                  ? "fa-solid fa-eye absolute right-5 top-10"
-                  : "fa-solid  fa-eye-slash absolute right-5 top-10"
+                  ? "fa-solid fa-eye absolute dark:text-black  right-5 top-10"
+                  : "fa-solid  fa-eye-slash absolute dark:text-black   right-5 top-10"
               }
             />
           </div>
@@ -130,7 +130,7 @@ return (
           </div>
           <button
             type="submit"
-            className="w-full h-14 py-4 font-bold rounded-md bg-gray-900 text-white hover:opacity-75"
+            className="w-full h-14 py-4 font-bold rounded-md bg-gray-900 dark:bg-white dark:text-black text-white hover:opacity-75"
           >
             Register
           </button>
