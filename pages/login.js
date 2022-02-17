@@ -6,14 +6,15 @@ import useFirebase from "../firebase/useFirebase";
 import Head from "next/head";
 
 const Login = () => {
-  const { registerWithEmailPass, googleSign } = useFirebase();
+  const { signWithEmailPass, googleSign } = useFirebase();
+
 
   const [showPass, setShowPass] = React.useState(false);
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
-    registerWithEmailPass(data.email, data.password);
+    signWithEmailPass(data?.email, data?.password);
+    reset();
   };
 
   const handleHidePass = () => {
