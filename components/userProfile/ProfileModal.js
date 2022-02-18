@@ -24,31 +24,35 @@ const ProfileModal = ({ data }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    userData.displayName = displayName;
+    if (displayName) {
+      userData.displayName = displayName;
+    }
     const formData = new FormData();
-    formData.append("file", profileImg);
     formData.append("upload_preset", "my-uploads");
 
-    await fetch(` https://api.cloudinary.com/v1_1/dtkl4ic8s/image/upload`, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        userData.photoURL = data.url;
-      });
+    if (profileImg) {
+      formData.append("file", profileImg);
+      await fetch(` https://api.cloudinary.com/v1_1/dtkl4ic8s/image/upload`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          userData.photoURL = data.url;
+        });
+    }
 
-    formData.append("file", coverImg);
-
-    await fetch(` https://api.cloudinary.com/v1_1/dtkl4ic8s/image/upload`, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        userData.coverPicture = data.url;
-      });
-    // console.log(userData);
+    if (coverImg) {
+      formData.append("file", coverImg);
+      await fetch(` https://api.cloudinary.com/v1_1/dtkl4ic8s/image/upload`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          userData.coverPicture = data.url;
+        });
+    }
 
     const response = await axios.put(
       `http://localhost:3000/api/user/updateProfile?email=${user.email}`,
@@ -56,7 +60,10 @@ const ProfileModal = ({ data }) => {
         userData,
       }
     );
-    console.log(response.data);
+    if (response.status === 200) {
+      alert("Updated Success");
+    }
+    console.log(response);
   };
 
   return (

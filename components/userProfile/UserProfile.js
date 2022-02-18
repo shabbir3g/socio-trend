@@ -38,7 +38,7 @@ const UserProfile = ({ data }) => {
       <div className="drop-shadow-sm p-5 bg-white dark:bg-gray-800 rounded-2xl">
         <div className="">
           <Image
-            className="rounded-2xl"
+            className="rounded-2xl object-content"
             src={data.coverPicture || "https://i.ibb.co/pWc2Ffd/u-bg.jpg"}
             width={1000}
             height={250}
