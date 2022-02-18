@@ -1,11 +1,21 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import LeftSideBar from "../components/Home/LeftSideBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import UserProfile from "../components/userProfile/UserProfile";
 
-const userProfile = () => {
+const Profile = () => {
+  const [data, setData] = useState({});
+
+  const user = useSelector((state) => state.states.user);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
+      .then((result) => result.json())
+      .then((data) => setData(data));
+  }, [user?.email]);
   return (
     <>
       <Head>
@@ -21,7 +31,7 @@ const userProfile = () => {
         <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 h-[91vh] overflow-y-scroll scrollbar	">
           {/* scrollbar-hide hover:scrollbar-default */}
           <div className="md:w-3/4 w-full mx-auto">
-            <UserProfile />
+            <UserProfile data={data} />
           </div>
         </div>
 
@@ -33,4 +43,14 @@ const userProfile = () => {
   );
 };
 
-export default userProfile;
+export default Profile;
+
+// export async function getStaticProps() {
+
+//   const res = await fetch(`http://localhost:3000/api/user?email=${user.email}`);
+//   const data = await res.json();
+
+//   return {
+//     props: { data },
+//   };
+// }

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import UserSinglePost from "./UserSinglePost";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
 
-const UserProfile = () => {
+const UserProfile = ({ data }) => {
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
     const editDetailsBtn = document.getElementById("edit-about");
@@ -38,8 +38,8 @@ const UserProfile = () => {
       <div className="drop-shadow-sm p-5 bg-white dark:bg-gray-800 rounded-2xl">
         <div className="">
           <Image
-            className="rounded-2xl"
-            src="https://i.ibb.co/pWc2Ffd/u-bg.jpg"
+            className="rounded-2xl object-content"
+            src={data.coverPicture || "https://i.ibb.co/pWc2Ffd/u-bg.jpg"}
             width={1000}
             height={250}
             alt="user cover photo"
@@ -49,7 +49,7 @@ const UserProfile = () => {
           <div className=" flex ">
             <div className="-mt-12 ml-5">
               <Image
-                src="https://i.ibb.co/5kdWHNN/user-12.png"
+                src={data.photoURL || "https://i.ibb.co/5kdWHNN/user-12.png"}
                 alt="user profile photo"
                 width={100}
                 height={100}
@@ -57,7 +57,7 @@ const UserProfile = () => {
               />
             </div>
             <div className="ml-6">
-              <div className="font-bold text-lg ">Saddaul Siam </div>
+              <div className="font-bold text-lg ">{data.displayName}</div>
               <div className="text-xs font-medium	text-gray-400 ">
                 support@gmail.com
               </div>
@@ -87,25 +87,23 @@ const UserProfile = () => {
             <h2 className="text-lg font-semibold pb-3">About</h2>
             <div className="flex items-center">
               <i className="fa-solid fa-graduation-cap"></i>
-              <span className="ml-3">
-                Went to Haripur Durgadas High School & College
-              </span>
+              <span className="ml-3">Went to {data.education}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-house-chimney"></i>
-              <span className="ml-3">Lives in Pabna Dhaka Bangladesh</span>
+              <span className="ml-3">Lives in {data.city}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-location-dot" />
-              <span className="ml-3">From Pabna Dhaka Bangladesh</span>
+              <span className="ml-3">From {data.from}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-heart"></i>
-              <span className="ml-3">Single</span>
+              <span className="ml-3">{data.relationship} Relationship</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-clock"></i>
-              <span className="ml-3">Joined April 2017</span>
+              <span className="ml-3">Joined {data.createdAt?.slice(0, 10)}</span>
             </div>
             <button
               className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
@@ -162,7 +160,7 @@ const UserProfile = () => {
                   id="files"
                   accept="image/*"
                   className="hidden"
-                  onChange={(e) => console.log(e.target.files[0])}
+                  // onChange={(e) => console.log(e.target.files[0])}
                 />
               </div>
             </div>
@@ -173,9 +171,9 @@ const UserProfile = () => {
         </div>
       </div>
       {/* Edit Profile Modal */}
-      <ProfileModal />
+      <ProfileModal data={data} />
       {/* Edit About Modal */}
-      <AboutModal />
+      <AboutModal data={data} />
     </>
   );
 };
