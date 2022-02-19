@@ -6,19 +6,23 @@ import { useForm } from "react-hook-form";
 import useFirebase from "../firebase/useFirebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
 
 const Register = () => {
+  const errorMsg = useSelector((state) => state.states.registerError);
+
+  const { registerWithEmailPass } = useFirebase();
+
   const [showPass, setShowPass] = React.useState(false);
   const [showPassConfirm, setShowPassConfirm] = React.useState(false);
 
-  const { registerWithEmailPass } = useFirebase();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     if (data.password === data.confirmPass) {
-      registerWithEmailPass();
+      registerWithEmailPass(data?.email, data?.password, data?.displayName);
       toast("Wow password matched!");
+      reset();
     } else {
       toast("Oops! password dosen't match");
     }
@@ -60,24 +64,24 @@ const Register = () => {
             alt="register image"
           />
           <a className="font-bold text-3xl text-blue-600 absolute top-10 left-10">
-            Sociala.
+            <Image alt="Socio Trend" width="300" height="100" src="/logo.png" />
           </a>
         </div>
         <div className="md:w-2/5 w-11/12 mx-auto pt-10">
-          <h2 className="md:text-4xl text-3xl text-gray-900 font-bold mb-4">
-            Create <br /> your account
+          <h2 className="md:text-4xl text-3xl text-gray-900 dark:text-white font-bold mb-8">
+            Create your account
           </h2>
           {/* register-form */}
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* name-field */}
             <input
               {...register("displayName", { required: true })}
-              className="w-full border border-gray-400 h-14 py-4 pl-12 rounded-md"
+              className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md"
               placeholder="Your Name"
             ></input>
             <input
               {...register("email", { required: true })}
-              className="w-full border border-gray-400 h-14 py-4 pl-12 rounded-md mt-5"
+              className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md mt-5"
               placeholder="Your Email address"
             ></input>
 
@@ -86,15 +90,15 @@ const Register = () => {
               <input
                 {...register("password", { required: true })}
                 type={showPass ? "text" : "password"}
-                className="w-full border border-gray-400 h-14 py-4 pl-12 rounded-md mt-5"
+                className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md mt-5"
                 placeholder="Password"
               ></input>
               <i
                 onClick={showPass ? handleShowPass : handleHidePass}
                 className={
                   showPass
-                    ? "fa-solid fa-eye-slash absolute right-5 top-10"
-                    : "fa-solid  fa-eye absolute right-5 top-10"
+                    ? "fa-solid fa-eye absolute dark:text-black  right-5 top-10"
+                    : "fa-solid  fa-eye-slash absolute dark:text-black  right-5 top-10"
                 }
               />
             </div>
@@ -104,7 +108,7 @@ const Register = () => {
               <input
                 {...register("confirmPass", { required: true })}
                 type={showPassConfirm ? "text" : "password"}
-                className="w-full border border-gray-400 h-14 py-4 pl-12 rounded-md mt-5"
+                className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md mt-5"
                 placeholder="Confirm Password"
               ></input>
               <i
@@ -113,31 +117,41 @@ const Register = () => {
                 }
                 className={
                   showPassConfirm
-                    ? "fa-solid fa-eye-slash absolute right-5 top-10"
-                    : "fa-solid  fa-eye absolute right-5 top-10"
+                    ? "fa-solid fa-eye absolute dark:text-black  right-5 top-10"
+                    : "fa-solid  fa-eye-slash absolute dark:text-black   right-5 top-10"
                 }
               />
             </div>
 
             <div className="flex py-3">
-              <input type="checkbox" className="w-4 h-4 rounded mt-1" />
-              <p className="text-gray-400 font-semibold pl-2">
+              <input
+                id="remember"
+                type="checkbox"
+                className="w-4 h-4 rounded mt-1"
+              />
+              <label
+                htmlFor="remember"
+                className="text-gray-400 font-semibold pl-2"
+              >
                 Accept Term and Conditions
-              </p>
+              </label>
             </div>
             <button
               type="submit"
-              className="w-full h-14 py-4 rounded-md bg-gray-900 text-white "
+              className="w-full h-14 py-4 font-bold rounded-md bg-gray-900 dark:bg-white dark:text-black text-white hover:opacity-75"
             >
               Register
             </button>
           </form>
-          <p className="text-gray-400 py-3 font-semibold">
+          <p className="text-gray-400 py-3 font-semibold text-center">
             Already have account{" "}
             <Link passHref href="/login">
-              <a className="text-blue-600">Login</a>
+              <a className="text-orange-500	pl-1">Login</a>
             </Link>
           </p>
+          <div className="text-center">
+            <p className="text-red-500 font-bold">{errorMsg}</p>
+          </div>
         </div>
 
         {/* react-toast-for-alert */}

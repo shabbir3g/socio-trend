@@ -18,7 +18,7 @@ const MiddleRightBar = () => {
               </div>
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
-                <span className="text-gray-500 font-normal text-sm">
+                <span className="text-gray-500 font-normal text-sm dark:text-gray-200">
                   12 mutual friends
                 </span>
               </div>
@@ -27,7 +27,7 @@ const MiddleRightBar = () => {
               <a href="#" className="px-5 py-2 bg-blue-500 rounded text-white mr-3">
                 Confirm
               </a>
-              <a href="#" className="px-5 py-2 bg-slate-200 rounded ">
+              <a href="#" className="px-5 py-2 bg-slate-200 rounded dark:text-black">
                 Delete
               </a>
             </li>
@@ -37,7 +37,7 @@ const MiddleRightBar = () => {
               </div>
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
-                <span className="text-gray-500 font-normal text-sm">
+                <span className="text-gray-500 font-normal text-sm dark:text-gray-200">
                   12 mutual friends
                 </span>
               </div>
@@ -46,7 +46,7 @@ const MiddleRightBar = () => {
               <a href="#" className="px-5 py-2 bg-blue-500 rounded text-white mr-3">
                 Confirm
               </a>{" "}
-              <a href="#" className="px-5 py-2 bg-slate-200 rounded ">
+              <a href="#" className="px-5 py-2 bg-slate-200 rounded dark:text-black">
                 Delete
               </a>
             </li>
@@ -56,7 +56,7 @@ const MiddleRightBar = () => {
               </div>
               <div>
                 <p className="font-medium">Anthony Daugloi</p>
-                <span className="text-gray-500 font-normal text-sm">
+                <span className="text-gray-500 font-normal text-sm dark:text-gray-200">
                   12 mutual friends
                 </span>
               </div>
@@ -65,7 +65,7 @@ const MiddleRightBar = () => {
               <a href="#" className="px-5 py-2 bg-blue-500 rounded text-white mr-3">
                 Confirm
               </a>{" "}
-              <a href="#" className="px-5 py-2 bg-slate-200 rounded ">
+              <a href="#" className="px-5 py-2 bg-slate-200 rounded dark:text-black">
                 Delete
               </a>
             </li>

@@ -1,29 +1,39 @@
 import Head from "next/head";
 import Image from "next/image";
-import logo from "../../public/logo.png";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import LeftSideBar from "../Home/LeftSideBar";
+import { useSelector } from "react-redux";
+import NavigationSideBar from "./NavigationSideBar";
 
 const Navigation = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  const user = useSelector((state) => state.states.user);
+
   useEffect(() => setMounted(true), []);
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
   const renderThemeChanger = () => {
     if (!mounted) return null;
     const currentTheme = theme === "system" ? systemTheme : theme;
     if (currentTheme === "dark") {
       return (
-        <button onClick={() => setTheme("light")}>
-          <i className="fa-solid fa-sun"></i>
+        <button
+          className="w-14 h-14 items-center justify-center hidden lg:flex text-yellow-300 text-2xl"
+          onClick={() => setTheme("light")}
+        >
+          <i className="fa-solid fa-lightbulb"></i>
         </button>
       );
     } else {
       return (
-        <button onClick={() => setTheme("dark")}>
+        <button
+          className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 text-2xl"
+          onClick={() => setTheme("dark")}
+        >
           <i className="fa-solid fa-moon"></i>
         </button>
       );
@@ -54,51 +64,64 @@ const Navigation = () => {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <div className="flex items-center ">
-        <a
-          href="#"
-          className="font-bold text-4xl pt-1 text-blue-700 pl-10 pr-16"
-        >
-          <Image alt="Socio Trend" width="200" height="66" src={logo} />
-        </a>
+      <div className="flex items-center bg-neutral-300 py-2 mb-2 dark:bg-gray-800">
+        <Link href="/">
+          <a className="font-bold text-4xl pt-1 text-blue-700 pl-10 pr-16">
+            {currentTheme === "dark" ? (
+              <Image
+                alt="Socio Trend"
+                width="200"
+                height="66"
+                src="/dark-logo.png"
+              />
+            ) : (
+              <Image
+                alt="Socio Trend"
+                width="200"
+                height="66"
+                src="/logo.png"
+              />
+            )}
+          </a>
+        </Link>
         <input
-          className="w-3/12 h-14  pl-12 rounded-full bg-gray-200 hidden lg:flex"
+          className="w-3/12 h-10  pl-4 rounded-full bg-white hidden lg:flex"
           placeholder="Start typing to search"
         ></input>
         <div className="xl:flex hidden ">
           <Link href="/">
             <a
               href=""
-              className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+              className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
             >
-              <i className="fas fa-home"></i>
+              <i className="fas fa-home text-base"></i>
             </a>
           </Link>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
           >
-            <i className="fab fa-accessible-icon"></i>
+            <i className="fab fa-accessible-icon text-base"></i>
           </a>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
           >
-            <i className="fas fa-video"></i>
+            <i className="fas fa-video text-base"></i>
           </a>
           <Link href="/friends">
             <a
               href=""
-              className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+              className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
             >
-              <i className="far fa-user"></i>
+              <i className="far fa-user text-base"></i>
             </a>
           </Link>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-gray-100 hover:bg-blue-100 ml-5 rounded-full"
+            className="w-10 h-10 items-center justify-center flex text-gray-400 hover:text-blue-500 text-2xl bg-white hover:bg-blue-100 ml-5 rounded-full"
           >
-            <i className="far fa-clipboard"></i>
+            <i className="far fa-clipboard text-base"></i>
           </a>
         </div>
         <div className="flex ml-auto">
@@ -106,20 +129,20 @@ const Navigation = () => {
           <Link href="notification">
             <a
               href=""
-              className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
+              className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 dark:text-white text-2xl"
             >
               <i className="far fa-bell"></i>
             </a>
           </Link>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
+            className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 dark:text-white text-2xl"
           >
             <i className="far fa-comment-alt"></i>
           </a>
           <a
             href="#"
-            className="w-14 h-14 items-center justify-center hidden lg:flex text-blue-500 text-2xl"
+            className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900   dark:text-white text-2xl"
             style={{ animation: "fa-spin 2s infinite linear" }}
           >
             <i className="far fa-sun"></i>
@@ -133,13 +156,17 @@ const Navigation = () => {
                 alt="user"
                 width="30"
                 height="30"
-                src="http://uitheme.net/sociala/images/profile-4.png"
+                className="rounded-full"
+                src={
+                  user?.photoURL ||
+                  "http://uitheme.net/sociala/images/profile-4.png"
+                }
               />
             </a>
           </Link>
 
           <a
-            href="#"
+            href="chat"
             className="w-14 h-14 items-center justify-center lg:hidden flex text-blue-500 text-2xl"
           >
             <i className="far fa-comment"></i>
@@ -164,6 +191,7 @@ const Navigation = () => {
             <i className="fas fa-bars bars"></i>
           </a>
         </div>
+
         <div className="z-50 w-full lg:hidden flex justify-between absolute bottom-0 left-0 right-0 px-5 bg-gradient-to-r from-blue-700 to-cyan-500">
           <a
             href="#"
@@ -189,16 +217,18 @@ const Navigation = () => {
           >
             <i className="fab fa-hive"></i>
           </a>
+
           <Link href="/profile">
-            <a
-              href=""
-              className="w-10 h-10 rounded-full items-center justify-center mt-2"
-            >
+            <a className="w-10 h-10 rounded-full items-center justify-center mt-2">
               <Image
+                className="rounded-full"
+                src={
+                  user?.photoURL ||
+                  "http://uitheme.net/sociala/images/profile-4.png"
+                }
                 width="40"
                 height="40"
-                alt="img"
-                src="http://uitheme.net/sociala/images/profile-4.png"
+                alt="profile"
               />
             </a>
           </Link>
@@ -207,9 +237,7 @@ const Navigation = () => {
           id="slider"
           className="w-6/12 bg-gray-400 absolute -left-2/4 bottom-14  top-20 transition "
         >
-          <div className="col-span-2  h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default ">
-            <LeftSideBar />
-          </div>
+          <NavigationSideBar />
         </div>
       </div>
     </>
