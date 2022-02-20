@@ -53,7 +53,7 @@ const UserProfile = ({ data }) => {
                 alt="user profile photo"
                 width={100}
                 height={100}
-                className="rounded-full"
+                className="rounded-full ring-4 ring-gray-900"
               />
             </div>
             <div className="ml-6">
@@ -103,7 +103,9 @@ const UserProfile = ({ data }) => {
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-clock"></i>
-              <span className="ml-3">Joined {data.createdAt?.slice(0, 10)}</span>
+              <span className="ml-3">
+                Joined {data.createdAt?.slice(0, 10)}
+              </span>
             </div>
             <button
               className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
