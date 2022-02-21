@@ -1,3 +1,4 @@
+import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -6,22 +7,19 @@ import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
   const [userData, setUserData] = useState({});
+  const [posts, setPosts] = useState([]);
   const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
     const createPostModal = document.getElementById("create-post-modal");
-
     const postBtn = document.getElementById("post-modal");
-
     const closePostModalBtn = document.getElementById("close-post-modal");
 
     const togglePostModal = () => {
       createPostModal.classList.toggle("hidden");
       createPostModal.classList.toggle("flex");
     };
-
     postBtn?.addEventListener("click", togglePostModal);
-
     closePostModalBtn?.addEventListener("click", togglePostModal);
   }, []);
 
@@ -30,6 +28,12 @@ const MiddleLeftBar = () => {
       .then((result) => result.json())
       .then((data) => setUserData(data));
   }, [user?.email]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/post`).then((data) => {
+      setPosts(data.data);
+    });
+  }, [user.email]);
   return (
     <div>
       {/* create post */}
@@ -221,7 +225,9 @@ const MiddleLeftBar = () => {
           </div>
         </div>
       </div>
-      <SinglePost></SinglePost>
+      {posts.map((post) => (
+        <SinglePost key={post._id} post={post} />
+      ))}
     </div>
   );
 };

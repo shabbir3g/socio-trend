@@ -25,7 +25,8 @@
     "react-hook-form": "^7.27.0",
     "react-redux": "^7.2.6",
     "react-toastify": "^8.2.0",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
+import { format } from "timeago.js";
 
 const UserSinglePost = ({ post }) => {
-  console.log(post);
   return (
     <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
       <div className="flex justify-between">
@@ -16,7 +16,7 @@ const UserSinglePost = ({ post }) => {
           />
           <div className="ml-3">
             <h4 className="text-md font-semibold">{post.displayName}</h4>
-            <span className="text-xs">{post.createdAt}</span>
+            <span className="text-xs">{format(post.createdAt)} </span>
           </div>
         </div>
         <div className="">

@@ -64,7 +64,6 @@ export default function Home() {
               <LeftSideBar />
             </div>
             <div className="col-span-12 lg:col-span-8 2xl:col-span-8 w-full md:w-11/12 2xl:w-3/4 mx-auto h-[89vh] overflow-y-scroll scrollbar scroll-ml-5">
-              {/* 	scrollbar-hide hover:scrollbar-default */}
               <div className="grid gap-5 grid-cols-12 pr-3">
                 <div className="col-span-12 xl:col-span-8 ">
                   <MiddleLeftBar />
