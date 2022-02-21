@@ -4,7 +4,7 @@ import { format } from "timeago.js";
 
 const UserSinglePost = ({ post }) => {
   return (
-    <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
+    <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl mb-4 ">
       <div className="flex justify-between">
         <div className=" flex">
           <Image

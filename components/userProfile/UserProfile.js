@@ -179,6 +179,7 @@ const UserProfile = ({ data }) => {
               </div>
             </div>
           </div>
+          
           {posts.map((post) => (
             <UserSinglePost key={post._id} post={post} />
           ))}

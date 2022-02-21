@@ -72,7 +72,7 @@ const MiddleLeftBar = () => {
         </div>
       </div>
       <PostModal userData={userData} />
-      <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded">
+      {/* <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded">
         <div className="flex">
           <div className="mr-3">
             <Image src="/user-8.png" width={45} height={45} alt="user" />
@@ -224,7 +224,7 @@ const MiddleLeftBar = () => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
       {posts.map((post) => (
         <SinglePost key={post._id} post={post} />
       ))}
