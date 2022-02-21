@@ -39,14 +39,18 @@ const RightSideBar = () => {
             <a href="" className="flex items-center">
               <Image src="/user-8.png" width={30} height={30} alt="user" />{" "}
               <span className="ml-3">David Goria</span>
-              <span className="text-gray-500 font-normal text-sm ml-auto">4:09 pm</span>
+              <span className="text-gray-500 font-normal text-sm ml-auto">
+                4:09 pm
+              </span>
             </a>
           </li>
           <li className="mb-3">
             <a href="" className="flex items-center">
               <Image src="/user-8.png" width={30} height={30} alt="user" />{" "}
               <span className="ml-3">Seary Victor</span>
-              <span className="text-gray-500 font-normal text-sm ml-auto">2 days</span>
+              <span className="text-gray-500 font-normal text-sm ml-auto">
+                2 days
+              </span>
             </a>
           </li>
           <li className="mb-3">
@@ -65,7 +69,9 @@ const RightSideBar = () => {
                 UD
               </span>
               <span className="ml-3">Study Group</span>
-              <span className="text-gray-500 font-normal text-sm ml-auto">2 min</span>
+              <span className="text-gray-500 font-normal text-sm ml-auto">
+                2 min
+              </span>
             </a>
           </li>
           <li className="mb-4">
@@ -81,14 +87,50 @@ const RightSideBar = () => {
             <a href="" className="flex items-center">
               <span className="p-1.5 bg-red-500 text-white rounded-full">
                 UD
-                </span>
+              </span>
               <span className="ml-3">De fabous</span>
               <span className="p-1 rounded-full bg-orange-500 ml-auto"></span>
             </a>
           </li>
         </ul>
         <p className="mb-5 mt-5">Pages</p>
-        <ul className="right-side-group" >
+        <ul className="right-side-group">
+          <li className="mb-4">
+            <a href="" className="flex items-center">
+              <span className="p-1.5 bg-blue-500 text-white rounded-full">
+                AB
+              </span>
+              <span className="ml-3">Armany Seary</span>
+              <span className="p-1 rounded-full bg-blue-500 ml-auto"></span>
+            </a>
+          </li>
+          <li className="mb-4">
+            <a href="" className="flex items-center">
+              <span className="p-1.5 bg-yellow-500 text-white rounded-full">
+                HD
+              </span>
+              <span className="ml-3">Entropio Inc</span>
+              <span className="p-1 rounded-full bg-blue-500 ml-auto"></span>
+            </a>
+          </li>
+          <li className="mb-4">
+            <a href="" className="flex items-center">
+              <span className="p-1.5 bg-blue-500 text-white rounded-full">
+                AB
+              </span>
+              <span className="ml-3">Armany Seary</span>
+              <span className="p-1 rounded-full bg-blue-500 ml-auto"></span>
+            </a>
+          </li>
+          <li className="mb-4">
+            <a href="" className="flex items-center">
+              <span className="p-1.5 bg-yellow-500 text-white rounded-full">
+                HD
+              </span>
+              <span className="ml-3">Entropio Inc</span>
+              <span className="p-1 rounded-full bg-blue-500 ml-auto"></span>
+            </a>
+          </li>
           <li className="mb-4">
             <a href="" className="flex items-center">
               <span className="p-1.5 bg-blue-500 text-white rounded-full">
