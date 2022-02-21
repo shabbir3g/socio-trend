@@ -50,10 +50,12 @@ const LeftSideBar = () => {
           <p className="mb-3">More pages</p>
           <ul className="left-second-sidebar">
             <li>
-              <a href="">
-                <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i>{" "}
-                Email Box
-              </a>
+              <Link href="email">
+                <a>
+                  <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i>{" "}
+                  Email Box
+                </a>
+              </Link>
             </li>
             <li>
               <a href="">

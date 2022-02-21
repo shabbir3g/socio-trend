@@ -3,6 +3,7 @@ import Image from "next/image";
 import UserSinglePost from "./UserSinglePost";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
+import Link from "next/link";
 
 const UserProfile = ({ data }) => {
   useEffect(() => {
@@ -74,8 +75,12 @@ const UserProfile = ({ data }) => {
         </div>
         <hr />
         <div className="flex ">
-          <p className="pr-8 pt-3 font-semibold">Post</p>
-          <p className="pr-8 pt-3 font-semibold">Friends</p>
+          <Link href="">
+            <a className="pr-8 pt-3 font-semibold">Post</a>
+          </Link>
+          <Link href="/friends">
+            <a className="pr-8 pt-3 font-semibold">Friends</a>
+          </Link>
         </div>
       </div>
 

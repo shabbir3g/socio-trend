@@ -18,6 +18,7 @@ const Navigation = () => {
 
   const renderThemeChanger = () => {
     if (!mounted) return null;
+
     const currentTheme = theme === "system" ? systemTheme : theme;
     if (currentTheme === "dark") {
       return (
@@ -39,6 +40,7 @@ const Navigation = () => {
       );
     }
   };
+
   useEffect(() => {
     const navToggler = document.getElementById("nav-toggler");
     navToggler.addEventListener("click", navToggle);
@@ -53,6 +55,7 @@ const Navigation = () => {
       }
     }
   }, []);
+
   return (
     <>
       <Head>
@@ -222,7 +225,10 @@ const Navigation = () => {
             <a className="w-10 h-10 rounded-full items-center justify-center mt-2">
               <Image
                 className="rounded-full"
-                src={user?.photoURL ||"http://uitheme.net/sociala/images/profile-4.png"}
+                src={
+                  user?.photoURL ||
+                  "http://uitheme.net/sociala/images/profile-4.png"
+                }
                 width="40"
                 height="40"
                 alt="profile"
