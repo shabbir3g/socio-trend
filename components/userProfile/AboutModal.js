@@ -8,7 +8,8 @@ const AboutModal = ({ data }) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    fetch(`http://localhost:3000/api/user/updateProfile?email=${user.email}`, {
+    console.log(data);
+    fetch(`http://localhost:3000/api/user/updateAbout?email=${user.email}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -18,7 +19,7 @@ const AboutModal = ({ data }) => {
   };
   return (
     <div
-      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center "
+      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10"
       id="edit-about-modal"
     >
       <div className="bg-gray-200 dark:bg-gray-800 p-5 rounded shadow-xl text-gray-800 md:w-1/4">

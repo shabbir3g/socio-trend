@@ -1,16 +1,74 @@
+import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-const ProfileModal = ({data}) => {
-  const [image, setImage] = useState(null);
-  // const user =useSelector((state) => state.states.user);
+const ProfileModal = ({ data }) => {
+  const user = useSelector((state) => state.states.user);
+  const [displayName, setDisplayName] = useState("");
+  const [preProfileImg, setPreProfileImg] = useState(null);
+  const [preCoverImg, setPreCoverImg] = useState(null);
 
-  const handleImg = (file) => {
-    setImage(URL.createObjectURL(file));
+  const [profileImg, setProfileImg] = useState([]);
+  const [coverImg, setCoverImg] = useState(null);
+
+  const handleProfileImg = (file) => {
+    setProfileImg(file);
+    setPreProfileImg(URL.createObjectURL(file));
   };
+  const handleCoverImg = (file) => {
+    setCoverImg(file);
+    setPreCoverImg(URL.createObjectURL(file));
+  };
+  let userData = {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (displayName) {
+      userData.displayName = displayName;
+    }
+    const formData = new FormData();
+    formData.append("upload_preset", "my-uploads");
+
+    if (profileImg) {
+      formData.append("file", profileImg);
+      await fetch(` https://api.cloudinary.com/v1_1/dtkl4ic8s/image/upload`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          userData.photoURL = data.url;
+        });
+    }
+
+    if (coverImg) {
+      formData.append("file", coverImg);
+      await fetch(` https://api.cloudinary.com/v1_1/dtkl4ic8s/image/upload`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          userData.coverPicture = data.url;
+        });
+    }
+
+    const response = await axios.put(
+      `http://localhost:3000/api/user/updateProfile?email=${user.email}`,
+      {
+        userData,
+      }
+    );
+    if (response.status === 200) {
+      alert("Updated Success");
+    }
+    console.log(response);
+  };
+
   return (
     <div
-      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center"
+      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10"
       id="edit-profile-modal"
     >
       <div className="bg-gray-200 dark:bg-gray-800 px-7 py-3 rounded shadow-xl text-gray-800">
@@ -29,82 +87,90 @@ const ProfileModal = ({data}) => {
             ></path>
           </svg>
         </div>
-
-        <div className="flex justify-between items-center pt-5">
-          <h4 className="text-lg font-bold dark:text-white">Profile Picture</h4>
-          <div>
-            <label htmlFor="files">
-              <span className="text-lg text-blue-600 font-bold hover:bg-gray-300 px-3 py-1 rounded-md cursor-pointer">
+        <form onSubmit={handleSubmit}>
+          <div className="flex justify-between items-center pt-5">
+            <h4 className="text-lg font-bold dark:text-white">
+              Profile Picture
+            </h4>
+            <div>
+              <label htmlFor="files1">
+                <span className="text-lg text-blue-600 font-bold hover:bg-gray-300 px-3 py-1 rounded-md cursor-pointer">
+                  Update
+                </span>
+              </label>
+              <input
+                type="file"
+                name="file"
+                id="files1"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => handleProfileImg(e.target.files[0])}
+              />
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <Image
+              className="object-cover rounded-full border-2 bg-no-repeat"
+              src={
+                preProfileImg ||
+                data.photoURL ||
+                "https://i.ibb.co/5kdWHNN/user-12.png"
+              }
+              alt="profile image"
+              width="120"
+              height="120"
+            />
+          </div>
+          <div className="flex justify-between items-center py-5">
+            <h4 className="text-lg font-bold dark:text-white">Cover Photo</h4>
+            <label htmlFor="files2">
+              <span className="text-lg text-blue-600 font-bold hover:bg-gray-300 px-3 py-1 rounded-md cursor-pointer ">
                 Update
               </span>
             </label>
-
             <input
               type="file"
               name="file"
-              id="files"
+              id="files2"
               accept="image/*"
               className="hidden"
-              onChange={(e) => handleImg(e)}
+              onChange={(e) => handleCoverImg(e.target.files[0])}
             />
           </div>
-          {/* tail-input */}
-          <input type="file" onChange={(e)=> handleImg(e.target.files[0])} name="" id="" />
-        </div>
-        <div className="flex justify-center">
-          <Image
-          className="object-cover rounded-full border-2 bg-no-repeat"
-            src={image || data.photoURL || "https://i.ibb.co/5kdWHNN/user-12.png"}
-            alt="profile image"
-            width="100"
-            height="100"
-          />
-        </div>
-        <div className="flex justify-between items-center py-5">
-          <h4 className="text-lg font-bold dark:text-white">Cover Photo</h4>
-          <label htmlFor="files">
-            <span className="text-lg text-blue-600 font-bold hover:bg-gray-300 px-3 py-1 rounded-md cursor-pointer ">
-              Update
-            </span>
-          </label>
-          <input
-            type="file"
-            id="files"
-            name="file"
-            className="hidden"
-            onChange={(e) => console.log(e)}
-          />
-        </div>
 
-        <div className="flex justify-center">
-          <Image
-            src="https://i.ibb.co/pWc2Ffd/u-bg.jpg"
-            alt="profile image"
-            width="500"
-            height="200"
-          />
-        </div>
-        {/* <div className="flex space-x-3 pb-3 pt-5 items-center">
-          <div className="text-lg font-bold dark:text-white">Your Name:</div>
-          <div className="text-md font-semibold dark:text-white">User Name</div>
-        </div> */}
-        <div className="flex items-center space-x-3 py-6">
-          <div className="text-lg font-bold dark:text-white">
-            Chenge Your Name:
+          <div className="flex justify-center">
+            <Image
+              className="object-content"
+              src={
+                preCoverImg ||
+                data.coverPicture ||
+                "https://i.ibb.co/pWc2Ffd/u-bg.jpg"
+              }
+              alt="profile image"
+              width="500"
+              height="200"
+            />
           </div>
-          <input
-            placeholder="Type Your Name"
-            className="w-2/4 h-10 px-2 focus:outline-none dark:bg-gray-700 dark:text-white"
-            type="text"
-            name="name"
-            id="name"
-          />
-        </div>
-        <div className="mt-3 flex justify-end space-x-3 pb-5">
-          <button className="px-3 py-1 bg-green-500 text-gray-200 hover:bg-green-700 rounded-md">
-            Update
-          </button>
-        </div>
+          <div className="flex items-center space-x-3 py-6">
+            <div className="text-lg font-bold dark:text-white">
+              Chenge Your Name:
+            </div>
+            <input
+              onChange={(e) => setDisplayName(e.target.value)}
+              placeholder={data.displayName}
+              defaultValue={data.displayName}
+              className="w-2/4 h-10 px-2 focus:outline-none dark:bg-gray-700 dark:text-white"
+              type="text"
+              name="name"
+              id="name"
+            />
+          </div>
+          <div className="mt-3 flex justify-end space-x-3 pb-5">
+            <button className="px-3 py-1 bg-green-500 text-gray-200 hover:bg-green-700 rounded-md">
+              Update
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

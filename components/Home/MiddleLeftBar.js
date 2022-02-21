@@ -1,10 +1,42 @@
+import axios from "axios";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
+  const [userData, setUserData] = useState({});
+  const [posts, setPosts] = useState([]);
+  const user = useSelector((state) => state.states.user);
+
+  useEffect(() => {
+    const createPostModal = document.getElementById("create-post-modal");
+    const postBtn = document.getElementById("post-modal");
+    const closePostModalBtn = document.getElementById("close-post-modal");
+
+    const togglePostModal = () => {
+      createPostModal.classList.toggle("hidden");
+      createPostModal.classList.toggle("flex");
+    };
+    postBtn?.addEventListener("click", togglePostModal);
+    closePostModalBtn?.addEventListener("click", togglePostModal);
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
+      .then((result) => result.json())
+      .then((data) => setUserData(data));
+  }, [user?.email]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/post`).then((data) => {
+      setPosts(data.data);
+    });
+  }, [user.email]);
   return (
     <div>
+      {/* create post */}
       <div className="bg-white dark:bg-gray-800 p-5 rounded">
         <div className="mb-3">
           <a href="">
@@ -14,12 +46,13 @@ const MiddleLeftBar = () => {
         </div>
         <textarea
           className="border-2 rounded w-full dark:bg-gray-800 p-2"
+          onClick={() => console.log("click")}
           name=""
-          id=""
+          id="post-modal"
           cols="30"
           rows="3"
           placeholder="Whats on your mind"
-        ></textarea>
+        />
         <br />
         <div>
           <div className="flex">
@@ -38,7 +71,8 @@ const MiddleLeftBar = () => {
           </div>
         </div>
       </div>
-      <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded">
+      <PostModal userData={userData} />
+      {/* <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded">
         <div className="flex">
           <div className="mr-3">
             <Image src="/user-8.png" width={45} height={45} alt="user" />
@@ -190,8 +224,10 @@ const MiddleLeftBar = () => {
             </button>
           </div>
         </div>
-      </div>
-      <SinglePost></SinglePost>
+      </div> */}
+      {posts.map((post) => (
+        <SinglePost key={post._id} post={post} />
+      ))}
     </div>
   );
 };

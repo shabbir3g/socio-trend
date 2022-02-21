@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   if (method === "PUT") {
     try {
       const filter = { email: req.query.email };
-      const updateDoc = { $set: req.body.userData };
+      const updateDoc = { $set: req.body };
       const result = await User.findOneAndUpdate(filter, updateDoc);
       res.status(200).json(result);
     } catch (err) {

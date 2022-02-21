@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import {
+  setEmailPassLoginError,
   setIsLoading,
   setRegisterError,
   setUser,
@@ -24,80 +25,72 @@ const googleProvider = new GoogleAuthProvider();
 const auth = getAuth();
 
 const useFirebase = () => {
-    const dispatch = useDispatch();
-    const router = useRouter(); 
+  const dispatch = useDispatch();
+  const router = useRouter();
 
+  // google-sign-in-method
 
+  const googleSign = (location, navigate) => {
+    dispatch(setIsLoading(true));
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        saveUser(user, "PUT");
+        router.push("/");
+        dispatch(setIsLoading(false));
+        dispatch(setUser(user));
+        //   const destination = location?.state?.from || '/';
+        //   navigate(destination);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        //   dispatch(setGoogleSignErrorMsg(errorMessage));
+      });
+  };
 
-    // google-sign-in-method
+  // google - signOut - method
 
-    const googleSign = (location, navigate) => {
-        dispatch(setIsLoading(true));
+  const googleSingOut = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(setUser(null));
+        // dispatch(setAdmin(false));
+        router.push("/login");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        dispatch(setErrorMsg(errorMessage));
+      });
+  };
 
-        signInWithPopup(auth, googleProvider)
-            .then((result) => {
-                const user = result.user;
-                console.log(user);
-                router.push("/")
-                  dispatch(setIsLoading(false));
-                dispatch(setUser(user));
-                //   saveUser(user?.email, user?.displayName,'PUT')
-                //   const destination = location?.state?.from || '/';
-                //   navigate(destination);
-                // ...
-            })
-            .catch((error) => {
-                const errorMessage = error.message;
-                //   dispatch(setGoogleSignErrorMsg(errorMessage));
-            });
-    }
-
-
-    // google - signOut - method
-
-    const googleSingOut = () => {
-        signOut(auth).then(() => {
-            dispatch(setUser(null));
-            // dispatch(setAdmin(false));
-            router.push("/login")
-        }).catch((error) => {
-            const errorMessage = error.message;
-            dispatch(setErrorMsg(errorMessage));
-        });
-    }
-
-
-  
   // sign-in-with-email-and-password
 
-  const signWithEmailPass = (email, password, location, navigate) => {
+  const signWithEmailPass = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         saveUser(user, "PUT");
-        // dispatch(setUser(user));
-
-        router.push("/")
-        // const destination = location?.state?.from || '/';
-        // navigate(destination);
+        dispatch(setUser(user));
+        router.push("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
-        // dispatch(setGoogleSignErrorMsg(errorMessage));
+        dispatch(setEmailPassLoginError(errorMessage));
       });
   };
 
   // register-user-with-email-password
 
   const registerWithEmailPass = (email, password, name) => {
-    console.log(email, password, name + "from hook");
     dispatch(setIsLoading(true));
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        const user = userCredential.user;
+        user.displayName = name;
+        saveUser(user, "POST");
         dispatch(setRegisterError(""));
         const newUser = { email, displayName: name };
         dispatch(setUser(newUser));
-        // saveUser(email, name, 'POST');
 
         // swal({
         //   title: "Sign up success!",
@@ -137,11 +130,10 @@ const useFirebase = () => {
       dispatch(setIsLoading(false));
     });
     return () => unsubscribed;
-  }, [dispatch, auth]);
+  }, [dispatch]);
 
   // save user information
   const saveUser = (user, method) => {
-    // const user = { email, displayName };
     fetch(`http://localhost:3000/api/user`, {
       method: method,
       headers: { "content-Type": "application/json" },

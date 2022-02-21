@@ -23,7 +23,7 @@ p {
     width: 0.4rem;
   }
   .scrollbar::-webkit-scrollbar-thumb {
-    background: #aaaaaa;
+    background: #717171;
     border-radius: 1rem;
   }
   .scrollbar::-webkit-scrollbar-thumb:active {
@@ -91,4 +91,8 @@ ul.left-sidebar li:hover {
 }
 .left-second-sidebar li:hover i {
   color: #fff;
+}
+.right-side-group li a span:first-child {
+  width: 37px;
+  text-align: center;
 }

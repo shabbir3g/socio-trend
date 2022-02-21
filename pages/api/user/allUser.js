@@ -6,11 +6,10 @@ export default async function handler(req, res) {
 
   dbConnect();
 
-  if (method === "PUT") {
+  // get all user
+  if (method === "GET") {
     try {
-      const filter = { email: req.query.email };
-      const updateDoc = { $set: req.body.userData };
-      const result = await User.findOneAndUpdate(filter, updateDoc);
+      const result = await User.find({});
       res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err);

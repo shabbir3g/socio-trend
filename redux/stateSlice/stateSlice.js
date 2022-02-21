@@ -19,13 +19,13 @@ export const counterSlice = createSlice({
             state.isLoading = payload;
         },
         setRegisterError: (state, { payload }) => {
-            state.isLoading = payload;
+            state.registerError = payload;
         },
         setGoogleLoginError: (state, { payload }) => {
-            state.isLoading = payload;
+            state.googleLoginError = payload;
         },
         setEmailPassLoginError: (state, { payload }) => {
-            state.isLoading = payload;
+            state.emailPassLoginError = payload;
         }
     },
 })
