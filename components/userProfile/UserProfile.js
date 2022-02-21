@@ -53,7 +53,7 @@ const UserProfile = ({ data }) => {
                 alt="user profile photo"
                 width={100}
                 height={100}
-                className="rounded-full ring-4 ring-gray-900"
+                className="rounded-full"
               />
             </div>
             <div className="ml-6">
