@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import UserSinglePost from "./UserSinglePost";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const UserProfile = ({ data }) => {
+  const user = useSelector((state) => state.states.user);
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
     const editDetailsBtn = document.getElementById("edit-about");
@@ -32,6 +37,13 @@ const UserProfile = ({ data }) => {
     closeProfileModalBtn.addEventListener("click", toggleModalProfile);
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/post/userPost?email=${user.email}`)
+      .then((data) => {
+        setPosts(data.data);
+      });
+  }, [user.email]);
   return (
     <>
       {/* Profile banner */}
@@ -167,9 +179,9 @@ const UserProfile = ({ data }) => {
               </div>
             </div>
           </div>
-          <UserSinglePost />
-          <UserSinglePost />
-          <UserSinglePost />
+          {posts.map((post) => (
+            <UserSinglePost key={post._id} post={post} />
+          ))}
         </div>
       </div>
       {/* Edit Profile Modal */}
