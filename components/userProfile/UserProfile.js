@@ -1,11 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import UserSinglePost from "./UserSinglePost";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
+<<<<<<< HEAD
 import Link from "next/link";
+=======
+import axios from "axios";
+import { useSelector } from "react-redux";
+>>>>>>> 815eda84d378ad053b3d238e51f6a60bfb7c1751
 
 const UserProfile = ({ data }) => {
+  const user = useSelector((state) => state.states.user);
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
     const editDetailsBtn = document.getElementById("edit-about");
@@ -33,6 +41,13 @@ const UserProfile = ({ data }) => {
     closeProfileModalBtn.addEventListener("click", toggleModalProfile);
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/post/userPost?email=${user.email}`)
+      .then((data) => {
+        setPosts(data.data);
+      });
+  }, [user.email]);
   return (
     <>
       {/* Profile banner */}
@@ -108,7 +123,9 @@ const UserProfile = ({ data }) => {
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-clock"></i>
-              <span className="ml-3">Joined {data.createdAt?.slice(0, 10)}</span>
+              <span className="ml-3">
+                Joined {data.createdAt?.slice(0, 10)}
+              </span>
             </div>
             <button
               className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
@@ -170,9 +187,10 @@ const UserProfile = ({ data }) => {
               </div>
             </div>
           </div>
-          <UserSinglePost />
-          <UserSinglePost />
-          <UserSinglePost />
+          
+          {posts.map((post) => (
+            <UserSinglePost key={post._id} post={post} />
+          ))}
         </div>
       </div>
       {/* Edit Profile Modal */}

@@ -15,6 +15,15 @@ export default async function handler(req, res) {
       res.status(500).json(err);
     }
   }
+  // get all user
+  if (method === "GET") {
+    try {
+      const result = await User.find({});
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
 
   // save user data after register
   if (method === "POST") {
@@ -26,7 +35,7 @@ export default async function handler(req, res) {
     }
   }
 
-// save user data after google signup
+  // save user data after google signup
   if (method === "PUT") {
     try {
       const user = req.body;

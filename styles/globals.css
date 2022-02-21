@@ -23,7 +23,7 @@ p {
     width: 0.4rem;
   }
   .scrollbar::-webkit-scrollbar-thumb {
-    background: #aaaaaa;
+    background: #717171;
     border-radius: 1rem;
   }
   .scrollbar::-webkit-scrollbar-thumb:active {
