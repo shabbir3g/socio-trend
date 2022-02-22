@@ -31,7 +31,7 @@ const MiddleLeftBar = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/post`).then((data) => {
-      setPosts(data.data);
+      setPosts(data?.data);
     });
   }, [user.email]);
   return (
