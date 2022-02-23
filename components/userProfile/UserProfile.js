@@ -3,12 +3,9 @@ import Image from "next/image";
 import UserSinglePost from "./UserSinglePost";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
-<<<<<<< HEAD
 import Link from "next/link";
-=======
 import axios from "axios";
 import { useSelector } from "react-redux";
->>>>>>> 815eda84d378ad053b3d238e51f6a60bfb7c1751
 
 const UserProfile = ({ data }) => {
   const user = useSelector((state) => state.states.user);

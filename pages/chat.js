@@ -1,6 +1,47 @@
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import io from "socket.io-client";
+
+let socket;
+const CONNECTION_PORT = "localhost:3002/";
 
 const Chat = () => {
+
+  const inputRef = useRef();
+
+  const [message, setMessage] = useState("")
+  const [messageList, setMessageList] = useState([]);
+
+  const user = "Parvez"
+
+  const users = useSelector((state) => state.states.user);
+  console.log(users);
+
+  useEffect(() => {
+    socket = io(CONNECTION_PORT);
+  }, [CONNECTION_PORT]);
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setMessageList([...messageList, data]);
+    });
+  });
+
+  const sendMessage = async () => {
+    let messageContent = {
+      content: {
+        user,
+        message,
+      },
+    };
+
+    await socket.emit("send_message", messageContent);
+    setMessageList([...messageList, messageContent.content]);
+    setMessage("");
+    inputRef.current.value= '';
+  }
+
   return (
     <div style={{ height: "100vh" }} className="bg-slate-100 p-10 pb-10">
       <div className="border p-5 bg-white rounded">
@@ -20,6 +61,10 @@ const Chat = () => {
                   width={60}
                   alt="img"
                 />
+
+                  <div>
+                    <h2 className="text-black">hello{message}</h2>
+                  </div>    
 
                 <div className=" pl-4">
                   <p className="font-bold">Thomas hill</p>
@@ -197,12 +242,15 @@ const Chat = () => {
             </svg>
 
             <input
-              className="w-full bg-indigo-100 border-0  rounded-full pl-4 mx-3 outline-none"
+              onChange={(e) => {setMessage(e.target.value)}}
+              ref={inputRef}
+              className="w-full bg-indigo-100 border-0  rounded-full pl-4 mx-3 outline-none text-black"
               type="text"
               placeholder="start typing ..."
             />
 
             <svg
+              onClick={sendMessage}
               xmlns="http://www.w3.org/2000/svg"
               className="h-10 w-10 bg-indigo-700 p-2 rounded-full"
               fill="none"
