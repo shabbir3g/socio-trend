@@ -128,7 +128,7 @@ const SinglePost = ({ post, userData }) => {
         </div>
       </form>
       {dbComments?.map((comment) => (
-        <Comments key={comment._id} comment={comment} />
+        <Comments key={comment.Comment} comment={comment} />
       ))}
     </div>
   );
