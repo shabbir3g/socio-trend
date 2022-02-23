@@ -7,14 +7,14 @@ export default async function handler(req, res) {
   dbConnect();
 
   if (method === "PUT") {
+    console.log(req.body);
     try {
       const result = await Post.findByIdAndUpdate(
         req.query.id,
         { $set: { comment: req.body } },
         { new: true }
       );
-
-      res.json(result);
+      res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err);
     }

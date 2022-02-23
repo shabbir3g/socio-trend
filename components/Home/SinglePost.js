@@ -11,7 +11,7 @@ const SinglePost = ({ post, userData }) => {
     axios
       .get(`http://localhost:3000/api/post/comment?id=${post._id}`)
       .then(({ data }) => setDbComments(data));
-  }, [post._id, dbComments]);
+  }, [post._id]);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ const SinglePost = ({ post, userData }) => {
 
     await axios
       .put(`http://localhost:3000/api/post/comment?id=${post._id}`, dbComments)
-      .then((data) => console.log(data));
+      .then(({data}) => console.log(data));
   };
   return (
     <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
