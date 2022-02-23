@@ -7,14 +7,13 @@ let socket;
 const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";
 
 const Chat = () => {
-
   const inputRef = useRef();
 
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   console.log(messageList);
 
-  const user = "Parvez"
+  const user = "Parvez";
 
   const users = useSelector((state) => state.states.user);
   console.log(users);
@@ -40,8 +39,8 @@ const Chat = () => {
     await socket.emit("send_message", messageContent);
     setMessageList([...messageList, messageContent.content]);
     setMessage("");
-    inputRef.current.value= '';
-  }
+    inputRef.current.value = "";
+  };
 
   return (
     <div style={{ height: "100vh" }} className="bg-slate-100 p-10 pb-10">
@@ -61,7 +60,7 @@ const Chat = () => {
                   height={50}
                   width={60}
                   alt="img"
-                />  
+                />
 
                 <div className=" pl-4">
                   <p className="font-bold">Thomas hill</p>
@@ -220,6 +219,14 @@ const Chat = () => {
             </div>
           </div>
         </div>
+
+        <div className="text-black">
+          Hello
+          {messageList.map((message, index) => (
+            <div key={message.message}>{message.message}</div>
+          ))}
+        </div>
+
         {/* message-sending-field */}
         <div className="pt-5">
           <div className="flex">
@@ -239,7 +246,9 @@ const Chat = () => {
             </svg>
 
             <input
-              onChange={(e) => {setMessage(e.target.value)}}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
               ref={inputRef}
               className="w-full bg-indigo-100 border-0  rounded-full pl-4 mx-3 outline-none text-black"
               type="text"
