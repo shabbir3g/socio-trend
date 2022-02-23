@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import io from "socket.io-client";
 
 let socket;
-const CONNECTION_PORT = "localhost:3002/";
+const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";
 
 const Chat = () => {
 
@@ -12,6 +12,7 @@ const Chat = () => {
 
   const [message, setMessage] = useState("")
   const [messageList, setMessageList] = useState([]);
+  console.log(messageList);
 
   const user = "Parvez"
 
@@ -60,11 +61,7 @@ const Chat = () => {
                   height={50}
                   width={60}
                   alt="img"
-                />
-
-                  <div>
-                    <h2 className="text-black">hello{message}</h2>
-                  </div>    
+                />  
 
                 <div className=" pl-4">
                   <p className="font-bold">Thomas hill</p>
