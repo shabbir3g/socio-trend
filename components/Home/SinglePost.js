@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { format } from "timeago.js";
 import axios from "axios";
+import Comments from "./Comments";
 
 const SinglePost = ({ post, userData }) => {
   const [dbComments, setDbComments] = useState([]);
@@ -15,12 +16,19 @@ const SinglePost = ({ post, userData }) => {
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
-    setDbComments([...dbComments, comment]);
-
+    let comments = {};
+    comments.photoURL = userData.photoURL;
+    comments.comment = comment;
+    comments.displayName = userData.displayName;
+    const postComments = [...dbComments, comments];
     await axios
-      .put(`http://localhost:3000/api/post/comment?id=${post._id}`, dbComments)
-      .then(({data}) => console.log(data));
+      .put(
+        `http://localhost:3000/api/post/comment?id=${post._id}`,
+        postComments // dbComments
+      )
+      .then(({ data }) => console.log(data));
   };
+
   return (
     <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
       <div className="flex justify-between">
@@ -119,6 +127,9 @@ const SinglePost = ({ post, userData }) => {
           </div>
         </div>
       </form>
+      {dbComments?.map((comment) => (
+        <Comments key={comment._id} comment={comment} />
+      ))}
     </div>
   );
 };
