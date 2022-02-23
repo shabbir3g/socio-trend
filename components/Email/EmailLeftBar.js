@@ -1,78 +1,108 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faBars, faXmark, faBook } from '@fortawesome/free-solid-svg-icons'
-import Link from 'next/link';
-import EmailTopBar from './EmailTopBar';
-
-
-const xmark = <FontAwesomeIcon icon={faXmark} />
-const bar =  <FontAwesomeIcon icon={faBars} />
-const home = <FontAwesomeIcon icon={faHome} />
-
-//fa-magnifying-glass "fa-solid fa-xmark"
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 const EmailLeftBar = () => {
-    // sidebar open and colose state
-    const [sidebar, setSidebar] = useState(false)
+  // sidebar open and colose state
+  const [sidebar, setSidebar] = useState(false);
 
-    const handleSidebar = ()=>{
-        setSidebar(!sidebar)
-    }
+  const handleSidebar = () => {
+    setSidebar(!sidebar);
+  };
 
+  return (
+    <>
+      <div className="hidden md:block lg:block">
+        <div className="bg-white fixed py-4 w-64 h-full rounded-md">
+          <div className="w-56 mx-auto mb-5">
+            <button className="text-white font-semibold bg-gradient-to-tr from-blue-600 to-blue-400 text-center p-5 w-full rounded-md">
+              Weite Message
+            </button>
+          </div>
+          {/* sidebar menue */}
+          <ul className="font-normal text-gray-500">
+            <li>
+              <Link href="/">
+                <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
+                  <i className="fa-solid fa-house"></i>
+                  Home
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/">
+                <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
+                  <i className="fa-solid fa-book"></i>
+                  Blog
+                </a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-    return (
-        <>
-
-       {/* navbar */}
-        {/* <EmailTopBar setSidebar sidebar/> */}
-        {/* lg:hidden md:hidden */}
-        <div className='bg-blue-500 fixed flex h-20 inset-x-0 items-center justify-between px-4 text-white top-0'>
-            {/* navbar logo */}
-            <div>
-                no science lab
-            </div>
-
-            {/* nav open side bar logo */}
-            <button className='p-2 rounded-full transition hover:bg-blue-400' onClick={handleSidebar}>{bar}</button>
+      {/* small side bar */}
+      <div className="block md:hidden lg:hidden">
+        <div className="bg-yellow-500 fixed flex h-20 inset-x-0 items-center justify-between px-4 text-white top-0">
+          <div>
+            <Image src="/logo.png" alt="Socio Trend" width="200px" height="66px"  />
+          </div>
+          <button
+            className="p-2 rounded-full transition hover:bg-blue-400"
+            onClick={handleSidebar}
+          >
+            <i className="fa-solid fa-bars"></i>
+          </button>
         </div>
 
+        <div>
+          <div
+            className={
+              sidebar
+                ? "bg-black cursor-pointer fixed inset-0 opacity-70 visible "
+                : "hidden opacity-0"
+            }
+            onClick={handleSidebar}
+          ></div>
 
-
-            {/* side bar container */}
-            <div className='hidden lg:block '>
-                {/* sidebar overlay */}
-                <div className='bg-black cursor-pointer fixed inset-0 opacity-70 visible' >
-
-                </div>
-                {/* side bar */}
-                <div className= 'bg-red-300 fixed inset-y-0 py-4 left-0 w-64' >
-                    {/* sidebar close btn */}
-                    <button className='absolute text-3xl -left-8 p-1 rounded-full text-white top-4 transition hover:text-red-400 ' >{xmark}</button>
-
-                    {/* sidebar menue */}
-                    <ul className='font-normal text-gray-500'>
-                        <li  >
-                            <Link href='/'>
-                                <a className='bg-gray-100 font-medium inline-flex items-center px-4 py-2 transition w-full hover:bg-gray-100'>
-                                <i className="fa-solid fa-house-chimney"></i>
-                                    Home
-                                    </a>
-                            </Link>
-                        </li>
-                        <li  >
-                            <Link href='/'>
-                                <a className='inline-flex items-center px-4 py-2 transition w-full hover:bg-gray-100'>
-                                <i className="fa-solid fa-book"></i>
-                                    Blog
-                                    </a>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
+          <div
+            className={
+              sidebar
+                ? "bg-white duration-300 fixed inset-y-0 py-4 left-0 transition-left w-64"
+                : "bg-white duration-300 fixed inset-y-0 py-4 -left-full transition-left w-64"
+            }
+          >
+            <div className="bg-white fixed py-4 w-64 h-full rounded-md">
+              <div className="w-56 mx-auto mb-5">
+                <button className="text-white font-semibold bg-gradient-to-tr from-blue-600 to-blue-400 text-center p-5 w-full rounded-md">
+                  Weite Message
+                </button>
+              </div>
+              {/* sidebar menue */}
+              <ul className="font-normal text-gray-500">
+                <li>
+                  <Link href="/">
+                    <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
+                      <i className="fa-solid fa-house"></i>
+                      Home
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/">
+                    <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
+                      <i className="fa-solid fa-book"></i>
+                      Blog
+                    </a>
+                  </Link>
+                </li>
+              </ul>
             </div>
-
-        </>
-    );
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default EmailLeftBar;

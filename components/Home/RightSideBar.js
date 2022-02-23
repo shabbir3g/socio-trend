@@ -1,65 +1,36 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 const RightSideBar = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/user/allUsers")
+      .then(({ data }) => setUsers(data));
+  }, []);
+  console.log("user is", users);
   return (
     <div className="bg-neutral-100 dark:bg-gray-900">
       <div className="bg-white dark:bg-gray-800 drop-shadow-sm p-3 rounded-lg">
         <p className="mb-3">Contacts</p>
         <ul>
-          <li className="mb-3">
-            <a href="" className="flex items-center">
-              <Image src="/user-8.png" width={30} height={30} alt="user" />{" "}
-              <span className="ml-3">Hurin Seary</span>
-              <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
-            </a>
-          </li>
-          <li className="mb-3">
-            <a href="" className="flex items-center">
-              <Image src="/user-8.png" width={30} height={30} alt="user" />{" "}
-              <span className="ml-3">Victor Exrixon</span>
-              <span className="p-1 rounded-full bg-blue-500 ml-auto"></span>
-            </a>
-          </li>
-          <li className="mb-3">
-            <a href="" className="flex items-center">
-              <Image src="/user-8.png" width={30} height={30} alt="user" />{" "}
-              <span className="ml-3">Goria Coast</span>
-              <span className="p-1 rounded-full bg-orange-500 ml-auto"></span>
-            </a>
-          </li>
-          <li className="mb-3">
-            <a href="" className="flex items-center">
-              <Image src="/user-8.png" width={30} height={30} alt="user" />{" "}
-              <span className="ml-3">Hurin Seary</span>
-              <span className="p-1 rounded-full bg-blue-500 ml-auto"></span>
-            </a>
-          </li>
-          <li className="mb-3">
-            <a href="" className="flex items-center">
-              <Image src="/user-8.png" width={30} height={30} alt="user" />{" "}
-              <span className="ml-3">David Goria</span>
-              <span className="text-gray-500 font-normal text-sm ml-auto">
-                4:09 pm
-              </span>
-            </a>
-          </li>
-          <li className="mb-3">
-            <a href="" className="flex items-center">
-              <Image src="/user-8.png" width={30} height={30} alt="user" />{" "}
-              <span className="ml-3">Seary Victor</span>
-              <span className="text-gray-500 font-normal text-sm ml-auto">
-                2 days
-              </span>
-            </a>
-          </li>
-          <li className="mb-3">
-            <a href="" className="flex items-center">
-              <Image src="/user-8.png" width={30} height={30} alt="user" />{" "}
-              <span className="ml-3">Ana Seary</span>
-              <span className="p-1 rounded-full bg-blue-500 ml-auto"></span>
-            </a>
-          </li>
+          {users.map((user) => (
+            <li className="mb-3" key={user._id}>
+              <a href="" className="flex items-center">
+                <Image
+                  src={user.photoURL}
+                  width={30}
+                  height={30}
+                  alt="user"
+                  className="rounded-full"
+                />
+                <span className="ml-3">{user.displayName}</span>
+                <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
+              </a>
+            </li>
+          ))}
         </ul>
         <p className="mb-5 mt-5">Groupes</p>
         <ul className="right-side-group">

@@ -6,19 +6,24 @@ export default async function handler(req, res) {
 
   dbConnect();
 
-  if (method === "POST") {
+  if (method === "PUT") {
     try {
-      const post = await Post.create(req.body.data);
-      res.status(201).json(post);
+      const result = await Post.findByIdAndUpdate(
+        req.query.id,
+        { $set: { comment: req.body } },
+        { new: true }
+      );
+      res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err);
     }
   }
-  // get all posts
+
   if (method === "GET") {
     try {
-      const result = await Post.find({});
-      res.status(200).json(result);
+      const filter = await Post.findOne({ _id: req.query.id });
+      const result = await filter.comment;
+      res.json(result);
     } catch (err) {
       res.status(500).json(err);
     }
