@@ -23,8 +23,4 @@ export default async function handler(req, res) {
       res.status(500).json(err);
     }
   }
-  // get posts by user email
-  if (method === "GET") {
-    res.json(req.query);
-  }
 }

@@ -75,7 +75,7 @@ const MiddleLeftBar = () => {
       </div>
       <PostModal userData={userData} />
       {posts.map((post) => (
-        <SinglePost key={post._id} post={post} />
+        <SinglePost key={post._id} post={post} userData={userData} />
       ))}
       
     </div>
