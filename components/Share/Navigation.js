@@ -5,14 +5,20 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import NavigationSideBar from "./NavigationSideBar";
+import axios from "axios";
 
 const Navigation = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-
-  const user = useSelector((state) => state.states.user);
+  const reduxUser = useSelector((state) => state.states.user);
+  const [dbUser, setDbUser] = useState({});
 
   useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/user?email=${reduxUser.email}`)
+      .then(({ data }) => setDbUser(data));
+  }, [reduxUser.email]);
 
   const currentTheme = theme === "system" ? systemTheme : theme;
 
@@ -161,13 +167,13 @@ const Navigation = () => {
                 height="30"
                 className="rounded-full"
                 src={
-                  user?.photoURL ||
+                  dbUser.photoURL ||
+                  reduxUser?.photoURL ||
                   "http://uitheme.net/sociala/images/profile-4.png"
                 }
               />
             </a>
           </Link>
-
           <a
             href="chat"
             className="w-14 h-14 items-center justify-center lg:hidden flex text-blue-500 text-2xl"
@@ -226,8 +232,9 @@ const Navigation = () => {
               <Image
                 className="rounded-full"
                 src={
-                  user?.photoURL ||
-                  "http://uitheme.net/sociala/images/profile-4.png"
+                  dbUser.photoURL ||
+                  reduxUser?.photoURL ||
+                  "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
                 }
                 width="40"
                 height="40"

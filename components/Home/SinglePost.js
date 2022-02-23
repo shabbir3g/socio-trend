@@ -8,11 +8,14 @@ const SinglePost = ({ post }) => {
       <div className="flex justify-between">
         <div className=" flex">
           <Image
-            src={post.photoURL}
+            src={
+              post.photoURL ||
+              "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
+            }
             className="rounded-full"
             alt=""
-            height="45"
-            width="45"
+            height={45}
+            width={45}
           />
           <div className="ml-3">
             <h4 className="text-md font-semibold">{post.displayName}</h4>
@@ -32,7 +35,7 @@ const SinglePost = ({ post }) => {
         </p>
       </div>
       <div className="pt-3">
-        <Image src={post.img} height="350" width="600" alt="" />
+        <Image src={post.img} height={350} width={600} alt="" />
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
@@ -41,8 +44,8 @@ const SinglePost = ({ post }) => {
               <Image
                 src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-like-notifications-justicon-flat-justicon.png"
                 alt=""
-                height="25"
-                width="25"
+                height={25}
+                width={25}
               />
             </button>
           </span>
@@ -51,8 +54,8 @@ const SinglePost = ({ post }) => {
               <Image
                 src="https://img.icons8.com/color/48/000000/like--v3.png"
                 alt=""
-                height="25"
-                width="25"
+                height={25}
+                width={25}
               />
             </button>
           </span>

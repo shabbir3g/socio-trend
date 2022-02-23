@@ -32,8 +32,7 @@ const MiddleLeftBar = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/post`).then((data) => {
-      setPosts(data.data);
-      // console.log(data.data);
+      setPosts(data?.data);
     });
   }, [user.email]);
   
@@ -75,10 +74,9 @@ const MiddleLeftBar = () => {
         </div>
       </div>
       <PostModal userData={userData} />
-
-      {posts.map((post) => (
+      {/* {posts.map((post) => (
         <SinglePost key={post._id} post={post} />
-      ))}
+      ))} */}
       
     </div>
   );

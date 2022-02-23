@@ -1,9 +1,17 @@
+import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useFirebase from "../../firebase/useFirebase";
 
 const LeftSideBar = () => {
+  const [users, setUsers] = useState([]);
   const { googleSingOut } = useFirebase();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/user/allUsers")
+      .then(({ data }) => setUsers(data));
+  }, []);
   return (
     <div className="bg-gray-100 dark:bg-gray-900">
       <div className="w-full">
