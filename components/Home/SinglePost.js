@@ -12,7 +12,7 @@ const SinglePost = ({ post, userData }) => {
     axios
       .get(`http://localhost:3000/api/post/comment?id=${post._id}`)
       .then(({ data }) => setDbComments(data));
-  }, [post._id]);
+  }, [post._id, dbComments]);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -89,7 +89,7 @@ const SinglePost = ({ post, userData }) => {
           <div className="ml-5 ">
             <button className="items-center flex">
               <i className="fa-regular fa-comment text-xl"></i>
-              <span className="ml-1">{post.comment.length} Comments</span>
+              <span className="ml-1">{dbComments.length} Comments</span>
             </button>
           </div>
         </div>

@@ -7,7 +7,6 @@ export default async function handler(req, res) {
   dbConnect();
 
   if (method === "PUT") {
-    console.log(req.body);
     try {
       const result = await Post.findByIdAndUpdate(
         req.query.id,
