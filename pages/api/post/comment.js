@@ -8,10 +8,23 @@ export default async function handler(req, res) {
 
   if (method === "PUT") {
     try {
-      const filter = await Post.findOne({ _id: req.query.id });
-      console.log(req.query.id);
+      const result = await Post.findByIdAndUpdate(
+        req.query.id,
+        { $set: { comment: req.body } },
+        { new: true }
+      );
 
-      res.json(filter);
+      res.json(result);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+
+  if (method === "GET") {
+    try {
+      const filter = await Post.findOne({ _id: req.query.id });
+      const result = await filter.comment;
+      res.json(result);
     } catch (err) {
       res.status(500).json(err);
     }
