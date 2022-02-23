@@ -8,6 +8,7 @@ import SinglePost from "./SinglePost";
 const MiddleLeftBar = () => {
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
+  // console.log(posts);
   const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const MiddleLeftBar = () => {
       setPosts(data?.data);
     });
   }, [user.email]);
+  
   return (
     <div>
       {/* create post */}
@@ -72,9 +74,10 @@ const MiddleLeftBar = () => {
         </div>
       </div>
       <PostModal userData={userData} />
-      {posts.map((post) => (
+      {/* {posts.map((post) => (
         <SinglePost key={post._id} post={post} />
-      ))}
+      ))} */}
+      
     </div>
   );
 };

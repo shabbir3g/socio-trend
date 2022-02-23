@@ -24,6 +24,7 @@ const Navigation = () => {
 
   const renderThemeChanger = () => {
     if (!mounted) return null;
+
     const currentTheme = theme === "system" ? systemTheme : theme;
     if (currentTheme === "dark") {
       return (
@@ -45,6 +46,7 @@ const Navigation = () => {
       );
     }
   };
+
   useEffect(() => {
     const navToggler = document.getElementById("nav-toggler");
     navToggler.addEventListener("click", navToggle);
@@ -59,6 +61,7 @@ const Navigation = () => {
       }
     }
   }, []);
+
   return (
     <>
       <Head>
