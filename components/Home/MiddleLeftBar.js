@@ -35,7 +35,7 @@ const MiddleLeftBar = () => {
       setPosts(data?.data);
     });
   }, [user.email]);
-  
+
   return (
     <div>
       {/* create post */}
@@ -77,7 +77,6 @@ const MiddleLeftBar = () => {
       {posts.map((post) => (
         <SinglePost key={post._id} post={post} userData={userData} />
       ))}
-      
     </div>
   );
 };
