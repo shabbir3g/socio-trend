@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = "mongodb+srv://socioTrend:IRQoxzoDVnAgK1vm@cluster0.tg4nc.mongodb.net/socioTrend?retryWrites=true&w=majority";
 
 if (!MONGO_URL) {
   throw new Error(
