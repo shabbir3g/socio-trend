@@ -17,11 +17,14 @@ const RightSideBar = () => {
         <ul>
           {users.map((user) => (
             <li className="mb-3" key={user._id}>
-              <a href="" className="flex items-center">
+              <a href="#" className="flex items-center">
                 <Image
-                  src={user.photoURL}
-                  width={30}
-                  height={30}
+                  src={
+                    user.photoURL ||
+                    "http://uitheme.net/sociala/images/profile-4.png"
+                  }
+                  width="30"
+                  height="30"
                   alt="user"
                   className="rounded-full"
                 />
