@@ -7,7 +7,7 @@ const RightSideBar = () => {
 
   useEffect(() => {
     axios
-      .get("https://socio-trend.vercel.app/api/user/allUsers")
+      .get("http://localhost:3000/api/user/allUsers")
       .then(({ data }) => setUsers(data));
   }, []);
   return (
