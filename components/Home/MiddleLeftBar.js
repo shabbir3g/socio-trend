@@ -7,6 +7,7 @@ import SinglePost from "./SinglePost";
 const MiddleLeftBar = () => {
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
+  // console.log(posts);
   const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
@@ -30,14 +31,9 @@ const MiddleLeftBar = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/post`).then((data) => {
-      setPosts(data.data);
+      setPosts(data?.data);
     });
   }, [user.email]);
-
-
-
-
-
 
   return (
     <div>
@@ -77,11 +73,8 @@ const MiddleLeftBar = () => {
         </div>
       </div>
       <PostModal userData={userData} />
-
-     
-     
-      {posts?.slice(0).reverse().map((post) => (
-        <SinglePost key={post._id} post={post} />
+      {posts.map((post) => (
+        <SinglePost key={post._id} post={post} userData={userData} />
       ))}
     </div>
   );

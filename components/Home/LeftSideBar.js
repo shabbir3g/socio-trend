@@ -1,9 +1,17 @@
+import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useFirebase from "../../firebase/useFirebase";
 
 const LeftSideBar = () => {
+  const [users, setUsers] = useState([]);
   const { googleSingOut } = useFirebase();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/user/allUsers")
+      .then(({ data }) => setUsers(data));
+  }, []);
   return (
     <div className="bg-gray-100 dark:bg-gray-900">
       <div className="w-full">
@@ -50,10 +58,12 @@ const LeftSideBar = () => {
           <p className="mb-3">More pages</p>
           <ul className="left-second-sidebar">
             <li>
-              <a href="">
-                <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i>{" "}
-                Email Box
-              </a>
+              <Link href="email">
+                <a>
+                  <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i>{" "}
+                  Email Box
+                </a>
+              </Link>
             </li>
             <li>
               <a href="">
