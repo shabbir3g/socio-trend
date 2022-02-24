@@ -9,7 +9,7 @@ const LeftSideBar = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/user/allUsers")
+      .get("https://socio-trend.vercel.app/api/user/allUsers")
       .then(({ data }) => setUsers(data));
   }, []);
   return (
