@@ -7,12 +7,17 @@ import Comments from "./Comments";
 const SinglePost = ({ post, userData }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/post/comment?id=${post._id}`)
       .then(({ data }) => setDbComments(data));
-  }, [post._id]);
+  }, [status, post._id]);
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -24,9 +29,9 @@ const SinglePost = ({ post, userData }) => {
     await axios
       .put(
         `http://localhost:3000/api/post/comment?id=${post._id}`,
-        postComments // dbComments
+        postComments
       )
-      .then(({ data }) => console.log(data));
+      .then((data) => setStatus(data.status));
   };
 
   return (
@@ -89,7 +94,7 @@ const SinglePost = ({ post, userData }) => {
           <div className="ml-5 ">
             <button className="items-center flex">
               <i className="fa-regular fa-comment text-xl"></i>
-              <span className="ml-1">{post.comment.length} Comments</span>
+              <span className="ml-1">{dbComments.length} Comments</span>
             </button>
           </div>
         </div>
@@ -113,7 +118,8 @@ const SinglePost = ({ post, userData }) => {
           </div>
           <div className="w-full mx-2">
             <textarea
-              onChange={(e) => setComment(e.target.value)}
+              // onChange={(e) => setComment(e.target.value)}
+              onChange={handleCommentChange}
               name=""
               id=""
               className="w-full h-10 bg-slate-700 rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
