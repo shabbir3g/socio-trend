@@ -122,8 +122,8 @@ const SinglePost = ({ post, userData }) => {
               onChange={handleCommentChange}
               name=""
               id=""
-              className="w-full h-10 bg-slate-700 rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
-              placeholder="Wright a comment ..."
+              className="w-full h-10 dark:bg-slate-700 bg-slate-200 focus:outline-none rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
+              placeholder="Write a comment ..."
             ></textarea>
           </div>
           <div className="w-10 flex items-center justify-center">
