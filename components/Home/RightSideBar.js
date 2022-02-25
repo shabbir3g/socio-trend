@@ -10,7 +10,7 @@ const RightSideBar = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/user/allUsers")
+      .get("/api/user/allUsers")
       .then(({ data }) => setUsers(data));
   }, []);
   return (

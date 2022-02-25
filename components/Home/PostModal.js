@@ -32,7 +32,7 @@ const PostModal = ({ userData }) => {
     }
     // console.log(data);
 
-    const response = await axios.post(`http://localhost:3000/api/post`, {
+    const response = await axios.post(`/api/post`, {
       data,
     });
     if (response.status === 201) {

@@ -55,7 +55,7 @@ const ProfileModal = ({ data }) => {
     }
 
     const response = await axios.put(
-      `http://localhost:3000/api/user/updateProfile?email=${user.email}`,
+      `/api/user/updateProfile?email=${user.email}`,
       {
         userData,
       }
