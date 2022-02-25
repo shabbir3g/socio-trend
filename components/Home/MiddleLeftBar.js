@@ -24,13 +24,13 @@ const MiddleLeftBar = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`https://socio-trend.vercel.app/api/user?email=${user?.email}`)
+    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setUserData(data));
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`https://socio-trend.vercel.app/api/post`).then((data) => {
+    axios.get(`http://localhost:3000/api/post`).then((data) => {
       setPosts(data?.data);
     });
   }, [user.email]);

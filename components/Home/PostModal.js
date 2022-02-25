@@ -32,7 +32,7 @@ const PostModal = ({ userData }) => {
     }
     // console.log(data);
 
-    const response = await axios.post(`https://socio-trend.vercel.app/api/post`, {
+    const response = await axios.post(`http://localhost:3000/api/post`, {
       data,
     });
     if (response.status === 201) {

@@ -134,7 +134,7 @@ const useFirebase = () => {
 
   // save user information
   const saveUser = (user, method) => {
-    fetch(`https://socio-trend.vercel.app/api/user`, {
+    fetch(`http://localhost:3000/api/user`, {
       method: method,
       headers: { "content-Type": "application/json" },
       body: JSON.stringify(user),

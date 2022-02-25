@@ -9,7 +9,7 @@ const AboutModal = ({ data }) => {
 
   const onSubmit = (data) => {
     console.log(data);
-    fetch(`https://socio-trend.vercel.app/api/user/updateAbout?email=${user.email}`, {
+    fetch(`http://localhost:3000/api/user/updateAbout?email=${user.email}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

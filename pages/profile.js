@@ -12,7 +12,7 @@ const Profile = () => {
   const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
-    fetch(`https://socio-trend.vercel.app/api/user?email=${user?.email}`)
+    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setData(data));
   }, [user?.email]);
