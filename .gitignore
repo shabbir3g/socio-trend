@@ -16,7 +16,7 @@
 /build
 
 # environment_variable
-/.env.local
+/.env
 
 # misc
 .DS_Store
