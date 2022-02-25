@@ -11,7 +11,7 @@ const SinglePost = ({ post, userData }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/post/comment?id=${post._id}`)
+      .get(`/api/post/comment?id=${post._id}`)
       .then(({ data }) => setDbComments(data));
   }, [status, post._id]);
 
@@ -28,7 +28,7 @@ const SinglePost = ({ post, userData }) => {
     const postComments = [...dbComments, comments];
     await axios
       .put(
-        `http://localhost:3000/api/post/comment?id=${post._id}`,
+        `/api/post/comment?id=${post._id}`,
         postComments
       )
       .then((data) => setStatus(data.status));

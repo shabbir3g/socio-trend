@@ -24,13 +24,13 @@ const MiddleLeftBar = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
+    fetch(`/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setUserData(data));
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/post`).then((data) => {
+    axios.get(`/api/post`).then((data) => {
       setPosts(data?.data);
     });
   }, [user.email]);
