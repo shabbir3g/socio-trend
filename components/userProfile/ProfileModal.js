@@ -55,7 +55,7 @@ const ProfileModal = ({ data }) => {
     }
 
     const response = await axios.put(
-      `https://socio-trend.vercel.app/api/user/updateProfile?email=${user.email}`,
+      `http://localhost:3000/api/user/updateProfile?email=${user.email}`,
       {
         userData,
       }
