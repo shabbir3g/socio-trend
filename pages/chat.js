@@ -5,21 +5,82 @@ import { useSelector } from "react-redux";
 import io from "socket.io-client";
 import Navigation from "../components/Share/Navigation";
 
+
+// demo-msg
+
+
+const userName = "MD: PERVEJ ISLAM"
+
+const trailUser =[
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+    name:"MD: PERVEJ ISLAM",
+    time:"1:35PM",
+    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta nam nisi culpa quisquam eos."
+  },
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+    name:"MD: OMOR ALI",
+    time:"03:05AM",
+    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae"
+  },
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+    name:"MD: PERVEJ ISLAM",
+    time:"07:32PM",
+    text:" Lorem ipsum dolor sit, amet consectetur."
+  },
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+    name:"MD: SADDADUL ISLAM SIAM",
+    time:"08:13AM",
+    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta."
+  },
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+    name:"MD: OMOR ALI",
+    time:"03:05AM",
+    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae"
+  },
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+    name:"MD: PERVEJ ISLAM",
+    time:"07:32PM",
+    text:" Lorem ipsum dolor sit, amet consectetur."
+  },
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+    name:"MD: SADDADUL ISLAM SIAM",
+    time:"08:13AM",
+    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta."
+  }
+]
+
+
+
+
+
+
 let socket;
 const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";
 
 const Chat = () => {
-
   const inputRef = useRef();
 
   const [message, setMessage] = useState("")
   const [messageList, setMessageList] = useState([]);
-  console.log(messageList);
 
-  const user = "Parvez"
+
+
+  const time = new Date().toLocaleString();
+  const strTime = time.split(",")
+  console.log(strTime[1]);
+
+
+
 
   const users = useSelector((state) => state.states.user);
-  console.log(users);
+  // console.log(users);
 
   useEffect(() => {
     socket = io(CONNECTION_PORT);
@@ -34,8 +95,11 @@ const Chat = () => {
   const sendMessage = async () => {
     let messageContent = {
       content: {
-        user,
+        user: users?.displayName,
         message,
+        img: users?.photoURL  || "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Creative-Tail-People-man-2.svg/768px-Creative-Tail-People-man-2.svg.png",
+        Room: users?.email,
+        time: strTime,
       },
     };
 
@@ -45,6 +109,8 @@ const Chat = () => {
     inputRef.current.value= '';
   }
 
+
+  console.log(messageList);
   return (
     <div className="bg-neutral-100 dark:bg-gray-900">
      
@@ -54,176 +120,56 @@ const Chat = () => {
           style={{ height: "80vh" }}
           className=" p-3 overflow-y-scroll scrollbar-0"
         >
-          {/* each-message-content */}
-          <div className="flex justify-start mt-5">
-            <div className="">
-              {/* profile-section */}
-              <div className="flex">
-                <Image
-                  className=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU"
-                  height={50}
-                  width={60}
-                  alt="img"
-                />  
+          
+           
 
-                <div className=" pl-4">
-                  <p className="font-bold">Thomas hill</p>
-                  <p className="text-slate-400 text-sm font-bold">1:35PM</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+          { trailUser?.map((user,index)=>{return(
+                <div key={index} className={userName==user.name?'flex justify-end mt-5':'flex justify-start mt-5'}>
+                <div className="">
+                  <div className="flex">
+                    <Image
+                      className=""
+                      src={user.img}
+                      height={50}
+                      width={60}
+                      alt="img"
+                    />  
+
+                    <div className=" pl-4">
+                      <p className="font-bold">{user.name}</p>
+                      <p className="text-slate-400 text-sm font-bold">{user.time}</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                
+                  <div className={userName===user.name? "mt-5 rounded w-5/6 p-2 bg-blue-800 text-white font-serif": "mt-5 rounded w-5/6 p-2 bg-gray-200 text-black  font-serif"}>
+                    {user.text}
+                  </div>
                 </div>
-              </div>
-              {/* content-section */}
-              <div className="mt-5 rounded w-5/6 p-2 bg-indigo-300 text-white">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. At
-                reiciendis impedit vero quae, vitae soluta nam nisi culpa
-                quisquam eos.
-              </div>
-            </div>
-          </div>
-
-          {/* each-message-content */}
-          <div className="flex justify-start mt-5">
-            <div className="">
-              {/* profile-section */}
-              <div className="flex">
-                <Image
-                  className=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU"
-                  height={50}
-                  width={60}
-                  alt="img"
-                />
-
-                <div className=" pl-4">
-                  <p className="font-bold">Thomas hill</p>
-                  <p className="text-slate-400 text-sm font-bold">1:35PM</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
                 </div>
-              </div>
-              {/* content-section */}
-              <div className="mt-5 rounded p-2 text-white">
-                <Image
-                  className=""
-                  src="https://ichef.bbci.co.uk/news/976/cpsprodpb/C448/production/_117684205_lotus.jpg"
-                  height={200}
-                  width={400}
-                  alt="img"
-                />
-              </div>
-            </div>
-          </div>
+            )})}
 
-          {/* each-message-content */}
-          <div className="flex justify-end mt-5">
-            <div className="">
-              {/* profile-section */}
-              <div className="flex">
-                <Image
-                  className=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU"
-                  height={50}
-                  width={60}
-                  alt="img"
-                />
-
-                <div className=" pl-4">
-                  <p className="font-bold">Thomas hill</p>
-                  <p className="text-slate-400 text-sm font-bold">1:35PM</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-              </div>
-              {/* content-section */}
-              <div className="mt-5 rounded p-2 bg-indigo-700 text-white">
-                something
-              </div>
-            </div>
-          </div>
-
-          {/* each-message-content */}
-          <div className="flex justify-start mt-5">
-            <div className="">
-              {/* profile-section */}
-              <div className="flex">
-                <Image
-                  className=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU"
-                  height={50}
-                  width={60}
-                  alt="img"
-                />
-
-                <div className=" pl-4">
-                  <p className="font-bold">Thomas hill</p>
-                  <p className="text-slate-400 text-sm font-bold">1:35PM</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-              </div>
-              {/* content-section */}
-              <div className="mt-5 rounded p-2 text-white">
-                <Image
-                  className=""
-                  src="https://ichef.bbci.co.uk/news/976/cpsprodpb/C448/production/_117684205_lotus.jpg"
-                  height={200}
-                  width={400}
-                  alt="img"
-                />
-              </div>
-            </div>
-          </div>
         </div>
+
+
+
+
+
+
+        {/* </div> */}
         {/* message-sending-field */}
         <div className="pt-5">
           <div className="flex">
