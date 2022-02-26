@@ -11,7 +11,7 @@ const SinglePost = ({ post, userData }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/post/comment?id=${post._id}`)
+      .get(`/api/post/comment?id=${post._id}`)
       .then(({ data }) => setDbComments(data));
   }, [status, post._id]);
 
@@ -28,7 +28,7 @@ const SinglePost = ({ post, userData }) => {
     const postComments = [...dbComments, comments];
     await axios
       .put(
-        `http://localhost:3000/api/post/comment?id=${post._id}`,
+        `/api/post/comment?id=${post._id}`,
         postComments
       )
       .then((data) => setStatus(data.status));
@@ -122,8 +122,8 @@ const SinglePost = ({ post, userData }) => {
               onChange={handleCommentChange}
               name=""
               id=""
-              className="w-full h-10 bg-slate-700 rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
-              placeholder="Wright a comment ..."
+              className="w-full h-10 dark:bg-slate-700 bg-slate-200 focus:outline-none rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
+              placeholder="Write a comment ..."
             ></textarea>
           </div>
           <div className="w-10 flex items-center justify-center">
