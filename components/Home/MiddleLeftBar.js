@@ -1,5 +1,4 @@
 import axios from "axios";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PostModal from "./PostModal";
@@ -11,27 +10,28 @@ const MiddleLeftBar = () => {
   // console.log(posts);
   const user = useSelector((state) => state.states.user);
 
+
   useEffect(() => {
     const createPostModal = document.getElementById("create-post-modal");
     const postBtn = document.getElementById("post-modal");
     const closePostModalBtn = document.getElementById("close-post-modal");
 
-    const togglePostModal = () => {
-      createPostModal.classList.toggle("hidden");
-      createPostModal.classList.toggle("flex");
-    };
+  const togglePostModal = () => {
+    createPostModal.classList.toggle("hidden");
+    createPostModal.classList.toggle("flex");
+  };
     postBtn?.addEventListener("click", togglePostModal);
     closePostModalBtn?.addEventListener("click", togglePostModal);
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
+    fetch(`/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setUserData(data));
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/post`).then((data) => {
+    axios.get(`/api/post`).then((data) => {
       setPosts(data?.data);
     });
   }, [user.email]);
