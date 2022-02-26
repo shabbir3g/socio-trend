@@ -9,52 +9,52 @@ import Navigation from "../components/Share/Navigation";
 // demo-msg
 
 
-const userName = "MD: PERVEJ ISLAM"
+// const userName = "MD: PERVEJ ISLAM"
 
-const trailUser =[
-  {
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-    name:"MD: PERVEJ ISLAM",
-    time:"1:35PM",
-    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta nam nisi culpa quisquam eos."
-  },
-  {
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-    name:"MD: OMOR ALI",
-    time:"03:05AM",
-    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae"
-  },
-  {
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-    name:"MD: PERVEJ ISLAM",
-    time:"07:32PM",
-    text:" Lorem ipsum dolor sit, amet consectetur."
-  },
-  {
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-    name:"MD: SADDADUL ISLAM SIAM",
-    time:"08:13AM",
-    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta."
-  },
-  {
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-    name:"MD: OMOR ALI",
-    time:"03:05AM",
-    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae"
-  },
-  {
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-    name:"MD: PERVEJ ISLAM",
-    time:"07:32PM",
-    text:" Lorem ipsum dolor sit, amet consectetur."
-  },
-  {
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-    name:"MD: SADDADUL ISLAM SIAM",
-    time:"08:13AM",
-    text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta."
-  }
-]
+// const trailUser =[
+//   {
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+//     name:"MD: PERVEJ ISLAM",
+//     time:"1:35PM",
+//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta nam nisi culpa quisquam eos."
+//   },
+//   {
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+//     name:"MD: OMOR ALI",
+//     time:"03:05AM",
+//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae"
+//   },
+//   {
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+//     name:"MD: PERVEJ ISLAM",
+//     time:"07:32PM",
+//     text:" Lorem ipsum dolor sit, amet consectetur."
+//   },
+//   {
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+//     name:"MD: SADDADUL ISLAM SIAM",
+//     time:"08:13AM",
+//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta."
+//   },
+//   {
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+//     name:"MD: OMOR ALI",
+//     time:"03:05AM",
+//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae"
+//   },
+//   {
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+//     name:"MD: PERVEJ ISLAM",
+//     time:"07:32PM",
+//     text:" Lorem ipsum dolor sit, amet consectetur."
+//   },
+//   {
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
+//     name:"MD: SADDADUL ISLAM SIAM",
+//     time:"08:13AM",
+//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta."
+//   }
+// ]
 
 
 
@@ -74,13 +74,15 @@ const Chat = () => {
 
   const time = new Date().toLocaleString();
   const strTime = time.split(",")
-  console.log(strTime[1]);
 
 
 
 
   const users = useSelector((state) => state.states.user);
   // console.log(users);
+
+
+
 
   useEffect(() => {
     socket = io(CONNECTION_PORT);
@@ -94,12 +96,12 @@ const Chat = () => {
 
   const sendMessage = async () => {
     let messageContent = {
+      room: users?.email,
       content: {
         user: users?.displayName,
         message,
         img: users?.photoURL  || "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Creative-Tail-People-man-2.svg/768px-Creative-Tail-People-man-2.svg.png",
-        Room: users?.email,
-        time: strTime,
+        time: strTime[1],
       },
     };
 
@@ -109,6 +111,10 @@ const Chat = () => {
     inputRef.current.value= '';
   }
 
+
+  useEffect(() => {
+    socket.emit("join_room", users?.email);   
+  },[users?.email])
 
   console.log(messageList);
   return (
@@ -123,21 +129,21 @@ const Chat = () => {
           
            
 
-          { trailUser?.map((user,index)=>{return(
-                <div key={index} className={userName==user.name?'flex justify-end mt-5':'flex justify-start mt-5'}>
+          {messageList && messageList?.map((user,index)=>{return(
+                <div key={index} className={users?.displayName==user.user?'flex justify-end mt-5':'flex justify-start mt-5'}>
                 <div className="">
                   <div className="flex">
                     <Image
                       className=""
-                      src={user.img}
+                      src={user?.img}
                       height={50}
                       width={60}
                       alt="img"
                     />  
 
                     <div className=" pl-4">
-                      <p className="font-bold">{user.name}</p>
-                      <p className="text-slate-400 text-sm font-bold">{user.time}</p>
+                      <p className="font-bold">{user?.name}</p>
+                      <p className="text-slate-400 text-sm font-bold">{user?.time}</p>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
@@ -155,8 +161,8 @@ const Chat = () => {
                     </div>
                   </div>
                 
-                  <div className={userName===user.name? "mt-5 rounded w-5/6 p-2 bg-blue-800 text-white font-serif": "mt-5 rounded w-5/6 p-2 bg-gray-200 text-black  font-serif"}>
-                    {user.text}
+                  <div className={users?.displayName===user.user? "mt-5 rounded w-5/6 p-2 bg-blue-800 text-white font-serif": "mt-5 rounded w-5/6 p-2 bg-gray-200 text-black  font-serif"}>
+                    {user.message}
                   </div>
                 </div>
                 </div>
