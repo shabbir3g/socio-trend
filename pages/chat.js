@@ -6,61 +6,6 @@ import io from "socket.io-client";
 import Navigation from "../components/Share/Navigation";
 
 
-// demo-msg
-
-
-// const userName = "MD: PERVEJ ISLAM"
-
-// const trailUser =[
-//   {
-//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-//     name:"MD: PERVEJ ISLAM",
-//     time:"1:35PM",
-//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta nam nisi culpa quisquam eos."
-//   },
-//   {
-//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-//     name:"MD: OMOR ALI",
-//     time:"03:05AM",
-//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae"
-//   },
-//   {
-//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-//     name:"MD: PERVEJ ISLAM",
-//     time:"07:32PM",
-//     text:" Lorem ipsum dolor sit, amet consectetur."
-//   },
-//   {
-//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-//     name:"MD: SADDADUL ISLAM SIAM",
-//     time:"08:13AM",
-//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta."
-//   },
-//   {
-//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-//     name:"MD: OMOR ALI",
-//     time:"03:05AM",
-//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae"
-//   },
-//   {
-//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-//     name:"MD: PERVEJ ISLAM",
-//     time:"07:32PM",
-//     text:" Lorem ipsum dolor sit, amet consectetur."
-//   },
-//   {
-//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU",
-//     name:"MD: SADDADUL ISLAM SIAM",
-//     time:"08:13AM",
-//     text:" Lorem ipsum dolor sit, amet consectetur adipisicing elit. At reiciendis impedit vero quae, vitae soluta."
-//   }
-// ]
-
-
-
-
-
-
 let socket;
 const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";
 
@@ -83,9 +28,6 @@ const Chat = () => {
 
 
   const users = useSelector((state) => state.states.user);
-  // console.log(users);
-
-
 
 
   useEffect(() => {
@@ -125,7 +67,7 @@ const Chat = () => {
     <div className="bg-neutral-100 dark:bg-gray-900">
      
         <Navigation />
-      <div className="border p-5 bg-white rounded">
+      <div className="p-5  rounded">
         <div
           style={{ height: "80vh" }}
           className=" p-3 overflow-y-scroll scrollbar-0"
@@ -138,10 +80,10 @@ const Chat = () => {
                 <div className="">
                   <div className="flex">
                     <Image
-                      className=""
+                      className="rounded-full"
                       src={user?.img}
                       height={50}
-                      width={60}
+                      width={50}
                       alt="img"
                     />  
 
