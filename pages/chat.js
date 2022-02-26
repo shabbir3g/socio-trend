@@ -68,13 +68,10 @@ const Chat = () => {
      
         <Navigation />
       <div className="p-5  rounded">
+        <div className="chat-box-container font-mono">
         <div
           style={{ height: "80vh" }}
-          className=" p-3 overflow-y-scroll scrollbar-0"
-        >
-          
-           
-
+          className="p-3 bg-white overflow-y-scroll scrollbar-0">
           {messageList && messageList?.map((user,index)=>{return(
                 <div key={index} className={users?.displayName==user.user?'flex justify-end mt-5':'flex justify-start mt-5'}>
                 <div className="">
@@ -107,22 +104,14 @@ const Chat = () => {
                     </div>
                   </div>
                 
-                  <div className={users?.displayName===user.user? "mt-5 rounded w-5/6 p-2 bg-blue-800 text-white font-serif": "mt-5 rounded w-5/6 p-2 bg-gray-200 text-black  font-serif"}>
+                  <div className={users?.displayName===user.user? "mt-5 rounded w-5/6 p-2 bg-blue-800 text-white font-sans": "mt-5 rounded w-5/6 p-2 bg-gray-200 text-black  font-serif"}>
                     {user.message}
                   </div>
                 </div>
                 </div>
             )})}
-
         </div>
 
-
-
-
-
-
-        {/* </div> */}
-        {/* message-sending-field */}
         <div className="pt-5">
           <div className="flex">
             <svg
@@ -164,6 +153,7 @@ const Chat = () => {
               />
             </svg>
           </div>
+        </div>
         </div>
       </div>
     </div>
