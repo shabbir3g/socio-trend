@@ -1,7 +1,9 @@
+import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import React,  { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
+import Navigation from "../components/Share/Navigation";
 
 let socket;
 const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";
@@ -44,7 +46,9 @@ const Chat = () => {
   }
 
   return (
-    <div style={{ height: "100vh" }} className="bg-slate-100 p-10 pb-10">
+    <div className="bg-neutral-100 dark:bg-gray-900">
+     
+        <Navigation />
       <div className="border p-5 bg-white rounded">
         <div
           style={{ height: "80vh" }}
