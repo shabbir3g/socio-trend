@@ -96,3 +96,9 @@ ul.left-sidebar li:hover {
   width: 37px;
   text-align: center;
 }
+.contact-users {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}

@@ -12,7 +12,7 @@ const Profile = () => {
   const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
+    fetch(`/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setData(data));
   }, [user?.email]);
@@ -29,7 +29,6 @@ const Profile = () => {
         </div>
 
         <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 h-[91vh] overflow-y-scroll scrollbar	">
-          {/* scrollbar-hide hover:scrollbar-default */}
           <div className="md:w-3/4 w-full mx-auto">
             <UserProfile data={data} />
           </div>
@@ -44,13 +43,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-// export async function getStaticProps() {
-
-//   const res = await fetch(`http://localhost:3000/api/user?email=${user.email}`);
-//   const data = await res.json();
-
-//   return {
-//     props: { data },
-//   };
-// }

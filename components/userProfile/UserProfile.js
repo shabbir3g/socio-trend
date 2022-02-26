@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import UserSinglePost from "./UserSinglePost";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
+import Link from "next/link";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const UserProfile = ({ data }) => {
+  const user = useSelector((state) => state.states.user);
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
     const editDetailsBtn = document.getElementById("edit-about");
@@ -32,6 +38,13 @@ const UserProfile = ({ data }) => {
     closeProfileModalBtn.addEventListener("click", toggleModalProfile);
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`/api/post/userPost?email=${user.email}`)
+      .then((data) => {
+        setPosts(data.data);
+      });
+  }, [user.email]);
   return (
     <>
       {/* Profile banner */}
@@ -53,7 +66,7 @@ const UserProfile = ({ data }) => {
                 alt="user profile photo"
                 width={100}
                 height={100}
-                className="rounded-full ring-4 ring-gray-900"
+                className="rounded-full"
               />
             </div>
             <div className="ml-6">
@@ -74,8 +87,12 @@ const UserProfile = ({ data }) => {
         </div>
         <hr />
         <div className="flex ">
-          <p className="pr-8 pt-3 font-semibold">Post</p>
-          <p className="pr-8 pt-3 font-semibold">Friends</p>
+          <Link href="">
+            <a className="pr-8 pt-3 font-semibold">Post</a>
+          </Link>
+          <Link href="/friends">
+            <a className="pr-8 pt-3 font-semibold">Friends</a>
+          </Link>
         </div>
       </div>
 
@@ -167,9 +184,10 @@ const UserProfile = ({ data }) => {
               </div>
             </div>
           </div>
-          <UserSinglePost />
-          <UserSinglePost />
-          <UserSinglePost />
+          
+          {posts.map((post) => (
+            <UserSinglePost key={post._id} post={post} />
+          ))}
         </div>
       </div>
       {/* Edit Profile Modal */}
