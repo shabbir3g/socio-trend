@@ -10,6 +10,7 @@ const MiddleLeftBar = () => {
   // console.log(posts);
   const user = useSelector((state) => state.states.user);
 
+
   useEffect(() => {
     const createPostModal = document.getElementById("create-post-modal");
     const postBtn = document.getElementById("post-modal");
