@@ -67,6 +67,7 @@ const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";
 const Chat = () => {
   const inputRef = useRef();
 
+  const [room ,setRoom] = useState(0);
   const [message, setMessage] = useState("")
   const [messageList, setMessageList] = useState([]);
 
@@ -75,7 +76,10 @@ const Chat = () => {
   const time = new Date().toLocaleString();
   const strTime = time.split(",")
 
-
+   useEffect(() => {
+    const userRoom = prompt("enter room number to chat")
+    setRoom(userRoom)
+   },[])
 
 
   const users = useSelector((state) => state.states.user);
@@ -96,7 +100,7 @@ const Chat = () => {
 
   const sendMessage = async () => {
     let messageContent = {
-      room: users?.email,
+      room: room,
       content: {
         user: users?.displayName,
         message,
@@ -113,8 +117,8 @@ const Chat = () => {
 
 
   useEffect(() => {
-    socket.emit("join_room", users?.email);   
-  },[users?.email])
+    socket.emit("join_room", room);   
+  },[room])
 
   console.log(messageList);
   return (
