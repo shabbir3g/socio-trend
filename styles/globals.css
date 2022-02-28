@@ -102,3 +102,8 @@ ul.left-sidebar li:hover {
   text-overflow: ellipsis;
   max-width: 60%;
 }
+.chat-box-container {
+  width: 50%;
+  margin: auto;
+  font-family: tahoma !important;
+}

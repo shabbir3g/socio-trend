@@ -33,7 +33,7 @@ const MiddleRightBar = () => {
             </li>
             <li className="mb-3 flex items-center">
               <div className="mr-3">
-                <Image src="/user-8.png" width={45} height={45} alt="user" />
+                <Image src="/user-8.png" width="45px" height="45px" alt="user" />
               </div>
               <div>
                 <p className="font-medium">Anthony Daugloi</p>

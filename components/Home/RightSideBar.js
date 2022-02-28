@@ -4,10 +4,7 @@ import Image from "next/image";
 
 const RightSideBar = () => {
   const [users, setUsers] = useState([]);
-
-
- 
-
+  
   useEffect(() => {
     axios
       .get("/api/user/allUsers")

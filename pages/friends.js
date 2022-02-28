@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import Navigation from "../components/Share/Navigation";
 import AllFriends from "../components/FriendsCom/AllFriends";
 import Head from "next/head";
@@ -6,6 +6,10 @@ import LeftSideBar from "../components/Home/LeftSideBar";
 import RightSideBar from "../components/Home/RightSideBar";
 
 const friends = () => {
+
+  
+
+
   return (
     <>
       <Head>
@@ -30,12 +34,6 @@ const friends = () => {
         </div>
       </div>
     </>
-    // <div>
-    //   <Navigation />
-    //   <div>
-    //     <AllFriends />
-    //   </div>
-    // </div>
   );
 };
 

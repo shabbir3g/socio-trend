@@ -10,6 +10,7 @@ const MiddleLeftBar = () => {
   // console.log(posts);
   const user = useSelector((state) => state.states.user);
 
+
   useEffect(() => {
     const createPostModal = document.getElementById("create-post-modal");
     const postBtn = document.getElementById("post-modal");
@@ -23,17 +24,24 @@ const MiddleLeftBar = () => {
     closePostModalBtn?.addEventListener("click", togglePostModal);
   }, []);
 
-  useEffect(() => {
+ /*  useEffect(() => {
     fetch(`/api/user?email=${user?.email}`)
-      .then((result) => result.json())
-      .then((data) => setUserData(data));
+      .then(result => result.json())
+      .then(data => setUserData(data))
+  }, [user?.email]); */
+
+  useEffect(() => {
+    axios.get(`/api/user?email=${user?.email}`)
+    .then((data) => {
+      setUserData(data?.data)
+    });
   }, [user?.email]);
 
   useEffect(() => {
     axios.get(`/api/post`).then((data) => {
       setPosts(data?.data);
     });
-  }, [user.email]);
+  }, [user?.email]);
 
   return (
     <div>
