@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import UserSinglePost from "./UserSinglePost";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
 import Link from "next/link";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import SinglePost from "../Home/SinglePost";
 
 const UserProfile = ({ data }) => {
   const user = useSelector((state) => state.states.user);
   const [posts, setPosts] = useState([]);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
@@ -45,6 +46,11 @@ const UserProfile = ({ data }) => {
         setPosts(data.data);
       });
   }, [user.email]);
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
+      .then((result) => result.json())
+      .then((data) => setUserData(data));
+  }, [user?.email]);
   return (
     <>
       {/* Profile banner */}
@@ -179,14 +185,13 @@ const UserProfile = ({ data }) => {
                   id="files"
                   accept="image/*"
                   className="hidden"
-                  // onChange={(e) => console.log(e.target.files[0])}
                 />
               </div>
             </div>
           </div>
-          
+
           {posts.map((post) => (
-            <UserSinglePost key={post._id} post={post} />
+            <SinglePost key={post._id} post={post} userData={userData} />
           ))}
         </div>
       </div>

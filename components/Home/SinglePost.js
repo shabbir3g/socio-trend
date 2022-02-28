@@ -118,11 +118,10 @@ const SinglePost = ({ post, userData }) => {
           </div>
           <div className="w-full mx-2">
             <textarea
-              // onChange={(e) => setComment(e.target.value)}
               onChange={handleCommentChange}
               name=""
               id=""
-              className="w-full h-10 bg-slate-700 rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
+              className="w-full h-10 dark:bg-slate-700 bg-slate-300 rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
               placeholder="Wright a comment ..."
             ></textarea>
           </div>
@@ -133,8 +132,8 @@ const SinglePost = ({ post, userData }) => {
           </div>
         </div>
       </form>
-      {dbComments?.map((comment) => (
-        <Comments key={comment.Comment} comment={comment} />
+      {dbComments?.map((comment, index) => (
+        <Comments key={index} comment={comment} />
       ))}
     </div>
   );
