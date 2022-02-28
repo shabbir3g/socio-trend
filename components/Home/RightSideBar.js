@@ -4,13 +4,12 @@ import Image from "next/image";
 
 const RightSideBar = () => {
   const [users, setUsers] = useState([]);
-
+  
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/user/allUsers")
+      .get("/api/user/allUsers")
       .then(({ data }) => setUsers(data));
   }, []);
-  console.log("user is", users);
   return (
     <div className="bg-neutral-100 dark:bg-gray-900">
       <div className="bg-white dark:bg-gray-800 drop-shadow-sm p-3 rounded-lg">
@@ -18,16 +17,20 @@ const RightSideBar = () => {
         <ul>
           {users.map((user) => (
             <li className="mb-3" key={user._id}>
-              <a href="" className="flex items-center">
+              <a href="#" className="flex items-center">
                 <Image
-                  src={user.photoURL}
-                  width={30}
-                  height={30}
+                  src={
+                    user.photoURL ||
+                    "http://uitheme.net/sociala/images/profile-4.png"
+                  }
+                  width="30"
+                  height="30"
                   alt="user"
                   className="rounded-full"
                 />
-                <span className="ml-3">{user.displayName}</span>
+                <span className="ml-3 contact-users" title={user.displayName}>{user.displayName}</span>
                 <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
+                {/* <span className="p-1 rounded-full bg-yellow-500 ml-auto"></span> */}
               </a>
             </li>
           ))}

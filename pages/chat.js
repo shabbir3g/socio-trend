@@ -1,23 +1,34 @@
+import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import React,  { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
+import Navigation from "../components/Share/Navigation";
+
 
 let socket;
 const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";
 
 const Chat = () => {
-
   const inputRef = useRef();
 
+  const [room ,setRoom] = useState(0);
   const [message, setMessage] = useState("")
   const [messageList, setMessageList] = useState([]);
-  console.log(messageList);
 
-  const user = "Parvez"
+
+
+  const time = new Date().toLocaleString();
+  const strTime = time.split(",")
+
+   useEffect(() => {
+    const userRoom = prompt("enter room number to chat")
+    setRoom(userRoom)
+   },[])
+
 
   const users = useSelector((state) => state.states.user);
-  console.log(users);
+
 
   useEffect(() => {
     socket = io(CONNECTION_PORT);
@@ -31,9 +42,12 @@ const Chat = () => {
 
   const sendMessage = async () => {
     let messageContent = {
+      room: room,
       content: {
-        user,
+        user: users?.displayName,
         message,
+        img: users?.photoURL  || "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Creative-Tail-People-man-2.svg/768px-Creative-Tail-People-man-2.svg.png",
+        time: strTime[1],
       },
     };
 
@@ -43,184 +57,61 @@ const Chat = () => {
     inputRef.current.value= '';
   }
 
+
+  useEffect(() => {
+    socket.emit("join_room", room);   
+  },[room])
+
+  console.log(messageList);
   return (
-    <div style={{ height: "100vh" }} className="bg-slate-100 p-10 pb-10">
-      <div className="border p-5 bg-white rounded">
+    <div className="bg-neutral-100 dark:bg-gray-900">
+     
+        <Navigation />
+      <div className="p-5  rounded">
+        <div className="chat-box-container font-mono">
         <div
           style={{ height: "80vh" }}
-          className=" p-3 overflow-y-scroll scrollbar-0"
-        >
-          {/* each-message-content */}
-          <div className="flex justify-start mt-5">
-            <div className="">
-              {/* profile-section */}
-              <div className="flex">
-                <Image
-                  className=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU"
-                  height={50}
-                  width={60}
-                  alt="img"
-                />  
+          className="p-3 bg-white overflow-y-scroll scrollbar-0">
+          {messageList && messageList?.map((user,index)=>{return(
+                <div key={index} className={users?.displayName==user.user?'flex justify-end mt-5':'flex justify-start mt-5'}>
+                <div className="">
+                  <div className="flex">
+                    <Image
+                      className="rounded-full"
+                      src={user?.img}
+                      height={50}
+                      width={50}
+                      alt="img"
+                    />  
 
-                <div className=" pl-4">
-                  <p className="font-bold">Thomas hill</p>
-                  <p className="text-slate-400 text-sm font-bold">1:35PM</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+                    <div className=" pl-4">
+                      <p className="font-bold">{user?.name}</p>
+                      <p className="text-slate-400 text-sm font-bold">{user?.time}</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                
+                  <div className={users?.displayName===user.user? "mt-5 rounded w-5/6 p-2 bg-blue-800 text-white font-sans": "mt-5 rounded w-5/6 p-2 bg-gray-200 text-black  font-serif"}>
+                    {user.message}
+                  </div>
                 </div>
-              </div>
-              {/* content-section */}
-              <div className="mt-5 rounded w-5/6 p-2 bg-indigo-300 text-white">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. At
-                reiciendis impedit vero quae, vitae soluta nam nisi culpa
-                quisquam eos.
-              </div>
-            </div>
-          </div>
-
-          {/* each-message-content */}
-          <div className="flex justify-start mt-5">
-            <div className="">
-              {/* profile-section */}
-              <div className="flex">
-                <Image
-                  className=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU"
-                  height={50}
-                  width={60}
-                  alt="img"
-                />
-
-                <div className=" pl-4">
-                  <p className="font-bold">Thomas hill</p>
-                  <p className="text-slate-400 text-sm font-bold">1:35PM</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
                 </div>
-              </div>
-              {/* content-section */}
-              <div className="mt-5 rounded p-2 text-white">
-                <Image
-                  className=""
-                  src="https://ichef.bbci.co.uk/news/976/cpsprodpb/C448/production/_117684205_lotus.jpg"
-                  height={200}
-                  width={400}
-                  alt="img"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* each-message-content */}
-          <div className="flex justify-end mt-5">
-            <div className="">
-              {/* profile-section */}
-              <div className="flex">
-                <Image
-                  className=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU"
-                  height={50}
-                  width={60}
-                  alt="img"
-                />
-
-                <div className=" pl-4">
-                  <p className="font-bold">Thomas hill</p>
-                  <p className="text-slate-400 text-sm font-bold">1:35PM</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-              </div>
-              {/* content-section */}
-              <div className="mt-5 rounded p-2 bg-indigo-700 text-white">
-                something
-              </div>
-            </div>
-          </div>
-
-          {/* each-message-content */}
-          <div className="flex justify-start mt-5">
-            <div className="">
-              {/* profile-section */}
-              <div className="flex">
-                <Image
-                  className=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&usqp=CAU"
-                  height={50}
-                  width={60}
-                  alt="img"
-                />
-
-                <div className=" pl-4">
-                  <p className="font-bold">Thomas hill</p>
-                  <p className="text-slate-400 text-sm font-bold">1:35PM</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-              </div>
-              {/* content-section */}
-              <div className="mt-5 rounded p-2 text-white">
-                <Image
-                  className=""
-                  src="https://ichef.bbci.co.uk/news/976/cpsprodpb/C448/production/_117684205_lotus.jpg"
-                  height={200}
-                  width={400}
-                  alt="img"
-                />
-              </div>
-            </div>
-          </div>
+            )})}
         </div>
-        {/* message-sending-field */}
+
         <div className="pt-5">
           <div className="flex">
             <svg
@@ -262,6 +153,7 @@ const Chat = () => {
               />
             </svg>
           </div>
+        </div>
         </div>
       </div>
     </div>

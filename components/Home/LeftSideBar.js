@@ -9,7 +9,7 @@ const LeftSideBar = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/user/allUsers")
+      .get("/api/user/allUsers")
       .then(({ data }) => setUsers(data));
   }, []);
   return (
@@ -101,7 +101,7 @@ const LeftSideBar = () => {
               </a>
             </li>
             <li>
-              <Link href="/chat">
+              <Link href="/chatting">
                 <a>
                   <i className="fa-solid fa-comment p-3 text-gray-400 text-2xl"></i>{" "}
                   Chat

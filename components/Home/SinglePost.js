@@ -7,12 +7,17 @@ import Comments from "./Comments";
 const SinglePost = ({ post, userData }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/post/comment?id=${post._id}`)
-      .then(({ data }) => setDbComments(data));
-  }, [post._id, dbComments]);
+      .get(`/api/post/comment?id=${post._id}`)
+      // .then(({ data }) => setDbComments(data));
+  }, [status, post._id]);
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -23,10 +28,10 @@ const SinglePost = ({ post, userData }) => {
     const postComments = [...dbComments, comments];
     await axios
       .put(
-        `http://localhost:3000/api/post/comment?id=${post._id}`,
-        postComments // dbComments
+        `/api/post/comment?id=${post._id}`,
+        postComments
       )
-      .then(({ data }) => console.log(data));
+      .then((data) => setStatus(data.status));
   };
 
   return (
@@ -113,11 +118,12 @@ const SinglePost = ({ post, userData }) => {
           </div>
           <div className="w-full mx-2">
             <textarea
-              onChange={(e) => setComment(e.target.value)}
+              // onChange={(e) => setComment(e.target.value)}
+              onChange={handleCommentChange}
               name=""
               id=""
-              className="w-full h-10 bg-slate-700 rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
-              placeholder="Wright a comment ..."
+              className="w-full h-10 dark:bg-slate-700 bg-slate-200 focus:outline-none rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
+              placeholder="Write a comment ..."
             ></textarea>
           </div>
           <div className="w-10 flex items-center justify-center">
