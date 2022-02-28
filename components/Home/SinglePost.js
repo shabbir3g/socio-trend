@@ -12,7 +12,7 @@ const SinglePost = ({ post, userData }) => {
   useEffect(() => {
     axios
       .get(`/api/post/comment?id=${post._id}`)
-      .then(({ data }) => setDbComments(data));
+      // .then(({ data }) => setDbComments(data));
   }, [status, post._id]);
 
   const handleCommentChange = (e) => {

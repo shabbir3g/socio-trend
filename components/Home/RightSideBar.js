@@ -10,7 +10,6 @@ const RightSideBar = () => {
       .get("/api/user/allUsers")
       .then(({ data }) => setUsers(data));
   }, []);
-
   return (
     <div className="bg-neutral-100 dark:bg-gray-900">
       <div className="bg-white dark:bg-gray-800 drop-shadow-sm p-3 rounded-lg">

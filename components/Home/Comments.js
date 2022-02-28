@@ -9,8 +9,8 @@ const Comments = ({ comment }) => {
           className="rounded-full"
           src={comment.photoURL}
           alt=""
-          height="32"
-          width="32"
+          height="32px"
+          width="32px"
         />
       </div>
       <div className="dark:bg-gray-700 bg-gray-200 px-3 py-2 rounded-2xl ml-2">
