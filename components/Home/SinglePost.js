@@ -66,7 +66,8 @@ const SinglePost = ({ post, userData }) => {
         </p>
       </div>
       <div className="pt-3">
-        <Image src={post.img} height={350} width={600} alt="" />
+      { post.img ? <Image src={post.img} height="350" width="600" alt="" /> : ""}
+       
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">

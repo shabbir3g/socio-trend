@@ -11,6 +11,8 @@ const UserProfile = ({ data }) => {
   const user = useSelector((state) => state.states.user);
   const [posts, setPosts] = useState([]);
 
+ 
+
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
     const editDetailsBtn = document.getElementById("edit-about");
@@ -42,9 +44,11 @@ const UserProfile = ({ data }) => {
     axios
       .get(`/api/post/userPost?email=${user.email}`)
       .then((data) => {
-        setPosts(data.data);
+        setPosts(data?.data);
       });
   }, [user.email]);
+
+
   return (
     <>
       {/* Profile banner */}

@@ -5,6 +5,29 @@ import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
+
+  // for shuffle post 
+
+  function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+  
+
+
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
   // console.log(posts);
@@ -24,11 +47,6 @@ const MiddleLeftBar = () => {
     closePostModalBtn?.addEventListener("click", togglePostModal);
   }, []);
 
- /*  useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
-      .then(result => result.json())
-      .then(data => setUserData(data))
-  }, [user?.email]); */
 
   useEffect(() => {
     axios.get(`/api/user?email=${user?.email}`)
@@ -80,8 +98,9 @@ const MiddleLeftBar = () => {
           </div>
         </div>
       </div>
+      
       <PostModal userData={userData} />
-      {posts.map((post) => (
+      {shuffle(posts).map((post) => (
         <SinglePost key={post._id} post={post} userData={userData} />
       ))}
     </div>
