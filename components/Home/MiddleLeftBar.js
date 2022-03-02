@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Base_URL from "../../utilities/BASE_URL";
 import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
