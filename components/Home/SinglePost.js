@@ -27,10 +27,7 @@ const SinglePost = ({ post, userData }) => {
     comments.displayName = userData.displayName;
     const postComments = [...dbComments, comments];
     await axios
-      .put(
-        `/api/post/comment?id=${post._id}`,
-        postComments
-      )
+      .put(`/api/post/comment?id=${post._id}`, postComments)
       .then((data) => setStatus(data.status));
   };
 
@@ -66,7 +63,15 @@ const SinglePost = ({ post, userData }) => {
         </p>
       </div>
       <div className="pt-3">
-        <Image src={post.img} height={350} width={600} alt="" />
+        <Image
+          src={
+            post.img ||
+            "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
+          }
+          height={350}
+          width={600}
+          alt=""
+        />
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
