@@ -40,12 +40,12 @@ const UserProfile = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    axios.get(`https://socio-trend.vercel.app/api/post/userPost?email=${user.email}`).then((data) => {
+    axios.get(`/api/post/userPost?email=${user.email}`).then((data) => {
       setPosts(data.data);
     });
   }, [user.email]);
   useEffect(() => {
-    fetch(`https://socio-trend.vercel.app/api/user?email=${user?.email}`)
+    fetch(`/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setUserData(data));
   }, [user?.email]);

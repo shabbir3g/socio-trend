@@ -48,13 +48,13 @@ const MiddleLeftBar = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`https://socio-trend.vercel.app/api/user?email=${user?.email}`).then((data) => {
+    axios.get(`/api/user?email=${user?.email}`).then((data) => {
       setUserData(data?.data);
     });
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`https://socio-trend.vercel.app/api/post`).then((data) => setPosts(data?.data));
+    axios.get(`/api/post`).then((data) => setPosts(data?.data));
   }, [user.email, isLike]);
 
   return (
