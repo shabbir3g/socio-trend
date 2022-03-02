@@ -25,15 +25,13 @@ const MiddleLeftBar = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
-      .then((result) => result.json())
-      .then((data) => setUserData(data));
+    axios.get(`/api/user?email=${user?.email}`).then((data) => {
+      setUserData(data?.data);
+    });
   }, [user?.email]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/post`)
-      .then((data) => setPosts(data?.data));
+    axios.get(`/api/post`).then((data) => setPosts(data?.data));
   }, [user.email, isLike]);
 
   return (

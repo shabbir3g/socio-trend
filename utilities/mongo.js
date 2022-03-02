@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.tg4nc.mongodb.net/socioTrend?retryWrites=true&w=majority`;
 
 if (!MONGO_URL) {
   throw new Error(
@@ -13,7 +13,7 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
 
-async function dbConnect() {
+async function getServerSideProps() {
   if (cached.conn) {
     return cached.conn;
   }
@@ -31,4 +31,4 @@ async function dbConnect() {
   return cached.conn;
 }
 
-export default dbConnect;
+export default getServerSideProps;

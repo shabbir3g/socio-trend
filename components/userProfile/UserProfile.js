@@ -40,14 +40,12 @@ const UserProfile = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/post/userPost?email=${user.email}`)
-      .then((data) => {
-        setPosts(data.data);
-      });
+    axios.get(`/api/post/userPost?email=${user.email}`).then((data) => {
+      setPosts(data.data);
+    });
   }, [user.email]);
   useEffect(() => {
-    fetch(`http://localhost:3000/api/user?email=${user?.email}`)
+    fetch(`/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setUserData(data));
   }, [user?.email]);

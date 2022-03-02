@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 
+
 # testing
 /coverage
 
@@ -14,6 +15,9 @@
 
 # production
 /build
+
+# environment_variable
+/.env
 
 # misc
 .DS_Store

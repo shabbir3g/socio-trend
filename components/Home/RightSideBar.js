@@ -4,10 +4,10 @@ import Image from "next/image";
 
 const RightSideBar = () => {
   const [users, setUsers] = useState([]);
-
+  
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/user/allUsers")
+      .get("/api/user/allUsers")
       .then(({ data }) => setUsers(data));
   }, []);
   return (
@@ -28,8 +28,9 @@ const RightSideBar = () => {
                   alt="user"
                   className="rounded-full"
                 />
-                <span className="ml-3">{user.displayName}</span>
+                <span className="ml-3 contact-users" title={user.displayName}>{user.displayName}</span>
                 <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
+                {/* <span className="p-1 rounded-full bg-yellow-500 ml-auto"></span> */}
               </a>
             </li>
           ))}

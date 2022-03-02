@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SingleFrends from "./SingleFrends";
+import axios from "axios";
+
 
 const friends = [
   {
@@ -85,6 +87,14 @@ const AllFrends = () => {
   const [members, setMembers] = useState([]);
   const [searchMember, setSearchMember] = useState([]);
 
+  const [users, setUsers] = useState([]);
+  
+  useEffect(() => {
+    axios
+      .get("/api/user/allUsers")
+      .then(({ data }) => setUsers(data));
+  }, []);
+
   useEffect(() => {
     setMembers(friends);
     setSearchMember(friends);
@@ -134,8 +144,8 @@ const AllFrends = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 xs:grid-cols-12 sm:grid-cols-12 md:grid-cols-12 gap-3">
-          {searchMember.map((friend) => (
-            <SingleFrends key={friend.id} friend={friend}></SingleFrends>
+          {users.map((user) => (
+            <SingleFrends key={user.id} user={user}></SingleFrends>
           ))}
         </div>
       </div>
