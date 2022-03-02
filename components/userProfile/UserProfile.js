@@ -12,8 +12,6 @@ const UserProfile = ({ data }) => {
   const [posts, setPosts] = useState([]);
   const [userData, setUserData] = useState({});
 
- 
-
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
     const editDetailsBtn = document.getElementById("edit-about");
