@@ -45,7 +45,7 @@ const UserProfile = ({ data }) => {
     });
   }, [user.email]);
   useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
+    fetch(`https://socio-trend.vercel.app/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setUserData(data));
   }, [user?.email]);

@@ -11,7 +11,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
 
   useEffect(() => {
     axios
-      .get(`/api/post/comment?id=${post._id}`)
+      .get(`https://socio-trend.vercel.app/api/post/comment?id=${post._id}`)
       .then(({ data }) => setDbComments(data));
   }, [status, post._id]);
 
@@ -27,14 +27,14 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
     comments.displayName = userData.displayName;
     const postComments = [...dbComments, comments];
     await axios
-      .put(`/api/post/comment?id=${post._id}`, postComments)
+      .put(`https://socio-trend.vercel.app/api/post/comment?id=${post._id}`, postComments)
       .then((data) => setStatus(data.status));
   };
 
   const handleLike = async () => {
     const data = { userId: userData._id };
     await axios
-      .put(`/api/post/like?id=${post._id}`, data)
+      .put(`https://socio-trend.vercel.app/api/post/like?id=${post._id}`, data)
       .then((data) => setStatus(data));
     setIsLike(!isLike);
   };
