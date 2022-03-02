@@ -5,6 +5,29 @@ import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
+
+  // for shuffle post 
+
+  function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+  
+
+
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
   const [isLike, setIsLike] = useState(false);
@@ -45,6 +68,7 @@ const MiddleLeftBar = () => {
           </a>
         </div>
         <textarea
+          
           className="border-2 rounded w-full dark:bg-gray-800 p-2"
           onClick={() => console.log("click")}
           name=""
@@ -71,6 +95,7 @@ const MiddleLeftBar = () => {
           </div>
         </div>
       </div>
+      
       <PostModal userData={userData} />
       {posts.map((post) => (
         <SinglePost
