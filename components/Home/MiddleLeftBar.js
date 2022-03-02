@@ -55,7 +55,7 @@ const MiddleLeftBar = () => {
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`/api/post`).then((data) => setPosts(data?.data));
+    axios.get(`${Base_URL}/api/post`).then((data) => setPosts(data?.data));
   }, [user.email, isLike]);
 
   return (

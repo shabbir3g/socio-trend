@@ -5,6 +5,7 @@ import LeftSideBar from "../components/Home/LeftSideBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import UserProfile from "../components/userProfile/UserProfile";
+import Base_URL from "../utilities/BASE_URL";
 
 const Profile = () => {
   const [data, setData] = useState({});
@@ -12,7 +13,7 @@ const Profile = () => {
   const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
+    fetch(`${Base_URL}/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setData(data));
   }, [user?.email]);

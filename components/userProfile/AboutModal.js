@@ -2,6 +2,7 @@ import { data } from "autoprefixer";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import Base_URL from "../../utilities/BASE_URL";
 
 const AboutModal = ({ data }) => {
   const user = useSelector((state) => state.states.user);
@@ -9,7 +10,7 @@ const AboutModal = ({ data }) => {
 
   const onSubmit = (data) => {
     console.log(data);
-    fetch(`/api/user/updateAbout?email=${user.email}`, {
+    fetch(`${Base_URL}/api/user/updateAbout?email=${user.email}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

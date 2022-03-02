@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Base_URL from "../../utilities/BASE_URL";
 
 const RightSideBar = () => {
   const [users, setUsers] = useState([]);
   
   useEffect(() => {
     axios
-      .get("/api/user/allUsers")
+      .get(`${Base_URL}/api/user/allUsers`)
       .then(({ data }) => setUsers(data));
   }, []);
   return (
