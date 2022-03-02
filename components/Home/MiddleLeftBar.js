@@ -48,7 +48,7 @@ const MiddleLeftBar = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`/api/user?email=${user?.email}`).then((data) => {
+    axios.get(`${Base_URL}/api/user?email=${user?.email}`).then((data) => {
       setUserData(data?.data);
     });
   }, [user?.email]);
