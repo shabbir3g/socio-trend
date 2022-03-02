@@ -13,8 +13,6 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
 
-
-
 async function getServerSideProps() {
   if (cached.conn) {
     return cached.conn;

@@ -12,8 +12,8 @@ const Comments = ({ comment }) => {
             "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
           }
           alt=""
-          height="32"
-          width="32"
+          height="32px"
+          width="32px"
         />
       </div>
       <div className="dark:bg-slate-700 bg-slate-200 px-3 py-2 rounded-2xl ml-2">

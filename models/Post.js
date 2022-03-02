@@ -27,10 +27,10 @@ const PostSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    love: {
-      type: Array,
-      default: [],
-    },
+    // love: {
+    //   type: Array,
+    //   default: [],
+    // },
     comment: {
       type: Array,
       default: [],
