@@ -26,12 +26,18 @@ const SinglePost = ({ post, userData }) => {
     comments.comment = comment;
     comments.displayName = userData.displayName;
     const postComments = [...dbComments, comments];
-    await axios
+    if(comment){
+        await axios
       .put(
         `/api/post/comment?id=${post._id}`,
         postComments
       )
-      .then((data) => setStatus(data.status));
+      .then((data) => {
+        setStatus(data.status)
+        setComment("")
+      });
+    }
+  
   };
 
   return (

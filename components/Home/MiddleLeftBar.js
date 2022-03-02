@@ -72,6 +72,7 @@ const MiddleLeftBar = () => {
           </a>
         </div>
         <textarea
+          
           className="border-2 rounded w-full dark:bg-gray-800 p-2"
           onClick={() => console.log("click")}
           name=""
