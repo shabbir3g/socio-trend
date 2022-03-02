@@ -12,8 +12,6 @@ const UserProfile = ({ data }) => {
   const [posts, setPosts] = useState([]);
   const [userData, setUserData] = useState({});
 
- 
-
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
     const editDetailsBtn = document.getElementById("edit-about");
@@ -47,7 +45,7 @@ const UserProfile = ({ data }) => {
     });
   }, [user.email]);
   useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
+    fetch(`https://socio-trend.vercel.app/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setUserData(data));
   }, [user?.email]);
