@@ -16,7 +16,7 @@ const Navigation = () => {
   useEffect(() => setMounted(true), []);
   useEffect(() => {
     axios
-      .get(`/api/user?email=${reduxUser.email}`)
+      .get(`https://socio-trend.vercel.app/api/user?email=${reduxUser.email}`)
       .then(({ data }) => setDbUser(data));
   }, [reduxUser.email]);
 
