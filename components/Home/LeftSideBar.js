@@ -2,7 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import useFirebase from "../../firebase/useFirebase";
-import Base_URL from "../../utilities/BASE_URL";
+import baseUrl from "../../utilities/baseUrl";
 
 const LeftSideBar = () => {
   const [users, setUsers] = useState([]);
@@ -10,7 +10,7 @@ const LeftSideBar = () => {
 
   useEffect(() => {
     axios
-      .get(`${Base_URL}/api/user/allUsers`)
+      .get(`${baseUrl}/api/user/allUsers`)
       .then(({ data }) => setUsers(data));
   }, []);
   return (

@@ -19,7 +19,7 @@ import {
   setUser,
 } from "../redux/stateSlice/stateSlice";
 import { useRouter } from "next/router";
-import Base_URL from "../utilities/BASE_URL";
+import baseUrl from "../utilities/baseUrl";
 
 initializeFirebaseApp();
 const googleProvider = new GoogleAuthProvider();
@@ -135,7 +135,7 @@ const useFirebase = () => {
 
   // save user information
   const saveUser = (user, method) => {
-    fetch(`${Base_URL}/api/user`, {
+    fetch(`${baseUrl}/api/user`, {
       method: method,
       headers: { "content-Type": "application/json" },
       body: JSON.stringify(user),

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import NavigationSideBar from "./NavigationSideBar";
 import axios from "axios";
-import Base_URL from "../../utilities/BASE_URL";
+import baseUrl from "../../utilities/baseUrl";
 
 const Navigation = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -17,7 +17,7 @@ const Navigation = () => {
   useEffect(() => setMounted(true), []);
   useEffect(() => {
     axios
-      .get(`${Base_URL}/api/user?email=${reduxUser.email}`)
+      .get(`${baseUrl}/api/user?email=${reduxUser.email}`)
       .then(({ data }) => setDbUser(data));
   }, [reduxUser.email]);
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Base_URL from "../../utilities/BASE_URL";
+import baseUrl from "../../utilities/baseUrl";
 import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
@@ -49,13 +49,13 @@ const MiddleLeftBar = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`${Base_URL}/api/user?email=${user?.email}`).then((data) => {
+    axios.get(`${baseUrl}/api/user?email=${user?.email}`).then((data) => {
       setUserData(data?.data);
     });
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`${Base_URL}/api/post`).then((data) => setPosts(data?.data));
+    axios.get(`${baseUrl}/api/post`).then((data) => setPosts(data?.data));
   }, [user.email, isLike]);
 
   return (
