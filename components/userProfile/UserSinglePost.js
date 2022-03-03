@@ -1,8 +1,10 @@
 import Image from "next/image";
 import React from "react";
+import { connect } from "react-redux";
 import { format } from "timeago.js";
+import {addLike, removeLike} from "../../mod/els/like";
 
-const UserSinglePost = ({ post }) => {
+const UserSinglePost = ({ post, addLike, removeLike }) => {
   return (
     <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
       <div className="flex justify-between">
@@ -77,5 +79,9 @@ const UserSinglePost = ({ post }) => {
     </div>
   );
 };
+
+// export default connect (
+//   {addLike, removeLike}
+// )(PostItem)
 
 export default UserSinglePost;
