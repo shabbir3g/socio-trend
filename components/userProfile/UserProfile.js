@@ -6,6 +6,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import SinglePost from "../Home/SinglePost";
+import baseUrl from "../../utilities/baseUrl";
 
 const UserProfile = ({ data }) => {
   const user = useSelector((state) => state.states.user);
@@ -40,12 +41,12 @@ const UserProfile = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    axios.get(`/api/post/userPost?email=${user.email}`).then((data) => {
+    axios.get(`${baseUrl}/api/post/userPost?email=${user.email}`).then((data) => {
       setPosts(data.data);
     });
   }, [user.email]);
   useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
+    fetch(`${baseUrl}/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setUserData(data));
   }, [user?.email]);
