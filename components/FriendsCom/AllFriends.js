@@ -3,7 +3,6 @@ import SingleFrends from "./SingleFrends";
 import axios from "axios";
 import baseUrl from "../../utilities/baseUrl";
 
-
 const friends = [
   {
     id: 1,
@@ -89,7 +88,7 @@ const AllFrends = () => {
   const [searchMember, setSearchMember] = useState([]);
 
   const [users, setUsers] = useState([]);
-  
+
   useEffect(() => {
     axios
       .get(`${baseUrl}/api/user/allUsers`)

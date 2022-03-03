@@ -41,9 +41,11 @@ const UserProfile = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    axios.get(`${baseUrl}/api/post/userPost?email=${user.email}`).then((data) => {
-      setPosts(data.data);
-    });
+    axios
+      .get(`${baseUrl}/api/post/userPost?email=${user.email}`)
+      .then((data) => {
+        setPosts(data.data);
+      });
   }, [user.email]);
   useEffect(() => {
     fetch(`${baseUrl}/api/user?email=${user?.email}`)
