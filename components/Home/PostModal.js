@@ -30,7 +30,6 @@ const PostModal = ({ userData }) => {
         .then((res) => res.json())
         .then((result) => (data.img = result.url));
     }
-    // console.log(data);
 
     const response = await axios.post(`/api/post`, {
       data,
@@ -38,7 +37,6 @@ const PostModal = ({ userData }) => {
     if (response.status === 201) {
       alert("Updated Success");
     }
-    console.log(response);
   };
   return (
     <div
