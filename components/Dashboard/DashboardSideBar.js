@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 const DashboardSideBar = () => {
   // sidebar open and colose state
@@ -72,8 +72,8 @@ const DashboardSideBar = () => {
           <div
             className={
               sidebar
-                ? 'bg-black cursor-pointer fixed inset-0 opacity-70 visible '
-                : 'hidden opacity-0'
+                ? "bg-black cursor-pointer fixed inset-0 opacity-70 visible "
+                : "hidden opacity-0"
             }
             onClick={handleSidebar}
           ></div>
@@ -81,8 +81,8 @@ const DashboardSideBar = () => {
           <div
             className={
               sidebar
-                ? 'bg-white duration-300 fixed inset-y-0 py-4 left-0 transition-left w-64'
-                : 'bg-white duration-300 fixed inset-y-0 py-4 -left-full transition-left w-64'
+                ? "bg-white duration-300 fixed inset-y-0 py-4 left-0 transition-left w-64"
+                : "bg-white duration-300 fixed inset-y-0 py-4 -left-full transition-left w-64"
             }
           >
             <div className="bg-white fixed py-4 w-64 h-full rounded-md">
