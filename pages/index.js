@@ -56,9 +56,6 @@ export default function Home() {
             crossOrigin="anonymous"
             referrerPolicy="no-referrer"
           />
-          {
-            console.log(process.env.NODE_ENV)
-          }
         </Head>
         <Navigation />
         <div className="">

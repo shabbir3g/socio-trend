@@ -40,7 +40,7 @@ const PostModal = ({ userData }) => {
       alert("Updated Success");
     }
   };
-  
+
   return (
     <div
       className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10"

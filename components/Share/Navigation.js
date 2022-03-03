@@ -145,11 +145,9 @@ const Navigation = () => {
             </a>
           </Link>
           <Link href="/chat">
-          <a
-            className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 dark:text-white text-2xl"
-          >
-            <i className="far fa-comment-alt"></i>
-          </a>
+            <a className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 dark:text-white text-2xl">
+              <i className="far fa-comment-alt"></i>
+            </a>
           </Link>
           <a
             href="#"

@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { connect } from "react-redux";
 import { format } from "timeago.js";
-import {addLike, removeLike} from "../../mod/els/like";
+import { addLike, removeLike } from "../../mod/els/like";
 
 const UserSinglePost = ({ post, addLike, removeLike }) => {
   return (
@@ -34,10 +34,11 @@ const UserSinglePost = ({ post, addLike, removeLike }) => {
         </p>
       </div>
       <div className="pt-3">
-      
-      { post.img ? <Image src={post.img} height="350" width="600" alt="" /> : ""}
-            
-       
+        {post.img ? (
+          <Image src={post.img} height="350" width="600" alt="" />
+        ) : (
+          ""
+        )}
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
