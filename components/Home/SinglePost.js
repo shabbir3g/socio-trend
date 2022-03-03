@@ -4,7 +4,7 @@ import { format } from "timeago.js";
 import axios from "axios";
 import Comments from "./Comments";
 
-const SinglePost = ({ post, userData }) => {
+const SinglePost = ({ post, userData, setIsLike, isLike }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState(null);
@@ -31,6 +31,14 @@ const SinglePost = ({ post, userData }) => {
       .then((data) => setStatus(data.status));
   };
 
+  const handleLike = async () => {
+    const data = { userId: userData._id };
+    await axios
+      .put(`/api/post/like?id=${post._id}`, data)
+      .then((data) => setStatus(data));
+    setIsLike(!isLike);
+  };
+
   return (
     <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
       <div className="flex justify-between">
@@ -51,7 +59,7 @@ const SinglePost = ({ post, userData }) => {
           </div>
         </div>
         <div className="">
-          <div className="py-2 px-4 bg-gray-200 dark:bg-gray-600 rounded-full">
+          <div className="py-2 px-[18px] bg-gray-200 dark:bg-gray-600 rounded-full cursor-pointer">
             <i className="fa-solid fa-ellipsis-vertical dark:text-white text-black"></i>
           </div>
         </div>
@@ -63,20 +71,12 @@ const SinglePost = ({ post, userData }) => {
         </p>
       </div>
       <div className="pt-3">
-        <Image
-          src={
-            post.img ||
-            "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
-          }
-          height={350}
-          width={600}
-          alt=""
-        />
+        {post.img && <Image src={post.img} height={350} width={600} alt="" />}
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
-          <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full">
-            <button>
+          {/* <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full">
+            <button onClick={handleLike}>
               <Image
                 src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-like-notifications-justicon-flat-justicon.png"
                 alt=""
@@ -84,9 +84,9 @@ const SinglePost = ({ post, userData }) => {
                 width={25}
               />
             </button>
-          </span>
+          </span> */}
           <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full ml-1">
-            <button>
+            <button onClick={handleLike}>
               <Image
                 src="https://img.icons8.com/color/48/000000/like--v3.png"
                 alt=""
@@ -95,7 +95,7 @@ const SinglePost = ({ post, userData }) => {
               />
             </button>
           </span>
-          <span className="ml-3">{post.like} Like</span>
+          <span className="ml-3">{post.like.length} Like</span>
           <div className="ml-5 ">
             <button className="items-center flex">
               <i className="fa-regular fa-comment text-xl"></i>
@@ -123,12 +123,11 @@ const SinglePost = ({ post, userData }) => {
           </div>
           <div className="w-full mx-2">
             <textarea
-              // onChange={(e) => setComment(e.target.value)}
               onChange={handleCommentChange}
               name=""
               id=""
-              className="w-full h-10 dark:bg-slate-700 bg-slate-200 focus:outline-none rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
-              placeholder="Write a comment ..."
+              className="w-full h-10 dark:bg-slate-700 bg-slate-300 rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
+              placeholder="Wright a comment ..."
             ></textarea>
           </div>
           <div className="w-10 flex items-center justify-center">
@@ -138,8 +137,8 @@ const SinglePost = ({ post, userData }) => {
           </div>
         </div>
       </form>
-      {dbComments?.map((comment) => (
-        <Comments key={comment.Comment} comment={comment} />
+      {dbComments?.map((comment, index) => (
+        <Comments key={index} comment={comment} />
       ))}
     </div>
   );

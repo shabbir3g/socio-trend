@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import { format } from "timeago.js";
-// import {addLike, removeLike} from "../../mod/els/like";
+import {addLike, removeLike} from "../../mod/els/like";
 
 const UserSinglePost = ({ post, addLike, removeLike }) => {
   return (
