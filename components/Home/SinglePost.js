@@ -3,11 +3,17 @@ import Image from "next/image";
 import { format } from "timeago.js";
 import axios from "axios";
 import Comments from "./Comments";
+import { useSelector } from "react-redux";
 
 const SinglePost = ({ post, userData, setIsLike, isLike }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState(null);
+  const users = useSelector((state) => state.states.user);
+
+  // console.log(post.like[0].userId);
+  //console.log(users);
+  
 
   useEffect(() => {
     axios
@@ -18,6 +24,8 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
+
+ 
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -36,8 +44,10 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
     await axios
       .put(`/api/post/like?id=${post._id}`, data)
       .then((data) => setStatus(data));
-    setIsLike(!isLike);
+      setIsLike(!isLike);
   };
+
+
 
   return (
     <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
@@ -71,28 +81,25 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
         </p>
       </div>
       <div className="pt-3">
-        {post.img && <Image src={post.img} height={350} width={600} alt="" />}
+        {post.img && <Image className="user-post-image" src={post.img} height={350} width={600} alt="" />}
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
-          {/* <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full">
+          <span className="p-1 pb-0  rounded-full ml-1">
             <button onClick={handleLike}>
-              <Image
-                src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-like-notifications-justicon-flat-justicon.png"
+            { isLike ? <Image
+                src="/like.png"
                 alt=""
                 height={25}
                 width={25}
-              />
-            </button>
-          </span> */}
-          <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full ml-1">
-            <button onClick={handleLike}>
-              <Image
-                src="https://img.icons8.com/color/48/000000/like--v3.png"
-                alt=""
-                height={25}
-                width={25}
-              />
+              /> : <Image
+              src="/unlike.png"
+              alt=""
+              height={25}
+              width={25}
+            /> }
+              
+
             </button>
           </span>
           <span className="ml-3">{post.like.length} Like</span>
