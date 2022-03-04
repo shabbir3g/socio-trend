@@ -15,7 +15,7 @@ const Posts = () => {
         </div>
       </div>
       {/* nav */}
-      <div className="block no-scrollbar overflow-x-scroll">
+      <div className="block no-scrollbar overflow-x-scroll scrollbar-hide">
         <nav className="pl-2 flex space-x-6 border-b border-slate-800">
           <a
             href="#"

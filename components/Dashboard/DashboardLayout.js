@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
@@ -32,21 +33,11 @@ const navLinks = [
     href: '/admin/users',
   },
   {
-    name: 'Projects',
-    icon: <VscProject className="text-slate-100 mr-4 flex-shrink-0 h-6 w-6" />,
-    href: '/admin/projects',
-  },
-  {
     name: 'Posts',
     icon: (
       <BsPencilSquare className="text-slate-100 mr-4 flex-shrink-0 h-6 w-6" />
     ),
     href: '/admin/posts',
-  },
-  {
-    name: 'Reviews',
-    icon: <BsChatLeft className="text-slate-100 mr-4 flex-shrink-0 h-6 w-6" />,
-    href: '/admin/reviews',
   },
 ];
 
@@ -97,53 +88,13 @@ const DashboardLayout = ({
           </div>
 
           <Link href="/">
-            <a className="flex gap-2 font-medium items-center flex-shrink-0 leading-none px-4 text-xl text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                version="1.1"
-                className="h-8 w-8"
-                x="0"
-                y="0"
-                viewBox="0 0 511.99921 511"
-                style={{ 'enable-background': 'new 0 0 512 512' }}
-                xmlSpace="preserve"
-              >
-                <g>
-                  <path
-                    xmlns="http://www.w3.org/2000/svg"
-                    d="m428.53125 1.65625c-5.671875-2.351562-12.199219-1.050781-16.539062 3.289062l-364.277344 364.277344c-4.339844 4.339844-5.636719 10.867188-3.289063 16.539063 2.347657 5.671875 7.882813 9.367187 14.019531 9.367187h214.6875c4.023438 0 7.882813-1.601562 10.730469-4.445312l149.589844-149.589844c2.847656-2.847656 4.445313-6.707031 4.445313-10.734375v-214.683594c0-6.136719-3.699219-11.671875-9.367188-14.019531zm0 0"
-                    fill="rgb(94 234 212)"
-                    data-original="rgb(94 234 212)"
-                  ></path>
-                  <path
-                    xmlns="http://www.w3.org/2000/svg"
-                    d="m411.992188 4.945312-75.035157 75.03125c-4.351562 4.355469-5.644531 10.902344-3.269531 16.585938 2.371094 5.675781 7.941406 9.363281 14.097656 9.324219l149.132813-.929688c4.070312-.027343 7.867187-1.679687 10.636719-4.449219 1.394531-1.394531 2.527343-3.070312 3.308593-4.964843 2.324219-5.660157 1.019531-12.167969-3.308593-16.496094l-74.101563-74.101563c-5.925781-5.925781-15.535156-5.925781-21.460937 0zm0 0"
-                    fill="rgb(153 246 228)"
-                    data-original="rgb(153 246 228)"
-                  ></path>
-                  <path
-                    xmlns="http://www.w3.org/2000/svg"
-                    d="m411.992188 4.945312-161.015626 161.015626 128.804688 128.804687 53.671875-53.671875c2.84375-2.847656 4.445313-6.707031 4.445313-10.734375v-214.683594c0-6.136719-3.699219-11.671875-9.367188-14.019531-5.671875-2.351562-12.199219-1.050781-16.539062 3.289062zm0 0"
-                    fill="rgb(45 212 191)"
-                    data-original="rgb(45 212 191)"
-                  ></path>
-                  <path
-                    xmlns="http://www.w3.org/2000/svg"
-                    d="m229.863281 22.324219h-214.683593c-7.089844 0-13.371094 4.933593-14.875 12.132812-1.0625 5.089844.722656 10.359375 4.398437 14.03125l310.675781 310.675781 118.074219-118.070312c5.925781-5.929688 5.925781-15.539062 0-21.464844l-192.859375-192.855468c-2.847656-2.847657-6.707031-4.449219-10.730469-4.449219zm0 0"
-                    fill="rgb(45 212 191)"
-                    data-original="rgb(45 212 191)"
-                  ></path>
-                  <path
-                    xmlns="http://www.w3.org/2000/svg"
-                    d="m229.863281 22.324219h-122.519531l272.4375 272.441406 53.671875-53.671875c5.925781-5.925781 5.925781-15.535156 0-21.464844l-192.859375-192.855468c-2.847656-2.847657-6.707031-4.449219-10.730469-4.449219zm0 0"
-                    fill="rgb(153 246 228)"
-                    data-original="rgb(153 246 228)"
-                  ></path>
-                </g>
-              </svg>
-              <span className="-mt-1.5">
-                Crowd <span className="text-teal-300">Bird</span>
-              </span>
+            <a className="relative h-6 w-2/3 flex gap-2 font-medium items-center flex-shrink-0 leading-none px-4 text-xl text-white">
+              <Image
+                layout="fill"
+                src="/dark-logo.png"
+                alt="logo"
+                objectFit="cover"
+              />
             </a>
           </Link>
           <div className="mt-5 flex-1 h-0 overflow-y-auto">
@@ -177,53 +128,13 @@ const DashboardLayout = ({
           {/* <!-- Sidebar component, swap this element with another sidebar if you like --> */}
           <div className="flex flex-col flex-grow border-r border-slate-700 pt-5 pb-4 bg-slate-800 bg-opacity-40 overflow-y-auto">
             <Link href="/">
-              <a className="flex gap-2 font-medium items-center flex-shrink-0 leading-none px-4 text-xl text-white">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  version="1.1"
-                  className="h-8 w-8"
-                  x="0"
-                  y="0"
-                  viewBox="0 0 511.99921 511"
-                  style={{ 'enable-background': 'new 0 0 512 512' }}
-                  xmlSpace="preserve"
-                >
-                  <g>
-                    <path
-                      xmlns="http://www.w3.org/2000/svg"
-                      d="m428.53125 1.65625c-5.671875-2.351562-12.199219-1.050781-16.539062 3.289062l-364.277344 364.277344c-4.339844 4.339844-5.636719 10.867188-3.289063 16.539063 2.347657 5.671875 7.882813 9.367187 14.019531 9.367187h214.6875c4.023438 0 7.882813-1.601562 10.730469-4.445312l149.589844-149.589844c2.847656-2.847656 4.445313-6.707031 4.445313-10.734375v-214.683594c0-6.136719-3.699219-11.671875-9.367188-14.019531zm0 0"
-                      fill="rgb(94 234 212)"
-                      data-original="rgb(94 234 212)"
-                    ></path>
-                    <path
-                      xmlns="http://www.w3.org/2000/svg"
-                      d="m411.992188 4.945312-75.035157 75.03125c-4.351562 4.355469-5.644531 10.902344-3.269531 16.585938 2.371094 5.675781 7.941406 9.363281 14.097656 9.324219l149.132813-.929688c4.070312-.027343 7.867187-1.679687 10.636719-4.449219 1.394531-1.394531 2.527343-3.070312 3.308593-4.964843 2.324219-5.660157 1.019531-12.167969-3.308593-16.496094l-74.101563-74.101563c-5.925781-5.925781-15.535156-5.925781-21.460937 0zm0 0"
-                      fill="rgb(153 246 228)"
-                      data-original="rgb(153 246 228)"
-                    ></path>
-                    <path
-                      xmlns="http://www.w3.org/2000/svg"
-                      d="m411.992188 4.945312-161.015626 161.015626 128.804688 128.804687 53.671875-53.671875c2.84375-2.847656 4.445313-6.707031 4.445313-10.734375v-214.683594c0-6.136719-3.699219-11.671875-9.367188-14.019531-5.671875-2.351562-12.199219-1.050781-16.539062 3.289062zm0 0"
-                      fill="rgb(45 212 191)"
-                      data-original="rgb(45 212 191)"
-                    ></path>
-                    <path
-                      xmlns="http://www.w3.org/2000/svg"
-                      d="m229.863281 22.324219h-214.683593c-7.089844 0-13.371094 4.933593-14.875 12.132812-1.0625 5.089844.722656 10.359375 4.398437 14.03125l310.675781 310.675781 118.074219-118.070312c5.925781-5.929688 5.925781-15.539062 0-21.464844l-192.859375-192.855468c-2.847656-2.847657-6.707031-4.449219-10.730469-4.449219zm0 0"
-                      fill="rgb(45 212 191)"
-                      data-original="rgb(45 212 191)"
-                    ></path>
-                    <path
-                      xmlns="http://www.w3.org/2000/svg"
-                      d="m229.863281 22.324219h-122.519531l272.4375 272.441406 53.671875-53.671875c5.925781-5.925781 5.925781-15.535156 0-21.464844l-192.859375-192.855468c-2.847656-2.847657-6.707031-4.449219-10.730469-4.449219zm0 0"
-                      fill="rgb(153 246 228)"
-                      data-original="rgb(153 246 228)"
-                    ></path>
-                  </g>
-                </svg>
-                <span className="-mt-1.5">
-                  Crowd <span className="text-teal-300">Bird</span>
-                </span>
+              <a className="relative h-6 w-2/3 flex gap-2 font-medium items-center flex-shrink-0 leading-none px-4 text-xl text-white">
+                <Image
+                  layout="fill"
+                  src="/dark-logo.png"
+                  alt="logo"
+                  objectFit="cover"
+                />
               </a>
             </Link>
             <div className="mt-5 flex-grow flex flex-col">
