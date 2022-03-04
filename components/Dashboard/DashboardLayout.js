@@ -13,7 +13,7 @@ import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import { FiUsers } from 'react-icons/fi';
 import { VscProject } from 'react-icons/vsc';
 import Head from 'next/head';
-import RenderThemeChanger from '../Utils/RenderThemeChanger';
+import RenderThemeChanger from '../Share/RenderThemeChanger';
 
 const navLinks = [
   {
@@ -52,7 +52,7 @@ const navLinks = [
 
 const DashboardLayout = ({
   children,
-  title = 'Crowd Bird | Admin Dashboard',
+  title = 'Socio Trend | Admin Dashboard',
 }) => {
   const router = useRouter();
   const [isMobileOffcanvasOpen, setIsMobileOffcanvasOpen] = useState(false);
@@ -276,9 +276,9 @@ const DashboardLayout = ({
               </form>
             </div>
             <div className="ml-4 flex items-center md:ml-6">
-              <button className="rounded-full text-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-0 focus:ring-teal-400">
-                <RenderThemeChanger />
-              </button>
+              {/* <button className="rounded-full text-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-0 focus:ring-teal-400"> */}
+              <RenderThemeChanger />
+              {/* </button> */}
 
               {/* <!-- Profile dropdown --> */}
               <div className="ml-3 relative">
