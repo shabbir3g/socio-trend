@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-gray-100 text-black dark:bg-gray-900 dark:text-white;
+    @apply bg-gray-100 text-black dark:bg-zinc-900 dark:text-white;
   }
 }
 
@@ -44,7 +44,10 @@ textarea {
     background: #e5e7eb;
   }
 }
-
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
 .show {
   left: 0;
   transition: all 0.3s ease;

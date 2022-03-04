@@ -56,7 +56,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
           <Image
             src={
               post.photoURL ||
-              "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
+              'https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png'
             }
             className="rounded-full"
             alt=""
@@ -121,7 +121,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
         <div className="flex pt-5">
           <div className="">
             <Image
-              src={userData?.photoURL || "/user-8.png"}
+              src={userData?.photoURL || '/user-8.png'}
               alt=""
               height="40"
               width="40"
