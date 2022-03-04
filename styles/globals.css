@@ -112,3 +112,6 @@ ul.left-sidebar li:hover {
   margin: auto;
   font-family: tahoma !important;
 }
+img.user-post-image {
+  object-fit: cover;
+}
