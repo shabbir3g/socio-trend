@@ -96,7 +96,7 @@ const MiddleLeftBar = () => {
       </div>
 
       <PostModal userData={userData} />
-      {posts.map((post) => (
+      {shuffle(posts).map((post) => (
         <SinglePost
           key={post._id}
           post={post}
