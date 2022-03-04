@@ -1,47 +1,61 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import baseUrl from "../../utilities/baseUrl";
 import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
+  // for shuffle post
+
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
+  }
+
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
-  // console.log(posts);
-  const user = useSelector((state) => state.states.user);
+  const [isLike, setIsLike] = useState(false);
 
+  const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
     const createPostModal = document.getElementById("create-post-modal");
     const postBtn = document.getElementById("post-modal");
     const closePostModalBtn = document.getElementById("close-post-modal");
 
-  const togglePostModal = () => {
-    createPostModal.classList.toggle("hidden");
-    createPostModal.classList.toggle("flex");
-  };
+    const togglePostModal = () => {
+      createPostModal.classList.toggle("hidden");
+      createPostModal.classList.toggle("flex");
+    };
     postBtn?.addEventListener("click", togglePostModal);
     closePostModalBtn?.addEventListener("click", togglePostModal);
   }, []);
 
- /*  useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
-      .then(result => result.json())
-      .then(data => setUserData(data))
-  }, [user?.email]); */
-
   useEffect(() => {
-    axios.get(`/api/user?email=${user?.email}`)
-    .then((data) => {
-      setUserData(data?.data)
+    axios.get(`${baseUrl}/api/user?email=${user?.email}`).then((data) => {
+      setUserData(data?.data);
     });
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`/api/post`).then((data) => {
-      setPosts(data?.data);
-    });
-  }, [user?.email]);
+    axios.get(`${baseUrl}/api/post`).then((data) => setPosts(data?.data));
+  }, [user.email, isLike]);
 
   return (
     <div>
@@ -80,9 +94,16 @@ const MiddleLeftBar = () => {
           </div>
         </div>
       </div>
+
       <PostModal userData={userData} />
       {posts.map((post) => (
-        <SinglePost key={post._id} post={post} userData={userData} />
+        <SinglePost
+          key={post._id}
+          post={post}
+          isLike={isLike}
+          setIsLike={setIsLike}
+          userData={userData}
+        />
       ))}
     </div>
   );

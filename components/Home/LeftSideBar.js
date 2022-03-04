@@ -2,6 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import useFirebase from "../../firebase/useFirebase";
+import baseUrl from "../../utilities/baseUrl";
 
 const LeftSideBar = () => {
   const [users, setUsers] = useState([]);
@@ -9,7 +10,7 @@ const LeftSideBar = () => {
 
   useEffect(() => {
     axios
-      .get("/api/user/allUsers")
+      .get(`${baseUrl}/api/user/allUsers`)
       .then(({ data }) => setUsers(data));
   }, []);
   return (
@@ -58,7 +59,7 @@ const LeftSideBar = () => {
           <p className="mb-3">More pages</p>
           <ul className="left-second-sidebar">
             <li>
-              <Link href="email">
+              <Link href="/email">
                 <a>
                   <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i>{" "}
                   Email Box

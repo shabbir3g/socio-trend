@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const EmailLeftBar = () => {
+const DashboardSideBar = () => {
   // sidebar open and colose state
   const [sidebar, setSidebar] = useState(false);
 
@@ -31,9 +31,17 @@ const EmailLeftBar = () => {
             </li>
             <li>
               <Link href="/">
-                <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
+                <a className=" flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
                   <i className="fa-solid fa-book"></i>
                   Blog
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/admin">
+                <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
+                  <i className="fa-solid fa-book"></i>
+                  Admin
                 </a>
               </Link>
             </li>
@@ -101,6 +109,14 @@ const EmailLeftBar = () => {
                     </a>
                   </Link>
                 </li>
+                <li>
+                  <Link href="/dashboard/admin">
+                    <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
+                      <i className="fa-solid fa-book"></i>
+                      Admin
+                    </a>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -110,4 +126,4 @@ const EmailLeftBar = () => {
   );
 };
 
-export default EmailLeftBar;
+export default DashboardSideBar;

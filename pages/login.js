@@ -6,7 +6,7 @@ import useFirebase from '../firebase/useFirebase';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
 
-const LoginPgae = () => {
+const Login = () => {
   const { signWithEmailPass, googleSign } = useFirebase();
   const [showPass, setShowPass] = React.useState(false);
 
@@ -139,4 +139,4 @@ const LoginPgae = () => {
   );
 };
 
-export default LoginPgae;
+export default Login;

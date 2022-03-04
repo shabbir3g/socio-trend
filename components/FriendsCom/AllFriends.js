@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SingleFrends from "./SingleFrends";
 import axios from "axios";
-
+import baseUrl from "../../utilities/baseUrl";
 
 const friends = [
   {
@@ -88,10 +88,10 @@ const AllFrends = () => {
   const [searchMember, setSearchMember] = useState([]);
 
   const [users, setUsers] = useState([]);
-  
+
   useEffect(() => {
     axios
-      .get("/api/user/allUsers")
+      .get(`${baseUrl}/api/user/allUsers`)
       .then(({ data }) => setUsers(data));
   }, []);
 
