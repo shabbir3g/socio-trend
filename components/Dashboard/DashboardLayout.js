@@ -19,23 +19,29 @@ import RenderThemeChanger from '../Share/RenderThemeChanger';
 const navLinks = [
   {
     name: 'Dashboard',
-    icon: <BsBarChart className="text-slate-100 mr-4 flex-shrink-0 h-6 w-6" />,
+    icon: (
+      <BsBarChart className="text-slate-600 dark:text-slate-200 mr-4 flex-shrink-0 h-6 w-6" />
+    ),
     href: '/admin/dashboard',
   },
   {
     name: 'Profile',
-    icon: <BsGear className="text-slate-100 mr-4 flex-shrink-0 h-6 w-6" />,
+    icon: (
+      <BsGear className="text-slate-600 dark:text-slate-200 mr-4 flex-shrink-0 h-6 w-6" />
+    ),
     href: '/admin/profile',
   },
   {
     name: 'Users',
-    icon: <FiUsers className="text-slate-100 mr-4 flex-shrink-0 h-6 w-6" />,
+    icon: (
+      <FiUsers className="text-slate-600 dark:text-slate-200 mr-4 flex-shrink-0 h-6 w-6" />
+    ),
     href: '/admin/users',
   },
   {
     name: 'Posts',
     icon: (
-      <BsPencilSquare className="text-slate-100 mr-4 flex-shrink-0 h-6 w-6" />
+      <BsPencilSquare className="text-slate-600 dark:text-slate-200 mr-4 flex-shrink-0 h-6 w-6" />
     ),
     href: '/admin/posts',
   },
@@ -71,12 +77,12 @@ const DashboardLayout = ({
             isMobileOffcanvasOpen
               ? 'opacity-100'
               : 'opacity-0 pointer-events-none'
-          } transition-opacity ease-linear duration-300 fixed inset-0 bg-slate-600 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30`}
+          } transition-opacity ease-linear duration-300 fixed inset-0 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30`}
         ></div>
         <div
           className={`${
             isMobileOffcanvasOpen ? 'translate-x-0' : '-translate-x-full'
-          } transition ease-in-out duration-300 transform border-r border-slate-600 relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-slate-800`}
+          } transition ease-in-out duration-300 transform border-r dark:border-slate-600 relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white dark:bg-slate-800`}
         >
           <div className="absolute top-0 right-2 pt-3">
             <button
@@ -104,8 +110,8 @@ const DashboardLayout = ({
                   <a
                     className={`${
                       router.pathname === navLink.href
-                        ? 'bg-slate-700 text-white group flex items-center px-2 py-2 text-base rounded-md'
-                        : 'text-slate-400 hover:bg-slate-700 hover:text-slate-100 group flex items-center px-2 py-2 text-base rounded-md'
+                        ? 'dark:bg-slate-700 text-black dark:text-white bg-gray-200 group flex items-center px-2 py-2 text-base rounded-md'
+                        : 'dark:hover:bg-slate-700 text-black dark:text-white hover:bg-gray-100 group flex items-center px-2 py-2 text-base rounded-md'
                     }`}
                   >
                     {navLink.icon}
@@ -126,7 +132,7 @@ const DashboardLayout = ({
       <div className="hidden lg:flex lg:flex-shrink-0">
         <div className="flex flex-col w-72">
           {/* <!-- Sidebar component, swap this element with another sidebar if you like --> */}
-          <div className="flex flex-col flex-grow border-r border-slate-700 pt-5 pb-4 bg-slate-800 bg-opacity-40 overflow-y-auto">
+          <div className="flex flex-col flex-grow border-r dark:border-slate-700 pt-5 pb-4 bg-white dark:bg-slate-800 bg-opacity-40 overflow-y-auto">
             <Link href="/">
               <a className="relative h-6 w-2/3 flex gap-2 font-medium items-center flex-shrink-0 leading-none px-4 text-xl text-white">
                 <Image
@@ -144,8 +150,8 @@ const DashboardLayout = ({
                     <a
                       className={`${
                         router.pathname === navLink.href
-                          ? 'bg-slate-700 text-white group flex items-center px-2 py-2 text-base rounded-md'
-                          : 'text-slate-400 hover:bg-slate-700 hover:text-slate-100 group flex items-center px-2 py-2 text-base rounded-md'
+                          ? 'dark:bg-slate-700 text-black dark:text-white bg-gray-200 group flex items-center px-2 py-2 text-base rounded-md'
+                          : 'dark:hover:bg-slate-700 text-black dark:text-white hover:bg-gray-100 group flex items-center px-2 py-2 text-base rounded-md'
                       }`}
                     >
                       {navLink.icon}
@@ -159,10 +165,10 @@ const DashboardLayout = ({
         </div>
       </div>
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
-        <div className="relative z-10 border-b border-slate-600 flex-shrink-0 flex h-14 md:h-16 bg-white dark:bg-slate-800 dark:bg-opacity-40 shadow">
+        <div className="relative z-10 border-b dark:border-slate-600 flex-shrink-0 flex h-14 md:h-16 bg-white dark:bg-slate-800 dark:bg-opacity-40 shadow">
           <button
             onClick={openMobileOffcanvas}
-            className="px-4 border-r border-slate-700 text-slate-400 hover:text-slate-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-400 lg:hidden"
+            className="px-4 border-r dark:border-slate-700 text-slate-400 hover:text-slate-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-400 lg:hidden"
           >
             <HiOutlineMenuAlt1 className="h-6 w-6" />
           </button>
@@ -172,13 +178,13 @@ const DashboardLayout = ({
                 <label htmlFor="search-field" className="sr-only">
                   Search
                 </label>
-                <div className="relative w-full flex items-center text-slate-200">
+                <div className="relative w-full flex items-center">
                   <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <BsSearch className="h-5 w-5" />
                   </div>
                   <input
                     id="search-field"
-                    className="block bg-slate-700 border-slate-600 rounded-lg w-full pl-12 pr-3 py-1.5 border text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent sm:text-sm"
+                    className="block dark:bg-slate-700 dark:border-slate-600 rounded-lg w-full pl-12 pr-3 py-1.5 border text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent sm:text-sm"
                     placeholder="Search"
                     type="search"
                     name="search"
