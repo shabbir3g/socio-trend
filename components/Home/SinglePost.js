@@ -4,10 +4,17 @@ import { format } from "timeago.js";
 import axios from "axios";
 import Comments from "./Comments";
 
-const SinglePost = ({ post, userData, setIsLike, isLike }) => {
+const SinglePost = ({
+  post,
+  userData,
+  setIsLike,
+  isLike,
+  setDeletePost,
+}) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState(null);
+  const [menu, setMenu] = useState("hidden");
 
   useEffect(() => {
     axios
@@ -38,10 +45,16 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
       .then((data) => setStatus(data));
     setIsLike(!isLike);
   };
-
+  const handleDelete = (id) => {
+    axios.delete(`api/post?id=${id}`).then((data) => {
+      if (data.status === 200) {
+        setDeletePost(true);
+      }
+    });
+  };
   return (
     <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
-      <div className="flex justify-between">
+      <div className="flex justify-between relative">
         <div className=" flex">
           <Image
             src={
@@ -58,10 +71,28 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
             <span className="text-xs">{format(post.createdAt)} </span>
           </div>
         </div>
-        <div className="">
+        <div
+          className=""
+          onClick={() => setMenu(menu === "hidden" ? "block" : "hidden")}
+        >
           <div className="py-2 px-[18px] bg-gray-200 dark:bg-gray-600 rounded-full cursor-pointer">
             <i className="fa-solid fa-ellipsis-vertical dark:text-white text-black"></i>
           </div>
+        </div>
+      </div>
+      <div className={menu}>
+        <div className="absolute right-5 p-3 bg-gray-300 dark:bg-gray-700  z-40 rounded-lg">
+          <ul>
+            <li className="py-1 cursor-pointer">
+              <i className="fa-solid fa-pen-to-square"></i> Edit posts
+            </li>
+            <li
+              className="py-1 cursor-pointer"
+              onClick={() => handleDelete(post._id)}
+            >
+              <i className="fa-solid fa-trash"></i> Delete posts
+            </li>
+          </ul>
         </div>
       </div>
       <div className="pt-3">
@@ -75,24 +106,9 @@ const SinglePost = ({ post, userData, setIsLike, isLike }) => {
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
-          {/* <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full">
+          <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full">
             <button onClick={handleLike}>
-              <Image
-                src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-like-notifications-justicon-flat-justicon.png"
-                alt=""
-                height={25}
-                width={25}
-              />
-            </button>
-          </span> */}
-          <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full ml-1">
-            <button onClick={handleLike}>
-              <Image
-                src="https://img.icons8.com/color/48/000000/like--v3.png"
-                alt=""
-                height={25}
-                width={25}
-              />
+              <Image src="/like.svg" alt="" height={25} width={25} />
             </button>
           </span>
           <span className="ml-3">{post.like.length} Like</span>

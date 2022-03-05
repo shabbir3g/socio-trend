@@ -8,6 +8,7 @@ const MiddleLeftBar = () => {
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
   const [isLike, setIsLike] = useState(false);
+  const [deletePost, setDeletePost] = useState(false);
 
   const user = useSelector((state) => state.states.user);
 
@@ -32,7 +33,7 @@ const MiddleLeftBar = () => {
 
   useEffect(() => {
     axios.get(`/api/post`).then((data) => setPosts(data?.data));
-  }, [user.email, isLike]);
+  }, [user.email, isLike, deletePost]);
 
   return (
     <div>
@@ -46,7 +47,6 @@ const MiddleLeftBar = () => {
         </div>
         <textarea
           className="border-2 rounded w-full dark:bg-gray-800 p-2"
-          onClick={() => console.log("click")}
           name=""
           id="post-modal"
           cols="30"
@@ -78,6 +78,8 @@ const MiddleLeftBar = () => {
           post={post}
           isLike={isLike}
           setIsLike={setIsLike}
+          deletePost={deletePost}
+          setDeletePost={setDeletePost}
           userData={userData}
         />
       ))}

@@ -37,6 +37,7 @@ const PostModal = ({ userData }) => {
     if (response.status === 201) {
       alert("Updated Success");
     }
+    console.log(response);
   };
   return (
     <div
