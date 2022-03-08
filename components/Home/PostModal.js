@@ -17,6 +17,7 @@ const PostModal = ({ userData }) => {
     data.displayName = userData.displayName;
     data.email = userData.email;
     data.photoURL = userData.photoURL;
+    data.userName = userData.userName;
 
     const formData = new FormData();
     formData.append("upload_preset", "my-uploads");
@@ -37,7 +38,6 @@ const PostModal = ({ userData }) => {
     if (response.status === 201) {
       alert("Updated Success");
     }
-    console.log(response);
   };
   return (
     <div

@@ -22,7 +22,6 @@ export default async function handler(req, res) {
       const user = req.body;
       user.userName = req.body.displayName.toLowerCase();
       const result = await User.create(user);
-      console.log(result);
       res.status(201).json(result);
     } catch (err) {
       res.status(500).json(err);

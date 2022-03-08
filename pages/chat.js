@@ -62,7 +62,6 @@ const Chat = () => {
     socket.emit("join_room", room);   
   },[room])
 
-  console.log(messageList);
   return (
     <div className="bg-neutral-100 dark:bg-gray-900">
      

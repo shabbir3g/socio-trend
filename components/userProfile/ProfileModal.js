@@ -63,7 +63,6 @@ const ProfileModal = ({ data }) => {
     if (response.status === 200) {
       alert("Updated Success");
     }
-    console.log(response);
   };
 
   return (

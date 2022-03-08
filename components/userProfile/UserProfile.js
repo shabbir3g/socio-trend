@@ -6,8 +6,12 @@ import Link from "next/link";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import SinglePost from "../Home/SinglePost";
+import { useRouter } from "next/router";
 
 const UserProfile = ({ data }) => {
+  const router = useRouter();
+  const userName = router.query.username;
+
   const user = useSelector((state) => state.states.user);
   const [posts, setPosts] = useState([]);
   const [userData, setUserData] = useState({});
@@ -40,10 +44,10 @@ const UserProfile = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    axios.get(`/api/post/userPost?email=${user.email}`).then((data) => {
+    axios.get(`/api/post/userPost?userName=${userName}`).then((data) => {
       setPosts(data.data);
     });
-  }, [user.email]);
+  }, [userName]);
   useEffect(() => {
     fetch(`/api/user?email=${user?.email}`)
       .then((result) => result.json())
