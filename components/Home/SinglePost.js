@@ -4,13 +4,7 @@ import { format } from "timeago.js";
 import axios from "axios";
 import Comments from "./Comments";
 
-const SinglePost = ({
-  post,
-  userData,
-  setIsLike,
-  isLike,
-  setDeletePost,
-}) => {
+const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState(null);
@@ -81,13 +75,13 @@ const SinglePost = ({
         </div>
       </div>
       <div className={menu}>
-        <div className="absolute right-5 p-3 bg-gray-300 dark:bg-gray-700  z-40 rounded-lg">
+        <div className="absolute right-5 py-3 bg-gray-300 dark:bg-gray-700  z-40 rounded-lg">
           <ul>
-            <li className="py-1 cursor-pointer">
+            <li className="py-1 cursor-pointer hover:bg-gray-700 dark:hover:bg-gray-500 hover:text-white px-2">
               <i className="fa-solid fa-pen-to-square"></i> Edit posts
             </li>
             <li
-              className="py-1 cursor-pointer"
+              className="py-1 cursor-pointer hover:bg-gray-700  dark:hover:bg-gray-500 hover:text-white px-2"
               onClick={() => handleDelete(post._id)}
             >
               <i className="fa-solid fa-trash"></i> Delete posts

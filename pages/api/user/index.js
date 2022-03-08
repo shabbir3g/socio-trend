@@ -15,21 +15,15 @@ export default async function handler(req, res) {
       res.status(500).json(err);
     }
   }
-  // get all user
-  if (method === "GET") {
-    try {
-      const result = await User.find({});
-      res.status(200).json(result);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  }
 
   // save user data after register
   if (method === "POST") {
     try {
-      const user = await User.create(req.body);
-      res.status(201).json(user);
+      const user = req.body;
+      user.userName = req.body.displayName.toLowerCase();
+      const result = await User.create(user);
+      console.log(result);
+      res.status(201).json(result);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -39,6 +33,7 @@ export default async function handler(req, res) {
   if (method === "PUT") {
     try {
       const user = req.body;
+      user.userName = req.body.displayName.toLowerCase();
       const filter = { email: user.email };
       const updateDoc = { $set: user };
       const result = await User.findOneAndUpdate(filter, updateDoc, {

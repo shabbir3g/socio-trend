@@ -1,17 +1,19 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import useFirebase from "../../firebase/useFirebase";
 
 const LeftSideBar = () => {
-  const [users, setUsers] = useState([]);
   const { googleSingOut } = useFirebase();
+  const [data, setData] = useState({});
+  const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
-    axios
-      .get("/api/user/allUsers")
-      .then(({ data }) => setUsers(data));
-  }, []);
+    fetch(`/api/user?email=${user?.email}`)
+      .then((result) => result.json())
+      .then((data) => setData(data));
+  }, [user?.email]);
   return (
     <div className="bg-gray-100 dark:bg-gray-900">
       <div className="w-full">
@@ -44,7 +46,7 @@ const LeftSideBar = () => {
                 Popular Groups
               </a>
             </li>
-            <Link href="/profile">
+            <Link href={`${data.userName}`}>
               <a>
                 <li className="mb-3">
                   <i className="fa-regular fa-user p-3 bg-blue-400 text-white rounded-full"></i>

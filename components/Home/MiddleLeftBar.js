@@ -66,7 +66,7 @@ const MiddleLeftBar = () => {
               <i className="fa-solid fa-camera p-3"></i> Feeling/Activity
             </a>
             <a href="#" className="ml-auto">
-              <i className="fa-solid fa-ellipsis p-3 bg-gray-200 rounded-full"></i>
+              <i className="fa-solid fa-ellipsis p-3 bg-gray-200 dark:bg-gray-600 rounded-full"></i>
             </a>
           </div>
         </div>
