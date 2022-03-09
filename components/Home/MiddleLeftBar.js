@@ -1,36 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import baseUrl from "../../utilities/baseUrl";
 import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
-  // for shuffle post
-
-  function shuffle(array) {
-    let currentIndex = array.length,
-      randomIndex;
-
-    // While there remain elements to shuffle...
-    while (currentIndex != 0) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-
-    return array;
-  }
-
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
   const [isLike, setIsLike] = useState(false);
+  const [deletePost, setDeletePost] = useState(false);
 
   const user = useSelector((state) => state.states.user);
 
@@ -48,14 +26,14 @@ const MiddleLeftBar = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`${baseUrl}/api/user?email=${user?.email}`).then((data) => {
+    axios.get(`/api/user?email=${user?.email}`).then((data) => {
       setUserData(data?.data);
     });
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`${baseUrl}/api/post`).then((data) => setPosts(data?.data));
-  }, [user.email, isLike]);
+    axios.get(`/api/post`).then((data) => setPosts(data?.data));
+  }, [user.email, isLike, deletePost]);
 
   return (
     <div>
@@ -69,7 +47,6 @@ const MiddleLeftBar = () => {
         </div>
         <textarea
           className="border-2 rounded w-full dark:bg-gray-800 p-2"
-          onClick={() => console.log("click")}
           name=""
           id="post-modal"
           cols="30"
@@ -89,19 +66,20 @@ const MiddleLeftBar = () => {
               <i className="fa-solid fa-camera p-3"></i> Feeling/Activity
             </a>
             <a href="#" className="ml-auto">
-              <i className="fa-solid fa-ellipsis p-3 bg-gray-200 rounded-full"></i>
+              <i className="fa-solid fa-ellipsis p-3 bg-gray-200 dark:bg-gray-600 rounded-full"></i>
             </a>
           </div>
         </div>
       </div>
-
       <PostModal userData={userData} />
-      {shuffle(posts).map((post) => (
+      {posts.map((post) => (
         <SinglePost
           key={post._id}
           post={post}
           isLike={isLike}
           setIsLike={setIsLike}
+          deletePost={deletePost}
+          setDeletePost={setDeletePost}
           userData={userData}
         />
       ))}

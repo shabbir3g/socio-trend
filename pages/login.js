@@ -1,25 +1,20 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import useFirebase from '../firebase/useFirebase';
-import Head from 'next/head';
-import { useSelector } from 'react-redux';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { useForm } from "react-hook-form";
+import useFirebase from "../firebase/useFirebase";
+import Head from "next/head";
+import { useSelector } from "react-redux";
 
 const Login = () => {
   const { signWithEmailPass, googleSign } = useFirebase();
   const [showPass, setShowPass] = React.useState(false);
 
-  const emailLoginErrorMsg = useSelector(
-    (state) => state.states.emailPassLoginError
-  );
-  const googleLoginErrorMsg = useSelector(
-    (state) => state.states.googleLoginError
-  );
+  const emailLoginErrorMsg= useSelector((state) => state.states.emailPassLoginError);
+  const googleLoginErrorMsg= useSelector((state) => state.states.googleLoginError);
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     signWithEmailPass(data.email, data.password);
   };
 
@@ -72,14 +67,14 @@ const Login = () => {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
-              {...register('email', { required: true })}
+              {...register("email", { required: true })}
               className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md"
               placeholder="Your Email address"
             ></input>
             <div className="relative">
               <input
-                {...register('password', { required: true })}
-                type={showPass ? 'text' : 'password'}
+                {...register("password", { required: true })}
+                type={showPass ? "text" : "password"}
                 className="w-full border border-gray-400 dark:bg-white dark:text-black h-14 py-4 pl-4 rounded-md mt-5"
                 placeholder="Password"
               ></input>
@@ -87,8 +82,8 @@ const Login = () => {
                 onClick={showPass ? handleShowPass : handleHidePass}
                 className={
                   showPass
-                    ? 'fa-solid  fa-eye absolute dark:text-black right-5 top-10 cursor-pointer'
-                    : 'fa-solid  fa-eye-slash absolute dark:text-black  right-5 top-10 cursor-pointer'
+                    ? "fa-solid  fa-eye absolute dark:text-black right-5 top-10 cursor-pointer"
+                    : "fa-solid  fa-eye-slash absolute dark:text-black  right-5 top-10 cursor-pointer"
                 }
               />
             </div>
@@ -128,9 +123,7 @@ const Login = () => {
           </p>
 
           <div className="text-center">
-            <p className="font-bold text-xl text-red-600">
-              {emailLoginErrorMsg || googleLoginErrorMsg}
-            </p>
+            <p className="font-bold text-xl text-red-600">{emailLoginErrorMsg || googleLoginErrorMsg}</p>
           </div>
         </div>
       </div>

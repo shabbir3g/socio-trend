@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   // get posts by user email
   if (method === "GET") {
-    const result = await Post.find({ email: req.query.email });
+    const result = await Post.find({ userName: req.query.userName });
     res.json(result);
   }
 }
