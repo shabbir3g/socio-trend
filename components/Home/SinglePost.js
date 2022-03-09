@@ -132,13 +132,11 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
             />
           </div>
           <div className="w-full mx-2">
-            <textarea
+            <input
               onChange={handleCommentChange}
-              name=""
-              id=""
-              className="w-full h-10 dark:bg-slate-700 bg-slate-300 rounded-2xl pt-2 px-2 resize-none scrollbar-hide"
+              className="w-full h-10 dark:bg-slate-700 bg-slate-300 rounded-2xl p-2 resize-none scrollbar-hide"
               placeholder="Wright a comment ..."
-            ></textarea>
+            />
           </div>
           <div className="w-10 flex items-center justify-center">
             <button type="submit">

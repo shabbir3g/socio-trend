@@ -77,7 +77,7 @@ const PostModal = ({ userData }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex justify-between items-center pt-5">
             <textarea
-              className="rounded w-full dark:bg-gray-800 dark:text-white outline-none border-2 border-gray-700 focus:border-blue-600  p-2"
+              className="rounded w-full dark:bg-gray-800 dark:text-white outline-none border-2 border-gray-400 dark:border-gray-700 focus:border-blue-600  p-2"
               name=""
               id="post-modal"
               cols="30"
@@ -87,7 +87,7 @@ const PostModal = ({ userData }) => {
             />
           </div>
           <label htmlFor="files2">
-            <div className="flex justify-center p-3 border-2 border-gray-700 rounded-lg mt-5">
+            <div className="flex justify-center p-3 border-2 border-gray-400 dark:border-gray-700 rounded-lg mt-5">
               <Image
                 className="object-content cursor-pointer rounded-lg object-content"
                 src={prePostImg || "https://i.ibb.co/58tWhzt/images.png"}
