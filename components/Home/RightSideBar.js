@@ -3,8 +3,15 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import baseUrl from "../../utilities/baseUrl";
 
+
+
 const RightSideBar = () => {
   const [users, setUsers] = useState([]);
+
+
+
+
+
 
   useEffect(() => {
     axios
@@ -32,8 +39,10 @@ const RightSideBar = () => {
                 <span className="ml-3 contact-users" title={user.displayName}>
                   {user.displayName}
                 </span>
+                
                 <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
                 {/* <span className="p-1 rounded-full bg-yellow-500 ml-auto"></span> */}
+               
               </a>
             </li>
           ))}
