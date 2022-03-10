@@ -10,16 +10,11 @@ const Login = () => {
   const { signWithEmailPass, googleSign } = useFirebase();
   const [showPass, setShowPass] = React.useState(false);
 
-  const emailLoginErrorMsg = useSelector(
-    (state) => state.states.emailPassLoginError
-  );
-  const googleLoginErrorMsg = useSelector(
-    (state) => state.states.googleLoginError
-  );
+  const emailLoginErrorMsg= useSelector((state) => state.states.emailPassLoginError);
+  const googleLoginErrorMsg= useSelector((state) => state.states.googleLoginError);
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     signWithEmailPass(data.email, data.password);
   };
 
@@ -128,9 +123,7 @@ const Login = () => {
           </p>
 
           <div className="text-center">
-            <p className="font-bold text-xl text-red-600">
-              {emailLoginErrorMsg || googleLoginErrorMsg}
-            </p>
+            <p className="font-bold text-xl text-red-600">{emailLoginErrorMsg || googleLoginErrorMsg}</p>
           </div>
         </div>
       </div>

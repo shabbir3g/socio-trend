@@ -1,11 +1,10 @@
-import Head from "next/head";
+/* import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import LeftSideBar from "../components/Home/LeftSideBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import UserProfile from "../components/userProfile/UserProfile";
-import baseUrl from "../utilities/baseUrl";
 
 const Profile = () => {
   const [data, setData] = useState({});
@@ -13,7 +12,7 @@ const Profile = () => {
   const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
-    fetch(`${baseUrl}/api/user?email=${user?.email}`)
+    fetch(`/api/user?email=${user?.email}`)
       .then((result) => result.json())
       .then((data) => setData(data));
   }, [user?.email]);
@@ -44,3 +43,4 @@ const Profile = () => {
 };
 
 export default Profile;
+ */

@@ -2,7 +2,6 @@ import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import baseUrl from "../../utilities/baseUrl";
 
 const ProfileModal = ({ data }) => {
   const user = useSelector((state) => state.states.user);
@@ -56,7 +55,7 @@ const ProfileModal = ({ data }) => {
     }
 
     const response = await axios.put(
-      `${baseUrl}/api/user/updateProfile?email=${user.email}`,
+      `/api/user/updateProfile?email=${user.email}`,
       {
         userData,
       }
@@ -64,7 +63,6 @@ const ProfileModal = ({ data }) => {
     if (response.status === 200) {
       alert("Updated Success");
     }
-    console.log(response);
   };
 
   return (

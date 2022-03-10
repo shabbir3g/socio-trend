@@ -11,6 +11,10 @@ const PostSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    userName: {
+      type: String,
+      default: "",
+    },
     photoURL: {
       type: String,
       default: "",
@@ -27,10 +31,6 @@ const PostSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    // love: {
-    //   type: Array,
-    //   default: [],
-    // },
     comment: {
       type: Array,
       default: [],

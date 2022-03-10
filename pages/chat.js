@@ -1,14 +1,17 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
-import Navigation from "../components/Share/Navigation";
 
 let socket;
 const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";
+// const CONNECTION_PORT = "http://localhost:3002/";
 
-const Chat = () => {
+const Chat = ({ data }) => {
+  // console.log(data);
+
   const inputRef = useRef();
 
   const [room, setRoom] = useState(0);
@@ -19,11 +22,13 @@ const Chat = () => {
   const strTime = time.split(",");
 
   useEffect(() => {
-    const userRoom = prompt("enter room number to chat");
+    const userRoom = data._id; // prompt("enter room number to chat")
+    console.log(userRoom);
     setRoom(userRoom);
-  }, []);
+  }, [data._id]);
 
   const users = useSelector((state) => state.states.user);
+  // console.log(users);
 
   useEffect(() => {
     socket = io(CONNECTION_PORT);
@@ -47,7 +52,7 @@ const Chat = () => {
         time: strTime[1],
       },
     };
-
+    // console.log(messageContent);
     await socket.emit("send_message", messageContent);
     setMessageList([...messageList, messageContent.content]);
     setMessage("");
@@ -58,10 +63,8 @@ const Chat = () => {
     socket.emit("join_room", room);
   }, [room]);
 
-  console.log(messageList);
   return (
     <div className="bg-neutral-100 dark:bg-gray-900">
-      <Navigation />
       <div className="p-5  rounded">
         <div className="chat-box-container font-mono">
           <div
@@ -70,6 +73,7 @@ const Chat = () => {
           >
             {messageList &&
               messageList?.map((user, index) => {
+                // console.log(user);
                 return (
                   <div
                     key={index}
@@ -81,14 +85,15 @@ const Chat = () => {
                   >
                     <div className="">
                       <div className="flex">
-                        <Image
-                          className="rounded-full"
-                          src={user?.img}
-                          height={50}
-                          width={50}
-                          alt="img"
-                        />
-
+                        <Link href={`${user.user}`} passHref>
+                          <Image
+                            className="rounded-full"
+                            src={user?.img}
+                            height={50}
+                            width={50}
+                            alt="img"
+                          />
+                        </Link>
                         <div className=" pl-4">
                           <p className="font-bold">{user?.name}</p>
                           <p className="text-slate-400 text-sm font-bold">

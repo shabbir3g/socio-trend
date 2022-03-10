@@ -14,6 +14,14 @@ export default async function handler(req, res) {
       res.status(500).json(err);
     }
   }
+  if (method === "DELETE") {
+    try {
+      const result = await Post.deleteOne({ _id: req.query.id });
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
   // get all posts
   if (method === "GET") {
     try {
