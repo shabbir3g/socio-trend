@@ -8,11 +8,6 @@ import Link from "next/link";
 const RightSideBar = () => {
   const [users, setUsers] = useState([]);
 
-
-
-
-
-
   useEffect(() => {
     axios.get("/api/user/allUsers").then(({ data }) => setUsers(data));
   }, []);
@@ -24,7 +19,7 @@ const RightSideBar = () => {
           {users.map((user) => (
             <Link href={`${user.userName}`} key={user._id} passHref>
               <li className="mb-3">
-                <a href="#" className="flex items-center">
+                <span className="flex items-center cursor-pointer">
                   <Image
                     src={
                       user.photoURL ||
@@ -40,7 +35,7 @@ const RightSideBar = () => {
                   </span>
                   <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
                   {/* <span className="p-1 rounded-full bg-yellow-500 ml-auto"></span> */}
-                </a>
+                </span>
               </li>
             </Link>
           ))}

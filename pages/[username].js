@@ -1,6 +1,6 @@
 import Head from "next/head";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import LeftSideBar from "../components/Home/LeftSideBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
@@ -11,12 +11,10 @@ const Profile = () => {
   const router = useRouter();
   const userName = router.query.username;
   const [data, setData] = useState({});
-
   useEffect(() => {
-    fetch(`/api/user/userName?userName=${userName}`)
-      .then((result) => result.json())
-      .then((data) => setData(data));
+    axios.get(`/api/user/userName?userName=${userName}`).then(({ data }) => setData(data));
   }, [userName]);
+
   return (
     <>
       <Head>

@@ -9,10 +9,9 @@ const LeftSideBar = () => {
   const [data, setData] = useState({});
   const user = useSelector((state) => state.states.user);
 
+  
   useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
-      .then((result) => result.json())
-      .then((data) => setData(data));
+    axios.get(`/api/user?email=${user?.email}`).then(({ data }) => setData(data));
   }, [user?.email]);
   return (
     <div className="bg-gray-100 dark:bg-gray-900">
@@ -46,7 +45,7 @@ const LeftSideBar = () => {
                 Popular Groups
               </a>
             </li>
-            <Link href={`${data.userName}`}>
+            <Link href={`/${data.userName}`}>
               <a>
                 <li className="mb-3">
                   <i className="fa-regular fa-user p-3 bg-blue-400 text-white rounded-full"></i>
@@ -60,7 +59,7 @@ const LeftSideBar = () => {
           <p className="mb-3">More pages</p>
           <ul className="left-second-sidebar">
             <li>
-              <Link href="email">
+              <Link href="/email">
                 <a>
                   <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i>{" "}
                   Email Box

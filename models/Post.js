@@ -5,15 +5,13 @@ const PostSchema = new mongoose.Schema(
     email: {
       type: String,
       require: true,
-      unique: true,
     },
     displayName: {
       type: String,
       default: "",
     },
     userName: {
-      type: String,
-      default: "",
+      type: String
     },
     photoURL: {
       type: String,

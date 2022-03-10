@@ -90,7 +90,7 @@ const PostModal = ({ userData }) => {
             <div className="flex justify-center p-3 border-2 border-gray-400 dark:border-gray-700 rounded-lg mt-5">
               <Image
                 className="object-content cursor-pointer rounded-lg object-content"
-                src={prePostImg || "https://i.ibb.co/58tWhzt/images.png"}
+                src={prePostImg || "/post.jpg"}
                 alt="images"
                 width="450"
                 height="300"
