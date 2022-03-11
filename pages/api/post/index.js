@@ -7,9 +7,21 @@ export default async function handler(req, res) {
   dbConnect();
 
   if (method === "POST") {
+    console.log(req.body.data)
     try {
       const post = await Post.create(req.body.data);
-      res.status(201).json(post);
+      return res.status(201).json(post);
+      
+    } catch (err) {
+      res.send(err);
+      console.log(err)
+      //res.status(500).json(err);
+    }
+  }
+  if (method === "DELETE") {
+    try {
+      const result = await Post.deleteOne({ _id: req.query.id });
+      res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err);
     }

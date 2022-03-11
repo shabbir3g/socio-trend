@@ -38,13 +38,13 @@ const DashboardSideBar = () => {
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/admin">
-                <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
-                  <i className="fa-solid fa-book"></i>
-                  Admin
-                </a>
-              </Link>
-            </li>
+                  <Link href="/dashboard/admin">
+                    <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
+                      <i className="fa-solid fa-book"></i>
+                        Admin
+                    </a>
+                  </Link>
+                </li>
           </ul>
         </div>
       </div>
@@ -53,12 +53,7 @@ const DashboardSideBar = () => {
       <div className="block md:hidden lg:hidden">
         <div className="bg-yellow-500 fixed flex h-20 inset-x-0 items-center justify-between px-4 text-white top-0">
           <div>
-            <Image
-              src="/logo.png"
-              alt="Socio Trend"
-              width="200px"
-              height="66px"
-            />
+            <Image src="/logo.png" alt="Socio Trend" width="200px" height="66px"  />
           </div>
           <button
             className="p-2 rounded-full transition hover:bg-blue-400"
@@ -113,7 +108,7 @@ const DashboardSideBar = () => {
                   <Link href="/dashboard/admin">
                     <a className="bg-gray-100 flex items-center gap-2 px-4 py-2 transition hover:bg-gray-200">
                       <i className="fa-solid fa-book"></i>
-                      Admin
+                        Admin
                     </a>
                   </Link>
                 </li>

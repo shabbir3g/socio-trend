@@ -5,11 +5,13 @@ const PostSchema = new mongoose.Schema(
     email: {
       type: String,
       require: true,
-      unique: true,
     },
     displayName: {
       type: String,
       default: "",
+    },
+    userName: {
+      type: String
     },
     photoURL: {
       type: String,
@@ -27,10 +29,6 @@ const PostSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    // love: {
-    //   type: Array,
-    //   default: [],
-    // },
     comment: {
       type: Array,
       default: [],

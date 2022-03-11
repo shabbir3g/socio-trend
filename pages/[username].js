@@ -1,14 +1,19 @@
-import React  from "react";
-import Navigation from "../components/Share/Navigation";
-import AllFriends from "../components/FriendsCom/AllFriends";
 import Head from "next/head";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import LeftSideBar from "../components/Home/LeftSideBar";
 import RightSideBar from "../components/Home/RightSideBar";
+import Navigation from "../components/Share/Navigation";
+import UserProfile from "../components/userProfile/UserProfile";
+import { useRouter } from "next/router";
 
-const friends = () => {
-
-  
-
+const Profile = () => {
+  const router = useRouter();
+  const userName = router.query.username;
+  const [data, setData] = useState({});
+  useEffect(() => {
+    axios.get(`/api/user/userName?userName=${userName}`).then(({ data }) => setData(data));
+  }, [userName]);
 
   return (
     <>
@@ -23,9 +28,8 @@ const friends = () => {
         </div>
 
         <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 h-[91vh] overflow-y-scroll scrollbar	">
-          {/* scrollbar-hide hover:scrollbar-default */}
           <div className="md:w-3/4 w-full mx-auto">
-            <AllFriends />
+            <UserProfile data={data} />
           </div>
         </div>
 
@@ -37,4 +41,4 @@ const friends = () => {
   );
 };
 
-export default friends;
+export default Profile;
