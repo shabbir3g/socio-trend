@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   if (method === "POST") {
     try {
       const user = req.body;
-      user.userName = req.body.displayName.toLowerCase();
+      user.userName = req.body.displayName.replace(/[\. ,:-]+/g, "-").toLowerCase();
       const result = await User.create(user);
       res.status(201).json(result);
     } catch (err) {
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
   if (method === "PUT") {
     try {
       const user = req.body;
-      user.userName = req.body.displayName.toLowerCase();
+      user.userName = req.body.displayName.replace(/[\. ,:-]+/g, "-").toLowerCase();
       const filter = { email: user.email };
       const updateDoc = { $set: user };
       const result = await User.findOneAndUpdate(filter, updateDoc, {

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
 let socket;
 const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";

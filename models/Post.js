@@ -5,15 +5,13 @@ const PostSchema = new mongoose.Schema(
     email: {
       type: String,
       require: true,
-      unique: true,
     },
     displayName: {
       type: String,
       default: "",
     },
     userName: {
-      type: String,
-      default: "",
+      type: String
     },
     photoURL: {
       type: String,
@@ -38,6 +36,21 @@ const PostSchema = new mongoose.Schema(
     share: {
       type: Number,
       default: 0,
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
+    desc: {
+      type: String,
+      max: 500,
+    },
+    img: {
+      type: String,
+    },
+    likes: {
+      type: Array,
+      default: [],
     },
   },
   { timestamps: true }

@@ -48,11 +48,15 @@ const UserProfile = ({ data }) => {
       setPosts(data.data);
     });
   }, [userName]);
+
+
   useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
-      .then((result) => result.json())
-      .then((data) => setUserData(data));
+    axios.get(`/api/user?email=${user?.email}`).then((data) => {
+      setUserData(data);
+    });
   }, [user?.email]);
+
+  
   return (
     <>
       {/* Profile banner */}

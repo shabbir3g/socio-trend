@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import Conversation from "./Conversations";
 import Message from "./Message";
