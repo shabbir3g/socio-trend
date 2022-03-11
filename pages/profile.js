@@ -1,3 +1,15 @@
+import React from 'react';
+
+const profile = () => {
+  return (
+    <div>
+      <h2>Profile page</h2>
+    </div>
+  );
+};
+
+export default profile;
+
 /* import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
