@@ -1,5 +1,5 @@
 {
-  "name": "socio-trend-client",
+  "name": "socio-trend",
   "private": true,
   "scripts": {
     "dev": "next dev",

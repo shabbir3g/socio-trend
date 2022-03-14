@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const ConversationSchema = new mongoose.Schema(
   {
     members: {
@@ -9,4 +8,5 @@ const ConversationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Conversation", ConversationSchema);
+export default mongoose.models.Conversation ||
+  mongoose.model("Conversation", ConversationSchema);

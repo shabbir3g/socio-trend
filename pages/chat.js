@@ -69,7 +69,6 @@ const Chat = ({ data }) => {
           >
             {messageList &&
               messageList?.map((user, index) => {
-                // console.log(user);
                 return (
                   <div
                     key={index}
