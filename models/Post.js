@@ -5,6 +5,7 @@ const PostSchema = new mongoose.Schema(
     email: {
       type: String,
       require: true,
+      unique: false
     },
     displayName: {
       type: String,

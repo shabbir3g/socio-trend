@@ -57,7 +57,6 @@ export default function Home() {
             referrerPolicy="no-referrer"
           />
         </Head>
-        <h2>Hello</h2>
         <Navigation />
         <div className="">
           <div className="grid grid-cols-12">
