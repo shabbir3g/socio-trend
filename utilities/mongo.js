@@ -7,7 +7,6 @@ const dbConnect = async () => {
     await mongoose.connect(MONGO_URL, {
       autoIndex: false,
     });
-    console.log("mongodb connected...");
   } catch (err) {
     console.log(err);
   }
