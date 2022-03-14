@@ -11,22 +11,15 @@ import Navigation from "../components/Share/Navigation";
 export default function Messenger() {
   const user = useSelector((state) => state.states.user);
   const [conversations, setConversations] = useState([]);
-
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [dbUser, setDbUser] = useState({});
+  const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
+
   const [onlineUsers, setOnlineUsers] = useState([]);
   const socket = useRef();
-  const [dbUser, setDbUser] = useState({});
-
-  useEffect(() => {
-    axios
-      .get(`/api/user?email=${user?.email}`)
-      .then(({ data }) => setDbUser(data));
-  }, [user.email]);
-
-  const scrollRef = useRef();
 
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
@@ -45,14 +38,15 @@ export default function Messenger() {
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
 
-  // useEffect(() => {
-  //   socket.current.emit("addUser", dbUser._id);
-  //   socket.current.on("getUsers", (users) => {
-  //     setOnlineUsers(
-  //       user.followings.filter((f) => users.some((u) => u.userId === f))
-  //     );
-  //   });
-  // }, [user]);
+  useEffect(() => {
+    socket.current.emit("addUser", dbUser._id);
+    socket.current.on("getUsers", (users) => {
+      console.log(users);
+      // setOnlineUsers(
+      //   user.followings.filter((f) => users.some((u) => u.userId === f))
+      // );
+    });
+  }, [dbUser._id]);
 
   useEffect(() => {
     const getConversations = async () => {
@@ -82,6 +76,12 @@ export default function Messenger() {
     getMessages();
   }, [currentChat]);
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/user?email=${user?.email}`)
+      .then(({ data }) => setDbUser(data));
+  }, [user.email]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -95,7 +95,7 @@ export default function Messenger() {
     );
 
     socket.current.emit("sendMessage", {
-      senderId: user._id,
+      senderId: dbUser._id,
       receiverId,
       text: newMessage,
     });
