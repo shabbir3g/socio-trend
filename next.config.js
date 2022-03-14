@@ -10,6 +10,7 @@ module.exports = {
       "thumbs.dreamstime.com",
       "lh3.googleusercontent.com",
       "res.cloudinary.com",
+      "api-chat-engine-io.s3.amazonaws.com",
     ],
   },
 };

@@ -6,7 +6,6 @@ import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import UserProfile from "../components/userProfile/UserProfile";
 import { useRouter } from "next/router";
-import Chatting from "./chatting";
 
 const Profile = () => {
   const router = useRouter();
@@ -19,26 +18,25 @@ const Profile = () => {
   return (
     <>
       <Head>
-        <title>Profile</title>
+        <title>Message</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Navigation />
-      {/* <div className="grid grid-cols-12 gap-4 bg-gray-100 dark:bg-slate-900 pt-2 w-full "> */}
-        {/* <div className="col-span-2  hidden xl:block h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default">
+      <div className="grid grid-cols-12 gap-4 bg-gray-100 dark:bg-slate-900 pt-2 w-full ">
+        <div className="col-span-2  hidden xl:block h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default">
           <LeftSideBar />
-        </div> */}
+        </div>
 
         <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 h-[91vh] overflow-y-scroll scrollbar	">
           <div className="w-full mx-auto">
-            {/* <UserProfile data={data} /> */}
-            <Chatting></Chatting>
+            <UserProfile data={data} />
           </div>
          </div>
 
-        {/* <div className="col-span-2 hidden 2xl:block h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default">
+        <div className="col-span-2 hidden 2xl:block h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default">
           <RightSideBar />
-        </div> */}
-      {/* </div> */}
+        </div>
+      </div>
     </>
   );
 };

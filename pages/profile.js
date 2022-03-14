@@ -1,4 +1,4 @@
-/* import Head from "next/head";
+import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import LeftSideBar from "../components/Home/LeftSideBar";
@@ -43,4 +43,4 @@ const Profile = () => {
 };
 
 export default Profile;
- */
+ 

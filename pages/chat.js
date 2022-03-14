@@ -3,15 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-// import io from "socket.io-client";
+import io from "socket.io-client";
 
 let socket;
 const CONNECTION_PORT = "https://quiet-temple-44909.herokuapp.com/";
-// const CONNECTION_PORT = "http://localhost:3002/";
 
 const Chat = ({ data }) => {
-  // console.log(data);
-
   const inputRef = useRef();
 
   const [room, setRoom] = useState(0);
@@ -22,10 +19,9 @@ const Chat = ({ data }) => {
   const strTime = time.split(",");
 
   useEffect(() => {
-    const userRoom = data._id; // prompt("enter room number to chat")
-    console.log(userRoom);
+    const userRoom = prompt("enter room number to chat")
     setRoom(userRoom);
-  }, [data._id]);
+  }, []);
 
   const users = useSelector((state) => state.states.user);
   // console.log(users);
