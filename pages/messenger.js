@@ -23,7 +23,8 @@ export default function Messenger() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("https://dry-oasis-76334.herokuapp.com");
+    socket.current = io("ws://localhost:8900");
+    // socket.current = io("https://dry-oasis-76334.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
