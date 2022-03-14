@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
@@ -15,6 +17,7 @@ const MiddleLeftBar = () => {
   useEffect(() => {
     const createPostModal = document.getElementById("create-post-modal");
     const postBtn = document.getElementById("post-modal");
+    const submitBtn = document.getElementById("post-submit");
     const closePostModalBtn = document.getElementById("close-post-modal");
 
     const togglePostModal = () => {
@@ -22,6 +25,7 @@ const MiddleLeftBar = () => {
       createPostModal.classList.toggle("flex");
     };
     postBtn?.addEventListener("click", togglePostModal);
+   submitBtn?.addEventListener("click", togglePostModal);
     closePostModalBtn?.addEventListener("click", togglePostModal);
   }, []);
 
@@ -83,6 +87,8 @@ const MiddleLeftBar = () => {
           userData={userData}
         />
       ))}
+
+  <ToastContainer />
     </div>
   );
 };

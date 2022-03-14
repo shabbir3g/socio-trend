@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { format } from "timeago.js";
 import axios from "axios";
@@ -9,6 +9,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState(null);
   const [menu, setMenu] = useState("hidden");
+  const ref = useRef();
 
   useEffect(() => {
     axios
@@ -18,9 +19,11 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
+    console.log(e.target.value);
   };
 
   const handleSubmitComment = async (e) => {
+  
     e.preventDefault();
     let comments = {};
     comments.photoURL = userData.photoURL;
@@ -30,6 +33,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
     await axios
       .put(`/api/post/comment?id=${post._id}`, postComments)
       .then((data) => setStatus(data.status));
+      ref.current.value = "";
   };
 
   const handleLike = async () => {
@@ -92,7 +96,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
       <div className="pt-3">
         <p>
           {post.postContent}
-          <button className="text-blue-600 pl-2">see more</button>
+          {/* <button className="text-blue-600 pl-2">see more</button> */}
         </p>
       </div>
       <div className="pt-3">
@@ -133,7 +137,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
           </div>
           <div className="w-full mx-2">
             <input
-              onChange={handleCommentChange}
+              onChange={handleCommentChange} ref={ref}
               className="w-full h-10 dark:bg-slate-700 bg-slate-300 rounded-2xl p-2 resize-none scrollbar-hide"
               placeholder="Wright a comment ..."
             />
