@@ -17,12 +17,13 @@ export default function Messenger() {
   const [dbUser, setDbUser] = useState({});
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
-
+  const [allUsers, setAllUsers] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
+
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("https://dry-oasis-76334.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -41,12 +42,11 @@ export default function Messenger() {
   useEffect(() => {
     socket.current.emit("addUser", dbUser._id);
     socket.current.on("getUsers", (users) => {
-      console.log(users);
-      // setOnlineUsers(
-      //   user.followings.filter((f) => users.some((u) => u.userId === f))
-      // );
+      setOnlineUsers(
+        allUsers.filter((f) => users.some((u) => u.userId === f._id))
+      );
     });
-  }, [dbUser._id]);
+  }, [allUsers, dbUser._id]);
 
   useEffect(() => {
     const getConversations = async () => {
@@ -116,6 +116,12 @@ export default function Messenger() {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/user/allUsers").then(({ data }) => {
+      setAllUsers(data);
+    });
+  }, []);
+
   return (
     <>
       <Navigation />
@@ -168,11 +174,14 @@ export default function Messenger() {
         </div>
         <div className={styles.chatOnline}>
           <div className={styles.chatOnlineWrapper}>
-            {/* <ChatOnline
-                onlineUsers={onlineUsers}
-                currentId={user._id}
+            {onlineUsers.map((user) => (
+              <ChatOnline
+                key={user._id}
+                user={user}
+                currentId={dbUser._id}
                 setCurrentChat={setCurrentChat}
-              /> */}
+              />
+            ))}
           </div>
         </div>
       </div>

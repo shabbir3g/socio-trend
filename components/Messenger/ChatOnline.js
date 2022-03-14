@@ -1,20 +1,24 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import "./chatOnline.css";
+import Image from "next/image";
 
-export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
+export default function ChatOnline({
+  user,
+  onlineUsers,
+  currentId,
+  setCurrentChat,
+}) {
   const [friends, setFriends] = useState([]);
   const [onlineFriends, setOnlineFriends] = useState([]);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-  useEffect(() => {
-    const getFriends = async () => {
-      const res = await axios.get("/users/friends/" + currentId);
-      setFriends(res.data);
-    };
+  // useEffect(() => {
+  //   const getFriends = async () => {
+  //     const res = await axios.get("/users/friends/" + currentId);
+  //     setFriends(res.data);
+  //   };
 
-    getFriends();
-  }, [currentId]);
+  //   getFriends();
+  // }, [currentId]);
 
   useEffect(() => {
     setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
@@ -23,7 +27,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const handleClick = async (user) => {
     try {
       const res = await axios.get(
-        `/conversations/find/${currentId}/${user._id}`
+        `http://localhost:3000/api/messenger/getConversations?firstUserId=${currentId}?secondUserId=${user._id}`
       );
       setCurrentChat(res.data);
     } catch (err) {
@@ -33,27 +37,19 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
 
   return (
     <div className="chatOnline">
-      {onlineFriends.map((o) => (
-        <div
-          key={o._id}
-          className="chatOnlineFriend"
-          onClick={() => handleClick(o)}
-        >
-          <div className="chatOnlineImgContainer">
-            <img
-              className="chatOnlineImg"
-              src={
-                o?.profilePicture
-                  ? PF + o.profilePicture
-                  : PF + "person/noAvatar.png"
-              }
-              alt=""
-            />
-            <div className="chatOnlineBadge"></div>
-          </div>
-          <span className="chatOnlineName">{o?.username}</span>
+      <div className="chatOnlineFriend" onClick={() => handleClick(user)}>
+        <div className="chatOnlineImgContainer">
+          <Image
+            height="50"
+            width="50"
+            className="chatOnlineImg"
+            src={user.photoURL || "https://i.ibb.co/Xz214Jt/user-8.webp"}
+            alt=""
+          />
+          <div className="chatOnlineBadge"></div>
         </div>
-      ))}
+        <span className="chatOnlineName">{user?.displayName}</span>
+      </div>
     </div>
   );
 }
