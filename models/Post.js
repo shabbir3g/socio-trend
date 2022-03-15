@@ -4,26 +4,26 @@ const PostSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      require: true,
+      required: true,
     },
     displayName: {
       type: String,
-      default: "",
+      default: '',
     },
     userName: {
-      type: String
+      type: String,
     },
     photoURL: {
       type: String,
-      default: "",
+      default: '',
     },
     postContent: {
       type: String,
-      default: "",
+      default: '',
     },
     img: {
       type: String,
-      default: "",
+      default: '',
     },
     like: {
       type: Array,

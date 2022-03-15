@@ -1,24 +1,23 @@
-import dbConnect from "../../../utilities/mongo";
-import Post from "../../../models/Post";
+import dbConnect from '../../../utilities/mongo';
+import Post from '../../../models/Post';
 
 export default async function handler(req, res) {
   const { method } = req;
 
   dbConnect();
 
-  if (method === "POST") {
-    console.log(req.body.data)
+  if (method === 'POST') {
+    console.log(req.body.data);
     try {
       const post = await Post.create(req.body.data);
       return res.status(201).json(post);
-      
     } catch (err) {
       res.send(err);
-      console.log(err)
+      console.log(err.message);
       //res.status(500).json(err);
     }
   }
-  if (method === "DELETE") {
+  if (method === 'DELETE') {
     try {
       const result = await Post.deleteOne({ _id: req.query.id });
       res.status(200).json(result);
@@ -27,7 +26,7 @@ export default async function handler(req, res) {
     }
   }
   // get all posts
-  if (method === "GET") {
+  if (method === 'GET') {
     try {
       const result = await Post.find({});
       res.status(200).json(result);
