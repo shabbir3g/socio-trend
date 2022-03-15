@@ -10,7 +10,11 @@ const connectDb = async() => {
         }
    }
    catch(error) {
-       console.log('database connections failed');
+       const errorMessage = {
+           title: 'database connection failed',
+           errorMessage: error.message,
+       }
+       console.log(errorMessage);
    }
 }
 
