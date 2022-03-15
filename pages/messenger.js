@@ -4,7 +4,8 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../components/Messenger/Conversation";
 import Message from "../components/Messenger/Message";
-import ChatOnline from "../components/Messenger/ChatOnline";
+import OnlineUsers from "../components/Messenger/OnlineUsers";
+import AllUsers from "../components/Messenger/AllUsers";
 import { useSelector } from "react-redux";
 import Navigation from "../components/Share/Navigation";
 
@@ -23,8 +24,9 @@ export default function Messenger() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
-    // socket.current = io("https://dry-oasis-76334.herokuapp.com");
+    // socket.current = io("ws://localhost:8900");
+    socket.current = io("https://dry-oasis-76334.herokuapp.com/");
+
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -53,7 +55,7 @@ export default function Messenger() {
     const getConversations = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/messenger/conversations?userId=${dbUser._id}`
+          `http://localhost:3000/api/messenger/getConversations?userId=${dbUser._id}`
         );
         setConversations(res.data);
       } catch (err) {
@@ -81,7 +83,7 @@ export default function Messenger() {
     axios
       .get(`http://localhost:3000/api/user?email=${user?.email}`)
       .then(({ data }) => setDbUser(data));
-  }, [user.email]);
+  }, [user?.email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -128,10 +130,10 @@ export default function Messenger() {
       <Navigation />
       <div className={styles.messenger}>
         <div className={styles.chatMenu}>
-          <div className={styles.chatMenuWrapper}>
+          <div className="p-2.5 h-full">
             <input
               placeholder="Search for friends"
-              className={styles.chatMenuInput}
+              className="w-11/12 py-2.5 px-0 border-0"
             />
             {conversations?.map((c) => (
               <div onClick={() => setCurrentChat(c)} key={c._id}>
@@ -141,25 +143,25 @@ export default function Messenger() {
           </div>
         </div>
         <div className={styles.chatBox}>
-          <div className={styles.chatBoxWrapper}>
+          <div className="flex flex-col justify-between relative p-2.5 h-full">
             {currentChat ? (
               <>
-                <div className={styles.chatBoxTop}>
+                <div className="h-full overflow-y-scroll pr-2.5">
                   {messages.map((m) => (
                     <div ref={scrollRef} key={m._id}>
                       <Message message={m} own={m.sender === dbUser._id} />
                     </div>
                   ))}
                 </div>
-                <div className={styles.chatBoxBottom}>
+                <div className="mt-1.5 flex items-center justify-between">
                   <textarea
-                    className={styles.chatMessageInput}
+                    className="w-10/12 h-24 p-2.5"
                     placeholder="write something..."
                     onChange={(e) => setNewMessage(e.target.value)}
                     value={newMessage}
                   ></textarea>
                   <button
-                    className={styles.chatSubmitButtonclassName}
+                    className="w-24 h-10 border-none rounded-md cursor-pointer bg-teal-700 text-white"
                     onClick={handleSubmit}
                   >
                     Send
@@ -167,22 +169,36 @@ export default function Messenger() {
                 </div>
               </>
             ) : (
-              <span className={styles.noConversationText}>
+              <span className="absolute mt-2.5 text-5xl text-slate-200 cursor-default">
                 Open a conversation to start a chat.
               </span>
             )}
           </div>
         </div>
         <div className={styles.chatOnline}>
-          <div className={styles.chatOnlineWrapper}>
+          <div className="">
+            <h2>Online Users</h2>
+          </div>
+          <div className="p-2.5 h-full">
             {onlineUsers.map((user) => (
-              <ChatOnline
+              <OnlineUsers
                 key={user._id}
                 user={user}
                 currentId={dbUser._id}
                 setCurrentChat={setCurrentChat}
               />
             ))}
+            <div className="">
+              <h2>All Users</h2>
+              {allUsers.map((user) => (
+                <AllUsers
+                  key={user._id}
+                  user={user}
+                  currentId={dbUser._id}
+                  setCurrentChat={setCurrentChat}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

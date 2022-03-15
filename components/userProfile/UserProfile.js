@@ -89,7 +89,7 @@ const UserProfile = ({ data }) => {
             </div>
           </div>
           <div className="">
-            {user.email === data.email ? (
+            {user?.email === data.email ? (
               <button
                 className="bg-green-500 hover:bg-green-700	text-white font-bold text-xs p-3 rounded-md "
                 id="edit-profile"
