@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { format } from "timeago.js";
 import axios from "axios";
@@ -8,11 +8,12 @@ const SinglePost = ({ post, userData }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState(null);
+  
 
   useEffect(() => {
     axios
       .get(`/api/post/comment?id=${post._id}`)
-      // .then(({ data }) => setDbComments(data));
+      .then(({ data }) => setDbComments(data));
   }, [status, post._id]);
 
   const handleCommentChange = (e) => {
@@ -66,7 +67,8 @@ const SinglePost = ({ post, userData }) => {
         </p>
       </div>
       <div className="pt-3">
-        <Image src={post.img} height={350} width={600} alt="" />
+        <Image src={post.img ||
+              "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"} height={350} width={600} alt="" />
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
