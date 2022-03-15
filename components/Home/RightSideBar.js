@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
+
 
 const RightSideBar = () => {
   const [users, setUsers] = useState([]);
-  
+
   useEffect(() => {
-    axios
-      .get("/api/user/allUsers")
-      .then(({ data }) => setUsers(data));
+    axios.get("/api/user/allUsers").then(({ data }) => setUsers(data));
   }, []);
   return (
     <div className="bg-neutral-100 dark:bg-gray-900">
@@ -16,23 +17,27 @@ const RightSideBar = () => {
         <p className="mb-3">Contacts</p>
         <ul>
           {users.map((user) => (
-            <li className="mb-3" key={user._id}>
-              <a href="#" className="flex items-center">
-                <Image
-                  src={
-                    user.photoURL ||
-                    "http://uitheme.net/sociala/images/profile-4.png"
-                  }
-                  width="30"
-                  height="30"
-                  alt="user"
-                  className="rounded-full"
-                />
-                <span className="ml-3 contact-users" title={user.displayName}>{user.displayName}</span>
-                <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
-                {/* <span className="p-1 rounded-full bg-yellow-500 ml-auto"></span> */}
-              </a>
-            </li>
+            <Link href={`${user.userName}`} key={user._id} passHref>
+              <li className="mb-3">
+                <span className="flex items-center cursor-pointer">
+                  <Image
+                    src={
+                      user.photoURL ||
+                      "http://uitheme.net/sociala/images/profile-4.png"
+                    }
+                    width="30"
+                    height="30"
+                    alt="user"
+                    className="rounded-full"
+                  />
+                  <span className="ml-3 contact-users" title={user.displayName}>
+                    {user.displayName}
+                  </span>
+                  <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
+                  {/* <span className="p-1 rounded-full bg-yellow-500 ml-auto"></span> */}
+                </span>
+              </li>
+            </Link>
           ))}
         </ul>
         <p className="mb-5 mt-5">Groupes</p>

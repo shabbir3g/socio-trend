@@ -15,7 +15,6 @@ const Login = () => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     signWithEmailPass(data.email, data.password);
   };
 

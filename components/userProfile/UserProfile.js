@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import UserSinglePost from "./UserSinglePost";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
 import Link from "next/link";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import SinglePost from "../Home/SinglePost";
+import { useRouter } from "next/router";
 
 const UserProfile = ({ data }) => {
+  const router = useRouter();
+  const userName = router.query.username;
+
   const user = useSelector((state) => state.states.user);
   const [posts, setPosts] = useState([]);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     const editDetailsModal = document.getElementById("edit-about-modal");
@@ -39,12 +44,19 @@ const UserProfile = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`/api/post/userPost?email=${user.email}`)
-      .then((data) => {
-        setPosts(data.data);
-      });
-  }, [user.email]);
+    axios.get(`/api/post/userPost?userName=${userName}`).then((data) => {
+      setPosts(data.data);
+    });
+  }, [userName]);
+
+
+  useEffect(() => {
+    axios.get(`/api/user?email=${user?.email}`).then((data) => {
+      setUserData(data);
+    });
+  }, [user?.email]);
+
+  
   return (
     <>
       {/* Profile banner */}
@@ -77,12 +89,16 @@ const UserProfile = ({ data }) => {
             </div>
           </div>
           <div className="">
-            <button
-              className="bg-green-500 hover:bg-green-700	text-white font-bold text-xs p-3 rounded-md "
-              id="edit-profile"
-            >
-              Edit profile
-            </button>
+            {user.email === data.email ? (
+              <button
+                className="bg-green-500 hover:bg-green-700	text-white font-bold text-xs p-3 rounded-md "
+                id="edit-profile"
+              >
+                Edit profile
+              </button>
+            ) : (
+              <button id="edit-profile" className="hidden"></button>
+            )}
           </div>
         </div>
         <hr />
@@ -95,8 +111,6 @@ const UserProfile = ({ data }) => {
           </Link>
         </div>
       </div>
-
-      {/* Post and About */}
 
       <div className="grid grid-cols-12 gap-4 bg-gray-100 dark:bg-gray-900 pt-3">
         <div className="md:col-span-4 sm:col-span-12 col-span-12 ">
@@ -124,12 +138,16 @@ const UserProfile = ({ data }) => {
                 Joined {data.createdAt?.slice(0, 10)}
               </span>
             </div>
-            <button
-              className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
-              id="edit-about"
-            >
-              Edit Details
-            </button>
+            {user.email === data.email ? (
+              <button
+                className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
+                id="edit-about"
+              >
+                Edit Details
+              </button>
+            ) : (
+              <button className="hidden w-full" id="edit-about"></button>
+            )}
           </div>
         </div>
 
@@ -179,14 +197,13 @@ const UserProfile = ({ data }) => {
                   id="files"
                   accept="image/*"
                   className="hidden"
-                  // onChange={(e) => console.log(e.target.files[0])}
                 />
               </div>
             </div>
           </div>
-          
+
           {posts.map((post) => (
-            <UserSinglePost key={post._id} post={post} />
+            <SinglePost key={post._id} post={post} userData={userData} />
           ))}
         </div>
       </div>

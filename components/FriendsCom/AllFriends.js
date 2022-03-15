@@ -99,7 +99,6 @@ const AllFrends = () => {
     setMembers(friends);
     setSearchMember(friends);
   }, []);
-  console.log("members", members);
 
   const searchFiealdhandle = (e) => {
     const searchText = e.target.value;

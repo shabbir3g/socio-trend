@@ -8,7 +8,6 @@ const AboutModal = ({ data }) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     fetch(`/api/user/updateAbout?email=${user.email}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

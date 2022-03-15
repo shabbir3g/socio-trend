@@ -1,33 +1,20 @@
-import React from 'react';
-
-const profile = () => {
-  return (
-    <div>
-      <h2>Profile page</h2>
-    </div>
-  );
-};
-
-export default profile;
-
-/* import Head from "next/head";
+import Head from "next/head";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import LeftSideBar from "../components/Home/LeftSideBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import UserProfile from "../components/userProfile/UserProfile";
+import { useRouter } from "next/router";
 
 const Profile = () => {
+  const router = useRouter();
+  const userName = router.query.username;
   const [data, setData] = useState({});
-
-  const user = useSelector((state) => state.states.user);
-
   useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
-      .then((result) => result.json())
-      .then((data) => setData(data));
-  }, [user?.email]);
+    axios.get(`/api/user/userName?userName=${userName}`).then(({ data }) => setData(data));
+  }, [userName]);
+
   return (
     <>
       <Head>
@@ -55,4 +42,3 @@ const Profile = () => {
 };
 
 export default Profile;
- */
