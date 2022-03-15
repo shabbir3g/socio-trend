@@ -9,12 +9,12 @@ const connectDb = async() => {
             mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.tg4nc.mongodb.net/socioTrend?retryWrites=true&w=majority`)
         }
    }
-   catch(error) {
-       const errorMessage = {
-           title: 'database connection failed',
-           errorMessage: error.message,
+   catch(err) {
+       const error = {
+           errorTitle: 'database connection failed',
+           errorMessage: err.message,
        }
-       console.log(errorMessage);
+       console.log(error);
    }
 }
 
