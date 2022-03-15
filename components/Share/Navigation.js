@@ -18,7 +18,7 @@ const Navigation = () => {
     axios
       .get(`/api/user?email=${reduxUser.email}`)
       .then(({ data }) => setDbUser(data));
-  }, [reduxUser?.email]);
+  }, [reduxUser.email]);
 
   const currentTheme = theme === "system" ? systemTheme : theme;
 
@@ -62,12 +62,11 @@ const Navigation = () => {
     }
   }, []);
 
+
   const [data, setData] = useState({});
   const user = useSelector((state) => state.states.user);
   useEffect(() => {
-    axios
-      .get(`/api/user?email=${user?.email}`)
-      .then(({ data }) => setData(data));
+    axios.get(`/api/user?email=${user?.email}`).then(({ data }) => setData(data));
   }, [user?.email]);
 
   return (
@@ -151,10 +150,12 @@ const Navigation = () => {
               <i className="far fa-bell"></i>
             </a>
           </Link>
-          <Link href="/messenger">
-            <a className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 dark:text-white text-2xl">
-              <i className="far fa-comment-alt"></i>
-            </a>
+          <Link href="/chat">
+          <a
+            className="w-14 h-14 items-center justify-center hidden lg:flex text-teal-900 dark:text-white text-2xl"
+          >
+            <i className="far fa-comment-alt"></i>
+          </a>
           </Link>
           <a
             href="#"
@@ -181,12 +182,12 @@ const Navigation = () => {
               />
             </a>
           </Link>
-
-          <Link href="messenger">
-            <a className="w-14 h-14 items-center justify-center lg:hidden flex text-blue-500 text-2xl">
-              <i className="far fa-comment"></i>
-            </a>
-          </Link>
+          <a
+            href="chat"
+            className="w-14 h-14 items-center justify-center lg:hidden flex text-blue-500 text-2xl"
+          >
+            <i className="far fa-comment"></i>
+          </a>
           <a
             href="#"
             className="w-14 h-14 items-center justify-center lg:hidden flex text-blue-500 text-2xl"

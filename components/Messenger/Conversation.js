@@ -8,7 +8,9 @@ export default function Conversation({ conversation, currentUser }) {
     const friendId = conversation.members.find((m) => m !== currentUser._id);
     const getUser = async () => {
       try {
-        const res = await axios("/api/user/singleUser?id=" + friendId);
+        const res = await axios(
+          "http://localhost:3000/api/user/singleUser?id=" + friendId
+        );
         setUser(res.data);
       } catch (err) {
         console.log(err);

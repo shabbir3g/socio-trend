@@ -24,7 +24,7 @@ export default function Messenger() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("https://dry-oasis-76334.herokuapp.com");
+    socket.current = io("ws://localhost:8900"); //"https://dry-oasis-76334.herokuapp.com"
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -53,7 +53,7 @@ export default function Messenger() {
     const getConversations = async () => {
       try {
         const res = await axios.get(
-          `/api/messenger/getConversations?userId=${dbUser._id}`
+          `http://localhost:3000/api/messenger/getConversations?userId=${dbUser._id}`
         );
         setConversations(res.data);
       } catch (err) {
@@ -67,7 +67,7 @@ export default function Messenger() {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          `/api/messenger/messages?conversationId=${currentChat?._id}`
+          `http://localhost:3000/api/messenger/messages?conversationId=${currentChat?._id}`
         );
         setMessages(res.data);
       } catch (err) {
@@ -79,36 +79,37 @@ export default function Messenger() {
 
   useEffect(() => {
     axios
-      .get(`/api/user?email=${user?.email}`)
+      .get(`http://localhost:3000/api/user?email=${user?.email}`)
       .then(({ data }) => setDbUser(data));
-  }, [user?.email]);
+  }, [user.email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newMessage !== "") {
-      const message = {
-        sender: dbUser._id,
-        text: newMessage,
-        conversationId: currentChat._id,
-      };
+    const message = {
+      sender: dbUser._id,
+      text: newMessage,
+      conversationId: currentChat._id,
+    };
 
-      const receiverId = currentChat.members.find(
-        (member) => member !== dbUser._id
+    const receiverId = currentChat.members.find(
+      (member) => member !== dbUser._id
+    );
+
+    socket.current.emit("sendMessage", {
+      senderId: dbUser._id,
+      receiverId,
+      text: newMessage,
+    });
+
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/messenger/messages",
+        message
       );
-
-      socket.current.emit("sendMessage", {
-        senderId: dbUser._id,
-        receiverId,
-        text: newMessage,
-      });
-
-      try {
-        const res = await axios.post("/api/messenger/messages", message);
-        setMessages([...messages, res.data]);
-        setNewMessage("");
-      } catch (err) {
-        console.log(err);
-      }
+      setMessages([...messages, res.data]);
+      setNewMessage("");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -117,7 +118,7 @@ export default function Messenger() {
   }, [messages]);
 
   useEffect(() => {
-    axios.get("/api/user/allUsers").then(({ data }) => {
+    axios.get("http://localhost:3000/api/user/allUsers").then(({ data }) => {
       setAllUsers(data);
     });
   }, []);
@@ -127,9 +128,7 @@ export default function Messenger() {
       <Navigation />
       <div className={styles.messenger}>
         <div className={styles.chatMenu}>
-          <div
-            className={`${styles.chatMenuWrapper} overflow-y-scroll scrollbar	scrollbar-hide`}
-          >
+          <div className={styles.chatMenuWrapper}>
             <input
               placeholder="Search for friends"
               className={styles.chatMenuInput}
@@ -145,9 +144,7 @@ export default function Messenger() {
           <div className={styles.chatBoxWrapper}>
             {currentChat ? (
               <>
-                <div
-                  className={`${styles.chatBoxTop} overflow-y-scroll scrollbar`}
-                >
+                <div className={styles.chatBoxTop}>
                   {messages.map((m) => (
                     <div ref={scrollRef} key={m._id}>
                       <Message message={m} own={m.sender === dbUser._id} />
@@ -162,7 +159,7 @@ export default function Messenger() {
                     value={newMessage}
                   ></textarea>
                   <button
-                    className={styles.chatSubmitButton}
+                    className={styles.chatSubmitButtonclassName}
                     onClick={handleSubmit}
                   >
                     Send
@@ -180,9 +177,7 @@ export default function Messenger() {
           <div className="">
             <h2>Online Users</h2>
           </div>
-          <div
-            className={`${styles.chatOnlineWrapper} overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default`}
-          >
+          <div className={styles.chatOnlineWrapper}>
             {onlineUsers.map((user) => (
               <OnlineUsers
                 key={user._id}
