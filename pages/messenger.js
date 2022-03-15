@@ -4,7 +4,8 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../components/Messenger/Conversation";
 import Message from "../components/Messenger/Message";
-import ChatOnline from "../components/Messenger/ChatOnline";
+import OnlineUsers from "../components/Messenger/OnlineUsers";
+import AllUsers from "../components/Messenger/AllUsers";
 import { useSelector } from "react-redux";
 import Navigation from "../components/Share/Navigation";
 
@@ -23,7 +24,7 @@ export default function Messenger() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("https://dry-oasis-76334.herokuapp.com");
+    socket.current = io("ws://localhost:8900"); //"https://dry-oasis-76334.herokuapp.com"
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -52,7 +53,7 @@ export default function Messenger() {
     const getConversations = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/messenger/conversations?userId=${dbUser._id}`
+          `http://localhost:3000/api/messenger/getConversations?userId=${dbUser._id}`
         );
         setConversations(res.data);
       } catch (err) {
@@ -173,15 +174,29 @@ export default function Messenger() {
           </div>
         </div>
         <div className={styles.chatOnline}>
+          <div className="">
+            <h2>Online Users</h2>
+          </div>
           <div className={styles.chatOnlineWrapper}>
             {onlineUsers.map((user) => (
-              <ChatOnline
+              <OnlineUsers
                 key={user._id}
                 user={user}
                 currentId={dbUser._id}
                 setCurrentChat={setCurrentChat}
               />
             ))}
+            <div className="">
+              <h2>All Users</h2>
+              {allUsers.map((user) => (
+                <AllUsers
+                  key={user._id}
+                  user={user}
+                  currentId={dbUser._id}
+                  setCurrentChat={setCurrentChat}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

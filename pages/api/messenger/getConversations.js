@@ -7,14 +7,11 @@ export default async function handler(req, res) {
   dbConnect();
 
   if (method === "GET") {
-    const firstUserId = req.query.firstUserId.split("?")[0];
-    const secondUserId = req.query.firstUserId.split("=")[1];
     try {
-      const conversation = await Conversation.findOne({
-        members: { $all: [firstUserId, secondUserId] },
+      const result = await Conversation.find({
+        members: { $in: [req.query.userId] },
       });
-      console.log(conversation);
-      res.status(200).json(conversation);
+      res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err);
     }

@@ -19,11 +19,9 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleSubmitComment = async (e) => {
-  
     e.preventDefault();
     let comments = {};
     comments.photoURL = userData.photoURL;
@@ -33,7 +31,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
     await axios
       .put(`/api/post/comment?id=${post._id}`, postComments)
       .then((data) => setStatus(data.status));
-      ref.current.value = "";
+    ref.current.value = "";
   };
 
   const handleLike = async () => {
@@ -137,7 +135,8 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
           </div>
           <div className="w-full mx-2">
             <input
-              onChange={handleCommentChange} ref={ref}
+              onChange={handleCommentChange}
+              ref={ref}
               className="w-full h-10 dark:bg-slate-700 bg-slate-300 rounded-2xl p-2 resize-none scrollbar-hide"
               placeholder="Wright a comment ..."
             />

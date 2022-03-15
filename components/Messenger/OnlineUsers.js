@@ -1,33 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
-export default function ChatOnline({
-  user,
-  onlineUsers,
-  currentId,
-  setCurrentChat,
-}) {
-  const [friends, setFriends] = useState([]);
-  const [onlineFriends, setOnlineFriends] = useState([]);
-
-  // useEffect(() => {
-  //   const getFriends = async () => {
-  //     const res = await axios.get("/users/friends/" + currentId);
-  //     setFriends(res.data);
-  //   };
-
-  //   getFriends();
-  // }, [currentId]);
-
-  useEffect(() => {
-    setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
-  }, [friends, onlineUsers]);
-
+export default function ChatOnline({ user, currentId, setCurrentChat }) {
   const handleClick = async (user) => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/messenger/getConversations?firstUserId=${currentId}?secondUserId=${user._id}`
+        `http://localhost:3000/api/messenger/conversations?firstUserId=${currentId}?secondUserId=${user._id}`
       );
       setCurrentChat(res.data);
     } catch (err) {
