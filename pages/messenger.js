@@ -24,7 +24,7 @@ export default function Messenger() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900"); //"https://dry-oasis-76334.herokuapp.com"
+    socket.current = io("https://dry-oasis-76334.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -81,7 +81,7 @@ export default function Messenger() {
     axios
       .get(`http://localhost:3000/api/user?email=${user?.email}`)
       .then(({ data }) => setDbUser(data));
-  }, [user.email]);
+  }, [user?.email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
