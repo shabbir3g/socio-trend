@@ -85,28 +85,30 @@ export default function Messenger() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const message = {
-      sender: dbUser._id,
-      text: newMessage,
-      conversationId: currentChat._id,
-    };
+    if (newMessage !== "") {
+      const message = {
+        sender: dbUser._id,
+        text: newMessage,
+        conversationId: currentChat._id,
+      };
 
-    const receiverId = currentChat.members.find(
-      (member) => member !== dbUser._id
-    );
+      const receiverId = currentChat.members.find(
+        (member) => member !== dbUser._id
+      );
 
-    socket.current.emit("sendMessage", {
-      senderId: dbUser._id,
-      receiverId,
-      text: newMessage,
-    });
+      socket.current.emit("sendMessage", {
+        senderId: dbUser._id,
+        receiverId,
+        text: newMessage,
+      });
 
-    try {
-      const res = await axios.post("/api/messenger/messages", message);
-      setMessages([...messages, res.data]);
-      setNewMessage("");
-    } catch (err) {
-      console.log(err);
+      try {
+        const res = await axios.post("/api/messenger/messages", message);
+        setMessages([...messages, res.data]);
+        setNewMessage("");
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
