@@ -1,12 +1,17 @@
-import { data } from "autoprefixer";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import Modal from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
 import { toast } from "react-toastify";
 
-const AboutModal = ({ data, open, setOpenDetailsModal, setUpdateUserData }) => {
+const AboutModal = ({
+  data,
+  openDetailsModal,
+  setOpenDetailsModal,
+  setUpdateUserData,
+}) => {
   const user = useSelector((state) => state.states.user);
   const { register, handleSubmit } = useForm();
 
@@ -23,7 +28,7 @@ const AboutModal = ({ data, open, setOpenDetailsModal, setUpdateUserData }) => {
   };
   return (
     <Modal
-      open={open}
+      open={openDetailsModal}
       onClose={() => setOpenDetailsModal(false)}
       center
       classNames={{
