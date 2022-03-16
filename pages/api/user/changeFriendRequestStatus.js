@@ -1,27 +1,28 @@
 import User from "../../../models/User";
 import connectDb from '.././../../db/connectDatabase';
 
-
 export default async function handler(req, res) {
     connectDb();
-  const { method } = req;
-  const {userId, requestUserid} = req.query;
+    const { method } = req;
+    const {userId, requestUserid} = req.query;
+    const  {requestStatus} = req.body;
 
   
 
-  // add friend 
-  if (method === "POST") {
+  // update friend request status
+  if (method === "PATCH") {
     try {
      const user = await User.findById(requestUserid);
      if(user) {
-         await User.findByIdAndUpdate(
-              requestUserid,
+         await User.updateOne(
               {
-                  $push: {
-                    friends: {
-                        friendId: userId,
-                        requestStatus: 'pending',
-                    },
+                friends: {
+                    friendId: userId,
+                }
+              },
+              {
+                  $set: {
+                      'friends.$.requestStatus': requestStatus.toLowerCase(), 
                   }
               }
          )
