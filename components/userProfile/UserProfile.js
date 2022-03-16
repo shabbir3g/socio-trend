@@ -106,7 +106,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-heart"></i>
-              <span className="ml-3">{userData.relationship} Relationship</span>
+              <span className="ml-3">{userData.relationship}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-clock"></i>
@@ -193,7 +193,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
       {/* Edit About Modal */}
       <AboutModal
         data={userData}
-        open={openDetailsModal}
+        openDetailsModal={openDetailsModal}
         setOpenDetailsModal={setOpenDetailsModal}
         setUpdateUserData={setUpdateUserData}
       />
