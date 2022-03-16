@@ -35,7 +35,9 @@ export default async function handler(req, res) {
             }
         )
         
-        res.send('ok');
+        res.status(201).json({
+          message: 'Succefully Send Friend Request',
+        })
         
     }catch(error) {
         console.log(error.message);

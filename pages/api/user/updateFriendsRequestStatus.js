@@ -34,7 +34,7 @@ export default async function handler(req, res) {
             }
         )
 
-        res.send(`Succefully ${status} Friends Request`);
+        res.status(200).json((`Succefully ${requestStatus} Friends Request`));
     }
     catch(error) {
         next(error);
