@@ -2,8 +2,9 @@ import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Modal from "react-responsive-modal";
 
-const ProfileModal = ({ data }) => {
+const ProfileModal = ({ data, open, setOpenProfileModal, center }) => {
   const user = useSelector((state) => state.states.user);
   const [displayName, setDisplayName] = useState("");
   const [preProfileImg, setPreProfileImg] = useState(null);
@@ -66,25 +67,17 @@ const ProfileModal = ({ data }) => {
   };
 
   return (
-    <div
-      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10"
-      id="edit-profile-modal"
+    <Modal
+      open={open}
+      onClose={() => setOpenProfileModal(false)}
+      center
+      classNames={{
+        modal: "customModal",
+      }}
     >
       <div className="bg-gray-200 dark:bg-gray-800 px-7 py-3 rounded shadow-xl text-gray-800">
         <div className="flex justify-between items-center border-b-2 py-3 border-gray-500">
           <h4 className="text-lg font-bold dark:text-white">Edit profile</h4>
-          <svg
-            className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full dark:text-white dark:hover:bg-gray-600"
-            id="close-profile-modal"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="flex justify-between items-center pt-5">
@@ -171,7 +164,7 @@ const ProfileModal = ({ data }) => {
           </div>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 };
 

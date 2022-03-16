@@ -2,8 +2,9 @@ import { data } from "autoprefixer";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import Modal from "react-responsive-modal";
 
-const AboutModal = ({ data }) => {
+const AboutModal = ({ data, open, setOpenDetailsModal }) => {
   const user = useSelector((state) => state.states.user);
   const { register, handleSubmit } = useForm();
 
@@ -17,27 +18,17 @@ const AboutModal = ({ data }) => {
       .then((result) => console.log(result));
   };
   return (
-    <div
+    <Modal
+      open={open}
+      onClose={() => setOpenDetailsModal(false)}
+      center
       className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10"
       id="edit-about-modal"
     >
       <div className="bg-gray-200 dark:bg-gray-800 p-5 rounded shadow-xl text-gray-800 md:w-1/4">
         <div className="flex justify-between items-center border-b-2 py-3 mb-5 border-gray-500">
           <h4 className="text-lg font-bold dark:text-white">Edit about</h4>
-          <svg
-            className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full dark:text-white dark:hover:bg-gray-600"
-            id="close-about-modal"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
         </div>
-
         <form onSubmit={handleSubmit(onSubmit)}>
           <label className="dark:text-white">Educations</label>
           <input
@@ -96,7 +87,7 @@ const AboutModal = ({ data }) => {
           </div>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 };
 

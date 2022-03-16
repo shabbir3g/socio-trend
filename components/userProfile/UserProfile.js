@@ -7,6 +7,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import SinglePost from "../Home/SinglePost";
 import { useRouter } from "next/router";
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
 
 const UserProfile = ({ data }) => {
   const router = useRouter();
@@ -15,33 +17,8 @@ const UserProfile = ({ data }) => {
   const user = useSelector((state) => state.states.user);
   const [posts, setPosts] = useState([]);
   const [userData, setUserData] = useState({});
-
-  useEffect(() => {
-    const editDetailsModal = document.getElementById("edit-about-modal");
-    const editDetailsBtn = document.getElementById("edit-about");
-
-    const editProfileModal = document.getElementById("edit-profile-modal");
-    const editProfileBtn = document.getElementById("edit-profile");
-
-    const closeAboutModalBtn = document.getElementById("close-about-modal");
-    const closeProfileModalBtn = document.getElementById("close-profile-modal");
-
-    const toggleModalAbout = () => {
-      editDetailsModal.classList.toggle("hidden");
-      editDetailsModal.classList.toggle("flex");
-    };
-
-    const toggleModalProfile = () => {
-      editProfileModal.classList.toggle("hidden");
-      editProfileModal.classList.toggle("flex");
-    };
-
-    editDetailsBtn.addEventListener("click", toggleModalAbout);
-    editProfileBtn.addEventListener("click", toggleModalProfile);
-
-    closeAboutModalBtn.addEventListener("click", toggleModalAbout);
-    closeProfileModalBtn.addEventListener("click", toggleModalProfile);
-  }, []);
+  const [openProfileModal, setOpenProfileModal] = useState(false);
+  const [openDetailsModal, setOpenDetailsModal] = useState(false);
 
   useEffect(() => {
     axios.get(`/api/post/userPost?userName=${userName}`).then((data) => {
@@ -49,14 +26,12 @@ const UserProfile = ({ data }) => {
     });
   }, [userName]);
 
-
   useEffect(() => {
     axios.get(`/api/user?email=${user?.email}`).then((data) => {
       setUserData(data);
     });
   }, [user?.email]);
 
-  
   return (
     <>
       {/* Profile banner */}
@@ -92,7 +67,7 @@ const UserProfile = ({ data }) => {
             {user.email === data.email ? (
               <button
                 className="bg-green-500 hover:bg-green-700	text-white font-bold text-xs p-3 rounded-md "
-                id="edit-profile"
+                onClick={() => setOpenProfileModal(true)}
               >
                 Edit profile
               </button>
@@ -141,7 +116,7 @@ const UserProfile = ({ data }) => {
             {user.email === data.email ? (
               <button
                 className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
-                id="edit-about"
+                onClick={() => setOpenDetailsModal(true)}
               >
                 Edit Details
               </button>
@@ -208,9 +183,17 @@ const UserProfile = ({ data }) => {
         </div>
       </div>
       {/* Edit Profile Modal */}
-      <ProfileModal data={data} />
+      <ProfileModal
+        data={data}
+        open={openProfileModal}
+        setOpenProfileModal={setOpenProfileModal}
+      />
       {/* Edit About Modal */}
-      <AboutModal data={data} />
+      <AboutModal
+        data={data}
+        open={openDetailsModal}
+        setOpenDetailsModal={setOpenDetailsModal}
+      />
     </>
   );
 };
