@@ -1,21 +1,25 @@
 import { data } from "autoprefixer";
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import Modal from "react-responsive-modal";
+import { toast } from "react-toastify";
 
-const AboutModal = ({ data, open, setOpenDetailsModal }) => {
+const AboutModal = ({ data, open, setOpenDetailsModal, setUpdateUserData }) => {
   const user = useSelector((state) => state.states.user);
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    fetch(`/api/user/updateAbout?email=${user.email}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((result) => console.log(result));
+    axios
+      .put(`/api/user/updateAbout?email=${user.email}`, data)
+      .then((data) => {
+        if (data.status === 200) {
+          setUpdateUserData(true);
+          toast("Update successfully your information");
+          setOpenDetailsModal(false);
+        }
+      });
   };
   return (
     <Modal
@@ -26,9 +30,7 @@ const AboutModal = ({ data, open, setOpenDetailsModal }) => {
         modal: "customModal",
       }}
     >
-      <div 
-      className="bg-gray-200 dark:bg-gray-800 p-5 rounded shadow-xl text-gray-800 md:w-[500px]"
-      >
+      <div className="bg-gray-200 dark:bg-gray-800 p-5 rounded shadow-xl text-gray-800 md:w-[500px]">
         <div className="flex justify-between items-center border-b-2 py-3 mb-5 border-gray-500">
           <h4 className="text-lg font-bold dark:text-white">Edit about</h4>
         </div>

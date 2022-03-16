@@ -195,6 +195,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
         data={userData}
         open={openDetailsModal}
         setOpenDetailsModal={setOpenDetailsModal}
+        setUpdateUserData={setUpdateUserData}
       />
     </>
   );
