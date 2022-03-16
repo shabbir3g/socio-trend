@@ -59,7 +59,7 @@ const UserProfile = ({ data }) => {
             <div className="ml-6">
               <div className="font-bold text-lg ">{data.displayName}</div>
               <div className="text-xs font-medium	text-gray-400 ">
-                support@gmail.com
+              <a href={`mailto:${data.email}`}>{data.email}</a>
               </div>
             </div>
           </div>

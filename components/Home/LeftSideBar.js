@@ -59,8 +59,8 @@ const LeftSideBar = () => {
           <p className="mb-3">More pages</p>
           <ul className="left-second-sidebar">
             <li>
-              <Link href="/email">
-                <a>
+              <Link href="https://gmail.com">
+                <a target="_blank">
                   <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i>{" "}
                   Email Box
                 </a>
