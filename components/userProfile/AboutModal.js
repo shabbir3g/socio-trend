@@ -22,10 +22,13 @@ const AboutModal = ({ data, open, setOpenDetailsModal }) => {
       open={open}
       onClose={() => setOpenDetailsModal(false)}
       center
-      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10"
-      id="edit-about-modal"
+      classNames={{
+        modal: "customModal",
+      }}
     >
-      <div className="bg-gray-200 dark:bg-gray-800 p-5 rounded shadow-xl text-gray-800 md:w-1/4">
+      <div 
+      className="bg-gray-200 dark:bg-gray-800 p-5 rounded shadow-xl text-gray-800 md:w-[500px]"
+      >
         <div className="flex justify-between items-center border-b-2 py-3 mb-5 border-gray-500">
           <h4 className="text-lg font-bold dark:text-white">Edit about</h4>
         </div>
