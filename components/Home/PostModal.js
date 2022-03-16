@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
 
-const PostModal = ({ userData }) => {
+const PostModal = ({
+  userData,
+  openPostModal,
+  setOpenPostModal,
+  setNewPost,
+}) => {
   const [postImg, setPostImg] = useState([]);
   const [prePostImg, setPrePostImg] = useState(null);
+  const [updating, setUpdating] = useState(false);
 
   const handlePostImg = (file) => {
     setPostImg(file);
@@ -16,6 +24,7 @@ const PostModal = ({ userData }) => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
+    setUpdating(true);
     data.displayName = userData.displayName;
     data.email = userData.email;
     data.photoURL = userData.photoURL;
@@ -38,33 +47,29 @@ const PostModal = ({ userData }) => {
       data,
     });
     if (response.status === 200) {
+      setUpdating(false);
+      setNewPost(true);
+      setOpenPostModal(false);
       toast("Your Post successfully Done");
-
-      
     }
   };
+  if (updating) {
+    toast("Posting pending");
+  }
   return (
-    <div
-      className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10"
-      id="create-post-modal"
+    <Modal
+      open={openPostModal}
+      onClose={() => setOpenPostModal(false)}
+      center
+      classNames={{
+        modal: "customModal",
+      }}
     >
-      <div className="bg-gray-200 dark:bg-gray-800 px-7 py-3 rounded shadow-xl text-gray-800">
+      <div className="bg-gray-200 dark:bg-gray-800 px-7 py-3 rounded shadow-xl text-gray-800 md:w-[500px]">
         <div className="flex justify-between items-center border-b-2 py-3 border-gray-500">
           <h4 className="text-lg font-bold dark:text-white">
             Create a new post
           </h4>
-          <svg
-            className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full dark:text-white dark:hover:bg-gray-600"
-            id="close-post-modal"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
         </div>
         <div className="flex items-center pt-3">
           <Image
@@ -110,18 +115,15 @@ const PostModal = ({ userData }) => {
             onChange={(e) => handlePostImg(e.target.files[0])}
           />
           <button
-          id="post-submit"
+            id="post-submit"
             type="submit"
             className="px-3 py-2 my-5 w-full bg-blue-500 text-gray-200 hover:bg-green-700 rounded-md"
           >
             Post
           </button>
         </form>
-        {/* <ToastContainer /> */}
       </div>
-      {/* react-toast-for-alert */}
-
-    </div>
+    </Modal>
   );
 };
 

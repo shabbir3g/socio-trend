@@ -10,10 +10,14 @@ import { useRouter } from "next/router";
 const Profile = () => {
   const router = useRouter();
   const userName = router.query.username;
-  const [data, setData] = useState({});
+  const [userData, setUserData] = useState({});
+  const [updateUserData, setUpdateUserData] = useState(false);
+
   useEffect(() => {
-    axios.get(`/api/user/userName?userName=${userName}`).then(({ data }) => setData(data));
-  }, [userName]);
+    axios
+      .get(`/api/user/userName?userName=${userName}`)
+      .then(({ data }) => setUserData(data));
+  }, [userName, updateUserData]);
 
   return (
     <>
@@ -29,7 +33,10 @@ const Profile = () => {
 
         <div className="col-span-12 xl:col-span-10 2xl:col-span-8 sm:col-span-12 h-[91vh] overflow-y-scroll scrollbar	">
           <div className="md:w-3/4 w-full mx-auto">
-            <UserProfile data={data} />
+            <UserProfile
+              userData={userData}
+              setUpdateUserData={setUpdateUserData}
+            />
           </div>
         </div>
 
