@@ -8,6 +8,7 @@ import OnlineUsers from "../components/Messenger/OnlineUsers";
 import AllUsers from "../components/Messenger/AllUsers";
 import { useSelector } from "react-redux";
 import Navigation from "../components/Share/Navigation";
+import Head from "next/head";
 
 export default function Messenger() {
   const user = useSelector((state) => state.states.user);
@@ -124,6 +125,10 @@ export default function Messenger() {
 
   return (
     <>
+      <Head>
+        <title>Messenger</title>
+        <link rel="icon" href="/favicon.png" />
+      </Head>
       <Navigation />
       <div className={styles.messenger}>
         <div className={styles.chatMenu}>
