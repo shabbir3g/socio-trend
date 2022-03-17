@@ -182,7 +182,7 @@ const Navigation = () => {
             </a>
           </Link>
 
-          <Link href="messenger">
+          <Link href="/messenger">
             <a className="w-14 h-14 items-center justify-center lg:hidden flex text-blue-500 text-2xl">
               <i className="far fa-comment"></i>
             </a>
