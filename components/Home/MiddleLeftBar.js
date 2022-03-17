@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CreatePost from "./CreatePost";
 import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
@@ -42,7 +43,8 @@ const MiddleLeftBar = () => {
   return (
     <div>
       {/* create post */}
-      <div className="bg-white dark:bg-gray-800 p-5 rounded">
+      <CreatePost user={userData} />
+      {/* <div className="bg-white dark:bg-black p-5 rounded-xl">
         <div className="mb-3">
           <a href="">
             <i className="fa-regular fa-pen-to-square p-2 bg-gray-200 rounded-full text-md text-blue-500"></i>{" "}
@@ -50,7 +52,7 @@ const MiddleLeftBar = () => {
           </a>
         </div>
         <textarea
-          className="border-2 rounded w-full dark:bg-gray-800 p-2"
+          className="border-2 rounded w-full dark:bg-transparent p-2"
           name=""
           id="post-modal"
           cols="30"
@@ -74,7 +76,7 @@ const MiddleLeftBar = () => {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
       <PostModal userData={userData} />
       {posts.map((post) => (
         <SinglePost

@@ -4,13 +4,13 @@ const UserSchema = new mongoose.Schema(
   {
     displayName: {
       type: String,
-      require: true,
+      required: true,
       min: 3,
       max: 20,
     },
     userName: {
       type: String,
-      require: true,
+      required: true,
       default: "",
     },
     email: {

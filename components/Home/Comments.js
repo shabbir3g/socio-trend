@@ -16,7 +16,7 @@ const Comments = ({ comment }) => {
           width="32px"
         />
       </div>
-      <div className="dark:bg-slate-700 bg-slate-200 px-3 py-2 rounded-2xl ml-2">
+      <div className="dark:bg-zinc-800 bg-slate-200 px-3 py-2 rounded-2xl ml-2">
         <h1 className="text-sm font-semibold">{comment.displayName}</h1>
         <p className="text-sm">{comment.comment}</p>
       </div>

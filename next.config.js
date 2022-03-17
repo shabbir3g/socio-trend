@@ -15,6 +15,7 @@ module.exports = {
   reactStrictMode: true,
   images: {
     domains: [
+      "images.unsplash.com",
       "i.ibb.co",
       "img.icons8.com",
       "encrypted-tbn0.gstatic.com",

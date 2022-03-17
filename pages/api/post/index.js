@@ -1,5 +1,5 @@
-import dbConnect from "../../../utilities/mongo";
-import Post from "../../../models/Post";
+import dbConnect from '../../../utilities/mongo';
+import Post from '../../../models/Post';
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       res.status(500).json(err);
     }
   }
-  if (method === "DELETE") {
+  if (method === 'DELETE') {
     try {
       const result = await Post.deleteOne({ _id: req.query.id });
       res.status(200).json(result);
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     }
   }
   // get all posts
-  if (method === "GET") {
+  if (method === 'GET') {
     try {
       const result = await Post.find({});
       res.status(200).json(result);

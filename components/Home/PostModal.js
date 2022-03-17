@@ -39,7 +39,6 @@ const PostModal = ({ userData }) => {
     });
     if (response.status === 200) {
       toast("Your Post successfully Done");
-
       
     }
   };
