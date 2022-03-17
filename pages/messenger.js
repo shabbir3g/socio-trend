@@ -24,8 +24,8 @@ export default function Messenger() {
   const socket = useRef();
 
   useEffect(() => {
-    // socket.current = io("ws://localhost:8900");
-    socket.current = io("https://dry-oasis-76334.herokuapp.com/");
+    socket.current = io("ws://localhost:8900");
+    // socket.current = io("https://dry-oasis-76334.herokuapp.com/");
 
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
@@ -120,7 +120,7 @@ export default function Messenger() {
   }, [messages]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/user/allUsers").then(({ data }) => {
+    axios.get("api/user/allUsers").then(({ data }) => {
       setAllUsers(data);
     });
   }, []);
@@ -146,23 +146,25 @@ export default function Messenger() {
           <div className="flex flex-col justify-between relative p-2.5 h-full">
             {currentChat ? (
               <>
-                <div className="h-full overflow-y-scroll pr-2.5">
+                <div className="h-full overflow-y-scroll scrollbar pr-2.5">
                   {messages.map((m) => (
                     <div ref={scrollRef} key={m._id}>
                       <Message message={m} own={m.sender === dbUser._id} />
                     </div>
                   ))}
                 </div>
-                <div className="mt-1.5 flex items-center justify-between">
+                <div className="mt-1.5 px-4 flex gap-4 items-center justify-between">
                   <textarea
-                    className="w-10/12 h-24 p-2.5"
+                    className="flex-1 p-2.5 rounded-lg bg-transparent border"
+                    rows={2}
                     placeholder="write something..."
                     onChange={(e) => setNewMessage(e.target.value)}
                     value={newMessage}
                   ></textarea>
                   <button
-                    className="w-24 h-10 border-none rounded-md cursor-pointer bg-teal-700 text-white"
+                    className="px-8 py-3 border-none rounded-md cursor-pointer bg-teal-700 text-white disabled:cursor-not-alowed disabled:opacity-50"
                     onClick={handleSubmit}
+                    disabled={!newMessage}
                   >
                     Send
                   </button>
@@ -179,7 +181,7 @@ export default function Messenger() {
           <div className="">
             <h2>Online Users</h2>
           </div>
-          <div className="p-2.5 h-full">
+          <div className="p-2.5 h-full overflow-y-scroll scrollbar">
             {onlineUsers.map((user) => (
               <OnlineUsers
                 key={user._id}

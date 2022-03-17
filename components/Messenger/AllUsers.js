@@ -1,7 +1,7 @@
 import axios from "axios";
 import Image from "next/image";
 
-export default function ChatOnline({ user, currentId, setCurrentChat }) {
+const ChatOnline = ({ user, currentId, setCurrentChat }) => {
   const handleClick = async (user) => {
     try {
       const res = await axios.get(
@@ -15,13 +15,16 @@ export default function ChatOnline({ user, currentId, setCurrentChat }) {
 
   return (
     <div className="chatOnline">
-      <div className="flex items-center font-medium cursor-pointer mt-2.5" onClick={() => handleClick(user)}>
+      <div
+        className="flex items-center font-medium cursor-pointer mt-2.5"
+        onClick={() => handleClick(user)}
+      >
         <div className="relative mt-2.5">
           <Image
             height="50"
             width="50"
             className="rounded-full"
-            src={user.photoURL || "https://i.ibb.co/Xz214Jt/user-8.webp"}
+            src={user?.photoURL || "https://i.ibb.co/Xz214Jt/user-8.webp"}
             alt=""
           />
         </div>
@@ -29,4 +32,6 @@ export default function ChatOnline({ user, currentId, setCurrentChat }) {
       </div>
     </div>
   );
-}
+};
+
+export default ChatOnline;

@@ -21,7 +21,7 @@ export default function ChatOnline({ user, currentId, setCurrentChat }) {
             height="50"
             width="50"
             className="rounded-full"
-            src={user.photoURL || "https://i.ibb.co/Xz214Jt/user-8.webp"}
+            src={user?.photoURL || "https://i.ibb.co/Xz214Jt/user-8.webp"}
             alt=""
           />
           <div className="w-2.5 h-2.5 rounded-full bg-lime-600 absolute top-1 right-1"></div>
