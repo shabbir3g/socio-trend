@@ -36,10 +36,12 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
 
   const handleLike = async () => {
     const data = { userId: userData._id };
-    await axios
-      .put(`/api/post/like?id=${post._id}`, data)
-      .then((data) => setStatus(data));
-    setIsLike(!isLike);
+    await axios.put(`/api/post/like?id=${post._id}`, data).then((data) => {
+      if (data.status === 200) {
+        setStatus(data.status);
+        setIsLike(!isLike);
+      }
+    });
   };
   const handleDelete = (id) => {
     axios.delete(`api/post?id=${id}`).then((data) => {
@@ -103,9 +105,15 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
           <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full">
-            <button onClick={handleLike}>
-              <Image src="/like.svg" alt="" height={25} width={25} />
-            </button>
+            {post.like.find((li) => li.userId === userData._id) ? (
+              <button onClick={handleLike}>
+                <Image src="/like.svg" alt="" height={25} width={25} />
+              </button>
+            ) : (
+              <button onClick={handleLike}>
+                <Image src="/unlike.svg" alt="" height={25} width={25} />
+              </button>
+            )}
           </span>
           <span className="ml-3">{post.like.length} Like</span>
           <div className="ml-5 ">
