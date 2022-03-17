@@ -14,9 +14,9 @@ const LeftSideBar = () => {
     axios.get(`/api/user?email=${user?.email}`).then(({ data }) => setData(data));
   }, [user?.email]);
   return (
-    <div className="bg-gray-100 dark:bg-gray-900">
+    <div>
       <div className="w-full">
-        <div className="bg-white dark:bg-gray-800 p-5 rounded-lg drop-shadow-sm ">
+        <div className="bg-white dark:bg-black p-5 rounded-lg drop-shadow-sm ">
           <p className="mb-3">New Feeds</p>
           <ul className="left-sidebar">
             <Link href="/">
@@ -55,12 +55,12 @@ const LeftSideBar = () => {
             </Link>
           </ul>
         </div>
-        <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded-lg drop-shadow-sm">
+        <div className="my-5 bg-white dark:bg-black p-5 rounded-lg drop-shadow-sm">
           <p className="mb-3">More pages</p>
           <ul className="left-second-sidebar">
             <li>
-              <Link href="/email">
-                <a>
+              <Link href="https://gmail.com">
+                <a target="_blank">
                   <i className="fa-solid fa-inbox p-3 text-indigo-500 text-2xl"></i>{" "}
                   Email Box
                 </a>
@@ -86,7 +86,7 @@ const LeftSideBar = () => {
             </li>
           </ul>
         </div>
-        <div className="my-5 bg-white dark:bg-gray-800 p-5 rounded-lg drop-shadow-sm">
+        <div className="my-5 bg-white dark:bg-black p-5 rounded-lg drop-shadow-sm">
           <p className="mb-3">Account</p>
           <ul className="left-second-sidebar">
             <li>

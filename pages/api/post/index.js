@@ -6,15 +6,14 @@ export default async function handler(req, res) {
 
   dbConnect();
 
-  if (method === 'POST') {
-    console.log(req.body.data);
+  if (method === "POST") {
+   
     try {
       const post = await Post.create(req.body.data);
-      return res.status(201).json(post);
+      res.status(200).json(post);
     } catch (err) {
       res.send(err);
-      console.log(err.message);
-      //res.status(500).json(err);
+      res.status(500).json(err);
     }
   }
   if (method === 'DELETE') {

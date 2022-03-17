@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PostModal = ({ userData }) => {
   const [postImg, setPostImg] = useState([]);
@@ -35,8 +37,9 @@ const PostModal = ({ userData }) => {
     const response = await axios.post(`/api/post`, {
       data,
     });
-    if (response.status === 201) {
-      alert("Updated Success");
+    if (response.status === 200) {
+      toast("Your Post successfully Done");
+      
     }
   };
   return (
@@ -106,13 +109,17 @@ const PostModal = ({ userData }) => {
             onChange={(e) => handlePostImg(e.target.files[0])}
           />
           <button
+          id="post-submit"
             type="submit"
             className="px-3 py-2 my-5 w-full bg-blue-500 text-gray-200 hover:bg-green-700 rounded-md"
           >
             Post
           </button>
         </form>
+        {/* <ToastContainer /> */}
       </div>
+      {/* react-toast-for-alert */}
+
     </div>
   );
 };
