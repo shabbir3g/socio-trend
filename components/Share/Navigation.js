@@ -37,11 +37,6 @@ const topCenterNavlinks = [
     icon: <BsChatSquare />,
     label: 'Messages',
   },
-  {
-    href: '/profile',
-    icon: <FiUser />,
-    label: 'Profile',
-  },
 ];
 
 const Navigation = () => {
@@ -52,12 +47,9 @@ const Navigation = () => {
   const reduxUser = useSelector((state) => state.states.user);
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const closeProfileMenu = () => setIsProfileMenuOpen(false);
   const toggleProfileMenu = () => setIsProfileMenuOpen(!isProfileMenuOpen);
-  const toggleNotification = () => setIsNotificationOpen(!isNotificationOpen);
-  const closeNotification = () => setIsNotificationOpen(false);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const openMobileMenu = () => setIsMobileMenuOpen(true);
 
