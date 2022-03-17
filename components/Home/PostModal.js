@@ -25,6 +25,7 @@ const PostModal = ({
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     setUpdating(true);
+    setOpenPostModal(false);
     data.displayName = userData.displayName;
     data.email = userData.email;
     data.photoURL = userData.photoURL;
@@ -49,12 +50,11 @@ const PostModal = ({
     if (response.status === 200) {
       setUpdating(false);
       setNewPost(true);
-      setOpenPostModal(false);
       toast("Your Post successfully Done");
     }
   };
   if (updating) {
-    toast("Posting pending");
+    toast("Posting...");
   }
   return (
     <Modal
