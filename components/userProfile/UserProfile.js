@@ -43,7 +43,8 @@ const UserProfile = ({ data }) => {
             className="rounded-2xl object-content"
             src={data.coverPicture || 'https://i.ibb.co/pWc2Ffd/u-bg.jpg'}
             width={1000}
-            height={250}
+            objectFit="cover"
+            height={300}
             alt="user cover photo"
           />
         </div>
@@ -55,6 +56,7 @@ const UserProfile = ({ data }) => {
                 alt="user profile photo"
                 width={100}
                 height={100}
+                objectFit="cover"
                 className="rounded-full"
               />
             </div>
