@@ -44,39 +44,7 @@ const MiddleLeftBar = () => {
     <div>
       {/* create post */}
       <CreatePost user={userData} />
-      {/* <div className="bg-white dark:bg-black p-5 rounded-xl">
-        <div className="mb-3">
-          <a href="">
-            <i className="fa-regular fa-pen-to-square p-2 bg-gray-200 rounded-full text-md text-blue-500"></i>{" "}
-            Create post
-          </a>
-        </div>
-        <textarea
-          className="border-2 rounded w-full dark:bg-transparent p-2"
-          name=""
-          id="post-modal"
-          cols="30"
-          rows="3"
-          placeholder="Whats on your mind"
-        />
-        <br />
-        <div>
-          <div className="flex">
-            <a href="#">
-              <i className="fa-solid fa-video p-3"></i>Live Video
-            </a>
-            <a href="#">
-              <i className="fa-regular fa-images p-3"></i> Photo/Video
-            </a>
-            <a href="#">
-              <i className="fa-solid fa-camera p-3"></i> Feeling/Activity
-            </a>
-            <a href="#" className="ml-auto">
-              <i className="fa-solid fa-ellipsis p-3 bg-gray-200 dark:bg-gray-600 rounded-full"></i>
-            </a>
-          </div>
-        </div>
-      </div> */}
+      
       <PostModal userData={userData} />
       {posts.map((post) => (
         <SinglePost
@@ -89,8 +57,6 @@ const MiddleLeftBar = () => {
           userData={userData}
         />
       ))}
-
-  <ToastContainer />
     </div>
   );
 };
