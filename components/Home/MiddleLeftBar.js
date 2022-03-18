@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import CreatePost from "./CreatePost";
-import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
@@ -44,8 +41,7 @@ const MiddleLeftBar = () => {
     <div>
       {/* create post */}
       <CreatePost user={userData} />
-      
-      <PostModal userData={userData} />
+
       {posts.map((post) => (
         <SinglePost
           key={post._id}
