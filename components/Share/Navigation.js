@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import {
   BsX,
   BsBell,
@@ -12,30 +12,30 @@ import {
   BsChevronDown,
   BsHouse,
   BsMoon,
-} from 'react-icons/bs';
-import { VscListSelection } from 'react-icons/vsc';
-import { FiUsers, FiUser, FiLogOut } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
-import { useTheme } from 'next-themes';
-import axios from 'axios';
-import useFirebase from '../../firebase/useFirebase';
+} from "react-icons/bs";
+import { VscListSelection } from "react-icons/vsc";
+import { FiUsers, FiUser, FiLogOut } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { useTheme } from "next-themes";
+import axios from "axios";
+import useFirebase from "../../firebase/useFirebase";
 // import RenderThemeChanger from '../../utils/RenderThemeChanger';
 
 const topCenterNavlinks = [
   {
-    href: '/',
+    href: "/",
     icon: <BsHouse />,
-    label: 'Home',
+    label: "Home",
   },
   {
-    href: '/friends',
+    href: "/friends",
     icon: <FiUsers />,
-    label: 'Friends',
+    label: "Friends",
   },
   {
-    href: '/messenger',
+    href: "/messenger",
     icon: <BsChatSquare />,
-    label: 'Messages',
+    label: "Messages",
   },
 ];
 
@@ -60,16 +60,16 @@ const Navigation = () => {
       .then(({ data }) => setDbUser(data));
   }, [reduxUser?.email]);
 
-  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const currentTheme = theme === "system" ? systemTheme : theme;
   const renderThemeChanger = () => {
     if (!mounted) return null;
 
-    const currentTheme = theme === 'system' ? systemTheme : theme;
-    if (currentTheme === 'dark') {
+    const currentTheme = theme === "system" ? systemTheme : theme;
+    if (currentTheme === "dark") {
       return (
         <button
           className="w-11 h-11 items-center justify-center flex text-2xl border border-gray-300 dark:border-zinc-600 rounded-full"
-          onClick={() => setTheme('light')}
+          onClick={() => setTheme("light")}
         >
           <BsSun className="p-0.5" />
         </button>
@@ -78,7 +78,7 @@ const Navigation = () => {
       return (
         <button
           className="w-11 h-11 items-center justify-center flex text-2xl border border-gray-300 dark:border-zinc-600 rounded-full"
-          onClick={() => setTheme('dark')}
+          onClick={() => setTheme("dark")}
         >
           <BsMoon className="p-0.5" />
         </button>
@@ -104,12 +104,21 @@ const Navigation = () => {
           {/* Logo */}
           <Link href="/">
             <a className="relative flex gap-3 items-center">
-              <Image
-                src="/dark-logo.png"
-                width="150"
-                height="55"
-                alt="Socio Trend"
-              />
+              {currentTheme === "dark" ? (
+                <Image
+                  width="150"
+                  height="55"
+                  alt="Socio Trend"
+                  src="/dark-logo.png"
+                />
+              ) : (
+                <Image
+                  width="150"
+                  height="55"
+                  alt="Socio Trend"
+                  src="/logo.png"
+                />
+              )}
             </a>
           </Link>
           {/* Search */}
@@ -142,8 +151,8 @@ const Navigation = () => {
               <a
                 className={`${
                   navlink.href === router.pathname
-                    ? 'text-2xl font-semibold dark:bg-zinc-800 bg-gray-100 py-3 px-7 rounded-lg'
-                    : 'text-2xl dark:text-zinc-400 py-3 px-8 text-gray-600 dark:hover:bg-zinc-900 hover:bg-gray-100 rounded-lg dark:hover:text-white hover:text-gray-800'
+                    ? "text-2xl font-semibold dark:bg-zinc-800 bg-gray-100 py-3 px-7 rounded-lg"
+                    : "text-2xl dark:text-zinc-400 py-3 px-8 text-gray-600 dark:hover:bg-zinc-900 hover:bg-gray-100 rounded-lg dark:hover:text-white hover:text-gray-800"
                 } `}
                 title={navlink.label}
               >
@@ -180,8 +189,8 @@ const Navigation = () => {
             <div
               className={`${
                 isProfileMenuOpen
-                  ? 'opacity-100 translate-y-0 z-50'
-                  : 'opacity-0 translate-y-4 pointer-events-none'
+                  ? "opacity-100 translate-y-0 z-50"
+                  : "opacity-0 translate-y-4 pointer-events-none"
               }  transform transition-all divide-y divide-gray-300 dark:divide-zinc-600 duration-200 absolute z-50 right-4 mt-2 p-1 w-64 rounded-md shadow-lg overflow-hidden dark:bg-black bg-white ring-1 ring-gray-100 dark:ring-zinc-600 focus:outline-none`}
             >
               <Link href={`/${dbUser.userName}`}>
@@ -282,8 +291,8 @@ const Navigation = () => {
       <div
         className={`${
           isMobileMenuOpen
-            ? 'opacity-100 translate-x-0'
-            : 'opacity-0 pointer-events-none -translate-x-10'
+            ? "opacity-100 translate-x-0"
+            : "opacity-0 pointer-events-none -translate-x-10"
         } duration-300 z-50 absolute top-0 inset-x-0 p-2 transition transform lg:hidden`}
       >
         <div className="rounded-lg shadow-lg dark:bg-black bg-white border dark:border-zinc-600 divide-y dark:divide-zinc-600">
@@ -316,8 +325,8 @@ const Navigation = () => {
                     <a
                       className={`${
                         router.pathname === navlink.href
-                          ? 'bg-gray-100 dark:bg-zinc-800'
-                          : ''
+                          ? "bg-gray-100 dark:bg-zinc-800"
+                          : ""
                       } flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800`}
                     >
                       <p className="flex items-center gap-6 text-2xl">
