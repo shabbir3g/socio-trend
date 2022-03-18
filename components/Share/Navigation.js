@@ -290,17 +290,13 @@ const Navigation = () => {
           <div className="pt-5 pb-6 px-5">
             <div className="flex items-center justify-between">
               <Link href="/">
-                <a className="relative flex gap-2 items-center">
+                <a className="relative flex gap-3 items-center">
                   <Image
-                    src="/socio-logo.svg"
-                    width="40"
-                    height="40"
-                    alt="Company name"
+                    src="/dark-logo.png"
+                    width="150"
+                    height="55"
+                    alt="Socio Trend"
                   />
-                  <h1 className="text-lg font-bold">
-                    Socio{' '}
-                    <span className="text-zinc-500 font-normal">Trend</span>
-                  </h1>
                 </a>
               </Link>
               {/* close mobile menu button */}
