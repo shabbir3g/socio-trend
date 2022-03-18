@@ -12,8 +12,8 @@ const RightSideBar = () => {
     axios.get("/api/user/allUsers").then(({ data }) => setUsers(data));
   }, []);
   return (
-    <div className="bg-neutral-100 dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 drop-shadow-sm p-3 rounded-lg">
+    <div>
+      <div className="bg-white dark:bg-black drop-shadow-sm p-3 rounded-lg">
         <p className="mb-3">Contacts</p>
         <ul>
           {users.map((user) => (

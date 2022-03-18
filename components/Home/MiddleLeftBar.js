@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import CreatePost from "./CreatePost";
 import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
@@ -27,40 +26,7 @@ const MiddleLeftBar = () => {
 
   return (
     <div>
-      {/* create post */}
-      <div className="bg-white dark:bg-gray-800 p-5 rounded">
-        <div className="mb-3">
-          <a href="">
-            <i className="fa-regular fa-pen-to-square p-2 bg-gray-200 rounded-full text-md text-blue-500"></i>{" "}
-            Create post
-          </a>
-        </div>
-        <textarea
-          className="border-2 rounded w-full dark:bg-gray-800 p-2"
-          name=""
-          onClick={() => setOpenPostModal(true)}
-          cols="30"
-          rows="3"
-          placeholder="Whats on your mind"
-        />
-        <br />
-        <div>
-          <div className="flex">
-            <a href="#">
-              <i className="fa-solid fa-video p-3"></i>Live Video
-            </a>
-            <a href="#">
-              <i className="fa-regular fa-images p-3"></i> Photo/Video
-            </a>
-            <a href="#">
-              <i className="fa-solid fa-camera p-3"></i> Feeling/Activity
-            </a>
-            <a href="#" className="ml-auto">
-              <i className="fa-solid fa-ellipsis p-3 bg-gray-200 dark:bg-gray-600 rounded-full"></i>
-            </a>
-          </div>
-        </div>
-      </div>
+      <CreatePost user={userData} />
       <PostModal
         userData={userData}
         openPostModal={openPostModal}
@@ -78,8 +44,6 @@ const MiddleLeftBar = () => {
           userData={userData}
         />
       ))}
-
-      <ToastContainer />
     </div>
   );
 };

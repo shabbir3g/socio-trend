@@ -9,22 +9,22 @@ const PostSchema = new mongoose.Schema(
     },
     displayName: {
       type: String,
-      default: "",
+      default: '',
     },
     userName: {
-      type: String
+      type: String,
     },
     photoURL: {
       type: String,
-      default: "",
+      default: '',
     },
     postContent: {
       type: String,
-      default: "",
+      default: '',
     },
     img: {
       type: String,
-      default: "",
+      default: '',
     },
     like: {
       type: Array,

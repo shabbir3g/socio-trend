@@ -4,19 +4,21 @@ const UserSchema = new mongoose.Schema(
   {
     displayName: {
       type: String,
-      require: true,
+      required: true,
       min: 3,
       max: 20,
     },
     userName: {
       type: String,
-      require: true,
+      required: true,
       default: "",
     },
     email: {
       type: String,
       required: true,
-      max: 50
+      max: 50,
+      unique: true,
+      sparse: true,
     },
     photoURL: {
       type: String,
