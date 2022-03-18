@@ -22,7 +22,7 @@ const CreatePost = ({ user, setNewPost }) => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
+    toast("Posting....");
     data.userId = user._id;
     data.displayName = user.displayName;
     data.email = user.email;

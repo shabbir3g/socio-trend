@@ -12,13 +12,21 @@ import {
 import { BiShare } from "react-icons/bi";
 import axios from "axios";
 import Comments from "./Comments";
+import Link from "next/link";
 
 const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [userName, setUserName] = useState("");
   const [status, setStatus] = useState(null);
   const [menu, setMenu] = useState("hidden");
   const ref = useRef();
+
+  useEffect(() => {
+    axios
+      .get(`/api/user?email=${post.email}`)
+      .then(({ data }) => setUserName(data.userName));
+  }, [post.email]);
 
   useEffect(() => {
     axios
@@ -63,18 +71,24 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
     <div className="drop-shadow-sm bg-white dark:bg-black p-5 sm:rounded-xl my-4 ">
       <div className="flex justify-between relative">
         <div className=" flex">
-          <Image
-            src={
-              post.photoURL ||
-              "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
-            }
-            className="rounded-full"
-            alt=""
-            height={45}
-            width={45}
-          />
+          <Link href={`/${userName}`} passHref>
+            <Image
+              src={
+                post.photoURL ||
+                "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
+              }
+              className="rounded-full cursor-pointer"
+              alt=""
+              height={45}
+              width={45}
+            />
+          </Link>
           <div className="ml-3">
-            <h4 className="text-md font-semibold">{post.displayName}</h4>
+            <Link href={`/${userName}`} passHref>
+              <h4 className="text-md font-semibold cursor-pointer">
+                {post.displayName}
+              </h4>
+            </Link>
             <span className="text-xs">{format(post.createdAt)} </span>
           </div>
         </div>
@@ -115,13 +129,11 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
           <span className="p-1 pt-2 pb-0 px-1.5 bg-gray-200 dark:bg-gray-600 rounded-full">
             {post.like.find((li) => li.userId === userData._id) ? (
               <button onClick={handleLike}>
-                {/* <Image src="/like.svg" alt="" height={25} width={25} /> */}
                 <BsHeartFill className="text-xl text-red-500" />
               </button>
             ) : (
               <button onClick={handleLike}>
                 <BsHeart className="text-xl" />
-                {/* <Image src="/unlike.svg" alt="" height={25} width={25} /> */}
               </button>
             )}
           </span>
