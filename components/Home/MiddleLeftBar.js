@@ -26,7 +26,7 @@ const MiddleLeftBar = () => {
 
   return (
     <div>
-      <CreatePost user={userData} />
+      <CreatePost user={userData} setNewPost={setNewPost} />
       <PostModal
         userData={userData}
         openPostModal={openPostModal}

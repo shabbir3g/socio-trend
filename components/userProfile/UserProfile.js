@@ -20,12 +20,13 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
   const [currentUserData, setCurrentUserData] = useState({});
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openDetailsModal, setOpenDetailsModal] = useState(false);
+  const [newPost, setNewPost] = useState(false);
 
   useEffect(() => {
     axios.get(`/api/post/userPost?userName=${userName}`).then((data) => {
       setPosts(data.data);
     });
-  }, [userName, deletePost, isLike]);
+  }, [userName, deletePost, isLike, newPost]);
 
   useEffect(() => {
     axios.get(`/api/user?email=${reduxUser?.email}`).then((data) => {
@@ -131,7 +132,9 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
         </div>
         <div className="md:col-span-8 sm:col-span-12 col-span-12 ">
           {/* create post */}
-          {reduxUser.email === userData.email && <CreatePost user={userData} />}
+          {reduxUser.email === userData.email && (
+            <CreatePost user={userData} setNewPost={setNewPost} />
+          )}
           {posts.map((post) => (
             <SinglePost
               key={post._id}

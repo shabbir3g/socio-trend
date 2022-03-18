@@ -1,8 +1,6 @@
 import Head from "next/head";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import LeftSideBar from "../components/Home/LeftSideBar";
-import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
 import UserProfile from "../components/userProfile/UserProfile";
 import { useRouter } from "next/router";
