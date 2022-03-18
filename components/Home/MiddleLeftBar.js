@@ -29,16 +29,6 @@ const MiddleLeftBar = () => {
     closePostModalBtn?.addEventListener("click", togglePostModal);
   }, []);
 
-<<<<<<< HEAD
- /*  useEffect(() => {
-    fetch(`/api/user?email=${user?.email}`)
-      .then(result => result.json())
-      .then(data => setUserData(data))
-  }, [user?.email]); */
-
-  
-=======
->>>>>>> 92edecbdcfec16070c711cd8bf59b6e46e0c5233
   useEffect(() => {
     axios.get(`/api/user?email=${user?.email}`).then((data) => {
       setUserData(data?.data);

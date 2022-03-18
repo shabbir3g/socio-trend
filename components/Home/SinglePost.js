@@ -8,12 +8,8 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState(null);
-<<<<<<< HEAD
-  
-=======
   const [menu, setMenu] = useState("hidden");
   const ref = useRef();
->>>>>>> 92edecbdcfec16070c711cd8bf59b6e46e0c5233
 
   useEffect(() => {
     axios
@@ -102,12 +98,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
         </p>
       </div>
       <div className="pt-3">
-<<<<<<< HEAD
-        <Image src={post.img ||
-              "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"} height={350} width={600} alt="" />
-=======
         {post.img && <Image src={post.img} height={350} width={600} alt="" />}
->>>>>>> 92edecbdcfec16070c711cd8bf59b6e46e0c5233
       </div>
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
