@@ -43,7 +43,7 @@ const MiddleLeftBar = () => {
           setDeletePost={setDeletePost}
           userData={userData}
         />
-      ))}
+      )).reverse()}
     </div>
   );
 };
