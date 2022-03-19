@@ -72,16 +72,17 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
       <div className="flex justify-between relative">
         <div className=" flex">
           <Link href={`/${userName}`} passHref>
-            <Image
-              src={
-                post.photoURL ||
-                "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
-              }
-              className="rounded-full cursor-pointer"
-              alt=""
-              height={45}
-              width={45}
-            />
+            <a className="relative h-10 w-10 rounded-full overflow-hidden">
+              <Image
+                src={
+                  post.photoURL ||
+                  "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
+                }
+                alt=""
+                layout="fill"
+                objectFit="cover"
+              />
+            </a>
           </Link>
           <div className="ml-3">
             <Link href={`/${userName}`} passHref>
@@ -104,12 +105,14 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
             <li className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3">
               <FiEdit className="mr-2" /> Edit posts
             </li>
-            {userData.email === post.email && <li
-              className="py-1 flex items-center cursor-pointer hover:bg-white  dark:hover:bg-zinc-600 px-3"
-              onClick={() => handleDelete(post._id)}
-            >
-              <FiTrash className="mr-2" /> Delete posts
-            </li>}
+            {userData.email === post.email && (
+              <li
+                className="py-1 flex items-center cursor-pointer hover:bg-white  dark:hover:bg-zinc-600 px-3"
+                onClick={() => handleDelete(post._id)}
+              >
+                <FiTrash className="mr-2" /> Delete posts
+              </li>
+            )}
           </ul>
         </div>
       </div>

@@ -2,106 +2,21 @@ import React, { useEffect, useState } from "react";
 import SingleFrends from "./SingleFrends";
 import axios from "axios";
 
-const friends = [
-  {
-    id: 1,
-    name: "Omar Ali",
-    userId: "@omarali234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: "ADD FRIEND",
-  },
-  {
-    id: 2,
-    name: "Bepari Prantosh",
-    userId: "@prantosh234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: "FRIEND",
-  },
-  {
-    id: 3,
-    name: "Md. Mostafizur Rahman",
-    userId: "@mostafizur234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: "ADD FRIEND",
-  },
-  {
-    id: 4,
-    name: "Opi Barua",
-    userId: "@opi234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: "FRIEND",
-  },
-  {
-    id: 5,
-    name: "Parvez Islam Shuvo",
-    userId: "@parvez234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: " ADD FRIEND",
-  },
-  {
-    id: 6,
-    name: "Saddaul Siam",
-    userId: "@saddaul234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: "ADD FRIEND",
-  },
-  {
-    id: 7,
-    name: "Opi Barua",
-    userId: "@opi234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: "FRIEND",
-  },
-  {
-    id: 8,
-    name: "Parvez Islam Shuvo",
-    userId: "@parvez234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: " ADD FRIEND",
-  },
-  {
-    id: 9,
-    name: "Omar Ali",
-    userId: "@omarali234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: "ADD FRIEND",
-  },
-  {
-    id: 10,
-    name: "Bepari Prantosh",
-    userId: "@prantosh234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: "FRIEND",
-  },
-  {
-    id: 11,
-    name: "Md. Mostafizur Rahman",
-    userId: "@mostafizur234",
-    img: "https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
-    role: "ADD FRIEND",
-  },
-];
-
 const AllFrends = () => {
-  const [members, setMembers] = useState([]);
   const [searchMember, setSearchMember] = useState([]);
-
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/user/allUsers").then(({ data }) => setUsers(data));
-  }, []);
-
-  useEffect(() => {
-    setMembers(friends);
-    setSearchMember(friends);
+    axios.get("/api/user/allUsers").then(({ data }) => {
+      setUsers(data);
+      setSearchMember(data);
+    });
   }, []);
 
   const searchFiealdhandle = (e) => {
     const searchText = e.target.value;
-
-    const metchedProduct = members.filter((member) =>
-      member.name.toLowerCase().includes(searchText.toLowerCase())
+    const metchedProduct = users.filter((member) =>
+      member.userName.toLowerCase().includes(searchText.toLowerCase())
     );
     setSearchMember(metchedProduct);
   };
@@ -140,7 +55,7 @@ const AllFrends = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 xs:grid-cols-12 sm:grid-cols-12 md:grid-cols-12 gap-3">
-          {users.map((user) => (
+          {searchMember.map((user) => (
             <SingleFrends key={user.id} user={user}></SingleFrends>
           ))}
         </div>

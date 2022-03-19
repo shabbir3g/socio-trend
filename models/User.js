@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const FriendsSchema = require('../subSchema/friendSchema');
 const UserSchema = new mongoose.Schema(
   {
     displayName: {
@@ -28,14 +28,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    followers: {
-      type: Array,
-      default: [],
-    },
-    followings: {
-      type: Array,
-      default: [],
-    },
+    friends: [FriendsSchema],
     post: {
       type: Array,
       default: [],

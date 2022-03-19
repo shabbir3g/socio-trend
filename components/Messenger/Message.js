@@ -8,7 +8,7 @@ export default function Message({ message, own }) {
 
   useEffect(() => {
     axios
-      .get(`/api/user/singleUser?id=${message.sender}`)
+      .get(`http://localhost:3000/api/user/singleUser?id=${message.sender}`)
       .then(({ data }) => setUser(data));
   }, [message.sender]);
 
