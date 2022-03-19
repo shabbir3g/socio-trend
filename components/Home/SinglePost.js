@@ -104,12 +104,12 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
             <li className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3">
               <FiEdit className="mr-2" /> Edit posts
             </li>
-            <li
+            {userData.email === post.email && <li
               className="py-1 flex items-center cursor-pointer hover:bg-white  dark:hover:bg-zinc-600 px-3"
               onClick={() => handleDelete(post._id)}
             >
               <FiTrash className="mr-2" /> Delete posts
-            </li>
+            </li>}
           </ul>
         </div>
       </div>

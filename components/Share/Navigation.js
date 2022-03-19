@@ -231,14 +231,14 @@ const Navigation = () => {
                     <BsChevronRight />
                   </a>
                 </Link>
-                <Link href="/messages">
+                <Link href="/messenger">
                   <a
                     onClick={closeProfileMenu}
                     className="flex items-center justify-between p-3 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-lg"
                   >
                     <p className="flex items-center gap-2">
                       <BsChatSquare />
-                      <span>Messages</span>
+                      <span>Messenger</span>
                     </p>
                     <BsChevronRight />
                   </a>

@@ -21,8 +21,24 @@ const MiddleLeftBar = () => {
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`/api/post`).then((data) => setPosts(data?.data));
+    axios.get(`/api/post`).then((data) => {
+      setPosts(data?.data);
+      setDeletePost(false);
+      setNewPost(false);
+    });
   }, [user?.email, isLike, deletePost, newPost]);
+
+  const shuffle = (array) => {
+    return array.sort(() => 0.5 - Math.random());
+  };
+
+  const postShuffle = (array, first) => {
+    if (first) {
+      const newArray = shuffle(array).filter((element) => element !== first);
+      return [first, ...newArray];
+    }
+    return shuffle(array);
+  };
 
   return (
     <div>
@@ -33,17 +49,20 @@ const MiddleLeftBar = () => {
         setOpenPostModal={setOpenPostModal}
         setNewPost={setNewPost}
       />
-      {posts.map((post) => (
-        <SinglePost
-          key={post._id}
-          post={post}
-          isLike={isLike}
-          setIsLike={setIsLike}
-          deletePost={deletePost}
-          setDeletePost={setDeletePost}
-          userData={userData}
-        />
-      ))}
+
+      {posts
+        .map((post) => (
+          <SinglePost
+            key={post._id}
+            post={post}
+            isLike={isLike}
+            setIsLike={setIsLike}
+            deletePost={deletePost}
+            setDeletePost={setDeletePost}
+            userData={userData}
+          />
+        ))
+        .reverse()}
     </div>
   );
 };
