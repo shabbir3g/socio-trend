@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-
-
 const RightSideBar = () => {
   const [users, setUsers] = useState([]);
 
@@ -34,7 +32,6 @@ const RightSideBar = () => {
                     {user.displayName}
                   </span>
                   <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
-                  {/* <span className="p-1 rounded-full bg-yellow-500 ml-auto"></span> */}
                 </span>
               </li>
             </Link>

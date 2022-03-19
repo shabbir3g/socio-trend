@@ -47,6 +47,7 @@ const CreatePost = ({ user, setNewPost }) => {
     const response = await axios.post(`/api/post`, {
       data,
     });
+    console.log("response", response);
     if (response.status === 200) {
       setNewPost(true);
       toast("Your Post has been successfully created");

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import SingleFrends from "./SingleFrends";
 import axios from "axios";
 
-
 const friends = [
   {
     id: 1,
@@ -88,11 +87,9 @@ const AllFrends = () => {
   const [searchMember, setSearchMember] = useState([]);
 
   const [users, setUsers] = useState([]);
-  
+
   useEffect(() => {
-    axios
-      .get("/api/user/allUsers")
-      .then(({ data }) => setUsers(data));
+    axios.get("/api/user/allUsers").then(({ data }) => setUsers(data));
   }, []);
 
   useEffect(() => {
@@ -128,16 +125,16 @@ const AllFrends = () => {
                   onChange={searchFiealdhandle}
                   type="text"
                   placeholder="Search here."
-                  className="w-full h-12 block rounded-lg pl-4 text-lg border-0 outline-0 bg-gray-100"
+                  className="w-full h-12 block rounded-lg pl-4 text-lg border-0 outline-0 bg-gray-100 dark:text-black"
                 />
                 <button className="absolute right-0 top-0 w-16 h-full rounded-full text-xl ">
-                  <i className="fa-solid fa-magnifying-glass"></i>{" "}
+                  <i className="fa-solid fa-magnifying-glass dark:text-black"></i>{" "}
                 </button>
               </form>
             </div>
             <div className="text-center bg-gray-100 w-12 ml-4 rounded-lg">
               <h1 className="text-2xl pt-2.5">
-                <i className="fa-solid fa-filter"></i>
+                <i className="fa-solid fa-filter dark:text-black"></i>
               </h1>
             </div>
           </div>

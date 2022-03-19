@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <>
       <Head>
-        <title>Profile</title>
+        <title>Message</title>
         <link rel="icon" href="/favicon.png" />
         <link
           rel="stylesheet"

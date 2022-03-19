@@ -4,7 +4,6 @@ import MiddleLeftBar from "../components/Home/MiddleLeftBar";
 import MiddleRightBar from "../components/Home/MiddleRightBar";
 import RightSideBar from "../components/Home/RightSideBar";
 import Navigation from "../components/Share/Navigation";
-import styles from "../styles/Home.module.css";
 import { useSelector } from "react-redux";
 import Login from "./login";
 

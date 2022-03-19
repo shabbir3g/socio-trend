@@ -11,7 +11,7 @@ const SingleFrends = ({user}) => {
                     "http://uitheme.net/sociala/images/profile-4.png"
                   } height="100px" width="100px" className='rounded-full' alt="Friends image"></Image>
              </div>
-             <h1 className='text-lg font-semibold '>{user.displayName}</h1>
+             <h1 className='text-lg font-semibold dark:text-black'>{user.displayName}</h1>
              {/* <p className='text-sm text-slate-400'>{userId}</p> */}
              <button className={`${displayName === 'FRIEND' ? "bg-red-600":"bg-green-500"} py-2.5 px-4 mt-4 mb-6 rounded-full text-white font-medium text-sm`}>Add to Friend</button>
              {/* <p>whay you want to be a developer</p> */}
