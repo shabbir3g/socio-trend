@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const CreatePost = ({ user }) => {
+const CreatePost = ({ user, setNewPost }) => {
   const [postImages, setPostImages] = useState([]);
   const [postImagePreview, setPostImagePreview] = useState([]);
   const [postContents, setPostContents] = useState("");
@@ -22,7 +22,7 @@ const CreatePost = ({ user }) => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
-    
+    toast("Posting....");
     data.userId = user._id;
     data.displayName = user.displayName;
     data.email = user.email;
@@ -49,6 +49,7 @@ const CreatePost = ({ user }) => {
     });
     console.log("response", response);
     if (response.status === 200) {
+      setNewPost(true);
       toast("Your Post has been successfully created");
       setPostImages([]);
       setPostImagePreview([]);

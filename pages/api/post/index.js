@@ -7,7 +7,6 @@ export default async function handler(req, res) {
   dbConnect();
 
   if (method === "POST") {
-   
     try {
       const post = await Post.create(req.body.data);
       console.log('Omor ali',post);

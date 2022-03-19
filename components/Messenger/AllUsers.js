@@ -5,7 +5,7 @@ const ChatOnline = ({ user, currentId, setCurrentChat }) => {
   const handleClick = async (user) => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/messenger/conversations?firstUserId=${currentId}?secondUserId=${user._id}`
+        `/api/messenger/conversations?firstUserId=${currentId}?secondUserId=${user._id}`
       );
       setCurrentChat(res.data);
     } catch (err) {

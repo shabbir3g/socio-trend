@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CreatePost from "./CreatePost";
+import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
@@ -9,23 +10,9 @@ const MiddleLeftBar = () => {
   const [posts, setPosts] = useState([]);
   const [isLike, setIsLike] = useState(false);
   const [deletePost, setDeletePost] = useState(false);
-
+  const [openPostModal, setOpenPostModal] = useState(false);
+  const [newPost, setNewPost] = useState(false);
   const user = useSelector((state) => state.states.user);
-
-  useEffect(() => {
-    const createPostModal = document.getElementById("create-post-modal");
-    const postBtn = document.getElementById("post-modal");
-    const submitBtn = document.getElementById("post-submit");
-    const closePostModalBtn = document.getElementById("close-post-modal");
-
-    const togglePostModal = () => {
-      createPostModal.classList.toggle("hidden");
-      createPostModal.classList.toggle("flex");
-    };
-    postBtn?.addEventListener("click", togglePostModal);
-   submitBtn?.addEventListener("click", togglePostModal);
-    closePostModalBtn?.addEventListener("click", togglePostModal);
-  }, []);
 
   useEffect(() => {
     axios.get(`/api/user?email=${user?.email}`).then((data) => {
@@ -35,13 +22,17 @@ const MiddleLeftBar = () => {
 
   useEffect(() => {
     axios.get(`/api/post`).then((data) => setPosts(data?.data));
-  }, [user.email, isLike, deletePost]);
+  }, [user?.email, isLike, deletePost, newPost]);
 
   return (
     <div>
-      {/* create post */}
-      <CreatePost user={userData} />
-
+      <CreatePost user={userData} setNewPost={setNewPost} />
+      <PostModal
+        userData={userData}
+        openPostModal={openPostModal}
+        setOpenPostModal={setOpenPostModal}
+        setNewPost={setNewPost}
+      />
       {posts.map((post) => (
         <SinglePost
           key={post._id}

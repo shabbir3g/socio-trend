@@ -8,6 +8,7 @@ import OnlineUsers from "../components/Messenger/OnlineUsers";
 import AllUsers from "../components/Messenger/AllUsers";
 import { useSelector } from "react-redux";
 import Navigation from "../components/Share/Navigation";
+import Head from "next/head";
 
 export default function Messenger() {
   const user = useSelector((state) => state.states.user);
@@ -24,9 +25,7 @@ export default function Messenger() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
-    // socket.current = io("https://dry-oasis-76334.herokuapp.com/");
-
+    socket.current = io("https://dry-oasis-76334.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -55,7 +54,7 @@ export default function Messenger() {
     const getConversations = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/messenger/getConversations?userId=${dbUser._id}`
+          `/api/messenger/getConversations?userId=${dbUser._id}`
         );
         setConversations(res.data);
       } catch (err) {
@@ -69,7 +68,7 @@ export default function Messenger() {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/messenger/messages?conversationId=${currentChat?._id}`
+          `/api/messenger/messages?conversationId=${currentChat?._id}`
         );
         setMessages(res.data);
       } catch (err) {
@@ -81,37 +80,36 @@ export default function Messenger() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/user?email=${user?.email}`)
+      .get(`/api/user?email=${user?.email}`)
       .then(({ data }) => setDbUser(data));
   }, [user?.email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const message = {
-      sender: dbUser._id,
-      text: newMessage,
-      conversationId: currentChat._id,
-    };
+    if (newMessage !== "") {
+      const message = {
+        sender: dbUser._id,
+        text: newMessage,
+        conversationId: currentChat._id,
+      };
 
-    const receiverId = currentChat.members.find(
-      (member) => member !== dbUser._id
-    );
-
-    socket.current.emit("sendMessage", {
-      senderId: dbUser._id,
-      receiverId,
-      text: newMessage,
-    });
-
-    try {
-      const res = await axios.post(
-        "http://localhost:3000/api/messenger/messages",
-        message
+      const receiverId = currentChat.members.find(
+        (member) => member !== dbUser._id
       );
-      setMessages([...messages, res.data]);
-      setNewMessage("");
-    } catch (err) {
-      console.log(err);
+
+      socket.current.emit("sendMessage", {
+        senderId: dbUser._id,
+        receiverId,
+        text: newMessage,
+      });
+
+      try {
+        const res = await axios.post("/api/messenger/messages", message);
+        setMessages([...messages, res.data]);
+        setNewMessage("");
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -120,17 +118,23 @@ export default function Messenger() {
   }, [messages]);
 
   useEffect(() => {
-    axios.get("api/user/allUsers").then(({ data }) => {
+    axios.get("/api/user/allUsers").then(({ data }) => {
       setAllUsers(data);
     });
   }, []);
 
   return (
     <>
+      <Head>
+        <title>Messenger</title>
+        <link rel="icon" href="/favicon.png" />
+      </Head>
       <Navigation />
       <div className={styles.messenger}>
         <div className={styles.chatMenu}>
-          <div className="p-2.5 h-full">
+          <div
+            className={`${styles.chatMenuWrapper} overflow-y-scroll scrollbar	scrollbar-hide`}
+          >
             <input
               placeholder="Search for friends"
               className="w-11/12 py-2.5 px-0 border-0"
@@ -146,7 +150,9 @@ export default function Messenger() {
           <div className="flex flex-col justify-between relative p-2.5 h-full">
             {currentChat ? (
               <>
-                <div className="h-full overflow-y-scroll scrollbar pr-2.5">
+                <div
+                  className={`${styles.chatBoxTop} overflow-y-scroll scrollbar`}
+                >
                   {messages.map((m) => (
                     <div ref={scrollRef} key={m._id}>
                       <Message message={m} own={m.sender === dbUser._id} />
@@ -162,7 +168,7 @@ export default function Messenger() {
                     value={newMessage}
                   ></textarea>
                   <button
-                    className="px-8 py-3 border-none rounded-md cursor-pointer bg-teal-700 text-white disabled:cursor-not-alowed disabled:opacity-50"
+                    className={styles.chatSubmitButton}
                     onClick={handleSubmit}
                     disabled={!newMessage}
                   >
@@ -181,7 +187,9 @@ export default function Messenger() {
           <div className="">
             <h2>Online Users</h2>
           </div>
-          <div className="p-2.5 h-full overflow-y-scroll scrollbar">
+          <div
+            className={`${styles.chatOnlineWrapper} overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default`}
+          >
             {onlineUsers.map((user) => (
               <OnlineUsers
                 key={user._id}

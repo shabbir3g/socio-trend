@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import ProfileModal from './ProfileModal';
-import AboutModal from './AboutModal';
-import Link from 'next/link';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import SinglePost from '../Home/SinglePost';
-import { useRouter } from 'next/router';
-import CreatePost from '../Home/CreatePost';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import ProfileModal from "./ProfileModal";
+import AboutModal from "./AboutModal";
+import Link from "next/link";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import SinglePost from "../Home/SinglePost";
+import { useRouter } from "next/router";
+import "react-responsive-modal/styles.css";
+import CreatePost from "../Home/CreatePost";
 
-const UserProfile = ({ data }) => {
+const UserProfile = ({ userData, setUpdateUserData }) => {
   const router = useRouter();
   const userName = router.query.username;
-
-  const user = useSelector((state) => state.states.user);
+  const [deletePost, setDeletePost] = useState(false);
+  const reduxUser = useSelector((state) => state.states.user);
   const [posts, setPosts] = useState([]);
-  const [userData, setUserData] = useState({});
-
-  // profile modal
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
-  const openProfileModal = () => setIsProfileModalOpen(true);
-  const closeProfileModal = () => setIsProfileModalOpen(false);
+  const [isLike, setIsLike] = useState(false);
+  const [currentUserData, setCurrentUserData] = useState({});
+  const [openProfileModal, setOpenProfileModal] = useState(false);
+  const [openDetailsModal, setOpenDetailsModal] = useState(false);
+  const [newPost, setNewPost] = useState(false);
 
   useEffect(() => {
     axios.get(`/api/post/userPost?userName=${userName}`).then((data) => {
       setPosts(data.data);
     });
-  }, [userName]);
+  }, [userName, deletePost, isLike, newPost]);
 
   useEffect(() => {
-    axios.get(`/api/user?email=${user?.email}`).then((data) => {
-      setUserData(data);
+    axios.get(`/api/user?email=${reduxUser?.email}`).then((data) => {
+      setCurrentUserData(data);
     });
-  }, [user?.email]);
+  }, [reduxUser?.email]);
 
   return (
     <>
@@ -41,7 +41,7 @@ const UserProfile = ({ data }) => {
         <div className="">
           <Image
             className="rounded-2xl object-content"
-            src={data.coverPicture || 'https://i.ibb.co/pWc2Ffd/u-bg.jpg'}
+            src={userData.coverPicture || "https://i.ibb.co/pWc2Ffd/u-bg.jpg"}
             width={1000}
             objectFit="cover"
             height={300}
@@ -52,7 +52,9 @@ const UserProfile = ({ data }) => {
           <div className=" flex ">
             <div className="-mt-12 ml-5">
               <Image
-                src={data.photoURL || 'https://i.ibb.co/5kdWHNN/user-12.png'}
+                src={
+                  userData.photoURL || "https://i.ibb.co/5kdWHNN/user-12.png"
+                }
                 alt="user profile photo"
                 width={100}
                 height={100}
@@ -61,17 +63,17 @@ const UserProfile = ({ data }) => {
               />
             </div>
             <div className="ml-6">
-              <div className="font-bold text-lg ">{data.displayName}</div>
+              <div className="font-bold text-lg ">{userData.displayName}</div>
               <div className="text-xs font-medium	text-gray-400 ">
-                <a href={`mailto:${data.email}`}>{data.email}</a>
+                <a href={`mailto:${userData.email}`}>{userData.email}</a>
               </div>
             </div>
           </div>
           <div className="">
-            {user?.email === data.email ? (
+            {reduxUser.email === userData.email ? (
               <button
-                onClick={openProfileModal}
-                className="dark:bg-zinc-800 dark:hover:bg-zinc-600 bg-gray-200 hover:bg-gray-300	dark:text-white font-bold text-xs p-3 rounded-md "
+                className="bg-green-500 hover:bg-green-700	text-white font-bold text-xs p-3 rounded-md "
+                onClick={() => setOpenProfileModal(true)}
               >
                 Edit profile
               </button>
@@ -96,30 +98,30 @@ const UserProfile = ({ data }) => {
             <h2 className="text-lg font-semibold pb-3">About</h2>
             <div className="flex items-center">
               <i className="fa-solid fa-graduation-cap"></i>
-              <span className="ml-3">Went to {data.education}</span>
+              <span className="ml-3">Went to {userData.education}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-house-chimney"></i>
-              <span className="ml-3">Lives in {data.city}</span>
+              <span className="ml-3">Lives in {userData.city}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-location-dot" />
-              <span className="ml-3">From {data.from}</span>
+              <span className="ml-3">From {userData.from}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-heart"></i>
-              <span className="ml-3">{data.relationship} Relationship</span>
+              <span className="ml-3">{userData.relationship}</span>
             </div>
             <div className="flex items-center py-3">
               <i className="fa-solid fa-clock"></i>
               <span className="ml-3">
-                Joined {data.createdAt?.slice(0, 10)}
+                Joined {userData.createdAt?.slice(0, 10)}
               </span>
             </div>
-            {user.email === data.email ? (
+            {reduxUser.email === userData.email ? (
               <button
-                className="w-full bg-gray-200 dark:bg-zinc-700 hover:dark:bg-zinc-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
-                id="edit-about"
+                className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
+                onClick={() => setOpenDetailsModal(true)}
               >
                 Edit Details
               </button>
@@ -128,23 +130,38 @@ const UserProfile = ({ data }) => {
             )}
           </div>
         </div>
-
         <div className="md:col-span-8 sm:col-span-12 col-span-12 ">
           {/* create post */}
-          {user.email === data.email && <CreatePost user={user} />}
+          {reduxUser.email === userData.email && (
+            <CreatePost user={userData} setNewPost={setNewPost} />
+          )}
           {posts.map((post) => (
-            <SinglePost key={post._id} post={post} userData={userData} />
+            <SinglePost
+              key={post._id}
+              post={post}
+              isLike={isLike}
+              setIsLike={setIsLike}
+              userData={currentUserData}
+              deletePost={deletePost}
+              setDeletePost={setDeletePost}
+            />
           ))}
         </div>
       </div>
       {/* Edit Profile Modal */}
       <ProfileModal
-        isProfileModalOpen={isProfileModalOpen}
-        closeProfileModal={closeProfileModal}
-        data={data}
+        data={userData}
+        open={openProfileModal}
+        setOpenProfileModal={setOpenProfileModal}
+        setUpdateUserData={setUpdateUserData}
       />
       {/* Edit About Modal */}
-      <AboutModal data={data} />
+      <AboutModal
+        data={userData}
+        openDetailsModal={openDetailsModal}
+        setOpenDetailsModal={setOpenDetailsModal}
+        setUpdateUserData={setUpdateUserData}
+      />
     </>
   );
 };

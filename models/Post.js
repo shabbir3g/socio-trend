@@ -30,6 +30,10 @@ const PostSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    // unlike: {
+    //   type: Array,
+    //   default: []
+    // },
     comment: {
       type: Array,
       default: [],
