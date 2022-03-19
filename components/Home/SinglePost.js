@@ -3,16 +3,16 @@ import Image from "next/image";
 import { format } from "timeago.js";
 import { FaArrowUp } from "react-icons/fa";
 import { FiEdit, FiTrash } from "react-icons/fi";
+import { BiShare } from "react-icons/bi";
+import axios from "axios";
+import Comments from "./Comments";
+import Link from "next/link";
 import {
   BsChatLeft,
   BsThreeDotsVertical,
   BsHeartFill,
   BsHeart,
 } from "react-icons/bs";
-import { BiShare } from "react-icons/bi";
-import axios from "axios";
-import Comments from "./Comments";
-import Link from "next/link";
 
 const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
   const [dbComments, setDbComments] = useState([]);
@@ -104,12 +104,14 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
             <li className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3">
               <FiEdit className="mr-2" /> Edit posts
             </li>
-            {userData.email === post.email && <li
-              className="py-1 flex items-center cursor-pointer hover:bg-white  dark:hover:bg-zinc-600 px-3"
-              onClick={() => handleDelete(post._id)}
-            >
-              <FiTrash className="mr-2" /> Delete posts
-            </li>}
+            {userData.email === post.email && (
+              <li
+                className="py-1 flex items-center cursor-pointer hover:bg-white  dark:hover:bg-zinc-600 px-3"
+                onClick={() => handleDelete(post._id)}
+              >
+                <FiTrash className="mr-2" /> Delete posts
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -127,7 +129,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
           <span className="p-1 pt-2 pb-0 px-1.5 bg-gray-200 dark:bg-gray-600 rounded-full">
-            {post.like.find((li) => li.userId === userData._id) ? (
+            {post.like.find((id) => id === userData._id) ? (
               <button onClick={handleLike}>
                 <BsHeartFill className="text-xl text-red-500" />
               </button>
