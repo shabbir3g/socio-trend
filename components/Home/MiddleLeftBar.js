@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CreatePost from "./CreatePost";
-import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
@@ -10,7 +9,6 @@ const MiddleLeftBar = () => {
   const [posts, setPosts] = useState([]);
   const [isLike, setIsLike] = useState(false);
   const [deletePost, setDeletePost] = useState(false);
-  const [openPostModal, setOpenPostModal] = useState(false);
   const [newPost, setNewPost] = useState(false);
   const user = useSelector((state) => state.states.user);
 
@@ -43,13 +41,6 @@ const MiddleLeftBar = () => {
   return (
     <div>
       <CreatePost user={userData} setNewPost={setNewPost} />
-      <PostModal
-        userData={userData}
-        openPostModal={openPostModal}
-        setOpenPostModal={setOpenPostModal}
-        setNewPost={setNewPost}
-      />
-
       {posts
         .map((post) => (
           <SinglePost
