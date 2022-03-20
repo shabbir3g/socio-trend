@@ -35,6 +35,7 @@ const ProfileModal = ({
 
   const handleSubmit = async (e) => {
     setUpdating(true);
+    setOpenProfileModal(false);
     e.preventDefault();
     if (displayName) {
       userData.displayName = displayName;
@@ -76,7 +77,6 @@ const ProfileModal = ({
       setUpdateUserData(true);
       setUpdating(false);
       toast("Update successfully");
-      setOpenProfileModal(false);
     }
   };
   if (updating === true) {

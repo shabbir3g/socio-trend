@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-
-
 const RightSideBar = () => {
   const [users, setUsers] = useState([]);
 
@@ -12,8 +10,8 @@ const RightSideBar = () => {
     axios.get("/api/user/allUsers").then(({ data }) => setUsers(data));
   }, []);
   return (
-    <div className="bg-neutral-100 dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 drop-shadow-sm p-3 rounded-lg">
+    <div>
+      <div className="bg-white dark:bg-black drop-shadow-sm p-3 rounded-lg">
         <p className="mb-3">Contacts</p>
         <ul>
           {users.map((user) => (
@@ -34,7 +32,6 @@ const RightSideBar = () => {
                     {user.displayName}
                   </span>
                   <span className="p-1 rounded-full bg-green-500 ml-auto"></span>
-                  {/* <span className="p-1 rounded-full bg-yellow-500 ml-auto"></span> */}
                 </span>
               </li>
             </Link>

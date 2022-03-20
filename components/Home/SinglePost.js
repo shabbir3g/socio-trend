@@ -1,15 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { format } from "timeago.js";
+import { FaArrowUp } from "react-icons/fa";
+import { FiEdit, FiTrash } from "react-icons/fi";
+import { BiShare } from "react-icons/bi";
 import axios from "axios";
 import Comments from "./Comments";
+import Link from "next/link";
+import {
+  BsChatLeft,
+  BsThreeDotsVertical,
+  BsHeartFill,
+  BsHeart,
+} from "react-icons/bs";
 
 const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [userName, setUserName] = useState("");
   const [status, setStatus] = useState(null);
   const [menu, setMenu] = useState("hidden");
   const ref = useRef();
+
+  useEffect(() => {
+    axios
+      .get(`/api/user?email=${post.email}`)
+      .then(({ data }) => setUserName(data.userName));
+  }, [post.email]);
 
   useEffect(() => {
     axios
@@ -36,10 +53,12 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
 
   const handleLike = async () => {
     const data = { userId: userData._id };
-    await axios
-      .put(`/api/post/like?id=${post._id}`, data)
-      .then((data) => setStatus(data));
-    setIsLike(!isLike);
+    await axios.put(`/api/post/like?id=${post._id}`, data).then((data) => {
+      if (data.status === 200) {
+        setStatus(data.status);
+        setIsLike(!isLike);
+      }
+    });
   };
   const handleDelete = (id) => {
     axios.delete(`api/post?id=${id}`).then((data) => {
@@ -49,45 +68,50 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
     });
   };
   return (
-    <div className="drop-shadow-sm bg-white dark:bg-gray-800 p-5 rounded-xl my-4 ">
+    <div className="drop-shadow-sm bg-white dark:bg-black p-5 sm:rounded-xl my-4 ">
       <div className="flex justify-between relative">
         <div className=" flex">
-          <Image
-            src={
-              post.photoURL ||
-              "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
-            }
-            className="rounded-full"
-            alt=""
-            height={45}
-            width={45}
-          />
+          <Link href={`/${userName}`} passHref>
+            <Image
+              src={
+                post.photoURL ||
+                "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
+              }
+              className="rounded-full cursor-pointer"
+              alt=""
+              height={45}
+              width={45}
+            />
+          </Link>
           <div className="ml-3">
-            <h4 className="text-md font-semibold">{post.displayName}</h4>
+            <Link href={`/${userName}`} passHref>
+              <h4 className="text-md font-semibold cursor-pointer">
+                {post.displayName}
+              </h4>
+            </Link>
             <span className="text-xs">{format(post.createdAt)} </span>
           </div>
         </div>
-        <div
-          className=""
-          onClick={() => setMenu(menu === "hidden" ? "block" : "hidden")}
-        >
-          <div className="py-2 px-[18px] bg-gray-200 dark:bg-gray-600 rounded-full cursor-pointer">
-            <i className="fa-solid fa-ellipsis-vertical dark:text-white text-black"></i>
+        <div onClick={() => setMenu(menu === "hidden" ? "block" : "hidden")}>
+          <div className="p-3 bg-gray-100 dark:bg-zinc-900 rounded-full cursor-pointer">
+            <BsThreeDotsVertical className="dark:text-white text-black" />
           </div>
         </div>
       </div>
       <div className={menu}>
-        <div className="absolute right-5 py-3 bg-gray-300 dark:bg-gray-700  z-40 rounded-lg">
+        <div className="absolute right-5 py-3 bg-gray-100 dark:bg-zinc-800 w-40 z-40 rounded-lg">
           <ul>
-            <li className="py-1 cursor-pointer hover:bg-gray-700 dark:hover:bg-gray-500 hover:text-white px-2">
-              <i className="fa-solid fa-pen-to-square"></i> Edit posts
+            <li className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3">
+              <FiEdit className="mr-2" /> Edit posts
             </li>
-            <li
-              className="py-1 cursor-pointer hover:bg-gray-700  dark:hover:bg-gray-500 hover:text-white px-2"
-              onClick={() => handleDelete(post._id)}
-            >
-              <i className="fa-solid fa-trash"></i> Delete posts
-            </li>
+            {userData.email === post.email && (
+              <li
+                className="py-1 flex items-center cursor-pointer hover:bg-white  dark:hover:bg-zinc-600 px-3"
+                onClick={() => handleDelete(post._id)}
+              >
+                <FiTrash className="mr-2" /> Delete posts
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -97,53 +121,61 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
           {/* <button className="text-blue-600 pl-2">see more</button> */}
         </p>
       </div>
-      <div className="pt-3">
-        {post.img && <Image src={post.img} height={350} width={600} alt="" />}
-      </div>
+      {post.img && (
+        <div className="pt-3 relative h-96 rounded-lg overflow-hidden w-full">
+          <Image src={post.img} layout="fill" objectFit="cover" alt="" />
+        </div>
+      )}
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
-          <span className="p-1 pb-0 bg-gray-200 dark:bg-gray-600 rounded-full">
-            <button onClick={handleLike}>
-              <Image src="/like.svg" alt="" height={25} width={25} />
-            </button>
+          <span className="p-1 pt-2 pb-0 px-1.5 bg-gray-200 dark:bg-gray-600 rounded-full">
+            {post.like.find((id) => id === userData._id) ? (
+              <button onClick={handleLike}>
+                <BsHeartFill className="text-xl text-red-500" />
+              </button>
+            ) : (
+              <button onClick={handleLike}>
+                <BsHeart className="text-xl" />
+              </button>
+            )}
           </span>
           <span className="ml-3">{post.like.length} Like</span>
           <div className="ml-5 ">
-            <button className="items-center flex">
-              <i className="fa-regular fa-comment text-xl"></i>
+            <button className="items-center flex gap-1">
+              <BsChatLeft className="text-xl mt-1" />
               <span className="ml-1">{dbComments.length} Comments</span>
             </button>
           </div>
         </div>
         <div>
           <button className="flex items-center">
-            <i className="fa-solid fa-share text-xl"></i>
+            <BiShare className="text-xl" />
             <span className="ml-1">{post.share} Share</span>
           </button>
         </div>
       </div>
       <form onSubmit={handleSubmitComment}>
-        <div className="flex pt-5">
+        <div className="flex gap-2 items-center pt-5">
           <div className="">
             <Image
               src={userData?.photoURL || "/user-8.png"}
               alt=""
-              height="40"
-              width="40"
+              height="50"
+              width="50"
               className="rounded-full"
             />
           </div>
-          <div className="w-full mx-2">
+          <div className="w-full">
             <input
               onChange={handleCommentChange}
               ref={ref}
-              className="w-full h-10 dark:bg-slate-700 bg-slate-300 rounded-2xl p-2 resize-none scrollbar-hide"
+              className="w-full h-10 dark:bg-zinc-800 bg-gray-200 rounded-full p-2 resize-none scrollbar-hide"
               placeholder="Wright a comment ..."
             />
           </div>
-          <div className="w-10 flex items-center justify-center">
+          <div className="w-10 flex items-center justify-center p-3 rounded-full bg-blue-600">
             <button type="submit">
-              <i className="fa-solid fa-arrow-up py-3 px-3.5 rounded-full bg-green-600"></i>
+              <FaArrowUp className=" text-white" />
             </button>
           </div>
         </div>

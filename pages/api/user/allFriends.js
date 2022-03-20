@@ -10,10 +10,8 @@ export default async function handler(req, res) {
       try{
           const user = await User.findById(userId);
           const friends = Promise.all(
-              user.friends.map((friend) => {
-                  if(friend.requestStatus === 'confirm') {
-                    return user.findById(friend.friendId);
-                  }
+              user.friends.map((friendId) => {
+                return user.findById(friendId);
               })
           )
           const friendList = friends.map((friend) => {

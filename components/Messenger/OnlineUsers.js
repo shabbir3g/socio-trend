@@ -15,18 +15,18 @@ export default function ChatOnline({ user, currentId, setCurrentChat }) {
 
   return (
     <div className="chatOnline">
-      <div className="chatOnlineFriend" onClick={() => handleClick(user)}>
-        <div className="chatOnlineImgContainer">
+      <div className="flex items-center font-medium cursor-pointer mt-2.5" onClick={() => handleClick(user)}>
+        <div className="relative mt-2.5">
           <Image
             height="50"
             width="50"
-            className="chatOnlineImg"
-            src={user.photoURL || "https://i.ibb.co/Xz214Jt/user-8.webp"}
+            className="rounded-full"
+            src={user?.photoURL || "https://i.ibb.co/Xz214Jt/user-8.webp"}
             alt=""
           />
-          <div className="chatOnlineBadge"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-lime-600 absolute top-1 right-1"></div>
         </div>
-        <span className="chatOnlineName">{user?.displayName}</span>
+        <span className="chatOnlineName ml-3">{user?.displayName}</span>
       </div>
     </div>
   );

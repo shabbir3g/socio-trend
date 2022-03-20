@@ -20,15 +20,15 @@ export default function Conversation({ conversation, currentUser }) {
   }, [currentUser, conversation]);
 
   return (
-    <div className="conversation">
+    <div className="conversation flex items-center p-2.5 cursor-pointer mt-2.5">
       <Image
         height="50"
         width="50"
-        className="conversationImg"
+        className="w-10 h-10 rounded-full object-cover mr-5"
         src={user?.photoURL || "https://i.ibb.co/Xz214Jt/user-8.webp"}
         alt=""
       />
-      <span className="conversationName pl-3">{user?.displayName}</span>
+      <span className="conversationName font-medium pl-3">{user?.displayName}</span>
     </div>
   );
 }

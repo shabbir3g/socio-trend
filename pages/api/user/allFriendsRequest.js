@@ -10,10 +10,8 @@ export default async function handler(req, res) {
       try{
           const user = await User.findById(userId);
           const friendRequest = Promise.all(
-              user.friends.map((friend) => {
-                  if(friend.requestStatus === 'pending' && send === false) {
-                    return user.findById(friend.friendId);
-                  }
+              user.friendsRequest.map((friendId) => {
+                return user.findById(friendId);
               })
           )
           const friendRequestList = friendRequest.map((friend) => {
@@ -28,7 +26,7 @@ export default async function handler(req, res) {
       }
       catch (err) {
           res.status(500).json({
-              error: err.message,
+              error: 'Internal Server Error',
           })
       }
   }
