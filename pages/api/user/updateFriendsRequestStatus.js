@@ -11,33 +11,49 @@ export default async function handler(req, res) {
 
   // update friend request status
   if (method === "PATCH") {
-    try{        
-        await User.updateOne(
-            {
-                'friends.friendId': currentUserId,
-            },
-            {
-                $set: {
-                    'friends.$.requestStatus': requestStatus.toLowerCase(), 
+    try{
+        const {currentUserId} = req.query;
+        const {status, requestIngUserId} = req.body;
+        const currentuser = await User.findById(currentUserId);
+        if(status === 'confirm') {
+            const user = await User.findById(requestIngUserId);
+            await currentuser.updateOne(
+                {
+                    $push: {
+                        friends: requestIngUserId,
+                    },
+                    $pull: {
+                        friendsRequest: requestIngUserId,
+                    }
                 }
-            }
-        )
-
-        await User.updateOne(
-            {
-                'friends.friendId': requestUserid,
-            },
-            {
-                $set: {
-                    'friends.$.requestStatus': requestStatus.toLowerCase(), 
+            )
+            await user.updateOne({
+                $push: {
+                    friends: currentUserId,
                 }
-            }
-        )
+            })
 
-        res.status(200).json((`Succefully ${requestStatus} Friends Request`));
+            res.status(200).json({
+                message: 'Succefull Confirm Friend Request',
+            })
+        }
+        else if(status === 'cancle') {
+            await currentuser.updateOne({
+                $pull: {
+                    friendsRequest: requestIngUserId,
+                }
+            })
+
+            res.status(200).json({
+                message: 'Succefull Cancle Friend Request',
+            })
+        }
     }
-    catch(error) {
-        next(error);
+    catch(error) {       
+        res.status(500).json({
+            message: 'Internal Server Error',
+        })
     }
   }
+    
 }

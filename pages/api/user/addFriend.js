@@ -10,37 +10,29 @@ export default async function handler(req, res) {
   
 
   // add friend 
-  if (method === "POST") {
-      try{       
+  if (method === "PATCH") {
+    try{
+        const {requestedUserId} = req.query;    
         await User.findByIdAndUpdate(
-          currentUserId,
+            {
+                _id: requestedUserId,
+            },
             {
                 $push: {
-                    friends: {
-                        friendId: requestUserid,
-                        send: true,                       
-                    }
+                    friendsRequest: req.body.currentUserId,
                 }
             }
         )
 
-        await User.findByIdAndUpdate(
-            requestUserid,
-            {
-                $push: {
-                    friends: {
-                        friendId: currentUserId,
-                    }
-                }
-            }
-        )
-        
-        res.status(201).json({
-          message: 'Succefully Send Friend Request',
+        res.status(200).json({
+            message: 'Succefully Send Friend Request',
         })
-        
-    }catch(error) {
+    }
+    catch(error) {
         console.log(error.message);
+        res.status(500).json({
+            message: 'Internal Server Error',
+        })
     }
-    }
+  }
 }
