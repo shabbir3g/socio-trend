@@ -21,8 +21,6 @@ const ProfileModal = ({
   const [profileImg, setProfileImg] = useState([]);
   const [coverImg, setCoverImg] = useState(null);
 
-  const [updating, setUpdating] = useState(false);
-
   const handleProfileImg = (file) => {
     setProfileImg(file);
     setPreProfileImg(URL.createObjectURL(file));
@@ -34,7 +32,7 @@ const ProfileModal = ({
   let userData = {};
 
   const handleSubmit = async (e) => {
-    setUpdating(true);
+    toast("Updating your information");
     setOpenProfileModal(false);
     e.preventDefault();
     if (displayName) {
@@ -75,13 +73,9 @@ const ProfileModal = ({
     );
     if (response.status === 200) {
       setUpdateUserData(true);
-      setUpdating(false);
       toast("Update successfully");
     }
   };
-  if (updating === true) {
-    toast("Updating your information");
-  }
   return (
     <>
       <Modal
