@@ -3,27 +3,22 @@ import connectDb from '../../../db/connectDatabase';
 
 export default async function handler(req, res) {
     connectDb();
-    const { method } = req;
-    const {currentUserId, requestUserid} = req.query;
-    const  {requestStatus} = req.body;
-
-  
-
+    const { method } = req; 
   // update friend request status
   if (method === "PATCH") {
     try{
         const {currentUserId} = req.query;
-        const {status, requestIngUserId} = req.body;
+        const {status, requesterId} = req.body;
         const currentuser = await User.findById(currentUserId);
         if(status === 'confirm') {
-            const user = await User.findById(requestIngUserId);
+            const user = await User.findById(requesterId);
             await currentuser.updateOne(
                 {
                     $push: {
-                        friends: requestIngUserId,
+                        friends: requesterId,
                     },
                     $pull: {
-                        friendsRequest: requestIngUserId,
+                        friendsRequest: requesterId,
                     }
                 }
             )
@@ -40,7 +35,7 @@ export default async function handler(req, res) {
         else if(status === 'cancle') {
             await currentuser.updateOne({
                 $pull: {
-                    friendsRequest: requestIngUserId,
+                    friendsRequest: requesterId,
                 }
             })
 
