@@ -1,11 +1,11 @@
-import axios from 'axios';
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import Modal from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+import Image from "next/image";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import Modal from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProfileModal = ({
   data,
@@ -14,7 +14,7 @@ const ProfileModal = ({
   setUpdateUserData,
 }) => {
   const user = useSelector((state) => state.states.user);
-  const [displayName, setDisplayName] = useState('');
+  const [displayName, setDisplayName] = useState("");
   const [preProfileImg, setPreProfileImg] = useState(null);
   const [preCoverImg, setPreCoverImg] = useState(null);
 
@@ -35,17 +35,18 @@ const ProfileModal = ({
 
   const handleSubmit = async (e) => {
     setUpdating(true);
+    setOpenProfileModal(false);
     e.preventDefault();
     if (displayName) {
       userData.displayName = displayName;
     }
     const formData = new FormData();
-    formData.append('upload_preset', 'my-uploads');
+    formData.append("upload_preset", "my-uploads");
 
     if (profileImg) {
-      formData.append('file', profileImg);
+      formData.append("file", profileImg);
       await fetch(` https://api.cloudinary.com/v1_1/dtkl4ic8s/image/upload`, {
-        method: 'POST',
+        method: "POST",
         body: formData,
       })
         .then((res) => res.json())
@@ -55,9 +56,9 @@ const ProfileModal = ({
     }
 
     if (coverImg) {
-      formData.append('file', coverImg);
+      formData.append("file", coverImg);
       await fetch(` https://api.cloudinary.com/v1_1/dtkl4ic8s/image/upload`, {
-        method: 'POST',
+        method: "POST",
         body: formData,
       })
         .then((res) => res.json())
@@ -75,8 +76,7 @@ const ProfileModal = ({
     if (response.status === 200) {
       setUpdateUserData(true);
       setUpdating(false);
-      toast('Update successfully');
-      setOpenProfileModal(false);
+      toast("Update successfully");
     }
   };
   if (updating === true) {

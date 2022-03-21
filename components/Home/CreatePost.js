@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
-import autosize from 'autosize';
-import { BsX } from 'react-icons/bs';
-import { BiMessageSquareEdit } from 'react-icons/bi';
-import { MdOutlinePhotoSizeSelectActual } from 'react-icons/md';
-import Image from 'next/image';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import { useEffect, useRef, useState } from "react";
+import autosize from "autosize";
+import { BsX } from "react-icons/bs";
+import { BiMessageSquareEdit } from "react-icons/bi";
+import { MdOutlinePhotoSizeSelectActual } from "react-icons/md";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const CreatePost = ({ user }) => {
+const CreatePost = ({ user, setNewPost }) => {
   const [postImages, setPostImages] = useState([]);
   const [postImagePreview, setPostImagePreview] = useState([]);
-  const [postContents, setPostContents] = useState('');
+  const [postContents, setPostContents] = useState("");
 
   const textareaRef = useRef(null);
   const filePickerRef = useRef(null);
@@ -22,7 +22,7 @@ const CreatePost = ({ user }) => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
+    toast("Posting....");
     data.userId = user._id;
     data.displayName = user.displayName;
     data.email = user.email;
@@ -30,12 +30,12 @@ const CreatePost = ({ user }) => {
     data.userName = user.userName;
 
     const formData = new FormData();
-    formData.append('upload_preset', 'my-uploads');
+    formData.append("upload_preset", "socio-trend");
 
     if (postImages) {
-      formData.append('file', postImages);
+      formData.append("file", postImages);
       await fetch(`https://api.cloudinary.com/v1_1/dtkl4ic8s/image/upload`, {
-        method: 'POST',
+        method: "POST",
         body: formData,
       })
         .then((res) => res.json())
@@ -47,11 +47,13 @@ const CreatePost = ({ user }) => {
     const response = await axios.post(`/api/post`, {
       data,
     });
+    console.log("response", response);
     if (response.status === 200) {
-      toast('Your Post has been successfully created');
+      setNewPost(true);
+      toast("Your Post has been successfully created");
       setPostImages([]);
       setPostImagePreview([]);
-      setPostContents('');
+      setPostContents("");
     }
   };
 
@@ -81,7 +83,7 @@ const CreatePost = ({ user }) => {
               </div>
               <textarea
                 name="postContent"
-                {...register('postContent')}
+                {...register("postContent")}
                 id="postContent"
                 value={postContents}
                 onChange={(e) => setPostContents(e.target.value)}

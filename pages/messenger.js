@@ -137,7 +137,7 @@ export default function Messenger() {
           >
             <input
               placeholder="Search for friends"
-              className={styles.chatMenuInput}
+              className="w-11/12 py-2.5 px-0 border-0"
             />
             {conversations?.map((c) => (
               <div onClick={() => setCurrentChat(c)} key={c._id}>
@@ -147,7 +147,7 @@ export default function Messenger() {
           </div>
         </div>
         <div className={styles.chatBox}>
-          <div className={styles.chatBoxWrapper}>
+          <div className="flex flex-col justify-between relative p-2.5 h-full">
             {currentChat ? (
               <>
                 <div
@@ -159,9 +159,10 @@ export default function Messenger() {
                     </div>
                   ))}
                 </div>
-                <div className={styles.chatBoxBottom}>
+                <div className="mt-1.5 px-4 flex gap-4 items-center justify-between">
                   <textarea
-                    className={styles.chatMessageInput}
+                    className="flex-1 p-2.5 rounded-lg bg-transparent border"
+                    rows={2}
                     placeholder="write something..."
                     onChange={(e) => setNewMessage(e.target.value)}
                     value={newMessage}
@@ -169,13 +170,14 @@ export default function Messenger() {
                   <button
                     className={styles.chatSubmitButton}
                     onClick={handleSubmit}
+                    disabled={!newMessage}
                   >
                     Send
                   </button>
                 </div>
               </>
             ) : (
-              <span className={styles.noConversationText}>
+              <span className="absolute mt-2.5 text-5xl text-slate-200 cursor-default">
                 Open a conversation to start a chat.
               </span>
             )}

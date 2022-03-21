@@ -30,6 +30,10 @@ const PostSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    // unlike: {
+    //   type: Array,
+    //   default: []
+    // },
     comment: {
       type: Array,
       default: [],
@@ -37,6 +41,21 @@ const PostSchema = new mongoose.Schema(
     share: {
       type: Number,
       default: 0,
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
+    desc: {
+      type: String,
+      max: 500,
+    },
+    img: {
+      type: String,
+    },
+    likes: {
+      type: Array,
+      default: [],
     },
   },
   { timestamps: true }

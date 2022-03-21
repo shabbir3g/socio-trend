@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import CreatePost from "./CreatePost";
-import PostModal from "./PostModal";
 import SinglePost from "./SinglePost";
 
 const MiddleLeftBar = () => {
@@ -12,7 +9,6 @@ const MiddleLeftBar = () => {
   const [posts, setPosts] = useState([]);
   const [isLike, setIsLike] = useState(false);
   const [deletePost, setDeletePost] = useState(false);
-  const [openPostModal, setOpenPostModal] = useState(false);
   const [newPost, setNewPost] = useState(false);
   const user = useSelector((state) => state.states.user);
 
@@ -23,60 +19,41 @@ const MiddleLeftBar = () => {
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`/api/post`).then((data) => setPosts(data?.data));
-  }, [user.email, isLike, deletePost, newPost]);
+    axios.get(`/api/post`).then((data) => {
+      setPosts(data?.data);
+      setDeletePost(false);
+      setNewPost(false);
+    });
+  }, [user?.email, isLike, deletePost, newPost]);
+
+  const shuffle = (array) => {
+    return array.sort(() => 0.5 - Math.random());
+  };
+
+  const postShuffle = (array, first) => {
+    if (first) {
+      const newArray = shuffle(array).filter((element) => element !== first);
+      return [first, ...newArray];
+    }
+    return shuffle(array);
+  };
 
   return (
     <div>
-      {/* create post */}
-      <CreatePost user={userData} />
-      {/* <div className="bg-white dark:bg-black p-5 rounded-xl">
-        <div className="mb-3">
-          <a href="">
-            <i className="fa-regular fa-pen-to-square p-2 bg-gray-200 rounded-full text-md text-blue-500"></i>{" "}
-            Create post
-          </a>
-        </div>
-        <textarea
-          className="border-2 rounded w-full dark:bg-transparent p-2"
-          name=""
-          onClick={() => setOpenPostModal(true)}
-          cols="30"
-          rows="3"
-          placeholder="Whats on your mind"
-        />
-        <br />
-        <div>
-          <div className="flex">
-            <a href="#">
-              <i className="fa-solid fa-video p-3"></i>Live Video
-            </a>
-            <a href="#">
-              <i className="fa-regular fa-images p-3"></i> Photo/Video
-            </a>
-            <a href="#">
-              <i className="fa-solid fa-camera p-3"></i> Feeling/Activity
-            </a>
-            <a href="#" className="ml-auto">
-              <i className="fa-solid fa-ellipsis p-3 bg-gray-200 dark:bg-gray-600 rounded-full"></i>
-            </a>
-          </div>
-        </div>
-      </div> */}
-      {/* <PostModal userData={userData} /> */}
-      {posts.map((post) => (
-        <SinglePost
-          key={post._id}
-          post={post}
-          isLike={isLike}
-          setIsLike={setIsLike}
-          deletePost={deletePost}
-          setDeletePost={setDeletePost}
-          userData={userData}
-        />
-      ))}
-
-      <ToastContainer />
+      <CreatePost user={userData} setNewPost={setNewPost} />
+      {posts
+        .map((post) => (
+          <SinglePost
+            key={post._id}
+            post={post}
+            isLike={isLike}
+            setIsLike={setIsLike}
+            deletePost={deletePost}
+            setDeletePost={setDeletePost}
+            userData={userData}
+          />
+        ))
+        .reverse()}
     </div>
   );
 };
