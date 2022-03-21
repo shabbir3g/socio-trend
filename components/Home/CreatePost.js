@@ -30,7 +30,7 @@ const CreatePost = ({ user, setNewPost }) => {
     data.userName = user.userName;
 
     const formData = new FormData();
-    formData.append("upload_preset", "socio_trend");
+    formData.append("upload_preset", "socio-trend");
 
     if (postImages) {
       formData.append("file", postImages);
