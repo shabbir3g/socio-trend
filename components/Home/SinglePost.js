@@ -130,7 +130,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
           <span className="p-1 pt-2 pb-0 px-1.5 bg-gray-200 dark:bg-gray-600 rounded-full">
-            {post.like.find((li) => li.userId === userData._id) ? (
+          {post.like.find((id) => id === userData._id) ? (
               <button onClick={handleLike}>
                 <BsHeartFill className="text-xl text-red-500" />
               </button>

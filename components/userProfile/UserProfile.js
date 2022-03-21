@@ -72,13 +72,18 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
           <div className="">
             {reduxUser.email === userData.email ? (
               <button
-                className="bg-green-500 hover:bg-green-700	text-white font-bold text-xs p-3 rounded-md "
+                className="bg-green-500 hover:bg-green-700	text-white font-bold text-xs p-3 rounded-md"
                 onClick={() => setOpenProfileModal(true)}
               >
                 Edit profile
               </button>
             ) : (
-              <button id="edit-profile" className="hidden"></button>
+              <button
+              className="bg-green-500 hover:bg-green-700	text-white font-bold text-xs p-3 rounded-md"
+              onClick={() => setOpenProfileModal(true)}
+              >
+                Add Friend
+              </button>
             )}
           </div>
         </div>
