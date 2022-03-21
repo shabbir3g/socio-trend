@@ -10,9 +10,7 @@ export default async function handler(req, res) {
     const {recipientId} = req.query;
     try{        
         await User.findByIdAndUpdate(
-            {
-                _id: recipientId,
-            },
+            recipientId,
             {
                 $push: {
                     friendsRequest: req.body.currentUserId,
