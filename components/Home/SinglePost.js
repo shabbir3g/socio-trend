@@ -45,10 +45,12 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
 
   const handleLike = async () => {
     const data = { userId: userData._id };
-    await axios
-      .put(`/api/post/like?id=${post._id}`, data)
-      .then((data) => setStatus(data));
-    setIsLike(!isLike);
+    await axios.put(`/api/post/like?id=${post._id}`, data).then((data) => {
+      if (data.status === 200) {
+        setStatus(data.status);
+        setIsLike(!isLike);
+      }
+    });
   };
   const handleDelete = (id) => {
     axios.delete(`api/post?id=${id}`).then((data) => {
@@ -110,16 +112,18 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
       )}
       <div className="flex justify-between items-center">
         <div className="pt-3 flex items-center">
-          <div className="flex gap-2 items-center">
-            <button onClick={handleLike}>
-              {isLike ? (
-                <BsHeartFill className="w-5 h-5 mt-0.5 text-red-500" />
-              ) : (
-                <BsHeart className="w-5 h-5 mt-0.5" />
-              )}
-            </button>
-            <span>{post.like.length} Like</span>
-          </div>
+          <span>
+            {post.like.find((li) => li.userId === userData._id) ? (
+              <button onClick={handleLike}>
+                <BsHeartFill className="text-red-600 h-5 w-5" />
+              </button>
+            ) : (
+              <button onClick={handleLike}>
+                <BsHeart className="h-5 w-5" />
+              </button>
+            )}
+          </span>
+          <span className="ml-3">{post.like.length} Like</span>
           <div className="ml-5 ">
             <button className="items-center flex gap-1">
               <BsChatLeft className="text-xl mt-1" />

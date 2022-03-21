@@ -42,7 +42,10 @@ p {
     background: #e5e7eb;
   }
 }
-
+.customModal {
+  padding: 0 !important;
+  margin: 0 !important;
+}
 .show {
   left: 0;
   transition: all 0.3s ease;

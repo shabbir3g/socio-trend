@@ -58,7 +58,7 @@ const Navigation = () => {
     axios
       .get(`/api/user?email=${reduxUser.email}`)
       .then(({ data }) => setDbUser(data));
-  }, [reduxUser.email]);
+  }, [reduxUser?.email]);
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const renderThemeChanger = () => {

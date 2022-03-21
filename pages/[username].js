@@ -10,12 +10,14 @@ import { useRouter } from 'next/router';
 const Profile = () => {
   const router = useRouter();
   const userName = router.query.username;
-  const [data, setData] = useState({});
+  const [userData, setUserData] = useState({});
+  const [updateUserData, setUpdateUserData] = useState(false);
+
   useEffect(() => {
     axios
       .get(`/api/user/userName?userName=${userName}`)
-      .then(({ data }) => setData(data));
-  }, [userName]);
+      .then(({ data }) => setUserData(data));
+  }, [userName, updateUserData]);
 
   return (
     <>
@@ -25,7 +27,7 @@ const Profile = () => {
       </Head>
       <Navigation />
       <div className="max-w-4xl mx-auto gap-4 bg-gray-100 dark:bg-zinc-900 pt-2 w-full ">
-        <UserProfile data={data} />
+        <UserProfile user={userData} setUpdateUserData={setUpdateUserData} />
       </div>
     </>
   );
