@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    bookmark: {
+      type: Array,
+      default: [],
+    },
     post: {
       type: Array,
       default: [],
