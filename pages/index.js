@@ -57,7 +57,7 @@ export default function Home() {
           />
         </Head>
         <Navigation />
-        <div className="">
+        <div className="mt-2">
           <div className="grid grid-cols-12 mx-auto 2xl:max-w-[1560px] gap-6">
             <div className="col-span-3 max-w-2xl hidden lg:block h-[89vh] overflow-y-scroll scrollbar	scrollbar-hide hover:scrollbar-default px-2">
               <LeftSideBar />
