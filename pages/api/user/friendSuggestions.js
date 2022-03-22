@@ -38,7 +38,8 @@ export default async function handler(req, res) {
             {
                 $project: {
                     _id: 1,
-                    name: 1,
+                    displayName: 1,
+                    photoURL: 1
                 }
             }
             
