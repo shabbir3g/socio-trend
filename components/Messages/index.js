@@ -230,6 +230,7 @@ const MessagingMain = () => {
                           value={newMessage}
                           name="message"
                           placeholder="Aa"
+                          autoComplete='off'
                           className="w-full bg-gray-50 dark:bg-transparent rounded-full bg-opacity-50 border border-gray-300 dark:border-zinc-600 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                         />
                         <button
