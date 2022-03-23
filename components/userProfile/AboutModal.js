@@ -21,7 +21,7 @@ const AboutModal = ({
       .then((data) => {
         if (data.status === 200) {
           setUpdateUserData(true);
-          toast("Update successfully your information");
+          toast("Profile updated successfully");
           setOpenDetailsModal(false);
         }
       });

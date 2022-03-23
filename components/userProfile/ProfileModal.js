@@ -80,7 +80,7 @@ const ProfileModal = ({
     }
   };
   if (updating === true) {
-    toast("Updating your information");
+    toast('Updating your information');
   }
   return (
     <>
@@ -89,7 +89,7 @@ const ProfileModal = ({
         onClose={() => setOpenProfileModal(false)}
         center
         classNames={{
-          modal: "customModal",
+          modal: 'customModal',
         }}
       >
         <div className="bg-gray-200 dark:bg-gray-800 px-7 py-3 rounded shadow-xl text-gray-800">
@@ -123,7 +123,7 @@ const ProfileModal = ({
                 src={
                   preProfileImg ||
                   data.photoURL ||
-                  "https://i.ibb.co/5kdWHNN/user-12.png"
+                  'https://i.ibb.co/5kdWHNN/user-12.png'
                 }
                 alt="profile image"
                 width="120"
@@ -153,7 +153,7 @@ const ProfileModal = ({
                 src={
                   preCoverImg ||
                   data.coverPicture ||
-                  "https://i.ibb.co/pWc2Ffd/u-bg.jpg"
+                  'https://i.ibb.co/pWc2Ffd/u-bg.jpg'
                 }
                 alt="profile image"
                 width="500"
