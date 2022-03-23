@@ -7,6 +7,8 @@ import Navigation from '../Share/Navigation';
 
 const BookmarkedPosts = () => {
   const [controller, setController] = useState(false);
+  const [isLike, setIsLike] = useState(false);
+  const [deletePost, setDeletePost] = useState(false);
   const [bookmarkedPostsId, setBookmarkedPostsId] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [bookmarkedPosts, setBookmarkedPosts] = useState([]);
@@ -25,12 +27,13 @@ const BookmarkedPosts = () => {
         .get(`/api/user/allBookmarkPost?userId=${currentUser._id}`)
         .then(({ data }) => setBookmarkedPosts(data));
     }
-  }, [currentUser, controller]);
+  }, [currentUser, controller, isLike, deletePost]);
 
   return (
     <>
       <Navigation />
       <div className="max-w-3xl mx-auto">
+        
         {bookmarkedPosts.filter((p) => p).length === 0 ? (
           <div className="px-3 h-full flex items-center justify-center py-10">
             <div className="relative col-span-4 block max-w-2xl w-full mx-auto border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -46,6 +49,9 @@ const BookmarkedPosts = () => {
             .map((post) => (
               <SinglePost
                 key={post._id}
+                isBookmarkPage
+                isLike={isLike}
+                setIsLike={setIsLike}
                 post={post}
                 setController={setController}
                 bookmarkedPostsId={bookmarkedPostsId}

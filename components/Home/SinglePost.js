@@ -25,6 +25,8 @@ const SinglePost = ({
   isLike,
   setDeletePost,
   bookmarkedPostsId,
+  deletePost,
+  isBookmarkPage,
   loading,
 }) => {
   const [alreadyBookmarked, setAlreadyBookmarked] = useState(
@@ -79,7 +81,7 @@ const SinglePost = ({
   const handleDelete = (id) => {
     axios.delete(`api/post?id=${id}`).then((data) => {
       if (data.status === 200) {
-        setDeletePost(true);
+        setDeletePost(!deletePost);
       }
     });
   };
@@ -155,23 +157,33 @@ const SinglePost = ({
           <ul>
             {alreadyBookmarked ? (
               <li
-                onClick={handleBookmarkRemove}
+                onClick={() => {
+                  handleBookmarkRemove();
+                  setMenu('hidden');
+                }}
                 className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3"
               >
-                <BsBookmarkX className="mr-2" /> Remove
+                <BsBookmarkX className="mr-2" />
+                Remove
               </li>
             ) : (
               <li
-                onClick={handleBookmark}
+                onClick={() => {
+                  handleBookmark();
+                  setMenu('hidden');
+                }}
                 className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3"
               >
                 <BsBookmark className="mr-2" /> Bookmark post
               </li>
             )}
-            {userData.email === post.email && (
+            {userData.email === post.email && !isBookmarkPage && (
               <li
                 className="py-1 flex items-center cursor-pointer hover:bg-white  dark:hover:bg-zinc-600 px-3"
-                onClick={() => handleDelete(post._id)}
+                onClick={() => {
+                  handleDelete(post._id);
+                  setMenu('hidden');
+                }}
               >
                 <FiTrash className="mr-2" /> Delete posts
               </li>
@@ -212,10 +224,10 @@ const SinglePost = ({
           </div>
         </div>
         <div>
-          <button className="flex items-center">
+          {/* <button className="flex items-center">
             <BiShare className="text-xl" />
             <span className="ml-1">{post.share} Share</span>
-          </button>
+          </button> */}
         </div>
       </div>
       <form onSubmit={handleSubmitComment}>
