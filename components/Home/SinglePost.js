@@ -14,7 +14,7 @@ import {
   BsHeart,
 } from "react-icons/bs";
 
-const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost }) => {
+const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost, loading }) => {
   const [dbComments, setDbComments] = useState([]);
   const [comment, setComment] = useState("");
   const [userName, setUserName] = useState("");
