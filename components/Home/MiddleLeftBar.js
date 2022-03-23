@@ -22,12 +22,16 @@ const MiddleLeftBar = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`/api/post`).then((data) => {
-      setPosts(data?.data);
-      setDeletePost(false);
-      setNewPost(false);
+    try {
+      axios.get(`/api/post`).then((data) => {
+        setPosts(data?.data);
+        setDeletePost(false);
+        setNewPost(false);
+        setLoading(false);
+      });
+    } catch (error) {
       setLoading(false);
-    });
+    }
   }, [user?.email, isLike, deletePost, newPost]);
 
   const shuffle = (array) => {

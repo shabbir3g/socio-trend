@@ -7,7 +7,7 @@ const PostSkeleton = () => {
         <div className="h-52 w-full object-cover animate-pulse lg:h-72 rounded-lg bg-gray-300 dark:bg-zinc-800"></div>
         <div className="absolute left-3 top-3 w-full">
           <div className="flex items-center gap-3">
-            <div className="animate-pulse h-12 w-12 text-2xl flex items-center justify-center rounded-full ring-4 ring-white dark:ring-black bg-gray-100 dark:bg-zinc-800"></div>
+            <div className="animate-pulse h-12 w-12 text-2xl flex items-center justify-center rounded-full bg-gray-100 dark:bg-zinc-700"></div>
             <div className="w-40 bg-gray-100 dark:bg-zinc-800 h-4 rounded-md "></div>
           </div>
         </div>
