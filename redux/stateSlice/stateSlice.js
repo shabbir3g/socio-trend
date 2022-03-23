@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const counterSlice = createSlice({
-  name: "counter",
+export const authSlice = createSlice({
+  name: "auth",
   initialState: {
     user: {},
     isLoading: false,
@@ -35,6 +35,6 @@ export const {
   setRegisterError,
   setGoogleLoginError,
   setEmailPassLoginError,
-} = counterSlice.actions;
+} = authSlice.actions;
 
-export default counterSlice.reducer;
+export default authSlice.reducer;
