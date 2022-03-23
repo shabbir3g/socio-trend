@@ -4,33 +4,28 @@ import connectDb from ".././../../db/connectDatabase";
 export default async function handler(req, res) {
   connectDb();
   const { method } = req;
-  const { currentUserId, requestUserid } = req.query;
-
   // add friend
   if (method === "PATCH") {
+    const { recipientId } = req.query;
     try {
-      await User.findByIdAndUpdate(currentUserId, {
-        $push: {
-          friends: {
-            friendId: requestUserid,
-            send: true,
-          },
+      await User.findByIdAndUpdate(
+        {
+          _id: recipientId,
         },
-      });
-
-      await User.findByIdAndUpdate(requestUserid, {
-        $push: {
-          friends: {
-            friendId: currentUserId,
+        {
+          $push: {
+            friendsRequest: req.body.currentUserId,
           },
-        },
-      });
+        }
+      );
 
-      res.status(201).json({
+      res.status(200).json({
         message: "Succefully Send Friend Request",
       });
     } catch (error) {
-      console.log(error.message);
+      res.status(500).json({
+        message: "Internal Server Error",
+      });
     }
   }
 }

@@ -9,22 +9,26 @@ export default async function handler(req, res) {
   if (method === "GET") {
     try {
       const user = await User.findById(userId);
-      const friends = Promise.all(
-        user.friends.map((friend) => {
-          if (friend.requestStatus === "confirm") {
-            return user.findById(friend.friendId);
-          }
-        })
-      );
-      const friendList = friends.map((friend) => {
-        const { _id, displayName, userName, photoURL } = friend;
-        friendList.push({
-          _id,
-          displayName,
-          userName,
-          photoURL,
+      if (user.friends.length >= 1) {
+        const friends = await Promise.all(
+          user.friends.map((friendId) => {
+            return User.findById(friendId);
+          })
+        );
+        const friendList = [];
+        friends.map((friend) => {
+          const { _id, displayName, userName, photoURL } = friend;
+          friendList.push({
+            _id,
+            displayName,
+            userName,
+            photoURL,
+          });
         });
-      });
+        res.status(200).json(friendList);
+      } else {
+        res.status(200).json([]);
+      }
     } catch (err) {
       res.status(500).json({
         error: err.message,

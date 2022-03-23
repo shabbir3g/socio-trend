@@ -2,39 +2,53 @@ import User from "../../../models/User";
 import connectDb from "../../../db/connectDatabase";
 
 export default async function handler(req, res) {
-  connectDb();
-  const { method } = req;
-  const { currentUserId, requestUserid } = req.query;
-  const { requestStatus } = req.body;
-
+    connectDb();
+    const { method } = req; 
   // update friend request status
   if (method === "PATCH") {
-    try {
-      await User.updateOne(
-        {
-          "friends.friendId": currentUserId,
-        },
-        {
-          $set: {
-            "friends.$.requestStatus": requestStatus.toLowerCase(),
-          },
-        }
-      );
+    try{
+        const {currentUserId} = req.query;
+        const {status, requesterId} = req.body;
+        const currentuser = await User.findById(currentUserId);
+        if(status === 'confirm') {
+            const user = await User.findById(requesterId);
+            await currentuser.updateOne(
+                {
+                    $push: {
+                        friends: requesterId,
+                    },
+                    $pull: {
+                        friendsRequest: requesterId,
+                    }
+                }
+            )
+            await user.updateOne({
+                $push: {
+                    friends: currentUserId,
+                }
+            })
 
-      await User.updateOne(
-        {
-          "friends.friendId": requestUserid,
-        },
-        {
-          $set: {
-            "friends.$.requestStatus": requestStatus.toLowerCase(),
-          },
+            res.status(200).json({
+                message: 'Succefull Confirm Friend Request',
+            })
         }
-      );
+        else if(status === 'cancle') {
+            await currentuser.updateOne({
+                $pull: {
+                    friendsRequest: requesterId,
+                }
+            })
 
-      res.status(200).json(`Succefully ${requestStatus} Friends Request`);
-    } catch (error) {
-      next(error);
+            res.status(200).json({
+                message: 'Succefull Cancle Friend Request',
+            })
+        }
+    }
+    catch(error) {       
+        res.status(500).json({
+            message: 'Internal Server Error',
+        })
     }
   }
+    
 }
