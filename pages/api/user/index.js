@@ -1,10 +1,10 @@
-import dbConnect from "../../../utilities/mongo";
+import connectDb from '.././../../db/connectDatabase';
 import User from "../../../models/User";
 
 export default async function handler(req, res) {
   const { method } = req;
 
-  dbConnect();
+  connectDb();
 
   // get single user by email
   if (method === "GET") {

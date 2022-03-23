@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const UserSchema = new mongoose.Schema(
   {
     displayName: {
@@ -28,11 +27,15 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    followers: {
+    friends: {
       type: Array,
       default: [],
     },
-    followings: {
+    friendsRequest: {
+      type: Array,
+      default: [],
+    },
+    bookmark: {
       type: Array,
       default: [],
     },

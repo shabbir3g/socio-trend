@@ -1,10 +1,10 @@
-import dbConnect from '../../../utilities/mongo';
-import Post from '../../../models/Post';
+import connectDb from '.././../../db/connectDatabase';
+import Post from "../../../models/Post";
 
 export default async function handler(req, res) {
   const { method } = req;
 
-  dbConnect();
+  connectDb();
 
   if (method === "POST") {
     try {

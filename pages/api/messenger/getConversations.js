@@ -1,10 +1,10 @@
-import dbConnect from "../../../utilities/mongo";
+import connectDb from '.././../../db/connectDatabase';
 import Conversation from "../../../models/Conversation";
 
 export default async function handler(req, res) {
   const { method } = req;
 
-  dbConnect();
+  connectDb();
 
   if (method === "GET") {
     try {
