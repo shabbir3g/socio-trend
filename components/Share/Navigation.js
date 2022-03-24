@@ -110,7 +110,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link href="/">
             <a className="relative flex gap-3 items-center">
-              {currentTheme === "dark" ? (
+              {currentTheme === 'dark' ? (
                 <Image
                   width="150"
                   height="55"
@@ -157,8 +157,8 @@ const Navigation = () => {
               <a
                 className={`${
                   navlink.href === router.pathname
-                    ? "text-2xl font-semibold dark:bg-zinc-800 bg-gray-100 py-3 px-7 rounded-lg"
-                    : "text-2xl dark:text-zinc-400 py-3 px-8 text-gray-600 dark:hover:bg-zinc-900 hover:bg-gray-100 rounded-lg dark:hover:text-white hover:text-gray-800"
+                    ? 'text-2xl font-semibold dark:bg-zinc-800 bg-gray-100 py-3 px-7 rounded-lg'
+                    : 'text-2xl dark:text-zinc-400 py-3 px-8 text-gray-600 dark:hover:bg-zinc-900 hover:bg-gray-100 rounded-lg dark:hover:text-white hover:text-gray-800'
                 } `}
                 title={navlink.label}
               >
@@ -195,8 +195,8 @@ const Navigation = () => {
             <div
               className={`${
                 isProfileMenuOpen
-                  ? "opacity-100 translate-y-0 z-50"
-                  : "opacity-0 translate-y-4 pointer-events-none"
+                  ? 'opacity-100 translate-y-0 z-50'
+                  : 'opacity-0 translate-y-4 pointer-events-none'
               }  transform transition-all divide-y divide-gray-300 dark:divide-zinc-600 duration-200 absolute z-50 right-4 mt-2 p-1 w-64 rounded-md shadow-lg overflow-hidden dark:bg-black bg-white ring-1 ring-gray-100 dark:ring-zinc-600 focus:outline-none`}
             >
               <Link href={`/${dbUser.userName}`}>
@@ -249,7 +249,7 @@ const Navigation = () => {
                     <BsChevronRight />
                   </a>
                 </Link>
-                <Link href="/profile">
+                <Link href={`/${dbUser.userName}`}>
                   <a
                     onClick={closeProfileMenu}
                     className="flex items-center justify-between p-3 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-lg"
@@ -257,18 +257,6 @@ const Navigation = () => {
                     <p className="flex items-center gap-2">
                       <BsGear />
                       <span>Settings</span>
-                    </p>
-                    <BsChevronRight />
-                  </a>
-                </Link>
-                <Link href="/notifications">
-                  <a
-                    onClick={closeProfileMenu}
-                    className="flex items-center justify-between p-3 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-lg"
-                  >
-                    <p className="flex items-center gap-2">
-                      <BsBell />
-                      <span>Notifications</span>
                     </p>
                     <BsChevronRight />
                   </a>
@@ -297,8 +285,8 @@ const Navigation = () => {
       <div
         className={`${
           isMobileMenuOpen
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 pointer-events-none -translate-x-10"
+            ? 'opacity-100 translate-x-0'
+            : 'opacity-0 pointer-events-none -translate-x-10'
         } duration-300 z-50 absolute top-0 inset-x-0 p-2 transition transform lg:hidden`}
       >
         <div className="rounded-lg shadow-lg dark:bg-black bg-white border dark:border-zinc-600 divide-y dark:divide-zinc-600">
@@ -331,8 +319,8 @@ const Navigation = () => {
                     <a
                       className={`${
                         router.pathname === navlink.href
-                          ? "bg-gray-100 dark:bg-zinc-800"
-                          : ""
+                          ? 'bg-gray-100 dark:bg-zinc-800'
+                          : ''
                       } flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800`}
                     >
                       <p className="flex items-center gap-6 text-2xl">
