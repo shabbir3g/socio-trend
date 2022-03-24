@@ -188,7 +188,7 @@ const Navigation = () => {
                     className="h-full w-full rounded-full"
                   />
                 ) : (
-                  <div className="h-full w-full bg-gray-200 dark:bg-zinc-800"></div>
+                  <div className="h-full w-full rounded-full bg-gray-200 dark:bg-zinc-800"></div>
                 )}
                 <div className="absolute w-3 h-3 rounded-full bg-zinc-600 ring-2 ring-white dark:ring-black bottom-0"></div>
               </button>
