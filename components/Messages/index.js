@@ -59,7 +59,8 @@ const MessagingMain = () => {
       );
     });
   }, [allUsers, dbUser._id]);
-
+  
+  // console.log({ onlineUsers });
   useEffect(() => {
     const getConversations = async () => {
       try {
@@ -167,19 +168,21 @@ const MessagingMain = () => {
             {/* friends list */}
             <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
               <ul className="relative py-2 space-y-1">
-                {conversations?.map((c) => (
-                  <li
-                    className={`px-2 relative overflow-hidden cursor-pointer`}
-                    onClick={() => setCurrentChat(c)}
-                    key={c._id}
-                  >
-                    <ChatUser
-                      conversation={c}
-                      currentUser={dbUser}
-                      currentChat={currentChat}
-                    />
-                  </li>
-                )).reverse()}
+                {conversations
+                  ?.map((c) => (
+                    <li
+                      className={`px-2 relative overflow-hidden cursor-pointer`}
+                      onClick={() => setCurrentChat(c)}
+                      key={c._id}
+                    >
+                      <ChatUser
+                        conversation={c}
+                        currentUser={dbUser}
+                        currentChat={currentChat}
+                      />
+                    </li>
+                  ))
+                  .reverse()}
               </ul>
             </div>
           </aside>
@@ -190,27 +193,6 @@ const MessagingMain = () => {
           <main className="flex flex-col justify-between bg-gray-100 dark:bg-black flex-1 overflow-y-auto hide-scrollbar border-t dark:border-zinc-600 sm:border-t-0">
             {currentChat ? (
               <>
-                {/* chat head */}
-                {/* <div className="sticky top-0 z-10">
-                  <div className="flex gap-3 lg:gap-5 items-center justify-between border-b border-t sm:border-t-0 border-gray-200 dark:border-zinc-600 bg-white dark:bg-black px-4 py-2.5">
-                    <div className="relative h-10 w-10 rounded-full overflow-hidden">
-                      {activeChatuser?.photoURL && (
-                        <Image
-                          className="h-10 w-10 rounded-full"
-                          layout="fill"
-                          objectFit="cover"
-                          src={activeChatuser?.photoURL}
-                          alt=""
-                        />
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="truncate text-base font-medium">
-                        {activeChatuser?.displayName}
-                      </p>
-                    </div>
-                  </div>
-                </div> */}
                 {/* chat body */}
                 <div className="flex-1 w-full mx-auto py-8 px-3 space-y-6">
                   {messages.map((m) => (
@@ -230,7 +212,7 @@ const MessagingMain = () => {
                           value={newMessage}
                           name="message"
                           placeholder="Aa"
-                          autoComplete='off'
+                          autoComplete="off"
                           className="w-full bg-gray-50 dark:bg-transparent rounded-full bg-opacity-50 border border-gray-300 dark:border-zinc-600 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                         />
                         <button

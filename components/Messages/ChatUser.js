@@ -40,6 +40,7 @@ const ChatUser = ({ conversation, currentUser, currentChat }) => {
               <RiUserSmileLine className="w-full h-full object-cover p-2" />
             </div>
           )}
+          <div className="absolute w-3 h-3 rounded-full bg-zinc-600 ring-2 ring-white dark:ring-black bottom-0 right-0"></div>
         </div>
         <div className="flex-1 min-w-0 hidden lg:block">
           <a href="#" className="focus:outline-none">

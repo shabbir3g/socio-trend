@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   BsX,
   BsBell,
@@ -13,13 +13,13 @@ import {
   BsBookmark,
   BsHouse,
   BsMoon,
-} from "react-icons/bs";
-import { VscListSelection } from "react-icons/vsc";
-import { FiUsers, FiUser, FiLogOut } from "react-icons/fi";
-import { useSelector } from "react-redux";
-import { useTheme } from "next-themes";
-import axios from "axios";
-import useFirebase from "../../firebase/useFirebase";
+} from 'react-icons/bs';
+import { VscListSelection } from 'react-icons/vsc';
+import { FiUsers, FiUser, FiLogOut } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
+import { useTheme } from 'next-themes';
+import axios from 'axios';
+import useFirebase from '../../firebase/useFirebase';
 // import RenderThemeChanger from '../../utils/RenderThemeChanger';
 
 const topCenterNavlinks = [
@@ -66,16 +66,16 @@ const Navigation = () => {
       .then(({ data }) => setDbUser(data));
   }, [reduxUser?.email]);
 
-  const currentTheme = theme === "system" ? systemTheme : theme;
+  const currentTheme = theme === 'system' ? systemTheme : theme;
   const renderThemeChanger = () => {
     if (!mounted) return null;
 
-    const currentTheme = theme === "system" ? systemTheme : theme;
-    if (currentTheme === "dark") {
+    const currentTheme = theme === 'system' ? systemTheme : theme;
+    if (currentTheme === 'dark') {
       return (
         <button
           className="w-11 h-11 items-center justify-center flex text-2xl border border-gray-300 dark:border-zinc-600 rounded-full"
-          onClick={() => setTheme("light")}
+          onClick={() => setTheme('light')}
         >
           <BsSun className="p-0.5" />
         </button>
@@ -84,7 +84,7 @@ const Navigation = () => {
       return (
         <button
           className="w-11 h-11 items-center justify-center flex text-2xl border border-gray-300 dark:border-zinc-600 rounded-full"
-          onClick={() => setTheme("dark")}
+          onClick={() => setTheme('dark')}
         >
           <BsMoon className="p-0.5" />
         </button>
@@ -177,7 +177,7 @@ const Navigation = () => {
             <div className="relative">
               <button
                 onClick={toggleProfileMenu}
-                className="whitespace-nowrap relative h-11 w-11 overflow-hidden border border-gray-300 dark:border-zinc-600 dark:hover:bg-zinc-900 hover:bg-gray-100 rounded-full text-lg focus:outline-none focus:ring-offset-0"
+                className="whitespace-nowrap relative h-11 w-11 border border-gray-300 dark:border-zinc-600 dark:hover:bg-zinc-900 hover:bg-gray-100 rounded-full text-lg focus:outline-none focus:ring-offset-0"
               >
                 {dbUser.photoURL ? (
                   <Image
@@ -185,10 +185,12 @@ const Navigation = () => {
                     alt={dbUser?.displayName}
                     layout="fill"
                     objectFit="cover"
+                    className="h-full w-full rounded-full"
                   />
                 ) : (
                   <div className="h-full w-full bg-gray-200 dark:bg-zinc-800"></div>
                 )}
+                <div className="absolute w-3 h-3 rounded-full bg-zinc-600 ring-2 ring-white dark:ring-black bottom-0"></div>
               </button>
             </div>
             {/* dropdowns */}

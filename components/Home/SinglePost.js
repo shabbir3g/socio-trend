@@ -126,16 +126,19 @@ const SinglePost = ({
       <div className="flex justify-between relative">
         <div className=" flex">
           <Link href={`/${userName}`} passHref>
-            <Image
-              src={
-                post.photoURL ||
-                'https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png'
-              }
-              className="rounded-full cursor-pointer"
-              alt=""
-              height={45}
-              width={45}
-            />
+            <div className="relative">
+              <Image
+                src={
+                  post.photoURL ||
+                  'https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png'
+                }
+                className="rounded-full cursor-pointer"
+                alt=""
+                height={45}
+                width={45}
+              />
+              <div className="absolute w-3 h-3 rounded-full bg-zinc-600 ring-2 ring-white dark:ring-black bottom-1 right-0"></div>
+            </div>
           </Link>
           <div className="ml-3">
             <Link href={`/${userName}`} passHref>
@@ -232,7 +235,7 @@ const SinglePost = ({
       </div>
       <form onSubmit={handleSubmitComment}>
         <div className="flex gap-2 items-center pt-5">
-          <div className="">
+          <div className="relative">
             <Image
               src={userData?.photoURL || '/user-8.png'}
               alt=""
@@ -250,7 +253,11 @@ const SinglePost = ({
             />
           </div>
           <div className="w-10 flex  items-center justify-center p-3 rounded-full bg-blue-600">
-            <button disabled={!comment.trim()} type="submit" className="disabled:cursor-not-allowed">
+            <button
+              disabled={!comment.trim()}
+              type="submit"
+              className="disabled:cursor-not-allowed"
+            >
               <FaArrowUp className=" text-white" />
             </button>
           </div>
