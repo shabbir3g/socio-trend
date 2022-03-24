@@ -194,7 +194,7 @@ const SinglePost = ({
           </ul>
         </div>
       </div>
-      <div className="pt-3">
+      <div className="pt-3 mb-3">
         <p>
           {post.postContent}
           {/* <button className="text-blue-600 pl-2">see more</button> */}

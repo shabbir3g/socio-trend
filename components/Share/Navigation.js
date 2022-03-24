@@ -190,7 +190,7 @@ const Navigation = () => {
                 ) : (
                   <div className="h-full w-full rounded-full bg-gray-200 dark:bg-zinc-800"></div>
                 )}
-                <div className="absolute w-3 h-3 rounded-full bg-zinc-600 ring-2 ring-white dark:ring-black bottom-0"></div>
+                <div className="absolute w-3 h-3 rounded-full bg-green-400 ring-2 ring-white dark:ring-black bottom-0"></div>
               </button>
             </div>
             {/* dropdowns */}
