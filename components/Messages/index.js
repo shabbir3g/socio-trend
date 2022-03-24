@@ -13,6 +13,7 @@ import axios from 'axios';
 import { io } from 'socket.io-client';
 import ChatUser from './ChatUser';
 import Chat from './Chat';
+import UserListSkeleton from '../Loaders/UserListSkeleton';
 
 const MessagingMain = () => {
   const [isSearchOffcanvasOpen, setIsSearchOffcanvasOpen] = useState(false);
@@ -59,7 +60,7 @@ const MessagingMain = () => {
       );
     });
   }, [allUsers, dbUser._id]);
-  
+
   // console.log({ onlineUsers });
   useEffect(() => {
     const getConversations = async () => {
@@ -168,21 +169,25 @@ const MessagingMain = () => {
             {/* friends list */}
             <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
               <ul className="relative py-2 space-y-1">
-                {conversations
-                  ?.map((c) => (
-                    <li
-                      className={`px-2 relative overflow-hidden cursor-pointer`}
-                      onClick={() => setCurrentChat(c)}
-                      key={c._id}
-                    >
-                      <ChatUser
-                        conversation={c}
-                        currentUser={dbUser}
-                        currentChat={currentChat}
-                      />
-                    </li>
-                  ))
-                  .reverse()}
+                {conversations.length === 0 ? (
+                  <UserListSkeleton />
+                ) : (
+                  conversations
+                    ?.map((c) => (
+                      <li
+                        className={`px-2 relative overflow-hidden cursor-pointer`}
+                        onClick={() => setCurrentChat(c)}
+                        key={c._id}
+                      >
+                        <ChatUser
+                          conversation={c}
+                          currentUser={dbUser}
+                          currentChat={currentChat}
+                        />
+                      </li>
+                    ))
+                    .reverse()
+                )}
               </ul>
             </div>
           </aside>
