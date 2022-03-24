@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema(
   {
     displayName: {
@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      default: "",
+      default: '',
     },
     email: {
       type: String,
@@ -22,11 +22,11 @@ const UserSchema = new mongoose.Schema(
     },
     photoURL: {
       type: String,
-      default: "",
+      default: '',
     },
     coverPicture: {
       type: String,
-      default: "",
+      default: '',
     },
     friends: {
       type: Array,
@@ -46,23 +46,23 @@ const UserSchema = new mongoose.Schema(
     },
     education: {
       type: String,
-      default: "",
+      default: '',
     },
     city: {
       type: String,
-      default: "",
+      default: '',
     },
     from: {
       type: String,
-      default: "",
+      default: '',
     },
     relationship: {
       type: String,
-      default: "",
+      default: '',
     },
     workplace: {
       type: String,
-      default: "",
+      default: '',
     },
     password: {
       type: String,
@@ -71,7 +71,7 @@ const UserSchema = new mongoose.Schema(
     },
     profilePicture: {
       type: String,
-      default: "",
+      default: '',
     },
     followers: {
       type: Array,
@@ -80,6 +80,10 @@ const UserSchema = new mongoose.Schema(
     followings: {
       type: Array,
       default: [],
+    },
+    isOnline: {
+      type: Boolean,
+      default: false,
     },
     isAdmin: {
       type: Boolean,
@@ -93,4 +97,4 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+export default mongoose.models.User || mongoose.model('User', UserSchema);
