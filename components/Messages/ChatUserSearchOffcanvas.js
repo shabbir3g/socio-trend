@@ -5,6 +5,7 @@ import { RiUserSmileLine } from 'react-icons/ri';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import UserListSkeleton from '../Loaders/UserListSkeleton';
 
 const ChatUserSearchOffcanvas = ({
   isOffcanvasOpen,
@@ -114,7 +115,9 @@ const ChatUserSearchOffcanvas = ({
                 </form>
 
                 {/* list */}
-                {!loading && (
+                {loading ? (
+                  <UserListSkeleton />
+                ) : (
                   <nav className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
                     <div className="relative">
                       <ul className="relative z-0 divide-y divide-gray-200 dark:divide-zinc-700">
