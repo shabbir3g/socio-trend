@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const UserSchema = new mongoose.Schema(
   {
     displayName: {
@@ -11,6 +10,7 @@ const UserSchema = new mongoose.Schema(
     userName: {
       type: String,
       required: true,
+      unique: true,
       default: "",
     },
     email: {
@@ -28,21 +28,21 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    followers: {
+    friends: {
       type: Array,
       default: [],
     },
-    followings: {
+    friendsRequest: {
+      type: Array,
+      default: [],
+    },
+    bookmark: {
       type: Array,
       default: [],
     },
     post: {
       type: Array,
       default: [],
-    },
-    isAdmin: {
-      type: Boolean,
-      default: false,
     },
     education: {
       type: String,
@@ -64,29 +64,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    username: {
-      type: String,
-      require: true,
-      min: 3,
-      max: 20,
-      unique: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      max: 50,
-      unique: true,
-    },
     password: {
       type: String,
       required: true,
       min: 6,
     },
     profilePicture: {
-      type: String,
-      default: "",
-    },
-    coverPicture: {
       type: String,
       default: "",
     },
@@ -105,18 +88,6 @@ const UserSchema = new mongoose.Schema(
     desc: {
       type: String,
       max: 50,
-    },
-    city: {
-      type: String,
-      max: 50,
-    },
-    from: {
-      type: String,
-      max: 50,
-    },
-    relationship: {
-      type: Number,
-      enum: [1, 2, 3],
     },
   },
   { timestamps: true }

@@ -1,10 +1,11 @@
-import dbConnect from '../../../utilities/mongo';
-import User from '../../../models/User';
+import User from "../../../models/User";
+import connectDb from '.././../../db/connectDatabase';
+
 
 export default async function handler(req, res) {
   const { method, query } = req;
 
-  dbConnect();
+  connectDb();
 
   // get all user
   if (method === 'GET') {

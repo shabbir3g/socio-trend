@@ -1,10 +1,10 @@
-import dbConnect from "../../../utilities/mongo";
+import connectDb from '.././../../db/connectDatabase';
 import Message from "../../../models/Message";
 
 export default async function handler(req, res) {
   const { method } = req;
 
-  dbConnect();
+  connectDb();
   //add
   if (method === "POST") {
     try {
