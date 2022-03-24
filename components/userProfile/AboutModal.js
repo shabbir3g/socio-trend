@@ -16,6 +16,7 @@ const AboutModal = ({
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
+    console.log(data);
     axios
       .put(`/api/user/updateAbout?email=${user.email}`, data)
       .then((data) => {
