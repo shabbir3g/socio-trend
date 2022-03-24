@@ -31,7 +31,7 @@ const Register = () => {
   return (
     <section className="lg:py-10 lg:px-6">
       <div className="max-w-5xl mx-auto rounded-lg overflow-hidden grid min-h-screen lg:grid-cols-5 grid-cols-2">
-        <div className="hidden lg:flex col-span-2 bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400">
+        <div className="hidden lg:flex col-span-2 bg-white dark:bg-black bg-pattern-login">
           <div className="flex flex-col justify-start items-start py-10 pl-16">
             {/*  */}
           </div>
@@ -65,7 +65,8 @@ const Register = () => {
                       type="text"
                       autoComplete="given-name"
                       required
-                      className="appearance-none bg-transparent block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      placeholder="John doe"
+                      className="appearance-none bg-transparent block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-zinc-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -85,7 +86,8 @@ const Register = () => {
                       type="email"
                       autoComplete="email"
                       required
-                      className="appearance-none bg-transparent block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      placeholder="example@mail.com"
+                      className="appearance-none bg-transparent block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-zinc-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -114,7 +116,8 @@ const Register = () => {
                       type={showPass ? 'text' : 'password'}
                       autoComplete="current-password"
                       required
-                      className="appearance-none bg-transparent block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      placeholder="********"
+                      className="appearance-none bg-transparent block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-zinc-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -142,7 +145,8 @@ const Register = () => {
                       {...register('confirmPass', { required: true })}
                       type={showPassConfirm ? 'text' : 'password'}
                       required
-                      className="appearance-none bg-transparent block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      placeholder="********"
+                      className="appearance-none bg-transparent block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-zinc-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -150,7 +154,7 @@ const Register = () => {
                 <div>
                   <button
                     type="submit"
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium dark:text-black text-white dark:bg-white bg-black hover:bg-opacity-80 dark:hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
                   >
                     {/* {isLoading ? 'Loading...' : 'Sign in'} */}
                     Register
@@ -174,7 +178,7 @@ const Register = () => {
                   <div>
                     <button
                       onClick={googleSign}
-                      className="w-full inline-flex justify-center items-center py-2 px-4 rounded-md shadow-sm bg-indigo-500 text-sm font-medium text-white hover:bg-indigo-600"
+                      className="w-full inline-flex justify-center items-center py-2 px-4 rounded-md shadow-sm bg-black dark:bg-white text-sm font-medium text-white dark:text-black hover:bg-opacity-90 dark:hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
                     >
                       <BsGoogle className="w-6 h-6" />
                       &nbsp;Sign in with Google
