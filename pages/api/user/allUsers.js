@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     try {
       const keyword = query.search
         ? {
-            $or: [
+            $and: [
               { displayName: { $regex: query.search, $options: 'i' } },
               { username: { $regex: query.search, $options: 'i' } },
             ],
