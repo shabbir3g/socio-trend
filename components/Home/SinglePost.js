@@ -249,8 +249,8 @@ const SinglePost = ({
               placeholder="Wright a comment ..."
             />
           </div>
-          <div className="w-10 flex items-center justify-center p-3 rounded-full bg-blue-600">
-            <button type="submit">
+          <div className="w-10 flex  items-center justify-center p-3 rounded-full bg-blue-600">
+            <button disabled={!comment.trim()} type="submit" className="disabled:cursor-not-allowed">
               <FaArrowUp className=" text-white" />
             </button>
           </div>
