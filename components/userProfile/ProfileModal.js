@@ -79,9 +79,6 @@ const ProfileModal = ({
       toast("Update successfully");
     }
   };
-  if (updating === true) {
-    toast('Updating your information');
-  }
   return (
     <>
       <Modal
@@ -92,7 +89,7 @@ const ProfileModal = ({
           modal: 'customModal',
         }}
       >
-        <div className="bg-gray-200 dark:bg-gray-800 px-7 py-3 rounded shadow-xl text-gray-800">
+        <div className="bg-white dark:bg-zinc-900 px-7 py-3 shadow-xl text-gray-800">
           <div className="flex justify-between items-center border-b-2 py-3 border-gray-500">
             <h4 className="text-lg font-bold dark:text-white">Edit profile</h4>
           </div>
@@ -149,7 +146,7 @@ const ProfileModal = ({
 
             <div className="flex justify-center">
               <Image
-                className="object-content"
+                className="object-cover"
                 src={
                   preCoverImg ||
                   data.coverPicture ||
@@ -160,22 +157,22 @@ const ProfileModal = ({
                 height="200"
               />
             </div>
-            <div className="flex items-center space-x-3 py-6">
-              <div className="text-lg font-bold dark:text-white">
+            <div className="flex flex-col space-y-1 py-6 px-2">
+              <div className="text-lg font-medium dark:text-white">
                 Chenge Your Name:
               </div>
               <input
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder={data.displayName}
                 defaultValue={data.displayName}
-                className="w-2/4 h-10 px-2 focus:outline-none dark:bg-gray-700 dark:text-white"
+                className="w-full h-10  focus:outline-none dark:bg-transparent rounded-lg dark:text-white"
                 type="text"
                 name="name"
                 id="name"
               />
             </div>
             <div className="mt-3 flex justify-end space-x-3 pb-5">
-              <button className="px-3 py-1 bg-green-500 text-gray-200 hover:bg-green-700 rounded-md">
+              <button className="px-8 py-2.5 bg-black text-gray-200 dark:hover:bg-opacity-50 rounded-md">
                 Update
               </button>
             </div>

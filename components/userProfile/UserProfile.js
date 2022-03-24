@@ -119,7 +119,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
             </div>
             {reduxUser.email === userData.email ? (
               <button
-                className="w-full bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-600 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
+                className="w-full bg-gray-200 dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:bg-slate-300 font-semibold rounded-md text-gray-700 dark:text-white mt-3 py-2"
                 onClick={() => setOpenDetailsModal(true)}
               >
                 Edit Details
