@@ -1,32 +1,50 @@
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { format } from "timeago.js";
-import { FaArrowUp } from "react-icons/fa";
-import { FiEdit, FiTrash } from "react-icons/fi";
-import { BiShare } from "react-icons/bi";
-import axios from "axios";
-import Comments from "./Comments";
-import Link from "next/link";
+import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { format } from 'timeago.js';
+import { FaArrowUp } from 'react-icons/fa';
+import { FiTrash } from 'react-icons/fi';
+import { BiShare } from 'react-icons/bi';
+import axios from 'axios';
+import Comments from './Comments';
+import Link from 'next/link';
 import {
   BsChatLeft,
+  BsBookmark,
+  BsBookmarkX,
   BsThreeDotsVertical,
   BsHeartFill,
   BsHeart,
-} from "react-icons/bs";
+} from 'react-icons/bs';
+import { toast } from 'react-toastify';
 
-const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost, loading }) => {
+const SinglePost = ({
+  post,
+  userData,
+  setIsLike,
+  setController,
+  isLike,
+  setDeletePost,
+  bookmarkedPostsId,
+  deletePost,
+  isBookmarkPage,
+  loading,
+}) => {
+  const [alreadyBookmarked, setAlreadyBookmarked] = useState(
+    bookmarkedPostsId?.some((p) => p === post._id)
+  );
   const [dbComments, setDbComments] = useState([]);
-  const [comment, setComment] = useState("");
-  const [userName, setUserName] = useState("");
+  const [comment, setComment] = useState('');
+  const [userName, setUserName] = useState('');
   const [status, setStatus] = useState(null);
-  const [menu, setMenu] = useState("hidden");
+  const [menu, setMenu] = useState('hidden');
   const ref = useRef();
 
   useEffect(() => {
-    axios
-      .get(`/api/user?email=${post.email}`)
-      .then(({ data }) => setUserName(data.userName));
-  }, [post.email]);
+    axios.get(`/api/user?email=${post.email}`).then(({ data }) => {
+      setUserName(data.userName);
+      // setAlreadyBookmarked(data.bookmark.some((b) => b === post._id));
+    });
+  }, [post.email, post._id]);
 
   useEffect(() => {
     axios
@@ -48,7 +66,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost, loading 
     await axios
       .put(`/api/post/comment?id=${post._id}`, postComments)
       .then((data) => setStatus(data.status));
-    ref.current.value = "";
+    ref.current.value = '';
   };
 
   const handleLike = async () => {
@@ -63,10 +81,46 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost, loading 
   const handleDelete = (id) => {
     axios.delete(`api/post?id=${id}`).then((data) => {
       if (data.status === 200) {
-        setDeletePost(true);
+        setDeletePost(!deletePost);
       }
     });
   };
+
+  const handleBookmark = async () => {
+    try {
+      const { data } = await axios.patch(
+        `/api/user/bookmarkPost?userId=${userData._id}&postId=${post._id}`
+      );
+      if (data.success) {
+        toast.success(data.message);
+        setAlreadyBookmarked(true);
+      } else {
+        toast.error(data.message);
+        setAlreadyBookmarked(false);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleBookmarkRemove = async () => {
+    try {
+      const { data } = await axios.delete(
+        `/api/user/removeBookmark?userId=${userData._id}&postId=${post._id}`
+      );
+      if (data.success) {
+        toast.success(data.message);
+        setAlreadyBookmarked(false);
+        setController(true);
+      } else {
+        toast.error(data.message);
+        setAlreadyBookmarked(true);
+      }
+    } catch (error) {
+      // toast.error(error.message);
+    }
+  };
+
   return (
     <div className="drop-shadow-sm bg-white dark:bg-black p-5 sm:rounded-xl my-4 ">
       <div className="flex justify-between relative">
@@ -75,7 +129,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost, loading 
             <Image
               src={
                 post.photoURL ||
-                "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
+                'https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png'
               }
               className="rounded-full cursor-pointer"
               alt=""
@@ -92,7 +146,7 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost, loading 
             <span className="text-xs">{format(post.createdAt)} </span>
           </div>
         </div>
-        <div onClick={() => setMenu(menu === "hidden" ? "block" : "hidden")}>
+        <div onClick={() => setMenu(menu === 'hidden' ? 'block' : 'hidden')}>
           <div className="p-3 bg-gray-100 dark:bg-zinc-900 rounded-full cursor-pointer">
             <BsThreeDotsVertical className="dark:text-white text-black" />
           </div>
@@ -101,13 +155,35 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost, loading 
       <div className={menu}>
         <div className="absolute right-5 py-3 bg-gray-100 dark:bg-zinc-800 w-40 z-40 rounded-lg">
           <ul>
-            <li className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3">
-              <FiEdit className="mr-2" /> Edit posts
-            </li>
-            {userData.email === post.email && (
+            {alreadyBookmarked ? (
+              <li
+                onClick={() => {
+                  handleBookmarkRemove();
+                  setMenu('hidden');
+                }}
+                className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3"
+              >
+                <BsBookmarkX className="mr-2" />
+                Remove
+              </li>
+            ) : (
+              <li
+                onClick={() => {
+                  handleBookmark();
+                  setMenu('hidden');
+                }}
+                className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3"
+              >
+                <BsBookmark className="mr-2" /> Bookmark post
+              </li>
+            )}
+            {userData.email === post.email && !isBookmarkPage && (
               <li
                 className="py-1 flex items-center cursor-pointer hover:bg-white  dark:hover:bg-zinc-600 px-3"
-                onClick={() => handleDelete(post._id)}
+                onClick={() => {
+                  handleDelete(post._id);
+                  setMenu('hidden');
+                }}
               >
                 <FiTrash className="mr-2" /> Delete posts
               </li>
@@ -148,17 +224,17 @@ const SinglePost = ({ post, userData, setIsLike, isLike, setDeletePost, loading 
           </div>
         </div>
         <div>
-          <button className="flex items-center">
+          {/* <button className="flex items-center">
             <BiShare className="text-xl" />
             <span className="ml-1">{post.share} Share</span>
-          </button>
+          </button> */}
         </div>
       </div>
       <form onSubmit={handleSubmitComment}>
         <div className="flex gap-2 items-center pt-5">
           <div className="">
             <Image
-              src={userData?.photoURL || "/user-8.png"}
+              src={userData?.photoURL || '/user-8.png'}
               alt=""
               height="50"
               width="50"

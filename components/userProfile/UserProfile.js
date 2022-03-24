@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ProfileModal from "./ProfileModal";
 import AboutModal from "./AboutModal";
-import Link from "next/link";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import SinglePost from "../Home/SinglePost";
@@ -48,7 +47,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
             alt="user cover photo"
           />
         </div>
-        <div className="flex justify-between pt-2 pb-5 border-b dark:border-zinc-600 border-gray-300">
+        <div className="flex justify-between pt-2 pb-5">
           <div className=" flex ">
             <div className="-mt-12 ml-5">
               <Image
@@ -82,14 +81,14 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
             )}
           </div>
         </div>
-        <div className="flex ">
-          <Link href="">
+        {/* <div className="flex ">
+          <button>
             <a className="pr-8 pt-3 font-semibold">Post</a>
-          </Link>
+          </button>
           <Link href="/friends">
             <a className="pr-8 pt-3 font-semibold">Friends</a>
           </Link>
-        </div>
+        </div> */}
       </div>
 
       <div className="grid grid-cols-12 gap-4 bg-gray-100 dark:bg-zinc-900 pt-3">

@@ -10,6 +10,7 @@ import {
   BsChatSquare,
   BsChevronRight,
   BsChevronDown,
+  BsBookmark,
   BsHouse,
   BsMoon,
 } from "react-icons/bs";
@@ -23,19 +24,24 @@ import useFirebase from "../../firebase/useFirebase";
 
 const topCenterNavlinks = [
   {
-    href: "/",
+    href: '/',
     icon: <BsHouse />,
-    label: "Home",
+    label: 'Home',
   },
   {
-    href: "/friends",
+    href: '/friends',
     icon: <FiUsers />,
-    label: "Friends",
+    label: 'Friends',
   },
   {
-    href: "/messenger",
+    href: '/messenger',
     icon: <BsChatSquare />,
-    label: "Messages",
+    label: 'Messages',
+  },
+  {
+    href: '/posts/bookmarked',
+    icon: <BsBookmark />,
+    label: 'Bookmarked posts',
   },
 ];
 
