@@ -43,7 +43,7 @@ const AllFrends = () => {
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   placeholder="Search here."
-                  className="w-full h-12 block rounded-lg pl-4 text-lg border dark:border-zinc-600 outline-0 bg-gray-100 dark:bg-zinc-900 dark:text-black"
+                  className="w-full h-12 block rounded-lg pl-4 text-lg border dark:border-zinc-600 outline-0 bg-gray-100 dark:bg-zinc-900 dark:text-white text-black"
                 />
                 <button
                   type="submit"
