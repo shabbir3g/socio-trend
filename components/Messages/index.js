@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { useSelector } from "react-redux";
 import Navigation from "../Share/Navigation";
 import ChatUserSearchOffcanvas from "./ChatUserSearchOffcanvas";
 import { FiSearch } from "react-icons/fi";
 import { RiSendPlaneLine } from "react-icons/ri";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
-import { MdGroupAdd } from "react-icons/md";
 
 // Existing
 import axios from "axios";
@@ -37,8 +35,7 @@ const MessagingMain = () => {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
-    // socket.current = io("https://dry-oasis-76334.herokuapp.com");
+    socket.current = io("https://dry-oasis-76334.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
