@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useSelector } from "react-redux";
 import Navigation from "../Share/Navigation";
 import ChatUserSearchOffcanvas from "./ChatUserSearchOffcanvas";
 import { FiSearch } from "react-icons/fi";
 import { RiSendPlaneLine } from "react-icons/ri";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
+import { MdGroupAdd } from "react-icons/md";
 
 // Existing
 import axios from "axios";
@@ -21,7 +23,6 @@ const MessagingMain = () => {
 
   // Existing
   const user = useSelector((state) => state.states.user);
-  const [activeChatuser, setActiveChatuser] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -166,11 +167,9 @@ const MessagingMain = () => {
             </div>
             {/* online user list */}
             <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
-              <div className="py-3 overflow-x-scroll	scrollbar flex">
-                {onlineUsers.length === 0 ? (
-                  <UserListSkeleton />
-                ) : (
-                  onlineUsers?.map((u) => (
+              {onlineUsers.length > 0 && (
+                <div className="py-3 overflow-x-scroll	scrollbar flex">
+                  {onlineUsers?.map((u) => (
                     <div className={`px-2 relative cursor-pointer`} key={u._id}>
                       <OnlineUsers
                         onlineUser={u}
@@ -178,9 +177,9 @@ const MessagingMain = () => {
                         setCurrentChat={setCurrentChat}
                       />
                     </div>
-                  ))
-                )}
-              </div>
+                  ))}
+                </div>
+              )}
               <ul className="relative py-2 space-y-1">
                 {conversations.length === 0 ? (
                   <UserListSkeleton />
