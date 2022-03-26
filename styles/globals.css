@@ -21,6 +21,7 @@ p {
   /* Scroll thumb styles */
   .scrollbar::-webkit-scrollbar {
     width: 0.4rem;
+    height: 0.5rem;
   }
   .scrollbar::-webkit-scrollbar-thumb {
     background: #717171;

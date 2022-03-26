@@ -17,10 +17,6 @@ const ChatUser = ({ conversation, currentUser, currentChat, onlineUsers }) => {
     };
     getUser();
   }, [currentUser, conversation, friendId]);
-  console.log({
-    onlineUsers,
-    conversation,
-  });
   return (
     <>
       <div

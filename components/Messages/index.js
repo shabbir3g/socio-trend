@@ -14,6 +14,7 @@ import { io } from "socket.io-client";
 import ChatUser from "./ChatUser";
 import Chat from "./Chat";
 import UserListSkeleton from "../Loaders/UserListSkeleton";
+import OnlineUsers from "./OnlineUsers";
 
 const MessagingMain = () => {
   const [isSearchOffcanvasOpen, setIsSearchOffcanvasOpen] = useState(false);
@@ -36,8 +37,8 @@ const MessagingMain = () => {
   const socket = useRef();
 
   useEffect(() => {
-    // socket.current = io("ws://localhost:8900");
-    socket.current = io("https://dry-oasis-76334.herokuapp.com");
+    socket.current = io("ws://localhost:8900");
+    // socket.current = io("https://dry-oasis-76334.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -166,8 +167,23 @@ const MessagingMain = () => {
                 <div className="absolute -bottom-[1px] dark:bg-white bg-black w-1/2 left-1/2 -translate-x-1/2 h-1 rounded"></div>
               </div>
             </div>
-            {/* friends list */}
+            {/* online user list */}
             <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
+              <div className="py-3 overflow-x-scroll	scrollbar flex">
+                {onlineUsers.length === 0 ? (
+                  <UserListSkeleton />
+                ) : (
+                  onlineUsers?.map((u) => (
+                    <div className={`px-2 relative cursor-pointer`} key={u._id}>
+                      <OnlineUsers
+                        onlineUser={u}
+                        currentId={dbUser._id}
+                        setCurrentChat={setCurrentChat}
+                      />
+                    </div>
+                  ))
+                )}
+              </div>
               <ul className="relative py-2 space-y-1">
                 {conversations.length === 0 ? (
                   <UserListSkeleton />
