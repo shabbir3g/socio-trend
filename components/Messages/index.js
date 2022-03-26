@@ -1,19 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import { useSelector } from 'react-redux';
-import Navigation from '../Share/Navigation';
-import ChatUserSearchOffcanvas from './ChatUserSearchOffcanvas';
-import { FiSearch } from 'react-icons/fi';
-import { RiSendPlaneLine } from 'react-icons/ri';
-import { HiOutlineChatAlt2 } from 'react-icons/hi';
-import { MdGroupAdd } from 'react-icons/md';
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useSelector } from "react-redux";
+import Navigation from "../Share/Navigation";
+import ChatUserSearchOffcanvas from "./ChatUserSearchOffcanvas";
+import { FiSearch } from "react-icons/fi";
+import { RiSendPlaneLine } from "react-icons/ri";
+import { HiOutlineChatAlt2 } from "react-icons/hi";
+import { MdGroupAdd } from "react-icons/md";
 
 // Existing
-import axios from 'axios';
-import { io } from 'socket.io-client';
-import ChatUser from './ChatUser';
-import Chat from './Chat';
-import UserListSkeleton from '../Loaders/UserListSkeleton';
+import axios from "axios";
+import { io } from "socket.io-client";
+import ChatUser from "./ChatUser";
+import Chat from "./Chat";
+import UserListSkeleton from "../Loaders/UserListSkeleton";
 
 const MessagingMain = () => {
   const [isSearchOffcanvasOpen, setIsSearchOffcanvasOpen] = useState(false);
@@ -26,7 +26,7 @@ const MessagingMain = () => {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState("");
   const [dbUser, setDbUser] = useState({});
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -36,8 +36,9 @@ const MessagingMain = () => {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io('https://dry-oasis-76334.herokuapp.com');
-    socket.current.on('getMessage', (data) => {
+    // socket.current = io("ws://localhost:8900");
+    socket.current = io("https://dry-oasis-76334.herokuapp.com");
+    socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
@@ -53,15 +54,14 @@ const MessagingMain = () => {
   }, [arrivalMessage, currentChat]);
 
   useEffect(() => {
-    socket.current.emit('addUser', dbUser._id);
-    socket.current.on('getUsers', (users) => {
+    socket.current.emit("addUser", dbUser._id);
+    socket.current.on("getUsers", (users) => {
       setOnlineUsers(
         allUsers.filter((f) => users.some((u) => u.userId === f._id))
       );
     });
   }, [allUsers, dbUser._id]);
 
-  // console.log({ onlineUsers });
   useEffect(() => {
     const getConversations = async () => {
       try {
@@ -98,7 +98,7 @@ const MessagingMain = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newMessage !== '') {
+    if (newMessage !== "") {
       const message = {
         sender: dbUser._id,
         text: newMessage,
@@ -109,16 +109,16 @@ const MessagingMain = () => {
         (member) => member !== dbUser._id
       );
 
-      socket.current.emit('sendMessage', {
+      socket.current.emit("sendMessage", {
         senderId: dbUser._id,
         receiverId,
         text: newMessage,
       });
 
       try {
-        const res = await axios.post('/api/messenger/messages', message);
+        const res = await axios.post("/api/messenger/messages", message);
         setMessages([...messages, res.data]);
-        setNewMessage('');
+        setNewMessage("");
       } catch (err) {
         console.log(err);
       }
@@ -126,11 +126,11 @@ const MessagingMain = () => {
   };
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   useEffect(() => {
-    axios.get('/api/user/allUsers').then(({ data }) => {
+    axios.get("/api/user/allUsers").then(({ data }) => {
       setAllUsers(data);
     });
   }, []);
@@ -183,6 +183,7 @@ const MessagingMain = () => {
                           conversation={c}
                           currentUser={dbUser}
                           currentChat={currentChat}
+                          onlineUsers={onlineUsers}
                         />
                       </li>
                     ))
