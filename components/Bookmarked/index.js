@@ -1,14 +1,14 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { BsBookmarkX } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
-import SinglePost from '../Home/SinglePost';
-import Navigation from '../Share/Navigation';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { BsBookmarkX } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import SinglePost from "../Home/SinglePost";
+import Navigation from "../Share/Navigation";
 
 const BookmarkedPosts = () => {
   const [controller, setController] = useState(false);
   const [isLike, setIsLike] = useState(false);
-  const [deletePost, setDeletePost] = useState(false);
+  const [removedBookmarked, setRemovedBookmarked] = useState(false);
   const [bookmarkedPostsId, setBookmarkedPostsId] = useState([]);
   const [bookmarkedPosts, setBookmarkedPosts] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
@@ -25,9 +25,12 @@ const BookmarkedPosts = () => {
     if (currentUser) {
       axios
         .get(`/api/user/allBookmarkPost?userId=${currentUser._id}`)
-        .then(({ data }) => setBookmarkedPosts(data));
+        .then(({ data }) => {
+          setBookmarkedPosts(data);
+          setRemovedBookmarked(false);
+        });
     }
-  }, [currentUser, controller, isLike, deletePost]);
+  }, [currentUser, controller, isLike, removedBookmarked]);
 
   return (
     <>
@@ -54,6 +57,7 @@ const BookmarkedPosts = () => {
                 post={post}
                 setController={setController}
                 bookmarkedPostsId={bookmarkedPostsId}
+                setRemovedBookmarked={setRemovedBookmarked}
                 userData={currentUser}
               />
             ))

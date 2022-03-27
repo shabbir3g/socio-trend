@@ -1,7 +1,7 @@
-import axios from 'axios';
-import Link from 'next/link';
-import { FaUsers, FaUserAlt } from 'react-icons/fa';
-import { FiLogOut } from 'react-icons/fi';
+import axios from "axios";
+import Link from "next/link";
+import { FaUsers, FaUserAlt } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import {
   BsChatLeftFill,
   BsGear,
@@ -9,12 +9,12 @@ import {
   BsChevronDown,
   BsFillBookmarksFill,
   BsFillBookmarkFill,
-} from 'react-icons/bs';
-import { CgScreen } from 'react-icons/cg';
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import useFirebase from '../../firebase/useFirebase';
-import Image from 'next/image';
+} from "react-icons/bs";
+import { CgScreen } from "react-icons/cg";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import useFirebase from "../../firebase/useFirebase";
+import Image from "next/image";
 
 const LeftSideBar = () => {
   const { googleSingOut } = useFirebase();
@@ -97,20 +97,22 @@ const LeftSideBar = () => {
         </div> */}
         <div className="bg-white font-medium dark:bg-black p-5 rounded-lg drop-shadow-sm space-y-3">
           <div className="left-sidebar space-y-2">
-            <div className="flex items-center gap-2 p-1.5">
-              <div className="w-10 h-10 rounded-full overflow-hidden relative">
-                {data.photoURL && (
-                  <Image
-                    alt={data && data.displayName}
-                    src={data && data.photoURL}
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                )}
+            <Link href={`/${data.userName}`} passHref>
+              <div className="flex items-center gap-2 p-1.5 cursor-pointer">
+                <div className="w-10 h-10 rounded-full overflow-hidden relative">
+                  {data.photoURL && (
+                    <Image
+                      alt={data && data.displayName}
+                      src={data && data.photoURL}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  )}
+                </div>
+                <p>{data.displayName}</p>
+                <BsChevronDown className="ml-auto" />
               </div>
-              <p>{data.displayName}</p>
-              <BsChevronDown className="ml-auto" />
-            </div>
+            </Link>
             <Link href={`/${data.userName}`}>
               <a className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md">
                 <BsGear className="bg-indigo-400 p-2 w-10 h-10 text-white rounded-md" />

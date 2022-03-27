@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import { format } from 'timeago.js';
-import { FaArrowUp } from 'react-icons/fa';
-import { FiTrash } from 'react-icons/fi';
-import { BiShare } from 'react-icons/bi';
-import axios from 'axios';
-import Comments from './Comments';
-import Link from 'next/link';
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { format } from "timeago.js";
+import { FaArrowUp } from "react-icons/fa";
+import { FiTrash } from "react-icons/fi";
+import { BiShare } from "react-icons/bi";
+import axios from "axios";
+import Comments from "./Comments";
+import Link from "next/link";
 import {
   BsChatLeft,
   BsBookmark,
@@ -14,8 +14,8 @@ import {
   BsThreeDotsVertical,
   BsHeartFill,
   BsHeart,
-} from 'react-icons/bs';
-import { toast } from 'react-toastify';
+} from "react-icons/bs";
+import { toast } from "react-toastify";
 
 const SinglePost = ({
   post,
@@ -28,15 +28,16 @@ const SinglePost = ({
   deletePost,
   isBookmarkPage,
   loading,
+  setRemovedBookmarked,
 }) => {
   const [alreadyBookmarked, setAlreadyBookmarked] = useState(
     bookmarkedPostsId?.some((p) => p === post._id)
   );
   const [dbComments, setDbComments] = useState([]);
-  const [comment, setComment] = useState('');
-  const [userName, setUserName] = useState('');
+  const [comment, setComment] = useState("");
+  const [userName, setUserName] = useState("");
   const [status, setStatus] = useState(null);
-  const [menu, setMenu] = useState('hidden');
+  const [menu, setMenu] = useState("hidden");
   const ref = useRef();
 
   useEffect(() => {
@@ -59,6 +60,7 @@ const SinglePost = ({
   const handleSubmitComment = async (e) => {
     e.preventDefault();
     let comments = {};
+    comments.userId = userData._id;
     comments.photoURL = userData.photoURL;
     comments.comment = comment;
     comments.displayName = userData.displayName;
@@ -66,7 +68,7 @@ const SinglePost = ({
     await axios
       .put(`/api/post/comment?id=${post._id}`, postComments)
       .then((data) => setStatus(data.status));
-    ref.current.value = '';
+    ref.current.value = "";
   };
 
   const handleLike = async () => {
@@ -109,6 +111,7 @@ const SinglePost = ({
         `/api/user/removeBookmark?userId=${userData._id}&postId=${post._id}`
       );
       if (data.success) {
+        setRemovedBookmarked(true);
         toast.success(data.message);
         setAlreadyBookmarked(false);
         setController(true);
@@ -130,7 +133,7 @@ const SinglePost = ({
               <Image
                 src={
                   post.photoURL ||
-                  'https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png'
+                  "https://i.ibb.co/MVbC3v6/114-1149878-setting-user-avatar-in-specific-size-w.png"
                 }
                 className="rounded-full cursor-pointer"
                 alt=""
@@ -149,7 +152,7 @@ const SinglePost = ({
             <span className="text-xs">{format(post.createdAt)} </span>
           </div>
         </div>
-        <div onClick={() => setMenu(menu === 'hidden' ? 'block' : 'hidden')}>
+        <div onClick={() => setMenu(menu === "hidden" ? "block" : "hidden")}>
           <div className="p-3 bg-gray-100 dark:bg-zinc-900 rounded-full cursor-pointer">
             <BsThreeDotsVertical className="dark:text-white text-black" />
           </div>
@@ -162,7 +165,7 @@ const SinglePost = ({
               <li
                 onClick={() => {
                   handleBookmarkRemove();
-                  setMenu('hidden');
+                  setMenu("hidden");
                 }}
                 className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3"
               >
@@ -173,7 +176,7 @@ const SinglePost = ({
               <li
                 onClick={() => {
                   handleBookmark();
-                  setMenu('hidden');
+                  setMenu("hidden");
                 }}
                 className="py-1 flex items-center cursor-pointer hover:bg-white dark:hover:bg-zinc-600 px-3"
               >
@@ -185,7 +188,7 @@ const SinglePost = ({
                 className="py-1 flex items-center cursor-pointer hover:bg-white  dark:hover:bg-zinc-600 px-3"
                 onClick={() => {
                   handleDelete(post._id);
-                  setMenu('hidden');
+                  setMenu("hidden");
                 }}
               >
                 <FiTrash className="mr-2" /> Delete posts
@@ -237,7 +240,7 @@ const SinglePost = ({
         <div className="flex gap-2 items-center pt-5">
           <div className="relative">
             <Image
-              src={userData?.photoURL || '/user-8.png'}
+              src={userData?.photoURL || "/user-8.png"}
               alt=""
               height="50"
               width="50"
