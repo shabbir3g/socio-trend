@@ -129,3 +129,7 @@ ul.left-sidebar li:hover {
     display: none;
   }
 }
+
+#nprogress .spinner-icon {
+  display: none;
+}

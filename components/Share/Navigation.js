@@ -87,7 +87,7 @@ const Navigation = () => {
   };
 
   return (
-    <header className="px-2 md:px-4 lg:px-6 dark:bg-black bg-white sm:border-b border-gray-300 dark:border-zinc-800 mx-auto sticky mb-2 top-0 w-full z-40">
+    <header className="px-2 md:px-4 lg:px-6 dark:bg-black bg-white sm:border-b border-gray-300 dark:border-zinc-800 mx-auto sticky top-0 w-full z-40">
       {/* Desktop menu */}
       <div className="flex gap-4 2xl:container mx-auto justify-between items-center py-2">
         {/* Menu open button */}

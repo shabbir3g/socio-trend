@@ -24,6 +24,7 @@ module.exports = {
       "thumbs.dreamstime.com",
       "lh3.googleusercontent.com",
       "res.cloudinary.com",
+      "static1.makeuseofimages.com"
     ],
   },
 };

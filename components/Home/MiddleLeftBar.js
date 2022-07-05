@@ -1,11 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import CreatePost from "./CreatePost";
-import SinglePost from "./SinglePost";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import PostSkeleton from '../Loaders/PostSkeleton';
+import CreatePost from './CreatePost';
+import SinglePost from './SinglePost';
 
 const MiddleLeftBar = () => {
   const [userData, setUserData] = useState({});
+  const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [isLike, setIsLike] = useState(false);
   const [deletePost, setDeletePost] = useState(false);
@@ -19,11 +21,17 @@ const MiddleLeftBar = () => {
   }, [user?.email]);
 
   useEffect(() => {
-    axios.get(`/api/post`).then((data) => {
-      setPosts(data?.data);
-      setDeletePost(false);
-      setNewPost(false);
-    });
+    setLoading(true);
+    try {
+      axios.get(`/api/post`).then((data) => {
+        setPosts(data?.data);
+        setDeletePost(false);
+        setNewPost(false);
+        setLoading(false);
+      });
+    } catch (error) {
+      setLoading(false);
+    }
   }, [user?.email, isLike, deletePost, newPost]);
 
   const shuffle = (array) => {
@@ -41,9 +49,11 @@ const MiddleLeftBar = () => {
   return (
     <div>
       <CreatePost user={userData} setNewPost={setNewPost} />
+      {loading && [...Array(3).keys()].map((_, i) => <PostSkeleton key={i} />)}
       {posts
         .map((post) => (
           <SinglePost
+            loading={loading}
             key={post._id}
             post={post}
             isLike={isLike}

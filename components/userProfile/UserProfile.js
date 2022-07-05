@@ -24,7 +24,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
 
   useEffect(() => {
     axios.get(`/api/post/userPost?userName=${userName}`).then((data) => {
-      setPosts(data.data);
+      setPosts(data?.data);
     });
   }, [userName, deletePost, isLike, newPost]);
 
@@ -41,7 +41,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
         <div className="">
           <Image
             className="rounded-2xl object-content"
-            src={userData.coverPicture || "https://i.ibb.co/pWc2Ffd/u-bg.jpg"}
+            src={userData.coverPicture || 'https://i.ibb.co/pWc2Ffd/u-bg.jpg'}
             width={1000}
             objectFit="cover"
             height={300}
@@ -53,7 +53,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
             <div className="-mt-12 ml-5">
               <Image
                 src={
-                  userData.photoURL || "https://i.ibb.co/5kdWHNN/user-12.png"
+                  userData.photoURL || 'https://i.ibb.co/5kdWHNN/user-12.png'
                 }
                 alt="user profile photo"
                 width={100}
@@ -131,7 +131,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
                 Edit Details
               </button>
             ) : (
-              <button className="hidden w-full" id="edit-about"></button>
+              <button className="hidden w-full"></button>
             )}
           </div>
         </div>
@@ -140,7 +140,7 @@ const UserProfile = ({ userData, setUpdateUserData }) => {
           {reduxUser.email === userData.email && (
             <CreatePost user={userData} setNewPost={setNewPost} />
           )}
-          {posts.map((post) => (
+          {posts && posts?.map((post) => (
             <SinglePost
               key={post._id}
               post={post}
