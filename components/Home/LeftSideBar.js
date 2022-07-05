@@ -1,62 +1,71 @@
 import axios from "axios";
 import Link from "next/link";
+import { FaUsers, FaUserAlt } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import {
+  BsChatLeftFill,
+  BsGear,
+  BsChat,
+  BsChevronDown,
+  BsFillBookmarksFill,
+  BsFillBookmarkFill,
+} from "react-icons/bs";
+import { CgScreen } from "react-icons/cg";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useFirebase from "../../firebase/useFirebase";
+import Image from "next/image";
 
 const LeftSideBar = () => {
   const { googleSingOut } = useFirebase();
   const [data, setData] = useState({});
   const user = useSelector((state) => state.states.user);
 
-  
   useEffect(() => {
-    axios.get(`/api/user?email=${user?.email}`).then(({ data }) => setData(data));
+    axios
+      .get(`/api/user?email=${user?.email}`)
+      .then(({ data }) => setData(data));
   }, [user?.email]);
   return (
     <div>
-      <div className="w-full">
-        <div className="bg-white dark:bg-black p-5 rounded-lg drop-shadow-sm ">
-          <p className="mb-3">New Feeds</p>
-          <ul className="left-sidebar">
+      <div className="w-full space-y-4">
+        <div className="bg-white font-medium dark:bg-black p-5 rounded-lg drop-shadow-sm space-y-3">
+          <p>Quick links</p>
+          <div className="left-sidebar space-y-2">
             <Link href="/">
-              <a>
-                <li className="mb-3">
-                  <i className="fa-solid fa-tv p-3 bg-blue-500 text-white rounded-full"></i>
-                  NewsFeed
-                </li>
+              <a className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md">
+                <CgScreen className="bg-blue-400 p-2 w-10 h-10 text-white rounded-md" />
+                Newsfeed
               </a>
             </Link>
-            <li className="mb-3">
-              <a href="">
-                <i className="fa-solid fa-ribbon p-3 bg-red-400 text-white rounded-full"></i>
-                Bedges
+            <Link href="/friends">
+              <a className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md">
+                <FaUsers className="bg-red-400 p-2 w-10 h-10 text-white rounded-md" />
+                Friends
               </a>
-            </li>
-            <li className="mb-3">
-              <a href="">
-                <i className="fa-solid fa-globe p-3 bg-yellow-400 text-white rounded-full"></i>
-                Explore Stories
+            </Link>
+            <Link href="/messenger">
+              <a className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md">
+                <BsChatLeftFill className="bg-green-400 p-2 w-10 h-10 text-white rounded-md" />
+                Messages
               </a>
-            </li>
-            <li className="mb-3">
-              <a href="">
-                <i className="fa-solid fa-bolt p-3 bg-red-400 text-white rounded-full"></i>
-                Popular Groups
+            </Link>
+            <Link href="/posts/bookmarked">
+              <a className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md">
+                <BsFillBookmarkFill className="bg-teal-400 p-2 w-10 h-10 text-white rounded-md" />
+                Bookmarks
               </a>
-            </li>
+            </Link>
             <Link href={`/${data.userName}`}>
-              <a>
-                <li className="mb-3">
-                  <i className="fa-regular fa-user p-3 bg-blue-400 text-white rounded-full"></i>
-                  Author Profile
-                </li>
+              <a className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md">
+                <FaUserAlt className="bg-amber-400 p-2 w-10 h-10 text-white rounded-md" />
+                My profile
               </a>
             </Link>
-          </ul>
+          </div>
         </div>
-        <div className="my-5 bg-white dark:bg-black p-5 rounded-lg drop-shadow-sm">
-          <p className="mb-3">More pages</p>
+        {/* <div className="my-5 bg-white dark:bg-black p-5 rounded-lg drop-shadow-sm">
+          <p>More pages</p>
           <ul className="left-second-sidebar">
             <li>
               <Link href="https://gmail.com">
@@ -85,34 +94,51 @@ const LeftSideBar = () => {
               </a>
             </li>
           </ul>
-        </div>
-        <div className="my-5 bg-white dark:bg-black p-5 rounded-lg drop-shadow-sm">
-          <p className="mb-3">Account</p>
-          <ul className="left-second-sidebar">
-            <li>
-              <a href="">
-                <i className="fa-solid fa-gear p-3 text-gray-400 text-2xl"></i>{" "}
+        </div> */}
+        <div className="bg-white font-medium dark:bg-black p-5 rounded-lg drop-shadow-sm space-y-3">
+          <div className="left-sidebar space-y-2">
+            <Link href={`/${data.userName}`} passHref>
+              <div className="flex items-center gap-2 p-1.5 cursor-pointer">
+                <div className="w-10 h-10 rounded-full overflow-hidden relative">
+                  {data.photoURL && (
+                    <Image
+                      alt={data && data.displayName}
+                      src={data && data.photoURL}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  )}
+                </div>
+                <p>{data.displayName}</p>
+                <BsChevronDown className="ml-auto" />
+              </div>
+            </Link>
+            <Link href={`/${data.userName}`}>
+              <a className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md">
+                <BsGear className="bg-indigo-400 p-2 w-10 h-10 text-white rounded-md" />
                 Settings
               </a>
-            </li>
-            <li>
-              <a href="">
-                <i className="fa-solid fa-chart-pie p-3 text-gray-400 text-2xl"></i>{" "}
-                Analytics
+            </Link>
+            <Link href="/friends">
+              <a className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md">
+                <BsChat className="bg-lime-400 p-2 w-10 h-10 text-white rounded-md" />
+                Chat
               </a>
-            </li>
-            <li>
-              <Link href="/chatting">
-                <a>
-                  <i className="fa-solid fa-comment p-3 text-gray-400 text-2xl"></i>{" "}
-                  Chat
-                </a>
-              </Link>
-            </li>
-            <li onClick={googleSingOut} className="signout mb-3 ">
-              <i className="fa-solid fa-right-from-bracket p-3 "></i> Sign Out
-            </li>
-          </ul>
+            </Link>
+            <Link href="/posts/bookmarked">
+              <a className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md">
+                <BsFillBookmarksFill className="bg-sky-400 p-2 w-10 h-10 text-white rounded-md" />
+                Saved posts
+              </a>
+            </Link>
+            <button
+              onClick={googleSingOut}
+              className="flex items-center w-full gap-2 hover:bg-gray-200 dark:hover:bg-zinc-900 p-1.5 rounded-md"
+            >
+              <FiLogOut className="bg-rose-400 p-2 w-10 h-10 text-white rounded-md" />
+              Sign out
+            </button>
+          </div>
         </div>
       </div>
     </div>

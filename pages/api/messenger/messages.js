@@ -1,4 +1,4 @@
-import connectDb from '.././../../db/connectDatabase';
+import connectDb from ".././../../db/connectDatabase";
 import Message from "../../../models/Message";
 
 export default async function handler(req, res) {

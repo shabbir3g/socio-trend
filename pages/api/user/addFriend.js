@@ -6,6 +6,7 @@ export default async function handler(req, res) {
   const { method } = req;
   // add friend
   if (method === "PATCH") {
+<<<<<<< HEAD
     const { recipientId } = req.query;
     try {
       await User.findByIdAndUpdate(
@@ -18,6 +19,18 @@ export default async function handler(req, res) {
           },
         }
       );
+=======
+    const {recipientId} = req.query;
+    try{        
+        await User.findByIdAndUpdate(
+            recipientId,
+            {
+                $push: {
+                    friendsRequest: req.body.currentUserId,
+                }
+            }
+        )
+>>>>>>> 99d94ada259dec7df075aaf7ed5705c1f3d3aa51
 
       res.status(200).json({
         message: "Succefully Send Friend Request",

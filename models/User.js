@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema(
   {
     displayName: {
@@ -10,7 +10,8 @@ const UserSchema = new mongoose.Schema(
     userName: {
       type: String,
       required: true,
-      default: "",
+      unique: true,
+      default: '',
     },
     email: {
       type: String,
@@ -21,11 +22,11 @@ const UserSchema = new mongoose.Schema(
     },
     photoURL: {
       type: String,
-      default: "",
+      default: '',
     },
     coverPicture: {
       type: String,
-      default: "",
+      default: '',
     },
     friends: {
       type: Array,
@@ -35,46 +36,33 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    bookmark: {
+      type: Array,
+      default: [],
+    },
     post: {
       type: Array,
       default: [],
     },
-    isAdmin: {
-      type: Boolean,
-      default: false,
-    },
     education: {
       type: String,
-      default: "",
+      default: '',
     },
     city: {
       type: String,
-      default: "",
+      default: '',
     },
     from: {
       type: String,
-      default: "",
+      default: '',
     },
     relationship: {
       type: String,
-      default: "",
+      default: '',
     },
     workplace: {
       type: String,
-      default: "",
-    },
-    username: {
-      type: String,
-      require: true,
-      min: 3,
-      max: 20,
-      unique: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      max: 50,
-      unique: true,
+      default: '',
     },
     password: {
       type: String,
@@ -83,11 +71,7 @@ const UserSchema = new mongoose.Schema(
     },
     profilePicture: {
       type: String,
-      default: "",
-    },
-    coverPicture: {
-      type: String,
-      default: "",
+      default: '',
     },
     followers: {
       type: Array,
@@ -97,6 +81,10 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    isOnline: {
+      type: Boolean,
+      default: false,
+    },
     isAdmin: {
       type: Boolean,
       default: false,
@@ -105,20 +93,8 @@ const UserSchema = new mongoose.Schema(
       type: String,
       max: 50,
     },
-    city: {
-      type: String,
-      max: 50,
-    },
-    from: {
-      type: String,
-      max: 50,
-    },
-    relationship: {
-      type: Number,
-      enum: [1, 2, 3],
-    },
   },
   { timestamps: true }
 );
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+export default mongoose.models.User || mongoose.model('User', UserSchema);

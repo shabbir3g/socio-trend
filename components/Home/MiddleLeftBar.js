@@ -6,6 +6,7 @@ import CreatePost from './CreatePost';
 import SinglePost from './SinglePost';
 
 const MiddleLeftBar = () => {
+  const [bookmarkedPostsId, setBookmarkedPostsId] = useState([]);
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -15,10 +16,11 @@ const MiddleLeftBar = () => {
   const user = useSelector((state) => state.states.user);
 
   useEffect(() => {
-    axios.get(`/api/user?email=${user?.email}`).then((data) => {
-      setUserData(data?.data);
+    axios.get(`/api/user?email=${user?.email}`).then(({ data }) => {
+      setUserData(data);
+      setBookmarkedPostsId(data?.bookmark);
     });
-  }, [user?.email]);
+  }, [user.email, bookmarkedPostsId]);
 
   useEffect(() => {
     setLoading(true);
@@ -54,6 +56,7 @@ const MiddleLeftBar = () => {
         .map((post) => (
           <SinglePost
             loading={loading}
+            bookmarkedPostsId={bookmarkedPostsId}
             key={post._id}
             post={post}
             isLike={isLike}

@@ -16,6 +16,7 @@ const AboutModal = ({
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
+    console.log(data);
     axios
       .put(`/api/user/updateAbout?email=${user.email}`, data)
       .then((data) => {
@@ -35,14 +36,14 @@ const AboutModal = ({
         modal: "customModal",
       }}
     >
-      <div className="bg-gray-200 dark:bg-gray-800 p-5 rounded shadow-xl text-gray-800 md:w-[500px]">
+      <div className="bg-white dark:bg-zinc-900 p-5 shadow-xl text-gray-800 md:w-[500px]">
         <div className="flex justify-between items-center border-b-2 py-3 mb-5 border-gray-500">
           <h4 className="text-lg font-bold dark:text-white">Edit about</h4>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label className="dark:text-white">Educations</label>
           <input
-            className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
+            className="w-full h-12 mb-3 bg-transparent rounded-lg px-2 dark:text-white"
             type="text"
             {...register("education")}
             defaultValue={data.education}
@@ -50,7 +51,7 @@ const AboutModal = ({
           />
           <label className="dark:text-white">Lives in </label>
           <input
-            className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
+            className="w-full h-12 mb-3 bg-transparent rounded-lg px-2 dark:text-white"
             type="text"
             {...register("city")}
             defaultValue={data.city}
@@ -58,7 +59,7 @@ const AboutModal = ({
           />
           <label className="dark:text-white">From</label>
           <input
-            className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
+            className="w-full h-12 mb-3 bg-transparent rounded-lg px-2 dark:text-white"
             type="text"
             {...register("from")}
             defaultValue={data.from}
@@ -66,7 +67,7 @@ const AboutModal = ({
           />
           <label className="dark:text-white">Workplace</label>
           <input
-            className="w-full h-12 mb-3 dark:bg-gray-700 px-2 dark:text-white"
+            className="w-full h-12 mb-3 bg-transparent rounded-lg px-2 dark:text-white"
             type="text"
             {...register("workplace")}
             defaultValue={data.workplace}
@@ -76,7 +77,7 @@ const AboutModal = ({
           <select
             name="relationship"
             id=""
-            className="w-full h-12 mb-3 dark:bg-gray-700 dark:text-white px-3"
+            className="w-full h-12 mb-3 dark:bg-zinc-900 rounded-lg dark:text-white px-3"
             {...register("relationship")}
             placeholder={data.relationship}
             defaultValue={data.education}
